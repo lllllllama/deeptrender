@@ -1,0 +1,18 @@
+# OpenReview API
+openreview-py>=0.28.0
+
+# Keyword Extraction
+yake>=0.4.8
+keybert>=0.8.0
+sentence-transformers>=2.2.0
+
+# Data Processing
+pandas>=2.0.0
+
+# Visualization
+matplotlib>=3.7.0
+wordcloud>=1.9.0
+
+# Utilities
+python-dotenv>=1.0.0
+tqdm>=4.65.0

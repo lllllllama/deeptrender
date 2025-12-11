@@ -1,0 +1,98 @@
+name: Update Keywords
+
+on:
+  schedule:
+    # 每周日 UTC 0:00（北京时间周日 8:00）
+    - cron: '0 0 * * 0'
+  workflow_dispatch:
+    inputs:
+      venues:
+        description: '要更新的会议（逗号分隔，如 ICLR,NeurIPS）'
+        required: false
+        default: ''
+      years:
+        description: '要更新的年份（逗号分隔，如 2024,2023）'
+        required: false
+        default: ''
+      limit:
+        description: '每个会议年份的论文限制（测试用）'
+        required: false
+        default: ''
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    
+    permissions:
+      contents: write
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+      
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+      
+      - name: Run update pipeline
+        env:
+          OPENREVIEW_USERNAME: ${{ secrets.OPENREVIEW_USERNAME }}
+          OPENREVIEW_PASSWORD: ${{ secrets.OPENREVIEW_PASSWORD }}
+        run: |
+          # 构建命令参数
+          CMD="python -m src.main"
+          
+          if [ -n "${{ github.event.inputs.venues }}" ]; then
+            VENUES=$(echo "${{ github.event.inputs.venues }}" | tr ',' ' ')
+            CMD="$CMD --venue $VENUES"
+          fi
+          
+          if [ -n "${{ github.event.inputs.years }}" ]; then
+            YEARS=$(echo "${{ github.event.inputs.years }}" | tr ',' ' ')
+            CMD="$CMD --year $YEARS"
+          fi
+          
+          if [ -n "${{ github.event.inputs.limit }}" ]; then
+            CMD="$CMD --limit ${{ github.event.inputs.limit }}"
+          fi
+          
+          echo "Running: $CMD"
+          $CMD
+      
+      - name: Commit and push changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          
+          # 添加所有更改
+          git add -A
+          
+          # 检查是否有更改
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            # 生成提交信息
+            DATE=$(date +%Y-%m-%d)
+            PAPER_COUNT=$(python -c "from src.database import get_repository; print(get_repository().get_paper_count())" 2>/dev/null || echo "N/A")
+            
+            git commit -m "chore: auto-update keywords [$DATE]" \
+                       -m "📊 Total papers: $PAPER_COUNT"
+            
+            git push
+          fi
+      
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: reports
+          path: |
+            output/reports/
+            output/figures/
+          retention-days: 30
