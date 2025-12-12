@@ -1,158 +1,248 @@
-# DepthTrender - 顶会论文关键词追踪系统
+# 🔬 DepthTrender
+
+**AI 顶会论文关键词追踪系统** | 实时掌握研究热点与发展趋势
 
 [![Update Keywords](https://github.com/YOUR_USERNAME/depthtrender/actions/workflows/update.yml/badge.svg)](https://github.com/YOUR_USERNAME/depthtrender/actions/workflows/update.yml)
+[![Python 3.11+](https://img.shields.io/badge/python-3.11+-blue.svg)](https://www.python.org/downloads/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-自动追踪深度学习顶级会议（ICLR、NeurIPS、ICML）的论文关键词，提供统计分析、可视化和趋势报告，助力研究人员实时掌握最新的研究热点与发展趋势。
+---
 
-## ✨ 特性
+## ✨ 核心特性
 
-- 🔍 **自动爬取** - 通过 OpenReview API 自动获取顶会论文
-- 🔑 **智能提取** - 支持 YAKE 和 KeyBERT 两种关键词提取方法
-- 📊 **统计分析** - 提供关键词频率、趋势、会议对比等统计
-- 🎨 **可视化** - 生成词云图、柱状图、趋势折线图
-- 📄 **报告生成** - 自动生成包含图表的 Markdown 报告
-- ⏰ **定时更新** - 通过 GitHub Actions 每周自动更新
+| 功能 | 描述 |
+|------|------|
+| 🔍 **多源爬取** | 支持 OpenReview + Semantic Scholar 双数据源 |
+| 🔑 **智能提取** | YAKE（快速）+ KeyBERT（精准）双引擎 |
+| 📊 **深度分析** | 频率统计、趋势追踪、新兴关键词识别 |
+| 🎨 **可视化** | 词云、柱状图、趋势折线图、会议对比 |
+| 📄 **自动报告** | 生成 Markdown 格式的分析报告 |
+| ⏰ **定时更新** | GitHub Actions 每周自动更新 |
+
+---
+
+## 📈 支持的会议
+
+<table>
+<tr>
+<td width="50%">
+
+### 🟢 OpenReview 数据源
+| 会议 | 领域 | 年份 |
+|------|------|------|
+| **ICLR** | 机器学习 | 2021-2025 |
+| **NeurIPS** | 机器学习 | 2021-2024 |
+| **ICML** | 机器学习 | 2021-2024 |
+| **EMNLP** | NLP | 2023-2024 |
+| **COLM** | 语言模型 | 2024 |
+| **CoRL** | 机器人 | 2022-2024 |
+| **LOG** | 图学习 | 2022-2024 |
+| **AISTATS** | 统计学习 | 2022-2024 |
+
+</td>
+<td width="50%">
+
+### 🔵 Semantic Scholar 数据源
+| 会议 | 领域 | 年份 |
+|------|------|------|
+| **CVPR** | 计算机视觉 | 2021-2024 |
+| **ICCV** | 计算机视觉 | 2021, 2023 |
+| **ECCV** | 计算机视觉 | 2022, 2024 |
+| **ACL** | NLP | 2022-2024 |
+| **NAACL** | NLP | 2022, 2024 |
+| **AAAI** | 人工智能 | 2022-2024 |
+| **IJCAI** | 人工智能 | 2022-2024 |
+
+</td>
+</tr>
+</table>
+
+---
+
+## 🚀 快速开始
+
+### 安装
+
+```bash
+git clone https://github.com/YOUR_USERNAME/depthtrender.git
+cd depthtrender
+pip install -r requirements.txt
+```
+
+### 基础用法
+
+```bash
+# 完整流程（所有数据源，所有会议）
+python src/main.py
+
+# 指定会议和年份
+python src/main.py --venue ICLR NeurIPS --year 2024
+
+# 测试模式（限制论文数量）
+python src/main.py --limit 10
+```
+
+### 数据源选择
+
+```bash
+# 仅 OpenReview（ICLR, NeurIPS, ICML 等）
+python src/main.py --source openreview
+
+# 仅 Semantic Scholar（CVPR, ACL, AAAI 等）
+python src/main.py --source s2
+
+# 所有数据源（默认）
+python src/main.py --source all
+```
+
+### 提取器选择
+
+```bash
+# YAKE - 快速，无需模型（默认）
+python src/main.py --extractor yake
+
+# KeyBERT - 基于 BERT，更精准
+python src/main.py --extractor keybert
+
+# 两者结合
+python src/main.py --extractor both
+```
+
+### 其他选项
+
+```bash
+# 跳过爬取，仅重新生成报告
+python src/main.py --skip-scrape
+
+# 查看帮助
+python src/main.py --help
+```
+
+---
+
+## 🌐 Web 可视化仪表盘
+
+### 启动服务器
+
+```bash
+python src/web/app.py
+```
+
+访问 **http://localhost:5000** 查看仪表盘。
+
+### 页面功能
+
+| 页面 | 功能 |
+|------|------|
+| **首页** | 总览统计、词云、Top 关键词、趋势图 |
+| **会议分析** | 单会议词云、年度统计、关键词演变 |
+| **趋势追踪** | 多关键词对比、新兴关键词发现 |
+| **会议对比** | 雷达图对比、并排 Top-K 排名 |
+
+### 技术栈
+
+- 后端: Flask + REST API
+- 前端: 原生 HTML/CSS/JS
+- 图表: ECharts 5.x
+- 主题: 深色专业风格
+
+---
+
+## 📊 输出示例
+
+运行后将在 `output/` 目录生成：
+
+| 文件 | 说明 |
+|------|------|
+| `figures/wordcloud_overall.png` | 整体关键词词云 |
+| `figures/wordcloud_*.png` | 各会议词云 |
+| `figures/top_keywords.png` | Top-K 关键词柱状图 |
+| `figures/keyword_trends.png` | 关键词趋势图 |
+| `figures/comparison_*.png` | 会议对比图 |
+| `reports/report.md` | Markdown 分析报告 |
+
+---
+
+## ⚙️ GitHub Actions 自动化
+
+### 自动触发
+- **时间**：每周日 UTC 0:00（北京时间 8:00）
+- **内容**：自动爬取、分析、生成报告并提交
+
+### 手动触发
+1. 进入 GitHub 仓库 → **Actions** 标签页
+2. 选择 **Update Keywords** 工作流
+3. 点击 **Run workflow**
+4. 可选参数：`venues`、`years`、`limit`
+
+### 配置 Secrets（可选）
+
+在 **Settings → Secrets → Actions** 添加：
+- `OPENREVIEW_USERNAME` - OpenReview 账号
+- `OPENREVIEW_PASSWORD` - OpenReview 密码
+
+---
 
 ## 📁 项目结构
 
 ```
 depthtrender/
-├── .github/workflows/     # GitHub Actions 工作流
+├── .github/workflows/update.yml    # 自动化工作流
 ├── src/
-│   ├── scraper/          # 论文爬取模块
-│   ├── extractor/        # 关键词提取模块
-│   ├── database/         # 数据库模块
-│   ├── analysis/         # 统计分析模块
-│   ├── visualization/    # 可视化模块
-│   ├── report/           # 报告生成模块
-│   ├── config.py         # 配置管理
-│   └── main.py           # 主程序入口
-├── data/                 # 数据库文件
-├── output/
-│   ├── figures/          # 生成的图表
-│   └── reports/          # 生成的报告
+│   ├── scraper/                   # 多源爬取（OpenReview + S2）
+│   ├── extractor/                 # 关键词提取（YAKE + KeyBERT）
+│   ├── database/                  # SQLite 存储
+│   ├── analysis/                  # 统计分析
+│   ├── visualization/             # 图表生成
+│   ├── report/                    # 报告生成
+│   ├── config.py                  # 配置管理
+│   └── main.py                    # 主入口
+├── data/keywords.db               # SQLite 数据库
+├── output/                        # 生成的图表和报告
 ├── requirements.txt
 └── README.md
 ```
 
-## 🚀 快速开始
-
-### 1. 克隆仓库
-
-```bash
-git clone https://github.com/YOUR_USERNAME/depthtrender.git
-cd depthtrender
-```
-
-### 2. 安装依赖
-
-```bash
-pip install -r requirements.txt
-```
-
-### 3. 运行
-
-```bash
-# 运行完整流程（所有会议，所有年份）
-python -m src.main
-
-# 只处理特定会议和年份
-python -m src.main --venue ICLR --year 2024
-
-# 限制论文数量（测试用）
-python -m src.main --limit 10
-
-# 使用 KeyBERT 提取器（更准确但较慢）
-python -m src.main --extractor keybert
-
-# 跳过爬取，只重新生成报告
-python -m src.main --skip-scrape
-```
-
-## 📊 输出示例
-
-### 词云图
-
-![词云示例](output/figures/wordcloud_overall.png)
-
-### Top 关键词
-
-![Top 关键词](output/figures/top_keywords.png)
-
-### 趋势图
-
-![趋势图](output/figures/keyword_trends.png)
-
-## ⚙️ 配置
-
-### 会议配置
-
-编辑 `src/config.py` 中的 `VENUES` 字典来添加或修改会议：
-
-```python
-VENUES = {
-    "ICLR": VenueConfig(
-        name="ICLR",
-        full_name="International Conference on Learning Representations",
-        venue_id_pattern="ICLR.cc/{year}/Conference",
-        years=[2024, 2023, 2022, 2021]
-    ),
-    # 添加更多会议...
-}
-```
-
-### 提取器配置
-
-```python
-EXTRACTOR_CONFIG = ExtractorConfig(
-    yake_num_keywords=20,          # YAKE 提取关键词数量
-    keybert_top_n=20,             # KeyBERT 提取关键词数量
-    default_extractor="yake",     # 默认提取器
-)
-```
-
-## 🔄 自动更新
-
-项目使用 GitHub Actions 实现自动更新：
-
-- **定时触发**：每周日 UTC 0:00（北京时间周日 8:00）
-- **手动触发**：可在 GitHub Actions 页面手动运行
-
-### 配置 Secrets（可选）
-
-如需访问非公开数据，在仓库设置中添加：
-
-- `OPENREVIEW_USERNAME` - OpenReview 账号
-- `OPENREVIEW_PASSWORD` - OpenReview 密码
-
-## 📈 支持的会议
-
-| 会议 | 全称 | 年份范围 |
-|------|------|----------|
-| ICLR | International Conference on Learning Representations | 2021-2024 |
-| NeurIPS | Conference on Neural Information Processing Systems | 2021-2024 |
-| ICML | International Conference on Machine Learning | 2021-2024 |
+---
 
 ## 🛠️ 技术栈
 
-- **数据源**: OpenReview API (`openreview-py`)
-- **关键词提取**: YAKE, KeyBERT
-- **数据库**: SQLite
-- **可视化**: matplotlib, wordcloud
-- **自动化**: GitHub Actions
+| 类别 | 技术 |
+|------|------|
+| **数据源** | OpenReview API, Semantic Scholar API |
+| **关键词提取** | YAKE, KeyBERT (Sentence-Transformers) |
+| **数据存储** | SQLite |
+| **可视化** | Matplotlib, WordCloud |
+| **自动化** | GitHub Actions |
+| **语言** | Python 3.11+ |
+
+---
 
 ## 📝 开发计划
 
-- [ ] 支持更多会议（CVPR、ACL、AAAI 等）
-- [ ] 集成 AI 趋势总结（OpenAI/Gemini API）
-- [ ] 添加论文推荐功能
-- [ ] 构建 Web 界面
-- [ ] 支持中文关键词
+- [x] OpenReview 数据源支持
+- [x] Semantic Scholar 数据源支持
+- [x] YAKE + KeyBERT 双提取器
+- [x] GitHub Actions 自动化
+- [ ] 集成 AI 趋势总结（Gemini/OpenAI）
+- [ ] Web 仪表盘界面
+- [ ] 论文推荐系统
+- [ ] 中文关键词支持
+
+---
 
 ## 📄 许可证
 
-MIT License
+[MIT License](LICENSE)
+
+---
 
 ## 🤝 贡献
 
 欢迎提交 Issue 和 Pull Request！
+
+1. Fork 本仓库
+2. 创建特性分支 (`git checkout -b feature/amazing`)
+3. 提交更改 (`git commit -m 'Add amazing feature'`)
+4. 推送分支 (`git push origin feature/amazing`)
+5. 提交 Pull Request

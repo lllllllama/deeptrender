@@ -13,6 +13,15 @@ pandas>=2.0.0
 matplotlib>=3.7.0
 wordcloud>=1.9.0
 
+# Web Framework
+flask>=3.0.0
+flask-cors>=4.0.0
+requests>=2.31.0
+
 # Utilities
 python-dotenv>=1.0.0
 tqdm>=4.65.0
+
+# Testing
+pytest>=7.4.0
+pytest-cov>=4.1.0

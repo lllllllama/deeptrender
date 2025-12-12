@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DepthTrender - AI 顶会论文趋势分析</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <!-- ECharts -->
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+    <!-- ECharts WordCloud -->
+    <script src="https://cdn.jsdelivr.net/npm/echarts-wordcloud@2.1.0/dist/echarts-wordcloud.min.js"></script>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="nav-brand">
+            <span class="brand-icon">🔬</span>
+            <span class="brand-text">DepthTrender</span>
+        </div>
+        <div class="nav-links">
+            <a href="/" class="nav-link active">首页</a>
+            <a href="/venue.html" class="nav-link">会议分析</a>
+            <a href="/trends.html" class="nav-link">趋势追踪</a>
+            <a href="/comparison.html" class="nav-link">会议对比</a>
+        </div>
+    </nav>
+
+    <!-- 主内容 -->
+    <main class="container">
+        <!-- 统计卡片 -->
+        <section class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-icon">📄</div>
+                <div class="stat-content">
+                    <div class="stat-value" id="stat-papers">--</div>
+                    <div class="stat-label">论文总数</div>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">🔑</div>
+                <div class="stat-content">
+                    <div class="stat-value" id="stat-keywords">--</div>
+                    <div class="stat-label">关键词数</div>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">🏛️</div>
+                <div class="stat-content">
+                    <div class="stat-value" id="stat-venues">--</div>
+                    <div class="stat-label">覆盖会议</div>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">📅</div>
+                <div class="stat-content">
+                    <div class="stat-value" id="stat-years">--</div>
+                    <div class="stat-label">年份范围</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 筛选器 -->
+        <section class="filter-bar">
+            <div class="filter-group">
+                <label>会议：</label>
+                <select id="filter-venue" class="filter-select">
+                    <option value="">全部会议</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label>年份：</label>
+                <select id="filter-year" class="filter-select">
+                    <option value="">全部年份</option>
+                </select>
+            </div>
+            <button class="btn-refresh" onclick="refreshData()">
+                🔄 刷新
+            </button>
+        </section>
+
+        <!-- 图表区域 -->
+        <section class="charts-grid">
+            <!-- 词云 -->
+            <div class="chart-card large">
+                <div class="chart-header">
+                    <h3>🌥️ 关键词云</h3>
+                </div>
+                <div class="chart-body" id="chart-wordcloud"></div>
+            </div>
+
+            <!-- Top 关键词 -->
+            <div class="chart-card">
+                <div class="chart-header">
+                    <h3>🏆 Top 20 热门关键词</h3>
+                </div>
+                <div class="chart-body" id="chart-top-keywords"></div>
+            </div>
+        </section>
+
+        <!-- 趋势图 -->
+        <section class="chart-card full-width">
+            <div class="chart-header">
+                <h3>📈 关键词趋势</h3>
+                <div class="chart-actions">
+                    <input type="text" id="trend-search" class="search-input" 
+                           placeholder="搜索关键词..." />
+                </div>
+            </div>
+            <div class="chart-body tall" id="chart-trends"></div>
+        </section>
+
+        <!-- 会议概览 -->
+        <section class="venues-section">
+            <h2>📚 会议概览</h2>
+            <div class="venues-grid" id="venues-grid"></div>
+        </section>
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <p>DepthTrender - AI 顶会论文关键词趋势分析系统</p>
+        <p>数据来源: OpenReview | Semantic Scholar</p>
+    </footer>
+
+    <script src="/static/js/api.js"></script>
+    <script src="/static/js/charts.js"></script>
+    <script src="/static/js/main.js"></script>
+</body>
+</html>

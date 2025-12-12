@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>会议分析 - DepthTrender</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/echarts-wordcloud@2.1.0/dist/echarts-wordcloud.min.js"></script>
+</head>
+
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="nav-brand">
+            <span class="brand-icon">🔬</span>
+            <span class="brand-text">DepthTrender</span>
+        </div>
+        <div class="nav-links">
+            <a href="/" class="nav-link">首页</a>
+            <a href="/venue.html" class="nav-link active">会议分析</a>
+            <a href="/trends.html" class="nav-link">趋势追踪</a>
+            <a href="/comparison.html" class="nav-link">会议对比</a>
+        </div>
+    </nav>
+
+    <main class="container">
+        <!-- 会议选择器 -->
+        <section class="venue-selector">
+            <h1 id="venue-title">选择会议</h1>
+            <div class="venue-tabs" id="venue-tabs">
+                <!-- 动态生成 -->
+            </div>
+        </section>
+
+        <!-- 会议统计 -->
+        <section class="stats-grid" id="venue-stats" style="display: none;">
+            <div class="stat-card">
+                <div class="stat-icon">📄</div>
+                <div class="stat-content">
+                    <div class="stat-value" id="venue-paper-count">--</div>
+                    <div class="stat-label">论文总数</div>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">📅</div>
+                <div class="stat-content">
+                    <div class="stat-value" id="venue-year-count">--</div>
+                    <div class="stat-label">覆盖年份</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 词云 -->
+        <section class="chart-card full-width" id="venue-wordcloud-section" style="display: none;">
+            <div class="chart-header">
+                <h3>🌥️ <span id="venue-cloud-title">会议</span> 关键词云</h3>
+            </div>
+            <div class="chart-body" id="chart-venue-wordcloud" style="height: 450px;"></div>
+        </section>
+
+        <!-- 年度趋势 -->
+        <section class="charts-grid" id="venue-charts-section" style="display: none;">
+            <div class="chart-card">
+                <div class="chart-header">
+                    <h3>📈 年度论文数量</h3>
+                </div>
+                <div class="chart-body" id="chart-yearly-papers"></div>
+            </div>
+            <div class="chart-card">
+                <div class="chart-header">
+                    <h3>🏆 热门关键词变化</h3>
+                </div>
+                <div class="chart-body" id="chart-keyword-evolution"></div>
+            </div>
+        </section>
+
+        <!-- 年度详情表格 -->
+        <section class="chart-card full-width" id="venue-table-section" style="display: none;">
+            <div class="chart-header">
+                <h3>📊 年度 Top 关键词</h3>
+            </div>
+            <div class="table-container">
+                <table class="data-table" id="yearly-keywords-table">
+                    <thead>
+                        <tr id="table-header"></tr>
+                    </thead>
+                    <tbody id="table-body"></tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>DepthTrender - AI 顶会论文关键词趋势分析系统</p>
+    </footer>
+
+    <script src="/static/js/api.js"></script>
+    <script src="/static/js/charts.js"></script>
+    <script>
+        let currentVenue = null;
+
+        async function init() {
+            // 从 URL 获取会议参数
+            const params = new URLSearchParams(window.location.search);
+            const venueParam = params.get('venue');
+
+            // 加载会议列表
+            const overview = await API.getOverview();
+            const tabs = document.getElementById('venue-tabs');
+
+            tabs.innerHTML = overview.venues.map(v => `
+                <button class="venue-tab ${v === venueParam ? 'active' : ''}" 
+                        onclick="selectVenue('${v}')">${v}</button>
+            `).join('');
+
+            // 如果有参数，加载该会议
+            if (venueParam) {
+                selectVenue(venueParam);
+            }
+        }
+
+        async function selectVenue(venue) {
+            currentVenue = venue;
+
+            // 更新标签状态
+            document.querySelectorAll('.venue-tab').forEach(tab => {
+                tab.classList.toggle('active', tab.textContent === venue);
+            });
+
+            // 更新标题
+            document.getElementById('venue-title').textContent = venue;
+            document.getElementById('venue-cloud-title').textContent = venue;
+
+            // 显示内容区域
+            document.getElementById('venue-stats').style.display = 'grid';
+            document.getElementById('venue-wordcloud-section').style.display = 'block';
+            document.getElementById('venue-charts-section').style.display = 'grid';
+            document.getElementById('venue-table-section').style.display = 'block';
+
+            // 加载数据
+            await loadVenueData(venue);
+        }
+
+        async function loadVenueData(venue) {
+            try {
+                const detail = await API.getVenueDetail(venue);
+
+                // 更新统计
+                document.getElementById('venue-paper-count').textContent =
+                    detail.total_papers.toLocaleString();
+                document.getElementById('venue-year-count').textContent =
+                    detail.years.length;
+
+                // 词云
+                const wordcloudData = await API.getWordcloudData(venue, null, 100);
+                Charts.renderWordcloud('chart-venue-wordcloud', wordcloudData);
+
+                // 年度论文数量柱状图
+                renderYearlyPapers(detail.yearly_stats);
+
+                // 关键词演变
+                const trends = await API.getKeywordTrends([], venue);
+                Charts.renderTrendChart('chart-keyword-evolution', trends);
+
+                // 表格
+                renderYearlyTable(detail.yearly_stats);
+
+            } catch (error) {
+                console.error('加载会议数据失败:', error);
+            }
+        }
+
+        function renderYearlyPapers(yearlyStats) {
+            const chart = Charts.init('chart-yearly-papers');
+            const sorted = [...yearlyStats].sort((a, b) => a.year - b.year);
+
+            chart.setOption({
+                tooltip: { trigger: 'axis' },
+                xAxis: {
+                    type: 'category',
+                    data: sorted.map(s => s.year),
+                    axisLine: { lineStyle: { color: '#30363d' } },
+                    axisLabel: { color: '#8b949e' }
+                },
+                yAxis: {
+                    type: 'value',
+                    axisLine: { lineStyle: { color: '#30363d' } },
+                    axisLabel: { color: '#8b949e' },
+                    splitLine: { lineStyle: { color: '#21262d' } }
+                },
+                series: [{
+                    type: 'bar',
+                    data: sorted.map(s => s.paper_count),
+                    itemStyle: {
+                        color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                            { offset: 0, color: '#667eea' },
+                            { offset: 1, color: '#764ba2' }
+                        ]),
+                        borderRadius: [4, 4, 0, 0]
+                    }
+                }]
+            });
+        }
+
+        function renderYearlyTable(yearlyStats) {
+            const header = document.getElementById('table-header');
+            const body = document.getElementById('table-body');
+
+            const sorted = [...yearlyStats].sort((a, b) => b.year - a.year);
+            const maxRank = 10;
+
+            // 表头
+            header.innerHTML = '<th>排名</th>' +
+                sorted.map(s => `<th>${s.year}</th>`).join('');
+
+            // 表体
+            let rows = '';
+            for (let i = 0; i < maxRank; i++) {
+                rows += `<tr><td>${i + 1}</td>`;
+                sorted.forEach(s => {
+                    const kw = s.top_keywords[i];
+                    rows += `<td>${kw ? kw.keyword : '-'}</td>`;
+                });
+                rows += '</tr>';
+            }
+            body.innerHTML = rows;
+        }
+
+        document.addEventListener('DOMContentLoaded', init);
+    </script>
+
+    <style>
+        .venue-selector {
+            margin-bottom: 2rem;
+        }
+
+        .venue-selector h1 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .venue-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .venue-tab {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            padding: 0.5rem 1rem;
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 0.9rem;
+        }
+
+        .venue-tab:hover {
+            border-color: var(--accent);
+            color: var(--text-primary);
+        }
+
+        .venue-tab.active {
+            background: rgba(88, 166, 255, 0.1);
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .table-container {
+            padding: 1rem;
+            overflow-x: auto;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.875rem;
+        }
+
+        .data-table th,
+        .data-table td {
+            padding: 0.75rem 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .data-table th {
+            color: var(--text-secondary);
+            font-weight: 600;
+            background: var(--bg-tertiary);
+        }
+
+        .data-table td {
+            color: var(--text-primary);
+        }
+
+        .data-table tr:hover td {
+            background: rgba(88, 166, 255, 0.05);
+        }
+    </style>
+</body>
+
+</html>

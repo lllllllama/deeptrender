@@ -40,12 +40,15 @@ class VenueConfig:
 
 
 # 支持的会议配置
+# 说明：仅包含 OpenReview 上确认可用的会议
+# 年份从新到旧排列，优先爬取最新数据
 VENUES: Dict[str, VenueConfig] = {
+    # ========== 机器学习核心会议 (ML Core) ==========
     "ICLR": VenueConfig(
         name="ICLR",
         full_name="International Conference on Learning Representations",
         venue_id_pattern="ICLR.cc/{year}/Conference",
-        years=[2024, 2023, 2022, 2021]
+        years=[2025, 2024, 2023, 2022, 2021]
     ),
     "NeurIPS": VenueConfig(
         name="NeurIPS",
@@ -58,6 +61,44 @@ VENUES: Dict[str, VenueConfig] = {
         full_name="International Conference on Machine Learning",
         venue_id_pattern="ICML.cc/{year}/Conference",
         years=[2024, 2023, 2022, 2021]
+    ),
+    
+    # ========== 自然语言处理会议 (NLP) ==========
+    "EMNLP": VenueConfig(
+        name="EMNLP",
+        full_name="Conference on Empirical Methods in Natural Language Processing",
+        venue_id_pattern="EMNLP.cc/{year}/Conference",
+        years=[2024, 2023]
+    ),
+    "COLM": VenueConfig(
+        name="COLM",
+        full_name="Conference on Language Modeling",
+        venue_id_pattern="COLM.cc/{year}/Conference",
+        years=[2024]  # 2024 首届
+    ),
+    
+    # ========== 机器人与强化学习会议 ==========
+    "CoRL": VenueConfig(
+        name="CoRL",
+        full_name="Conference on Robot Learning",
+        venue_id_pattern="robot-learning.org/{year}/Conference",
+        years=[2024, 2023, 2022]
+    ),
+    
+    # ========== 图学习会议 ==========
+    "LOG": VenueConfig(
+        name="LOG",
+        full_name="Learning on Graphs Conference",
+        venue_id_pattern="logconference.org/{year}/Conference",
+        years=[2024, 2023, 2022]
+    ),
+    
+    # ========== 统计学习会议 ==========
+    "AISTATS": VenueConfig(
+        name="AISTATS",
+        full_name="International Conference on Artificial Intelligence and Statistics",
+        venue_id_pattern="AISTATS.cc/{year}/Conference",
+        years=[2024, 2023, 2022]
     ),
 }
 

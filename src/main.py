@@ -2,7 +2,7 @@
 DepthTrender - 顶会论文关键词追踪系统
 
 主程序入口，提供完整的工作流：
-1. 爬取论文
+1. 爬取论文（支持 OpenReview 和 Semantic Scholar）
 2. 提取关键词
 3. 存储到数据库
 4. 统计分析
@@ -20,6 +20,7 @@ from datetime import datetime
 sys.path.insert(0, str(Path(__file__).parent))
 
 from scraper import scrape_all_venues, scrape_venue
+from scraper.semantic_scholar import scrape_all_s2_venues, S2_VENUES
 from scraper.models import Paper
 from extractor import extract_keywords_batch
 from database import get_repository
@@ -35,6 +36,7 @@ def run_pipeline(
     limit: Optional[int] = None,
     extractor: str = "yake",
     skip_scrape: bool = False,
+    source: str = "all",  # "openreview", "s2", "all"
 ) -> str:
     """
     运行完整的处理流程
@@ -45,6 +47,7 @@ def run_pipeline(
         limit: 每个会议年份的论文限制
         extractor: 提取器类型（"yake", "keybert", "both"）
         skip_scrape: 是否跳过爬取（直接使用数据库中的数据）
+        source: 数据源（"openreview", "s2", "all"）
         
     Returns:
         报告文件路径
@@ -59,21 +62,44 @@ def run_pipeline(
     repo = get_repository()
     analyzer = get_analyzer()
     
+    all_papers = []
+    
     if not skip_scrape:
         # 1. 爬取论文
         print("\n📥 步骤 1/5: 爬取论文")
         print("-" * 40)
         
-        # 筛选会议
-        venue_configs = VENUES
-        if venues:
-            venue_configs = {k: v for k, v in VENUES.items() if k in venues}
+        # ========== OpenReview 数据源 ==========
+        if source in ("openreview", "all"):
+            print("\n📚 数据源: OpenReview")
+            venue_configs = VENUES
+            if venues:
+                venue_configs = {k: v for k, v in VENUES.items() if k in venues}
+            
+            if venue_configs:
+                or_papers = scrape_all_venues(
+                    venues=venue_configs,
+                    years=years,
+                    limit_per_venue=limit,
+                )
+                all_papers.extend(or_papers)
         
-        papers = scrape_all_venues(
-            venues=venue_configs,
-            years=years,
-            limit_per_venue=limit,
-        )
+        # ========== Semantic Scholar 数据源 ==========
+        if source in ("s2", "all"):
+            print("\n📚 数据源: Semantic Scholar")
+            s2_venues = S2_VENUES
+            if venues:
+                s2_venues = {k: v for k, v in S2_VENUES.items() if k in venues}
+            
+            if s2_venues:
+                s2_papers = scrape_all_s2_venues(
+                    venues=s2_venues,
+                    years=years,
+                    limit_per_venue=limit,
+                )
+                all_papers.extend(s2_papers)
+        
+        papers = all_papers
         
         if not papers:
             print("⚠️ 未获取到任何论文，请检查网络连接和会议配置")
@@ -184,6 +210,14 @@ def main():
         help="跳过爬取，使用数据库中的现有数据",
     )
     
+    parser.add_argument(
+        "--source",
+        type=str,
+        choices=["openreview", "s2", "all"],
+        default="all",
+        help="数据源（openreview/s2/all，默认: all）",
+    )
+    
     args = parser.parse_args()
     
     run_pipeline(
@@ -192,6 +226,7 @@ def main():
         limit=args.limit,
         extractor=args.extractor,
         skip_scrape=args.skip_scrape,
+        source=args.source,
     )
 
 

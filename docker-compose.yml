@@ -1,0 +1,49 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    container_name: depthtrender-web
+    ports:
+      - "5000:5000"
+    volumes:
+      # 持久化数据库和输出
+      - ./data:/app/data
+      - ./output:/app/output
+    environment:
+      - PYTHONUNBUFFERED=1
+      - OPENREVIEW_USERNAME=${OPENREVIEW_USERNAME:-}
+      - OPENREVIEW_PASSWORD=${OPENREVIEW_PASSWORD:-}
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5000/api/stats/overview"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # 定时爬取任务（可选）
+  scraper:
+    build: .
+    container_name: depthtrender-scraper
+    volumes:
+      - ./data:/app/data
+      - ./output:/app/output
+    environment:
+      - PYTHONUNBUFFERED=1
+      - OPENREVIEW_USERNAME=${OPENREVIEW_USERNAME:-}
+      - OPENREVIEW_PASSWORD=${OPENREVIEW_PASSWORD:-}
+    # 每天凌晨 2 点执行爬取
+    command: >
+      sh -c "while true; do
+        echo '[Scraper] Starting update...';
+        python src/main.py --source all;
+        echo '[Scraper] Done. Sleeping 24h...';
+        sleep 86400;
+      done"
+    restart: unless-stopped
+    depends_on:
+      - web
+
+volumes:
+  data:
+  output:
