@@ -155,3 +155,18 @@ VISUALIZATION_CONFIG = VisualizationConfig()
 OPENREVIEW_API_URL = "https://api2.openreview.net"
 OPENREVIEW_USERNAME = os.getenv("OPENREVIEW_USERNAME", "")
 OPENREVIEW_PASSWORD = os.getenv("OPENREVIEW_PASSWORD", "")
+
+# arXiv 配置
+ARXIV_CATEGORIES = ["cs.CV", "cs.CL", "cs.LG", "cs.AI", "cs.RO"]
+
+# OpenAlex 配置
+OPENALEX_EMAIL = os.getenv("OPENALEX_EMAIL", "")
+
+# 领域分类关键词
+DOMAIN_CATEGORIES = {
+    "CV": ["cs.CV", "computer vision", "image", "video", "visual"],
+    "NLP": ["cs.CL", "natural language", "nlp", "text", "language model"],
+    "ML": ["cs.LG", "stat.ML", "machine learning", "deep learning"],
+    "RL": ["cs.AI", "reinforcement learning", "robot", "control"],
+    "AI": ["artificial intelligence", "neural network"],
+}

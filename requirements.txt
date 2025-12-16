@@ -21,6 +21,7 @@ requests>=2.31.0
 # Utilities
 python-dotenv>=1.0.0
 tqdm>=4.65.0
+feedparser>=6.0.10
 
 # Testing
 pytest>=7.4.0

@@ -12,12 +12,13 @@
 
 | 功能 | 描述 |
 |------|------|
-| 🔍 **多源爬取** | 支持 OpenReview + Semantic Scholar 双数据源 |
+| 🌐 **三层架构** | Raw (原始保存) → Structured (结构化) → Analysis (分析层) |
+| 🔍 **全网覆盖** | 以 arXiv 为主数据源，OpenAlex 为结构化锚点 |
 | 🔑 **智能提取** | YAKE（快速）+ KeyBERT（精准）双引擎 |
 | 📊 **深度分析** | 频率统计、趋势追踪、新兴关键词识别 |
 | 🎨 **可视化** | 词云、柱状图、趋势折线图、会议对比 |
 | 📄 **自动报告** | 生成 Markdown 格式的分析报告 |
-| ⏰ **定时更新** | GitHub Actions 每周自动更新 |
+| 🤖 **Agent工作流** | Ingestion → Structuring → Analysis 独立智能体协作 |
 
 ---
 

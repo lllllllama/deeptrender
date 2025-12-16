@@ -255,6 +255,8 @@ def scrape_all_s2_venues(
     venues: Optional[Dict[str, SemanticScholarConfig]] = None,
     years: Optional[List[int]] = None,
     limit_per_venue: Optional[int] = None,
+    max_age_days: int = 7,
+    repository = None,
 ) -> List[Paper]:
     """
     爬取所有 Semantic Scholar 会议
@@ -263,6 +265,8 @@ def scrape_all_s2_venues(
         venues: 会议配置
         years: 年份列表
         limit_per_venue: 每个会议的论文限制
+        max_age_days: 最大爬取间隔天数，在此时间内爬取过的会议将被跳过（默认 7 天）
+        repository: 数据库仓库（用于检查和记录爬取日志）
         
     Returns:
         所有论文列表
@@ -272,17 +276,30 @@ def scrape_all_s2_venues(
     
     client = SemanticScholarClient()
     all_papers = []
+    skipped_count = 0
     
     for venue_name, config in venues.items():
         venue_years = years if years is not None else config.years
         
         for year in venue_years:
+            # 检查是否需要爬取
+            if repository is not None and not repository.should_scrape(config.name, year, max_age_days):
+                print(f"⏭️ 跳过 {config.name} {year}（{max_age_days} 天内已爬取）")
+                skipped_count += 1
+                continue
+            
             try:
                 papers = scrape_s2_venue(config, year, client, limit_per_venue)
                 all_papers.extend(papers)
+                
+                # 记录爬取日志
+                if repository is not None and papers:
+                    repository.log_scrape(config.name, year, len(papers))
+                    
             except Exception as e:
                 print(f"❌ 爬取 {venue_name} {year} 失败: {e}")
                 continue
     
-    print(f"\n📊 Semantic Scholar 总计获取 {len(all_papers)} 篇论文")
+    print(f"\n📊 Semantic Scholar 总计获取 {len(all_papers)} 篇论文（跳过 {skipped_count} 个会议年份）")
     return all_papers
+

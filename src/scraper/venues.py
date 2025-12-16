@@ -122,6 +122,8 @@ def scrape_all_venues(
     years: Optional[List[int]] = None,
     limit_per_venue: Optional[int] = None,
     show_progress: bool = True,
+    max_age_days: int = 7,
+    repository = None,
 ) -> List[Paper]:
     """
     爬取所有配置的会议论文
@@ -131,6 +133,8 @@ def scrape_all_venues(
         years: 要爬取的年份列表（默认使用各会议配置的年份）
         limit_per_venue: 每个会议年份的论文数量限制
         show_progress: 是否显示进度条
+        max_age_days: 最大爬取间隔天数，在此时间内爬取过的会议将被跳过（默认 7 天）
+        repository: 数据库仓库（用于检查和记录爬取日志）
         
     Returns:
         所有论文列表
@@ -140,11 +144,18 @@ def scrape_all_venues(
     
     client = create_client()
     all_papers = []
+    skipped_count = 0
     
     for venue_name, venue_config in venues.items():
         venue_years = years if years is not None else venue_config.years
         
         for year in venue_years:
+            # 检查是否需要爬取
+            if repository is not None and not repository.should_scrape(venue_config.name, year, max_age_days):
+                print(f"⏭️ 跳过 {venue_config.name} {year}（{max_age_days} 天内已爬取）")
+                skipped_count += 1
+                continue
+            
             try:
                 papers = scrape_venue(
                     venue_config,
@@ -154,9 +165,15 @@ def scrape_all_venues(
                     show_progress=show_progress,
                 )
                 all_papers.extend(papers)
+                
+                # 记录爬取日志
+                if repository is not None and papers:
+                    repository.log_scrape(venue_config.name, year, len(papers))
+                    
             except Exception as e:
                 print(f"❌ 爬取 {venue_name} {year} 失败: {e}")
                 continue
     
-    print(f"\n📊 总计爬取 {len(all_papers)} 篇论文")
+    print(f"\n📊 总计爬取 {len(all_papers)} 篇论文（跳过 {skipped_count} 个会议年份）")
     return all_papers
+

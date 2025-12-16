@@ -1,33 +1,120 @@
 """
 DepthTrender - 顶会论文关键词追踪系统
 
-主程序入口，提供完整的工作流：
-1. 爬取论文（支持 OpenReview 和 Semantic Scholar）
-2. 提取关键词
-3. 存储到数据库
-4. 统计分析
-5. 生成可视化
-6. 生成报告
+三阶段工作流架构：
+1. Ingestion Agent: 采集原始数据 → Raw Layer
+2. Structuring Agent: 结构化处理 → Structured Layer
+3. Analysis Agent: 关键词提取与分析 → Analysis Layer
 """
 
 import argparse
 import sys
 from pathlib import Path
-from typing import List, Optional
+from typing import List, Optional, Dict
 from datetime import datetime
 
 # 添加 src 目录到路径
 sys.path.insert(0, str(Path(__file__).parent))
 
-from scraper import scrape_all_venues, scrape_venue
-from scraper.semantic_scholar import scrape_all_s2_venues, S2_VENUES
+from agents import IngestionAgent, StructuringAgent, run_ingestion, run_structuring
+from scraper import scrape_all_venues, scrape_all_s2_venues, S2_VENUES
 from scraper.models import Paper
 from extractor import extract_keywords_batch
-from database import get_repository
+from database import get_repository, get_analysis_repository
 from analysis import get_analyzer
 from visualization import generate_all_charts
 from report import generate_report
-from config import VENUES, VenueConfig
+from config import VENUES
+
+
+def run_new_pipeline(
+    sources: List[str] = None,
+    arxiv_days: int = 7,
+    venues: List[str] = None,
+    years: List[int] = None,
+    extractor: str = "yake",
+    skip_ingestion: bool = False,
+    skip_structuring: bool = False,
+) -> str:
+    """
+    运行新的三阶段流程
+    
+    Args:
+        sources: 数据源列表 ["arxiv", "openalex", "s2", "openreview"]
+        arxiv_days: arXiv 采集天数
+        venues: 会议列表
+        years: 年份列表
+        extractor: 提取器类型
+        skip_ingestion: 跳过采集阶段
+        skip_structuring: 跳过结构化阶段
+        
+    Returns:
+        报告路径
+    """
+    print("=" * 60)
+    print("🚀 DepthTrender - 三阶段工作流")
+    print("=" * 60)
+    print(f"⏰ 开始时间: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+    print()
+    
+    # Stage 1: Ingestion (Raw Layer)
+    if not skip_ingestion:
+        print("\n📥 阶段 1/3: 数据采集 (Ingestion)")
+        print("-" * 40)
+        
+        ingestion_agent = IngestionAgent()
+        ingestion_stats = ingestion_agent.run(
+            sources=sources or ["arxiv", "openalex"],
+            arxiv_days=arxiv_days,
+            venues=venues,
+            years=years,
+        )
+    else:
+        print("\n⏭️ 跳过采集阶段")
+    
+    # Stage 2: Structuring (Structured Layer)
+    if not skip_structuring:
+        print("\n📝 阶段 2/3: 数据结构化 (Structuring)")
+        print("-" * 40)
+        
+        structuring_agent = StructuringAgent()
+        structuring_stats = structuring_agent.run()
+    else:
+        print("\n⏭️ 跳过结构化阶段")
+    
+    # Stage 3: Analysis (Analysis Layer)
+    print("\n🔑 阶段 3/3: 关键词分析 (Analysis)")
+    print("-" * 40)
+    
+    repo = get_repository()
+    analysis_repo = get_analysis_repository()
+    analyzer = get_analyzer()
+    
+    # 获取需要分析的论文
+    # TODO: 实现增量分析（只分析未提取关键词的论文）
+    
+    # 运行分析
+    result = analyzer.analyze()
+    print(f"✅ 分析完成")
+    print(f"   - 论文总数: {result.total_papers:,}")
+    print(f"   - 关键词总数: {result.total_keywords:,}")
+    if result.venues:
+        print(f"   - 覆盖会议: {', '.join(result.venues)}")
+    
+    # 生成可视化
+    print("\n🎨 生成图表和报告")
+    print("-" * 40)
+    
+    charts = generate_all_charts(result)
+    report_path = generate_report(result, charts)
+    print(f"📄 报告已生成: {report_path}")
+    
+    # 完成
+    print("\n" + "=" * 60)
+    print(f"✅ 完成！{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+    print("=" * 60)
+    
+    return str(report_path)
 
 
 def run_pipeline(
@@ -36,18 +123,20 @@ def run_pipeline(
     limit: Optional[int] = None,
     extractor: str = "yake",
     skip_scrape: bool = False,
-    source: str = "all",  # "openreview", "s2", "all"
+    source: str = "all",
+    max_age_days: int = 7,
 ) -> str:
     """
-    运行完整的处理流程
+    运行完整的处理流程（兼容旧接口）
     
     Args:
-        venues: 要处理的会议列表（默认全部）
-        years: 要处理的年份列表（默认使用配置）
+        venues: 要处理的会议列表
+        years: 要处理的年份列表
         limit: 每个会议年份的论文限制
-        extractor: 提取器类型（"yake", "keybert", "both"）
-        skip_scrape: 是否跳过爬取（直接使用数据库中的数据）
-        source: 数据源（"openreview", "s2", "all"）
+        extractor: 提取器类型
+        skip_scrape: 跳过爬取
+        source: 数据源
+        max_age_days: 爬取间隔
         
     Returns:
         报告文件路径
@@ -58,18 +147,16 @@ def run_pipeline(
     print(f"⏰ 开始时间: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
     print()
     
-    # 初始化组件
     repo = get_repository()
     analyzer = get_analyzer()
     
     all_papers = []
     
     if not skip_scrape:
-        # 1. 爬取论文
         print("\n📥 步骤 1/5: 爬取论文")
         print("-" * 40)
         
-        # ========== OpenReview 数据源 ==========
+        # OpenReview 数据源
         if source in ("openreview", "all"):
             print("\n📚 数据源: OpenReview")
             venue_configs = VENUES
@@ -81,10 +168,12 @@ def run_pipeline(
                     venues=venue_configs,
                     years=years,
                     limit_per_venue=limit,
+                    max_age_days=max_age_days,
+                    repository=repo,
                 )
                 all_papers.extend(or_papers)
         
-        # ========== Semantic Scholar 数据源 ==========
+        # Semantic Scholar 数据源
         if source in ("s2", "all"):
             print("\n📚 数据源: Semantic Scholar")
             s2_venues = S2_VENUES
@@ -96,35 +185,33 @@ def run_pipeline(
                     venues=s2_venues,
                     years=years,
                     limit_per_venue=limit,
+                    max_age_days=max_age_days,
+                    repository=repo,
                 )
                 all_papers.extend(s2_papers)
         
         papers = all_papers
         
         if not papers:
-            print("⚠️ 未获取到任何论文，请检查网络连接和会议配置")
+            print("⚠️ 未获取到任何论文")
             return None
         
-        # 2. 提取关键词
+        # 提取关键词
         print("\n🔑 步骤 2/5: 提取关键词")
         print("-" * 40)
         
         papers = extract_keywords_batch(papers, extractor_type=extractor)
         
-        # 3. 保存到数据库
+        # 保存到数据库
         print("\n💾 步骤 3/5: 保存到数据库")
         print("-" * 40)
         
         saved_count = repo.save_papers(papers)
         print(f"✅ 成功保存 {saved_count} 篇论文")
-        
-        # 记录爬取日志
-        for paper in papers:
-            pass  # 日志已在 save_paper 中处理
     else:
         print("\n⏭️ 跳过爬取，使用数据库中的现有数据")
     
-    # 4. 统计分析
+    # 统计分析
     print("\n📊 步骤 4/5: 统计分析")
     print("-" * 40)
     
@@ -132,21 +219,19 @@ def run_pipeline(
     print(f"✅ 分析完成")
     print(f"   - 论文总数: {result.total_papers:,}")
     print(f"   - 关键词总数: {result.total_keywords:,}")
-    print(f"   - 覆盖会议: {', '.join(result.venues)}")
+    if result.venues:
+        print(f"   - 覆盖会议: {', '.join(result.venues)}")
     
-    # 5. 生成可视化
+    # 生成可视化
     print("\n🎨 步骤 5/5: 生成图表和报告")
     print("-" * 40)
     
     charts = generate_all_charts(result)
-    
-    # 生成报告
     report_path = generate_report(result, charts)
     print(f"\n📄 报告已生成: {report_path}")
     
-    # 完成
     print("\n" + "=" * 60)
-    print(f"✅ 完成！耗时: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+    print(f"✅ 完成！{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
     print("=" * 60)
     
     return str(report_path)
@@ -159,35 +244,59 @@ def main():
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
 示例:
-  # 运行完整流程（所有会议，所有年份）
-  python -m src.main
+  # 新架构：三阶段工作流
+  python -m src.main --new-pipeline
   
-  # 只处理 ICLR 2024
-  python -m src.main --venue ICLR --year 2024
+  # 新架构：仅采集 arXiv 最近 7 天
+  python -m src.main --new-pipeline --source arxiv --arxiv-days 7
   
-  # 限制每个会议年份只处理 10 篇论文（测试用）
-  python -m src.main --limit 10
+  # 旧接口：运行完整流程
+  python src/main.py
   
-  # 使用 KeyBERT 提取器
-  python -m src.main --extractor keybert
-  
-  # 跳过爬取，只重新生成报告
-  python -m src.main --skip-scrape
+  # 旧接口：指定会议和年份
+  python src/main.py --venue ICLR --year 2024
         """,
     )
     
+    # 新架构参数
+    parser.add_argument(
+        "--new-pipeline",
+        action="store_true",
+        help="使用新的三阶段工作流",
+    )
+    
+    parser.add_argument(
+        "--arxiv-days",
+        type=int,
+        default=7,
+        help="arXiv 采集天数（默认: 7）",
+    )
+    
+    parser.add_argument(
+        "--skip-ingestion",
+        action="store_true",
+        help="跳过采集阶段",
+    )
+    
+    parser.add_argument(
+        "--skip-structuring",
+        action="store_true",
+        help="跳过结构化阶段",
+    )
+    
+    # 原有参数
     parser.add_argument(
         "--venue",
         type=str,
         nargs="+",
-        help="要处理的会议（如 ICLR NeurIPS ICML）",
+        help="要处理的会议",
     )
     
     parser.add_argument(
         "--year",
         type=int,
         nargs="+",
-        help="要处理的年份（如 2024 2023）",
+        help="要处理的年份",
     )
     
     parser.add_argument(
@@ -207,27 +316,52 @@ def main():
     parser.add_argument(
         "--skip-scrape",
         action="store_true",
-        help="跳过爬取，使用数据库中的现有数据",
+        help="跳过爬取",
     )
     
     parser.add_argument(
         "--source",
         type=str,
-        choices=["openreview", "s2", "all"],
+        choices=["openreview", "s2", "arxiv", "openalex", "all"],
         default="all",
-        help="数据源（openreview/s2/all，默认: all）",
+        help="数据源",
+    )
+    
+    parser.add_argument(
+        "--max-age",
+        type=int,
+        default=7,
+        help="爬取间隔天数",
     )
     
     args = parser.parse_args()
     
-    run_pipeline(
-        venues=args.venue,
-        years=args.year,
-        limit=args.limit,
-        extractor=args.extractor,
-        skip_scrape=args.skip_scrape,
-        source=args.source,
-    )
+    if args.new_pipeline:
+        # 新架构
+        sources = None
+        if args.source != "all":
+            sources = [args.source]
+        
+        run_new_pipeline(
+            sources=sources,
+            arxiv_days=args.arxiv_days,
+            venues=args.venue,
+            years=args.year,
+            extractor=args.extractor,
+            skip_ingestion=args.skip_ingestion,
+            skip_structuring=args.skip_structuring,
+        )
+    else:
+        # 旧接口
+        run_pipeline(
+            venues=args.venue,
+            years=args.year,
+            limit=args.limit,
+            extractor=args.extractor,
+            skip_scrape=args.skip_scrape,
+            source=args.source,
+            max_age_days=args.max_age,
+        )
 
 
 if __name__ == "__main__":
