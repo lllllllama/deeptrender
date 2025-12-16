@@ -11,9 +11,16 @@ Structuring Agent
 - 创建 paper_sources 关联
 """
 
+import sys
 import re
+from pathlib import Path
 from typing import List, Optional, Dict, Tuple
 from datetime import datetime
+
+# 确保 src 目录在路径中
+_src_dir = Path(__file__).parent.parent
+if str(_src_dir) not in sys.path:
+    sys.path.insert(0, str(_src_dir))
 
 from database import (
     get_raw_repository, get_structured_repository,
@@ -254,6 +261,24 @@ class StructuringAgent:
         self._venue_cache[venue_name] = venue_id
         return venue_id
     
+    def _find_existing_paper(self, title: str, year: int) -> Optional[int]:
+        """
+        查找已存在的论文（基于标题去重）
+        
+        Args:
+            title: 标准化标题
+            year: 年份
+            
+        Returns:
+            paper_id 如果存在，否则 None
+        """
+        # 标准化标题用于匹配
+        normalized = self._normalize_title(title).lower()
+        
+        # 查询数据库
+        paper_id = self.structured_repo.find_paper_by_title(normalized, year)
+        return paper_id
+    
     def process_batch(
         self,
         source: str = None,
@@ -275,26 +300,37 @@ class StructuringAgent:
         
         if not raw_papers:
             print("   没有需要处理的论文")
-            return {"processed": 0, "success": 0, "failed": 0}
+            return {"processed": 0, "success": 0, "failed": 0, "merged": 0}
         
         print(f"   找到 {len(raw_papers)} 篇待处理论文")
         
         success = 0
         failed = 0
+        merged = 0  # 多源合并计数
         
         for raw_paper in raw_papers:
             try:
                 paper = self.process_raw_paper(raw_paper)
                 if paper:
-                    # 保存结构化论文
-                    paper_id = self.structured_repo.save_paper(paper)
+                    # 尝试查找已存在的论文（基于标题去重）
+                    existing_paper_id = self._find_existing_paper(paper.canonical_title, paper.year)
                     
-                    # 创建 source 关联
-                    self.structured_repo.link_paper_source(
-                        paper_id=paper_id,
-                        raw_id=raw_paper.raw_id,
-                        source=raw_paper.source,
-                    )
+                    if existing_paper_id:
+                        # 已存在，只添加 source 关联
+                        self.structured_repo.link_paper_source(
+                            paper_id=existing_paper_id,
+                            raw_id=raw_paper.raw_id,
+                            source=raw_paper.source,
+                        )
+                        merged += 1
+                    else:
+                        # 新论文，保存并关联
+                        paper_id = self.structured_repo.save_paper(paper)
+                        self.structured_repo.link_paper_source(
+                            paper_id=paper_id,
+                            raw_id=raw_paper.raw_id,
+                            source=raw_paper.source,
+                        )
                     
                     success += 1
                 else:
@@ -303,12 +339,13 @@ class StructuringAgent:
                 print(f"   处理失败: {e}")
                 failed += 1
         
-        print(f"✅ [Structuring] 处理完成: 成功 {success}, 失败 {failed}")
+        print(f"✅ [Structuring] 处理完成: 成功 {success}, 失败 {failed}, 合并 {merged}")
         
         return {
             "processed": len(raw_papers),
             "success": success,
             "failed": failed,
+            "merged": merged,
         }
     
     def run(self, limit: int = None) -> Dict[str, int]:

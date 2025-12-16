@@ -324,6 +324,35 @@ class StructuredRepository(BaseRepository):
             cursor.execute(query, params)
             return cursor.fetchone()["count"]
     
+    def find_paper_by_title(self, title: str, year: int = None) -> Optional[int]:
+        """
+        根据标题查找论文（用于去重）
+        
+        Args:
+            title: 标准化后的标题（小写）
+            year: 年份（可选）
+            
+        Returns:
+            paper_id 如果找到，否则 None
+        """
+        with self._get_connection() as conn:
+            cursor = conn.cursor()
+            
+            # 使用 LOWER 进行不区分大小写匹配
+            if year:
+                cursor.execute(
+                    "SELECT paper_id FROM papers WHERE LOWER(canonical_title) = ? AND year = ? LIMIT 1",
+                    (title.lower(), year)
+                )
+            else:
+                cursor.execute(
+                    "SELECT paper_id FROM papers WHERE LOWER(canonical_title) = ? LIMIT 1",
+                    (title.lower(),)
+                )
+            
+            row = cursor.fetchone()
+            return row["paper_id"] if row else None
+    
     def _row_to_paper(self, conn: sqlite3.Connection, row: sqlite3.Row) -> Paper:
         """将数据库行转换为 Paper"""
         authors = row["authors"]

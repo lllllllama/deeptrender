@@ -9,8 +9,15 @@ Ingestion Agent
 - 不做任何数据解释或标准化
 """
 
+import sys
+from pathlib import Path
 from typing import List, Optional, Dict, Any
 from datetime import datetime
+
+# 确保 src 目录在路径中
+_src_dir = Path(__file__).parent.parent
+if str(_src_dir) not in sys.path:
+    sys.path.insert(0, str(_src_dir))
 
 from database import get_raw_repository, RawRepository
 from scraper.models import RawPaper
