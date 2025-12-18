@@ -107,50 +107,150 @@ class KeywordAnalyzer:
         min_growth: float = 1.5,
         min_count: int = 5,
         top_n: int = 20,
+        window_years: int = 3,
+        use_relative_freq: bool = True,
     ) -> List[str]:
         """
-        获取新兴关键词（增长率高的关键词）
+        获取新兴关键词（相对频率增长 + 新词检测）
+        
+        升级特性：
+        - 相对频率：关键词数/该年论文数，消除论文数量增长的干扰
+        - 3 年窗口：比较最近 N 年的趋势，而非仅两年对比
+        - 新词阈值：识别"首次出现"或"近期爆发"的关键词
         
         Args:
-            min_growth: 最小增长率（如 1.5 表示增长 50%）
-            min_count: 最新年份最小出现次数
+            min_growth: 最小增长率（相对频率）
+            min_count: 最新年份最小绝对出现次数
             top_n: 返回数量
+            window_years: 对比窗口年数
+            use_relative_freq: 是否使用相对频率
             
         Returns:
             新兴关键词列表
         """
-        # 获取所有年份
         years = self.repo.get_all_years()
         if len(years) < 2:
             return []
         
+        # 获取每年的论文数（用于计算相对频率）
+        paper_counts = {}
+        for year in years[:window_years + 1]:
+            paper_counts[year] = self.repo.get_paper_count(year=year) or 1
+        
         latest_year = years[0]
-        previous_year = years[1]
+        
+        # 确定对比窗口
+        compare_years = years[1:window_years] if len(years) > window_years else years[1:]
+        if not compare_years:
+            compare_years = [years[1]] if len(years) > 1 else []
         
         # 获取最新年份的关键词
-        latest_keywords = self.repo.get_top_keywords(year=latest_year, limit=200)
+        latest_keywords = self.repo.get_top_keywords(year=latest_year, limit=300)
         
         emerging = []
         for keyword, count in latest_keywords:
             if count < min_count:
                 continue
             
-            # 获取上一年的数量
+            # 获取趋势数据
             trend = self.repo.get_keyword_trend(keyword)
-            prev_count = trend.get(previous_year, 0)
             
-            if prev_count == 0:
-                # 新出现的关键词
-                emerging.append((keyword, float('inf'), count))
+            # 计算相对频率（每千篇论文出现次数）
+            if use_relative_freq:
+                latest_freq = count / paper_counts.get(latest_year, 1) * 1000
             else:
-                growth = count / prev_count
-                if growth >= min_growth:
-                    emerging.append((keyword, growth, count))
+                latest_freq = count
+            
+            # 计算窗口期平均频率
+            window_freqs = []
+            for year in compare_years:
+                prev_count = trend.get(year, 0)
+                if use_relative_freq:
+                    freq = prev_count / paper_counts.get(year, 1) * 1000
+                else:
+                    freq = prev_count
+                window_freqs.append(freq)
+            
+            avg_prev_freq = sum(window_freqs) / len(window_freqs) if window_freqs else 0
+            
+            # 计算增长率
+            if avg_prev_freq < 0.1:
+                # 新词（窗口期内几乎不存在）
+                # 使用特殊标记：is_new=True, growth=inf
+                is_new = True
+                growth = float('inf')
+            else:
+                is_new = False
+                growth = latest_freq / avg_prev_freq
+            
+            # 判断是否为新兴关键词
+            if is_new or growth >= min_growth:
+                emerging.append({
+                    'keyword': keyword,
+                    'growth': growth,
+                    'count': count,
+                    'is_new': is_new,
+                    'latest_freq': latest_freq,
+                    'avg_prev_freq': avg_prev_freq,
+                })
         
-        # 按增长率排序
-        emerging.sort(key=lambda x: (-x[1], -x[2]))
+        # 排序策略：新词优先，然后按增长率
+        emerging.sort(key=lambda x: (
+            0 if x['is_new'] else 1,  # 新词排前
+            -x['growth'] if x['growth'] != float('inf') else 0,
+            -x['count'],
+        ))
         
-        return [kw for kw, _, _ in emerging[:top_n]]
+        return [item['keyword'] for item in emerging[:top_n]]
+    
+    def get_emerging_keywords_detailed(
+        self,
+        min_growth: float = 1.5,
+        min_count: int = 5,
+        top_n: int = 20,
+    ) -> List[Dict]:
+        """获取新兴关键词详细信息（用于报告）"""
+        years = self.repo.get_all_years()
+        if len(years) < 2:
+            return []
+        
+        paper_counts = {y: self.repo.get_paper_count(year=y) or 1 for y in years[:4]}
+        latest_year = years[0]
+        compare_years = years[1:3] if len(years) > 2 else years[1:2]
+        
+        latest_keywords = self.repo.get_top_keywords(year=latest_year, limit=300)
+        
+        results = []
+        for keyword, count in latest_keywords:
+            if count < min_count:
+                continue
+            
+            trend = self.repo.get_keyword_trend(keyword)
+            latest_freq = count / paper_counts.get(latest_year, 1) * 1000
+            
+            prev_counts = [trend.get(y, 0) for y in compare_years]
+            prev_freqs = [c / paper_counts.get(y, 1) * 1000 for y, c in zip(compare_years, prev_counts)]
+            avg_prev_freq = sum(prev_freqs) / len(prev_freqs) if prev_freqs else 0
+            
+            if avg_prev_freq < 0.1:
+                is_new = True
+                growth = None
+            else:
+                is_new = False
+                growth = latest_freq / avg_prev_freq
+                if growth < min_growth:
+                    continue
+            
+            results.append({
+                'keyword': keyword,
+                'count': count,
+                'is_new': is_new,
+                'growth': growth,
+                'trend': {y: trend.get(y, 0) for y in years[:4]},
+            })
+        
+        results.sort(key=lambda x: (0 if x['is_new'] else 1, -(x['growth'] or 999), -x['count']))
+        return results[:top_n]
     
     def get_venue_stats(self, venue: str, year: int) -> VenueStats:
         """获取会议统计"""

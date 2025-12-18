@@ -86,20 +86,25 @@ def run_new_pipeline(
     print("\n🔑 阶段 3/3: 关键词分析 (Analysis)")
     print("-" * 40)
     
+    from agents.analysis_agent import AnalysisAgent
+    
+    # 运行关键词提取 (YAKE)
+    analysis_agent = AnalysisAgent()
+    extraction_result = analysis_agent.run(method="yake", limit=5000)
+    print(f"   - YAKE 提取: {extraction_result['processed']} 篇, {extraction_result['keywords']} 个关键词")
+    
+    # 运行统计分析
     repo = get_repository()
-    analysis_repo = get_analysis_repository()
     analyzer = get_analyzer()
-    
-    # 获取需要分析的论文
-    # TODO: 实现增量分析（只分析未提取关键词的论文）
-    
-    # 运行分析
     result = analyzer.analyze()
+    
     print(f"✅ 分析完成")
     print(f"   - 论文总数: {result.total_papers:,}")
     print(f"   - 关键词总数: {result.total_keywords:,}")
     if result.venues:
         print(f"   - 覆盖会议: {', '.join(result.venues)}")
+    if result.emerging_keywords:
+        print(f"   - 新兴关键词: {', '.join(result.emerging_keywords[:5])}...")
     
     # 生成可视化
     print("\n🎨 生成图表和报告")
