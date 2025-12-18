@@ -449,6 +449,64 @@ class AnalysisRepository(BaseRepository):
                 """, (paper_id, keyword.lower().strip(), method, score))
             conn.commit()
     
+    def save_paper_keyword(self, pk: PaperKeyword):
+        """保存单个 PaperKeyword 对象"""
+        with self._get_connection() as conn:
+            cursor = conn.cursor()
+            cursor.execute("""
+                INSERT OR REPLACE INTO paper_keywords (paper_id, keyword, method, score)
+                VALUES (?, ?, ?, ?)
+            """, (pk.paper_id, pk.keyword.lower().strip(), pk.method, pk.score))
+            conn.commit()
+    
+    def get_papers_without_keywords(
+        self,
+        method: str = "yake",
+        limit: int = 1000,
+    ) -> List[Paper]:
+        """
+        获取没有提取关键词的论文（增量处理）
+        
+        Args:
+            method: 提取方法
+            limit: 最大数量
+            
+        Returns:
+            需要处理的论文列表
+        """
+        import json
+        with self._get_connection() as conn:
+            cursor = conn.cursor()
+            cursor.execute("""
+                SELECT p.*
+                FROM papers p
+                LEFT JOIN paper_keywords pk ON p.paper_id = pk.paper_id AND pk.method = ?
+                WHERE pk.id IS NULL
+                  AND p.canonical_title IS NOT NULL
+                  AND p.canonical_title != ''
+                LIMIT ?
+            """, (method, limit))
+            
+            papers = []
+            for row in cursor.fetchall():
+                authors = row["authors"]
+                if isinstance(authors, str):
+                    authors = json.loads(authors) if authors else []
+                
+                papers.append(Paper(
+                    paper_id=row["paper_id"],
+                    canonical_title=row["canonical_title"],
+                    abstract=row["abstract"] or "",
+                    authors=authors,
+                    year=row["year"],
+                    venue_id=row["venue_id"],
+                    venue_type=row["venue_type"],
+                    domain=row["domain"],
+                    quality_flag=row["quality_flag"],
+                ))
+            
+            return papers
+    
     def get_paper_keywords(self, paper_id: int, method: str = None) -> List[PaperKeyword]:
         """获取论文的关键词"""
         with self._get_connection() as conn:

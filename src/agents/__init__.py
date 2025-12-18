@@ -9,10 +9,13 @@ Agent 模块
 
 from .ingestion_agent import IngestionAgent, run_ingestion
 from .structuring_agent import StructuringAgent, run_structuring
+from .analysis_agent import AnalysisAgent, run_analysis
 
 __all__ = [
     "IngestionAgent",
     "StructuringAgent",
+    "AnalysisAgent",
     "run_ingestion",
     "run_structuring",
+    "run_analysis",
 ]
