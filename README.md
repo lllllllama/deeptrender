@@ -73,23 +73,29 @@ pip install -r requirements.txt
 ### 基础用法
 
 ```bash
-# 完整流程（所有数据源，所有会议）
+# 运行完整三阶段工作流（采集 → 结构化 → 分析）
 python src/main.py
 
 # 指定会议和年份
 python src/main.py --venue ICLR NeurIPS --year 2024
 
-# 测试模式（限制论文数量）
-python src/main.py --limit 10
+# 限制每阶段处理数量（测试用）
+python src/main.py --limit 100
 ```
 
 ### 数据源选择
 
 ```bash
-# 仅 OpenReview（ICLR, NeurIPS, ICML 等）
+# arXiv（最近 7 天的 ML 论文）
+python src/main.py --source arxiv --arxiv-days 7
+
+# OpenAlex（结构化元数据）
+python src/main.py --source openalex
+
+# OpenReview（ICLR, NeurIPS 等）
 python src/main.py --source openreview
 
-# 仅 Semantic Scholar（CVPR, ACL, AAAI 等）
+# Semantic Scholar（CVPR, ACL 等）
 python src/main.py --source s2
 
 # 所有数据源（默认）
@@ -112,12 +118,16 @@ python src/main.py --extractor both
 ### 其他选项
 
 ```bash
-# 跳过爬取，仅重新生成报告
-python src/main.py --skip-scrape
+# 跳过采集阶段，仅运行结构化和分析
+python src/main.py --skip-ingestion
+
+# 跳过结构化阶段
+python src/main.py --skip-structuring
 
 # 查看帮助
 python src/main.py --help
 ```
+
 
 ---
 

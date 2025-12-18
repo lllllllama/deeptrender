@@ -1,15 +1,15 @@
 # 🔬 顶会论文关键词趋势报告
 
-> 自动生成于 2025-12-12 09:02:27
+> 自动生成于 2025-12-18 09:45:22
 
 ## 📊 数据概览
 
 | 指标 | 数值 |
 |------|------|
-| 论文总数 | 2,755 |
+| 论文总数 | 2,897 |
 | 关键词总数 | 10,000 |
-| 覆盖会议 | CVPR |
-| 年份范围 | 2024 - 2024 |
+| 覆盖会议 | AAAI, CVPR, ICLR, NeurIPS |
+| 年份范围 | 2023 - 2025 |
 
 ## ☁️ 关键词云
 
@@ -24,56 +24,56 @@
 
 | 排名 | 关键词 | 出现次数 |
 |------|--------|----------|
-| 1 | models | 443 |
-| 2 | image | 352 |
-| 3 | model | 323 |
-| 4 | learning | 304 |
-| 5 | diffusion | 294 |
-| 6 | generation | 260 |
-| 7 | video | 244 |
-| 8 | images | 184 |
-| 9 | detection | 168 |
-| 10 | visual | 162 |
-| 11 | object | 160 |
-| 12 | data | 160 |
-| 13 | segmentation | 155 |
-| 14 | diffusion models | 155 |
-| 15 | scene | 128 |
-| 16 | human | 123 |
-| 17 | neural | 120 |
-| 18 | motion | 114 |
-| 19 | reconstruction | 113 |
-| 20 | training | 112 |
-| 21 | semantic | 105 |
-| 22 | language | 105 |
-| 23 | vision | 96 |
-| 24 | tasks | 95 |
-| 25 | large | 94 |
-| 26 | language models | 94 |
-| 27 | large language models | 92 |
-| 28 | large language | 92 |
-| 29 | estimation | 92 |
-| 30 | dataset | 86 |
-| 31 | videos | 85 |
-| 32 | gaussian | 85 |
-| 33 | multimodal | 82 |
-| 34 | understanding | 80 |
-| 35 | generative | 80 |
-| 36 | methods | 79 |
-| 37 | point | 76 |
-| 38 | object detection | 75 |
-| 39 | diffusion model | 75 |
-| 40 | efficient | 73 |
-| 41 | objects | 72 |
-| 42 | gaussian splatting | 72 |
-| 43 | synthesis | 71 |
-| 44 | method | 71 |
-| 45 | pose | 68 |
-| 46 | dynamic | 68 |
-| 47 | text | 66 |
-| 48 | representation | 66 |
-| 49 | scenes | 65 |
-| 50 | vision-language | 62 |
+| 1 | diffusion model | 177 |
+| 2 | diffusion | 159 |
+| 3 | image | 155 |
+| 4 | generation | 151 |
+| 5 | video | 139 |
+| 6 | large language model | 113 |
+| 7 | detection | 90 |
+| 8 | segmentation | 80 |
+| 9 | large language | 77 |
+| 10 | object | 76 |
+| 11 | human | 70 |
+| 12 | visual | 67 |
+| 13 | language models | 63 |
+| 14 | object detection | 63 |
+| 15 | motion | 62 |
+| 16 | scene | 60 |
+| 17 | gaussian splatting | 59 |
+| 18 | gaussian | 52 |
+| 19 | semantic | 50 |
+| 20 | vision language models | 49 |
+| 21 | language | 48 |
+| 22 | reconstruction | 48 |
+| 23 | synthesis | 47 |
+| 24 | vision | 46 |
+| 25 | estimation | 42 |
+| 26 | transformer | 42 |
+| 27 | multimodal large language | 41 |
+| 28 | images | 40 |
+| 29 | semantic segmentation | 39 |
+| 30 | editing | 37 |
+| 31 | neural | 37 |
+| 32 | point cloud | 37 |
+| 33 | pose | 37 |
+| 34 | understanding | 37 |
+| 35 | adversarial | 36 |
+| 36 | depth | 36 |
+| 37 | radiance fields | 36 |
+| 38 | splatting | 34 |
+| 39 | image generation | 33 |
+| 40 | neural radiance | 32 |
+| 41 | neural radiance fields | 32 |
+| 42 | vision transformer | 32 |
+| 43 | multimodal | 31 |
+| 44 | point | 30 |
+| 45 | pose estimation | 30 |
+| 46 | generative | 29 |
+| 47 | recognition | 29 |
+| 48 | text | 29 |
+| 49 | vision language | 29 |
+| 50 | adaptation | 28 |
 
 </details>
 
@@ -81,7 +81,22 @@
 
 ![关键词趋势](../figures/keyword_trends.png)
 
+## 🚀 新兴关键词
+
+以下关键词在最近一年增长显著：
+
+1. **generation**
+2. **transformer**
+
 ## 📚 会议详情
+
+### AAAI
+
+![AAAI 词云](../figures/wordcloud_aaai.png)
+
+| 年份 | 论文数 | Top 5 关键词 |
+|------|--------|--------------|
+| 2025 | 2 | transformer based, reasoning, perform multi modal multi hop, multimodal multi hop reasoning, multimodal multi hop |
 
 ### CVPR
 
@@ -89,11 +104,28 @@
 
 | 年份 | 论文数 | Top 5 关键词 |
 |------|--------|--------------|
-| 2024 | 2755 | models, image, model, learning, diffusion |
+| 2024 | 2755 | diffusion model, image, diffusion, generation, video |
 
-## ⚖️ 会议对比 (2024)
+### ICLR
 
-![会议对比](../figures/comparison_2024.png)
+![ICLR 词云](../figures/wordcloud_iclr.png)
+
+| 年份 | 论文数 | Top 5 关键词 |
+|------|--------|--------------|
+| 2024 | 30 | diffusion model, normalizing, multimodal, information, gradient |
+
+### NeurIPS
+
+![NeurIPS 词云](../figures/wordcloud_neurips.png)
+
+| 年份 | 论文数 | Top 5 关键词 |
+|------|--------|--------------|
+| 2025 | 1 | transformer models, temperature forecasting, long horizon exogenous temperature, long horizon exogenous, linear |
+| 2023 | 30 | large language model, neural networks, understanding, transformer, textbf |
+
+## ⚖️ 会议对比 (2025)
+
+![会议对比](../figures/comparison_2025.png)
 
 ---
 

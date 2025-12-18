@@ -6,6 +6,17 @@ on:
     - cron: '0 0 * * *'
   workflow_dispatch:
     inputs:
+      source:
+        description: '数据源 (arxiv/openalex/s2/openreview/all)'
+        required: false
+        default: 'all'
+        type: choice
+        options:
+          - all
+          - arxiv
+          - openalex
+          - s2
+          - openreview
       venues:
         description: '要更新的会议（逗号分隔，如 ICLR,NeurIPS）'
         required: false
@@ -15,13 +26,13 @@ on:
         required: false
         default: ''
       limit:
-        description: '每个会议年份的论文限制（测试用）'
+        description: '每阶段处理上限（测试用）'
         required: false
         default: ''
-      source:
-        description: '数据源（openreview/s2/all）'
+      arxiv_days:
+        description: 'arXiv 采集天数'
         required: false
-        default: 'all'
+        default: '7'
 
 jobs:
   update:
@@ -50,7 +61,7 @@ jobs:
           OPENREVIEW_USERNAME: ${{ secrets.OPENREVIEW_USERNAME }}
           OPENREVIEW_PASSWORD: ${{ secrets.OPENREVIEW_PASSWORD }}
         run: |
-          # 构建命令参数
+          # 构建命令参数（三阶段工作流）
           CMD="python src/main.py"
           
           # 数据源
@@ -59,6 +70,12 @@ jobs:
             SOURCE="all"
           fi
           CMD="$CMD --source $SOURCE"
+          
+          # arXiv 天数
+          ARXIV_DAYS="${{ github.event.inputs.arxiv_days }}"
+          if [ -n "$ARXIV_DAYS" ]; then
+            CMD="$CMD --arxiv-days $ARXIV_DAYS"
+          fi
           
           # 会议
           if [ -n "${{ github.event.inputs.venues }}" ]; then
