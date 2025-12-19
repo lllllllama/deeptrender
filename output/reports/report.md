@@ -1,14 +1,14 @@
 # 🔬 顶会论文关键词趋势报告
 
-> 自动生成于 2025-12-18 09:45:22
+> 自动生成于 2025-12-19 01:58:00
 
 ## 📊 数据概览
 
 | 指标 | 数值 |
 |------|------|
-| 论文总数 | 2,897 |
+| 论文总数 | 3,842 |
 | 关键词总数 | 10,000 |
-| 覆盖会议 | AAAI, CVPR, ICLR, NeurIPS |
+| 覆盖会议 | AAAI, ACL, CVPR, ICCV, ICLR, NeurIPS |
 | 年份范围 | 2023 - 2025 |
 
 ## ☁️ 关键词云
@@ -24,56 +24,56 @@
 
 | 排名 | 关键词 | 出现次数 |
 |------|--------|----------|
-| 1 | diffusion model | 177 |
-| 2 | diffusion | 159 |
-| 3 | image | 155 |
-| 4 | generation | 151 |
-| 5 | video | 139 |
-| 6 | large language model | 113 |
-| 7 | detection | 90 |
-| 8 | segmentation | 80 |
-| 9 | large language | 77 |
-| 10 | object | 76 |
-| 11 | human | 70 |
-| 12 | visual | 67 |
-| 13 | language models | 63 |
-| 14 | object detection | 63 |
-| 15 | motion | 62 |
-| 16 | scene | 60 |
-| 17 | gaussian splatting | 59 |
-| 18 | gaussian | 52 |
-| 19 | semantic | 50 |
-| 20 | vision language models | 49 |
-| 21 | language | 48 |
-| 22 | reconstruction | 48 |
-| 23 | synthesis | 47 |
-| 24 | vision | 46 |
-| 25 | estimation | 42 |
-| 26 | transformer | 42 |
-| 27 | multimodal large language | 41 |
-| 28 | images | 40 |
-| 29 | semantic segmentation | 39 |
-| 30 | editing | 37 |
-| 31 | neural | 37 |
-| 32 | point cloud | 37 |
-| 33 | pose | 37 |
-| 34 | understanding | 37 |
-| 35 | adversarial | 36 |
-| 36 | depth | 36 |
-| 37 | radiance fields | 36 |
-| 38 | splatting | 34 |
-| 39 | image generation | 33 |
-| 40 | neural radiance | 32 |
-| 41 | neural radiance fields | 32 |
-| 42 | vision transformer | 32 |
-| 43 | multimodal | 31 |
-| 44 | point | 30 |
-| 45 | pose estimation | 30 |
-| 46 | generative | 29 |
-| 47 | recognition | 29 |
-| 48 | text | 29 |
-| 49 | vision language | 29 |
-| 50 | adaptation | 28 |
+| 1 | large language model | 216 |
+| 2 | diffusion model | 188 |
+| 3 | generation | 175 |
+| 4 | diffusion | 172 |
+| 5 | image | 169 |
+| 6 | video | 163 |
+| 7 | large language | 137 |
+| 8 | language models | 126 |
+| 9 | detection | 104 |
+| 10 | segmentation | 90 |
+| 11 | object | 83 |
+| 12 | language | 81 |
+| 13 | human | 75 |
+| 14 | visual | 73 |
+| 15 | motion | 71 |
+| 16 | object detection | 69 |
+| 17 | gaussian splatting | 67 |
+| 18 | scene | 66 |
+| 19 | vision language models | 60 |
+| 20 | gaussian | 59 |
+| 21 | semantic | 59 |
+| 22 | reasoning | 58 |
+| 23 | reconstruction | 55 |
+| 24 | neural | 50 |
+| 25 | vision | 50 |
+| 26 | synthesis | 48 |
+| 27 | transformer | 46 |
+| 28 | estimation | 45 |
+| 29 | multimodal large language | 45 |
+| 30 | images | 43 |
+| 31 | semantic segmentation | 43 |
+| 32 | adversarial | 42 |
+| 33 | editing | 41 |
+| 34 | understanding | 41 |
+| 35 | depth | 40 |
+| 36 | pose | 40 |
+| 37 | point cloud | 39 |
+| 38 | radiance fields | 38 |
+| 39 | splatting | 37 |
+| 40 | federated learning | 36 |
+| 41 | multimodal | 36 |
+| 42 | recognition | 36 |
+| 43 | image generation | 35 |
+| 44 | generative | 34 |
+| 45 | neural radiance fields | 34 |
+| 46 | vision language | 34 |
+| 47 | neural radiance | 33 |
+| 48 | point | 32 |
+| 49 | pose estimation | 32 |
+| 50 | text | 32 |
 
 </details>
 
@@ -85,8 +85,16 @@
 
 以下关键词在最近一年增长显著：
 
-1. **generation**
-2. **transformer**
+1. **code**
+2. **reinforcement**
+3. **machine**
+4. **quantum**
+5. **relative policy optimization**
+6. **machine learning**
+7. **user**
+8. **robot**
+9. **unlearning**
+10. **policy optimization**
 
 ## 📚 会议详情
 
@@ -96,7 +104,15 @@
 
 | 年份 | 论文数 | Top 5 关键词 |
 |------|--------|--------------|
-| 2025 | 2 | transformer based, reasoning, perform multi modal multi hop, multimodal multi hop reasoning, multimodal multi hop |
+| 2025 | 19 | reasoning, large language model, large language, language models, generation |
+
+### ACL
+
+![ACL 词云](../figures/wordcloud_acl.png)
+
+| 年份 | 论文数 | Top 5 关键词 |
+|------|--------|--------------|
+| 2025 | 2 | systematic study, stories, sgm, safety glasses, safety |
 
 ### CVPR
 
@@ -104,7 +120,16 @@
 
 | 年份 | 论文数 | Top 5 关键词 |
 |------|--------|--------------|
+| 2025 | 1 | zero shot portrait generation, zero shot identity preserved portrait, portrait generation, multi face fusion, identity preserved portrait generation |
 | 2024 | 2755 | diffusion model, image, diffusion, generation, video |
+
+### ICCV
+
+![ICCV 词云](../figures/wordcloud_iccv.png)
+
+| 年份 | 论文数 | Top 5 关键词 |
+|------|--------|--------------|
+| 2025 | 2 | tool selection, selection and integration, robust multi view camera, robust multi view, reasoning |
 
 ### ICLR
 
@@ -112,6 +137,7 @@
 
 | 年份 | 论文数 | Top 5 关键词 |
 |------|--------|--------------|
+| 2025 | 1 | web environment, web, tree search, tree, search for autonomous |
 | 2024 | 30 | diffusion model, normalizing, multimodal, information, gradient |
 
 ### NeurIPS
@@ -120,7 +146,7 @@
 
 | 年份 | 论文数 | Top 5 关键词 |
 |------|--------|--------------|
-| 2025 | 1 | transformer models, temperature forecasting, long horizon exogenous temperature, long horizon exogenous, linear |
+| 2025 | 18 | reasoning, linear, large language model, workflows vs agents, vision language reasoning |
 | 2023 | 30 | large language model, neural networks, understanding, transformer, textbf |
 
 ## ⚖️ 会议对比 (2025)
