@@ -204,15 +204,20 @@ class StructuredRepository(BaseRepository):
             cursor = conn.cursor()
             cursor.execute("""
                 INSERT OR IGNORE INTO venues 
-                (canonical_name, full_name, domain, venue_type, first_year, last_year)
-                VALUES (?, ?, ?, ?, ?, ?)
+                (canonical_name, full_name, domain, tier, venue_type, 
+                 openreview_ids, years_available, first_year, last_year, discovered_at)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
             """, (
                 venue.canonical_name,
                 venue.full_name,
                 venue.domain,
+                getattr(venue, 'tier', 'C'),
                 venue.venue_type,
+                json.dumps(getattr(venue, 'openreview_ids', [])),
+                json.dumps(getattr(venue, 'years_available', [])),
                 venue.first_year,
                 venue.last_year,
+                datetime.now().isoformat(),
             ))
             conn.commit()
             
@@ -222,6 +227,73 @@ class StructuredRepository(BaseRepository):
                 (venue.canonical_name,)
             )
             return cursor.fetchone()["venue_id"]
+    
+    def save_discovered_venue(
+        self,
+        name: str,
+        full_name: str,
+        domain: str,
+        tier: str,
+        venue_type: str,
+        openreview_ids: List[str],
+        years: List[int]
+    ) -> int:
+        """保存动态发现的会议"""
+        with self._get_connection() as conn:
+            cursor = conn.cursor()
+            
+            # 检查是否已存在
+            cursor.execute(
+                "SELECT venue_id, openreview_ids, years_available FROM venues WHERE canonical_name = ?",
+                (name,)
+            )
+            existing = cursor.fetchone()
+            
+            if existing:
+                # 更新现有记录 - 合并 openreview_ids 和 years
+                existing_ids = json.loads(existing["openreview_ids"] or "[]")
+                existing_years = json.loads(existing["years_available"] or "[]")
+                
+                merged_ids = list(set(existing_ids + openreview_ids))
+                merged_years = sorted(set(existing_years + years), reverse=True)
+                
+                cursor.execute("""
+                    UPDATE venues SET 
+                        openreview_ids = ?,
+                        years_available = ?,
+                        first_year = ?,
+                        last_year = ?
+                    WHERE venue_id = ?
+                """, (
+                    json.dumps(merged_ids),
+                    json.dumps(merged_years),
+                    min(merged_years) if merged_years else None,
+                    max(merged_years) if merged_years else None,
+                    existing["venue_id"]
+                ))
+                conn.commit()
+                return existing["venue_id"]
+            else:
+                # 插入新记录
+                cursor.execute("""
+                    INSERT INTO venues 
+                    (canonical_name, full_name, domain, tier, venue_type,
+                     openreview_ids, years_available, first_year, last_year, discovered_at)
+                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                """, (
+                    name,
+                    full_name,
+                    domain,
+                    tier,
+                    venue_type,
+                    json.dumps(openreview_ids),
+                    json.dumps(years),
+                    min(years) if years else None,
+                    max(years) if years else None,
+                    datetime.now().isoformat()
+                ))
+                conn.commit()
+                return cursor.lastrowid
     
     def get_venue(self, venue_id: int) -> Optional[Venue]:
         """获取会议"""
@@ -246,12 +318,61 @@ class StructuredRepository(BaseRepository):
         """获取所有会议"""
         with self._get_connection() as conn:
             cursor = conn.cursor()
-            cursor.execute("SELECT * FROM venues ORDER BY canonical_name")
+            cursor.execute("SELECT * FROM venues ORDER BY tier, canonical_name")
             return [self._row_to_venue(row) for row in cursor.fetchall()]
+    
+    def get_venues_by_domain(self, domain: str) -> List[Venue]:
+        """按领域获取会议"""
+        with self._get_connection() as conn:
+            cursor = conn.cursor()
+            cursor.execute(
+                "SELECT * FROM venues WHERE domain = ? ORDER BY tier, canonical_name",
+                (domain,)
+            )
+            return [self._row_to_venue(row) for row in cursor.fetchall()]
+    
+    def get_venues_by_tier(self, tier: str) -> List[Venue]:
+        """按等级获取会议"""
+        with self._get_connection() as conn:
+            cursor = conn.cursor()
+            cursor.execute(
+                "SELECT * FROM venues WHERE tier = ? ORDER BY canonical_name",
+                (tier,)
+            )
+            return [self._row_to_venue(row) for row in cursor.fetchall()]
+    
+    def get_venue_stats(self) -> Dict:
+        """获取会议统计"""
+        with self._get_connection() as conn:
+            cursor = conn.cursor()
+            
+            # 按领域统计
+            cursor.execute("""
+                SELECT domain, COUNT(*) as count 
+                FROM venues GROUP BY domain ORDER BY count DESC
+            """)
+            by_domain = {row["domain"]: row["count"] for row in cursor.fetchall()}
+            
+            # 按等级统计
+            cursor.execute("""
+                SELECT tier, COUNT(*) as count 
+                FROM venues GROUP BY tier ORDER BY tier
+            """)
+            by_tier = {row["tier"]: row["count"] for row in cursor.fetchall()}
+            
+            # 总数
+            cursor.execute("SELECT COUNT(*) as total FROM venues")
+            total = cursor.fetchone()["total"]
+            
+            return {
+                "total": total,
+                "by_domain": by_domain,
+                "by_tier": by_tier
+            }
     
     def _row_to_venue(self, row: sqlite3.Row) -> Venue:
         """将数据库行转换为 Venue"""
-        return Venue(
+        venue = Venue(
             venue_id=row["venue_id"],
             canonical_name=row["canonical_name"],
             full_name=row["full_name"],
@@ -260,6 +381,11 @@ class StructuredRepository(BaseRepository):
             first_year=row["first_year"],
             last_year=row["last_year"],
         )
+        # 添加新字段
+        venue.tier = row.get("tier", "C")
+        venue.openreview_ids = json.loads(row.get("openreview_ids") or "[]")
+        venue.years_available = json.loads(row.get("years_available") or "[]")
+        return venue
     
     # ========== Paper 操作 ==========
     
@@ -610,6 +736,252 @@ class AnalysisRepository(BaseRepository):
                 (keyword.lower(),)
             )
             return [(row["venue_id"], row["year"], row["count"]) for row in cursor.fetchall()]
+    
+    # ========== Analysis Meta 操作 ==========
+    
+    def get_meta(self, key: str) -> Optional[str]:
+        """获取分析元信息"""
+        with self._get_connection() as conn:
+            cursor = conn.cursor()
+            cursor.execute("SELECT value FROM analysis_meta WHERE key = ?", (key,))
+            row = cursor.fetchone()
+            return row["value"] if row else None
+    
+    def set_meta(self, key: str, value: str):
+        """设置分析元信息"""
+        with self._get_connection() as conn:
+            cursor = conn.cursor()
+            cursor.execute("""
+                INSERT OR REPLACE INTO analysis_meta (key, value, updated_at)
+                VALUES (?, ?, ?)
+            """, (key, value, datetime.now().isoformat()))
+            conn.commit()
+    
+    def get_all_meta(self) -> Dict[str, str]:
+        """获取所有元信息"""
+        with self._get_connection() as conn:
+            cursor = conn.cursor()
+            cursor.execute("SELECT key, value FROM analysis_meta")
+            return {row["key"]: row["value"] for row in cursor.fetchall()}
+    
+    # ========== Analysis Venue Summary 操作 ==========
+    
+    def save_venue_summary(
+        self,
+        venue: str,
+        year: Optional[int],
+        paper_count: int,
+        top_keywords: List[Dict],
+        emerging_keywords: List[str] = None
+    ):
+        """保存会议总览缓存"""
+        with self._get_connection() as conn:
+            cursor = conn.cursor()
+            year_val = year if year else 0  # 0 表示全量汇总
+            cursor.execute("""
+                INSERT OR REPLACE INTO analysis_venue_summary 
+                (venue, year, paper_count, top_keywords_json, emerging_keywords_json, updated_at)
+                VALUES (?, ?, ?, ?, ?, ?)
+            """, (
+                venue,
+                year_val,
+                paper_count,
+                json.dumps(top_keywords, ensure_ascii=False),
+                json.dumps(emerging_keywords or [], ensure_ascii=False),
+                datetime.now().isoformat()
+            ))
+            conn.commit()
+    
+    def get_venue_summary(self, venue: str, year: int = None) -> Optional[Dict]:
+        """获取会议总览缓存"""
+        with self._get_connection() as conn:
+            cursor = conn.cursor()
+            year_val = year if year else 0
+            cursor.execute(
+                "SELECT * FROM analysis_venue_summary WHERE venue = ? AND year = ?",
+                (venue, year_val)
+            )
+            row = cursor.fetchone()
+            if not row:
+                return None
+            return {
+                "venue": row["venue"],
+                "year": row["year"],
+                "paper_count": row["paper_count"],
+                "top_keywords": json.loads(row["top_keywords_json"]) if row["top_keywords_json"] else [],
+                "emerging_keywords": json.loads(row["emerging_keywords_json"]) if row["emerging_keywords_json"] else [],
+                "updated_at": row["updated_at"]
+            }
+    
+    def get_all_venue_summaries(self) -> List[Dict]:
+        """获取所有会议总览"""
+        with self._get_connection() as conn:
+            cursor = conn.cursor()
+            cursor.execute("SELECT * FROM analysis_venue_summary ORDER BY venue, year")
+            results = []
+            for row in cursor.fetchall():
+                year_val = row["year"]
+                results.append({
+                    "venue": row["venue"],
+                    "year": year_val if year_val != 0 else None,  # 0 -> None for 'all years'
+                    "paper_count": row["paper_count"],
+                    "top_keywords": json.loads(row["top_keywords_json"]) if row["top_keywords_json"] else [],
+                    "emerging_keywords": json.loads(row["emerging_keywords_json"]) if row["emerging_keywords_json"] else [],
+                    "updated_at": row["updated_at"]
+                })
+            return results
+    
+    # ========== Analysis Keyword Trends 操作 ==========
+    
+    def save_keyword_trend_bucket(
+        self,
+        scope: str,
+        venue: Optional[str],
+        keyword: str,
+        granularity: str,
+        bucket: str,
+        count: int
+    ):
+        """保存关键词趋势数据点"""
+        with self._get_connection() as conn:
+            cursor = conn.cursor()
+            cursor.execute("""
+                INSERT OR REPLACE INTO analysis_keyword_trends 
+                (scope, venue, keyword, granularity, bucket, count, updated_at)
+                VALUES (?, ?, ?, ?, ?, ?, ?)
+            """, (
+                scope,
+                venue or '',  # 空字符串代替 NULL
+                keyword.lower(),
+                granularity,
+                bucket,
+                count,
+                datetime.now().isoformat()
+            ))
+            conn.commit()
+    
+    def save_keyword_trends_batch(self, trends: List[Dict]):
+        """批量保存关键词趋势"""
+        with self._get_connection() as conn:
+            cursor = conn.cursor()
+            for t in trends:
+                cursor.execute("""
+                    INSERT OR REPLACE INTO analysis_keyword_trends 
+                    (scope, venue, keyword, granularity, bucket, count, updated_at)
+                    VALUES (?, ?, ?, ?, ?, ?, ?)
+                """, (
+                    t["scope"],
+                    t.get("venue") or '',  # 空字符串代替 NULL
+                    t["keyword"].lower(),
+                    t["granularity"],
+                    t["bucket"],
+                    t["count"],
+                    datetime.now().isoformat()
+                ))
+            conn.commit()
+    
+    def get_keyword_trends_cached(
+        self,
+        scope: str,
+        keyword: str,
+        granularity: str,
+        venue: str = None
+    ) -> List[Dict]:
+        """获取缓存的关键词趋势"""
+        with self._get_connection() as conn:
+            cursor = conn.cursor()
+            venue_val = venue or ''
+            cursor.execute("""
+                SELECT bucket, count FROM analysis_keyword_trends 
+                WHERE scope = ? AND keyword = ? AND granularity = ? AND venue = ?
+                ORDER BY bucket
+            """, (scope, keyword.lower(), granularity, venue_val))
+            return [{"bucket": row["bucket"], "count": row["count"]} for row in cursor.fetchall()]
+    
+    # ========== Analysis arXiv Timeseries 操作 ==========
+    
+    def save_arxiv_timeseries(
+        self,
+        category: str,
+        granularity: str,
+        bucket: str,
+        paper_count: int,
+        top_keywords: List[Dict] = None
+    ):
+        """保存 arXiv 时间序列数据"""
+        with self._get_connection() as conn:
+            cursor = conn.cursor()
+            cursor.execute("""
+                INSERT OR REPLACE INTO analysis_arxiv_timeseries 
+                (category, granularity, bucket, paper_count, top_keywords_json, updated_at)
+                VALUES (?, ?, ?, ?, ?, ?)
+            """, (
+                category,
+                granularity,
+                bucket,
+                paper_count,
+                json.dumps(top_keywords or [], ensure_ascii=False),
+                datetime.now().isoformat()
+            ))
+            conn.commit()
+    
+    def save_arxiv_timeseries_batch(self, data: List[Dict]):
+        """批量保存 arXiv 时间序列"""
+        with self._get_connection() as conn:
+            cursor = conn.cursor()
+            for d in data:
+                cursor.execute("""
+                    INSERT OR REPLACE INTO analysis_arxiv_timeseries 
+                    (category, granularity, bucket, paper_count, top_keywords_json, updated_at)
+                    VALUES (?, ?, ?, ?, ?, ?)
+                """, (
+                    d["category"],
+                    d["granularity"],
+                    d["bucket"],
+                    d["paper_count"],
+                    json.dumps(d.get("top_keywords", []), ensure_ascii=False),
+                    datetime.now().isoformat()
+                ))
+            conn.commit()
+    
+    def get_arxiv_timeseries(
+        self,
+        category: str,
+        granularity: str
+    ) -> List[Dict]:
+        """获取 arXiv 时间序列"""
+        with self._get_connection() as conn:
+            cursor = conn.cursor()
+            cursor.execute("""
+                SELECT bucket, paper_count, top_keywords_json FROM analysis_arxiv_timeseries 
+                WHERE category = ? AND granularity = ?
+                ORDER BY bucket
+            """, (category, granularity))
+            return [
+                {
+                    "bucket": row["bucket"],
+                    "paper_count": row["paper_count"],
+                    "top_keywords": json.loads(row["top_keywords_json"]) if row["top_keywords_json"] else []
+                }
+                for row in cursor.fetchall()
+            ]
+    
+    # ========== 辅助查询 ==========
+    
+    def get_max_retrieved_at(self) -> Optional[str]:
+        """获取 raw_papers 中最大的 retrieved_at"""
+        with self._get_connection() as conn:
+            cursor = conn.cursor()
+            cursor.execute("SELECT MAX(retrieved_at) as max_retrieved FROM raw_papers")
+            row = cursor.fetchone()
+            return row["max_retrieved"] if row else None
+    
+    def get_total_paper_count(self) -> int:
+        """获取论文总数"""
+        with self._get_connection() as conn:
+            cursor = conn.cursor()
+            cursor.execute("SELECT COUNT(*) as count FROM papers")
+            return cursor.fetchone()["count"]
 
 
 # ============================================================

@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>会议浏览器 - DepthTrender</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="nav-brand">
+            <span class="brand-icon">🔬</span>
+            <span class="brand-text">DepthTrender</span>
+        </div>
+        <div class="nav-links">
+            <a href="/" class="nav-link">首页</a>
+            <a href="/venue.html" class="nav-link">会议分析</a>
+            <a href="/trends.html" class="nav-link">趋势追踪</a>
+            <a href="/comparison.html" class="nav-link">会议对比</a>
+            <a href="/arxiv.html" class="nav-link">arXiv 趋势</a>
+            <a href="/venues-explorer.html" class="nav-link active">会议浏览器</a>
+        </div>
+    </nav>
+
+    <main class="container">
+        <section class="page-header">
+            <h1>📚 会议浏览器</h1>
+            <p>动态发现的 AI 会议数据库，按领域和等级分类</p>
+        </section>
+
+        <!-- 统计卡片 -->
+        <section class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-icon">🏛️</div>
+                <div class="stat-content">
+                    <div class="stat-value" id="total-venues">--</div>
+                    <div class="stat-label">会议总数</div>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">⭐</div>
+                <div class="stat-content">
+                    <div class="stat-value" id="tier-a-count">--</div>
+                    <div class="stat-label">A 级会议</div>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">🌐</div>
+                <div class="stat-content">
+                    <div class="stat-value" id="domain-count">--</div>
+                    <div class="stat-label">领域数量</div>
+                </div>
+            </div>
+            <div class="stat-card action-card" onclick="discoverVenues()">
+                <div class="stat-icon">🔍</div>
+                <div class="stat-content">
+                    <div class="stat-label">发现新会议</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 筛选器 -->
+        <section class="filter-bar">
+            <div class="filter-group">
+                <label>领域：</label>
+                <select id="filter-domain" class="filter-select" onchange="filterVenues()">
+                    <option value="">全部领域</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label>等级：</label>
+                <select id="filter-tier" class="filter-select" onchange="filterVenues()">
+                    <option value="">全部等级</option>
+                    <option value="A">A 级</option>
+                    <option value="B">B 级</option>
+                    <option value="C">C 级</option>
+                </select>
+            </div>
+        </section>
+
+        <!-- 会议列表 -->
+        <section class="venues-section">
+            <div class="section-header">
+                <h2>会议列表</h2>
+                <span id="venue-count">0 个会议</span>
+            </div>
+            <div class="venues-table" id="venues-table">
+                <p class="loading">加载中...</p>
+            </div>
+        </section>
+
+        <!-- 领域分布图 -->
+        <section class="chart-card full-width">
+            <div class="chart-header">
+                <h3>📊 领域分布</h3>
+            </div>
+            <div class="chart-body" id="chart-domain" style="height: 400px;"></div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>DepthTrender - AI 顶会论文关键词趋势分析系统</p>
+        <p>数据来源: OpenReview | arXiv</p>
+    </footer>
+
+    <script>
+        let allVenues = [];
+        let filteredVenues = [];
+
+        async function init() {
+            await loadVenues();
+        }
+
+        async function loadVenues() {
+            try {
+                const response = await fetch('/api/venues/explorer');
+                const data = await response.json();
+
+                allVenues = data.venues;
+                filteredVenues = allVenues;
+
+                // 更新统计
+                document.getElementById('total-venues').textContent = data.total;
+                document.getElementById('tier-a-count').textContent =
+                    (data.by_tier['A'] || []).length;
+                document.getElementById('domain-count').textContent =
+                    Object.keys(data.by_domain).length;
+
+                // 填充领域下拉框
+                const domainSelect = document.getElementById('filter-domain');
+                Object.keys(data.by_domain).sort().forEach(domain => {
+                    const option = document.createElement('option');
+                    option.value = domain;
+                    option.textContent = `${domain} (${data.by_domain[domain].length})`;
+                    domainSelect.appendChild(option);
+                });
+
+                // 渲染
+                renderVenues(filteredVenues);
+                renderDomainChart(data.by_domain);
+
+            } catch (error) {
+                console.error('加载会议失败:', error);
+                document.getElementById('venues-table').innerHTML =
+                    '<p class="error">加载失败，请刷新页面重试</p>';
+            }
+        }
+
+        function filterVenues() {
+            const domain = document.getElementById('filter-domain').value;
+            const tier = document.getElementById('filter-tier').value;
+
+            filteredVenues = allVenues.filter(v => {
+                if (domain && v.domain !== domain) return false;
+                if (tier && v.tier !== tier) return false;
+                return true;
+            });
+
+            renderVenues(filteredVenues);
+        }
+
+        function renderVenues(venues) {
+            const container = document.getElementById('venues-table');
+            document.getElementById('venue-count').textContent = `${venues.length} 个会议`;
+
+            if (venues.length === 0) {
+                container.innerHTML = '<p class="no-data">未找到符合条件的会议</p>';
+                return;
+            }
+
+            let html = '<table class="data-table"><thead><tr>';
+            html += '<th>会议</th><th>全称</th><th>领域</th><th>等级</th>';
+            html += '<th>年份</th><th>论文数</th></tr></thead><tbody>';
+
+            venues.forEach(v => {
+                const tierClass = `tier-${v.tier.toLowerCase()}`;
+                const years = v.years.length > 0 ?
+                    `${Math.max(...v.years)} - ${Math.min(...v.years)}` : 'N/A';
+
+                html += `<tr>
+                    <td><strong>${v.name}</strong></td>
+                    <td>${v.full_name}</td>
+                    <td><span class="domain-tag">${v.domain}</span></td>
+                    <td><span class="tier-badge ${tierClass}">${v.tier}</span></td>
+                    <td>${years}</td>
+                    <td>${v.paper_count}</td>
+                </tr>`;
+            });
+
+            html += '</tbody></table>';
+            container.innerHTML = html;
+        }
+
+        function renderDomainChart(byDomain) {
+            const chart = echarts.init(document.getElementById('chart-domain'));
+
+            const data = Object.entries(byDomain).map(([domain, venues]) => ({
+                name: domain,
+                value: venues.length
+            })).sort((a, b) => b.value - a.value);
+
+            chart.setOption({
+                backgroundColor: 'transparent',
+                tooltip: { trigger: 'item' },
+                legend: {
+                    orient: 'vertical',
+                    right: 10,
+                    top: 'center',
+                    textStyle: { color: '#c9d1d9' }
+                },
+                series: [{
+                    name: '会议数量',
+                    type: 'pie',
+                    radius: ['40%', '70%'],
+                    avoidLabelOverlap: true,
+                    label: {
+                        color: '#c9d1d9',
+                        formatter: '{b}: {c} ({d}%)'
+                    },
+                    data: data,
+                    emphasis: {
+                        itemStyle: {
+                            shadowBlur: 10,
+                            shadowOffsetX: 0,
+                            shadowColor: 'rgba(0, 0, 0, 0.5)'
+                        }
+                    }
+                }]
+            });
+
+            window.addEventListener('resize', () => chart.resize());
+        }
+
+        async function discoverVenues() {
+            if (!confirm('发现新会议需要几分钟时间，是否继续？')) return;
+
+            const btn = event.currentTarget;
+            btn.classList.add('loading');
+
+            try {
+                const response = await fetch('/api/venues/discover', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ min_year: 2022 })
+                });
+
+                const result = await response.json();
+
+                if (result.status === 'success') {
+                    alert(`发现 ${result.discovered} 个会议年份，保存 ${result.saved} 个会议！`);
+                    location.reload();
+                } else {
+                    alert(`发现失败: ${result.message}`);
+                }
+            } catch (error) {
+                alert(`发现失败: ${error.message}`);
+            } finally {
+                btn.classList.remove('loading');
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', init);
+    </script>
+
+    <style>
+        .action-card {
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .action-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--accent);
+        }
+
+        .action-card.loading {
+            opacity: 0.6;
+            pointer-events: none;
+        }
+
+        .venues-table {
+            margin-top: 1rem;
+            overflow-x: auto;
+        }
+
+        .domain-tag {
+            display: inline-block;
+            padding: 0.2rem 0.6rem;
+            background: rgba(88, 166, 255, 0.15);
+            color: var(--accent);
+            border-radius: 12px;
+            font-size: 0.85rem;
+        }
+
+        .tier-badge {
+            display: inline-block;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 0.8rem;
+        }
+
+        .tier-a {
+            background: linear-gradient(135deg, #f093fb, #f5576c);
+            color: white;
+        }
+
+        .tier-b {
+            background: linear-gradient(135deg, #4facfe, #00f2fe);
+            color: white;
+        }
+
+        .tier-c {
+            background: var(--bg-tertiary);
+            color: var(--text-secondary);
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .section-header h2 {
+            font-size: 1.25rem;
+        }
+
+        .section-header span {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+    </style>
+</body>
+
+</html>

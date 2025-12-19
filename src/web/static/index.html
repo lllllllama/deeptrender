@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,6 +11,7 @@
     <!-- ECharts WordCloud -->
     <script src="https://cdn.jsdelivr.net/npm/echarts-wordcloud@2.1.0/dist/echarts-wordcloud.min.js"></script>
 </head>
+
 <body>
     <!-- 导航栏 -->
     <nav class="navbar">
@@ -22,6 +24,7 @@
             <a href="/venue.html" class="nav-link">会议分析</a>
             <a href="/trends.html" class="nav-link">趋势追踪</a>
             <a href="/comparison.html" class="nav-link">会议对比</a>
+            <a href="/arxiv.html" class="nav-link">arXiv 趋势</a>
         </div>
     </nav>
 
@@ -102,8 +105,7 @@
             <div class="chart-header">
                 <h3>📈 关键词趋势</h3>
                 <div class="chart-actions">
-                    <input type="text" id="trend-search" class="search-input" 
-                           placeholder="搜索关键词..." />
+                    <input type="text" id="trend-search" class="search-input" placeholder="搜索关键词..." />
                 </div>
             </div>
             <div class="chart-body tall" id="chart-trends"></div>
@@ -126,4 +128,5 @@
     <script src="/static/js/charts.js"></script>
     <script src="/static/js/main.js"></script>
 </body>
+
 </html>

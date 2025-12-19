@@ -199,6 +199,7 @@ class AnalysisAgent:
         method: str = "yake",
         limit: int = 1000,
         top_n: int = 10,
+        force: bool = False,
     ) -> Dict[str, int]:
         """
         运行增量分析流程
@@ -207,6 +208,7 @@ class AnalysisAgent:
             method: 提取方法
             limit: 单次处理上限
             top_n: 每篇论文提取的关键词数
+            force: 强制运行（忽略缓存）
             
         Returns:
             处理统计
@@ -215,11 +217,18 @@ class AnalysisAgent:
         print(f"🔑 [Analysis Agent] 开始关键词提取 (method={method})")
         print("=" * 60)
         
+        # 检查是否需要运行分析
+        if not force and not self.should_run_analysis():
+            print("   ⏭️ 无新数据，跳过分析")
+            return {"status": "skipped", "reason": "no_new_data", "processed": 0, "keywords": 0}
+        
         # Step 1: 获取待处理论文
         papers = self.get_papers_without_keywords(method=method, limit=limit)
         
         if not papers:
             print("   ✅ 没有需要处理的论文（已全部提取）")
+            # 仍然更新元信息，表示已检查
+            self._update_analysis_meta()
             return {"processed": 0, "keywords": 0}
         
         print(f"\n📝 待处理论文: {len(papers)} 篇")
@@ -245,6 +254,12 @@ class AnalysisAgent:
             except Exception as e:
                 print(f"   ❌ 处理失败 (paper_id={paper.paper_id}): {e}")
         
+        # 更新元信息
+        self._update_analysis_meta()
+        
+        # 更新会议缓存
+        self._update_venue_caches()
+        
         print(f"\n✅ [Analysis] 处理完成")
         print(f"   - 论文数: {processed}")
         print(f"   - 关键词数: {total_keywords}")
@@ -254,6 +269,76 @@ class AnalysisAgent:
             "processed": processed,
             "keywords": total_keywords,
         }
+    
+    def should_run_analysis(self) -> bool:
+        """
+        判断是否需要运行分析
+        
+        检查：
+        - raw_max_retrieved_at > analysis_meta.last_raw_max_retrieved_at
+        - papers 数量是否变化
+        """
+        # 获取上次分析的元信息
+        last_retrieved = self.analysis_repo.get_meta("last_raw_max_retrieved_at")
+        last_paper_count = self.analysis_repo.get_meta("last_paper_count")
+        
+        # 获取当前状态
+        current_retrieved = self.analysis_repo.get_max_retrieved_at()
+        current_paper_count = self.analysis_repo.get_total_paper_count()
+        
+        # 首次运行
+        if last_retrieved is None:
+            return True
+        
+        # 检查是否有新数据
+        if current_retrieved and current_retrieved > last_retrieved:
+            return True
+        
+        # 检查论文数是否变化
+        if last_paper_count and str(current_paper_count) != last_paper_count:
+            return True
+        
+        return False
+    
+    def _update_analysis_meta(self):
+        """更新分析元信息"""
+        current_retrieved = self.analysis_repo.get_max_retrieved_at()
+        current_paper_count = self.analysis_repo.get_total_paper_count()
+        
+        if current_retrieved:
+            self.analysis_repo.set_meta("last_raw_max_retrieved_at", current_retrieved)
+        
+        self.analysis_repo.set_meta("last_paper_count", str(current_paper_count))
+        self.analysis_repo.set_meta("last_analysis_run", datetime.now().isoformat())
+    
+    def _update_venue_caches(self):
+        """更新会议总览缓存"""
+        print("\n📊 更新会议缓存...")
+        
+        venues = self.structured_repo.get_all_venues()
+        
+        for venue in venues:
+            venue_name = venue.canonical_name
+            
+            # 获取该会议的统计信息
+            paper_count = self.structured_repo.get_paper_count(venue_id=venue.venue_id)
+            top_keywords = self.analysis_repo.get_top_keywords(
+                venue_id=venue.venue_id, 
+                limit=20
+            )
+            
+            # 转换为 JSON 格式
+            top_kw_list = [{"keyword": kw, "count": count} for kw, count in top_keywords]
+            
+            # 保存到缓存
+            self.analysis_repo.save_venue_summary(
+                venue=venue_name,
+                year=None,  # 全量统计
+                paper_count=paper_count,
+                top_keywords=top_kw_list
+            )
+        
+        print(f"   ✅ 已更新 {len(venues)} 个会议的缓存")
 
 
 def run_analysis(

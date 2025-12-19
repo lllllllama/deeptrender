@@ -247,6 +247,260 @@ def create_app():
                 "message": str(e),
             }), 500
     
+    # ==================== Registry API ====================
+    
+    @app.route("/api/registry/venues")
+    def api_registry_venues():
+        """
+        会议注册表 API
+        
+        返回所有注册会议及其统计信息（从缓存读取，秒开）
+        """
+        from config import VENUES
+        
+        result = []
+        
+        # 获取所有 venue summaries 缓存
+        all_summaries = repo.analysis.get_all_venue_summaries()
+        summary_map = {s["venue"]: s for s in all_summaries if s.get("year") is None}
+        
+        # 从配置中获取所有会议
+        for venue_key, venue_config in VENUES.items():
+            venue_name = venue_config.name
+            
+            # 从缓存获取统计
+            summary = summary_map.get(venue_name)
+            
+            if summary:
+                paper_count = summary.get("paper_count", 0)
+                top_keywords = summary.get("top_keywords", [])[:10]
+            else:
+                # 如果没有缓存，实时查询
+                paper_count = repo.get_paper_count(venue=venue_name)
+                top_kw = repo.get_top_keywords(venue=venue_name, limit=10)
+                top_keywords = [{"keyword": kw, "count": c} for kw, c in top_kw]
+            
+            result.append({
+                "name": venue_name,
+                "full_name": venue_config.full_name,
+                "domain": getattr(venue_config, 'domain', 'ML'),
+                "years_supported": venue_config.years,
+                "icon_url": f"/static/assets/venues/{venue_name}.svg",
+                "paper_count": paper_count,
+                "latest_year": max(venue_config.years) if venue_config.years else None,
+                "top_keywords": top_keywords
+            })
+        
+        return jsonify({"venues": result})
+    
+    # ==================== arXiv API ====================
+    
+    @app.route("/api/arxiv/timeseries")
+    def api_arxiv_timeseries():
+        """
+        arXiv 时间序列 API
+        
+        GET /api/arxiv/timeseries?granularity=year|week|day&category=cs.LG
+        """
+        granularity = request.args.get("granularity", "year")
+        category = request.args.get("category", "ALL")
+        
+        # 从缓存读取
+        data = repo.analysis.get_arxiv_timeseries(category, granularity)
+        
+        if not data:
+            # 如果没有缓存，返回空数据
+            return jsonify({
+                "granularity": granularity,
+                "category": category,
+                "data": [],
+                "cached": False
+            })
+        
+        return jsonify({
+            "granularity": granularity,
+            "category": category,
+            "data": data,
+            "cached": True
+        })
+    
+    @app.route("/api/arxiv/keywords/trends")
+    def api_arxiv_keyword_trends():
+        """
+        arXiv 关键词趋势 API
+        
+        GET /api/arxiv/keywords/trends?granularity=week&keyword=diffusion&category=ALL
+        """
+        granularity = request.args.get("granularity", "year")
+        keyword = request.args.get("keyword")
+        category = request.args.get("category", "ALL")
+        
+        if not keyword:
+            return jsonify({"error": "keyword parameter is required"}), 400
+        
+        # 从缓存读取
+        data = repo.analysis.get_keyword_trends_cached(
+            scope="arxiv",
+            keyword=keyword,
+            granularity=granularity
+        )
+        
+        return jsonify({
+            "keyword": keyword,
+            "granularity": granularity,
+            "category": category,
+            "data": data
+        })
+    
+    @app.route("/api/analysis/meta")
+    def api_analysis_meta():
+        """获取分析元信息"""
+        meta = repo.analysis.get_all_meta()
+        return jsonify(meta)
+    
+    # ==================== Venue Discovery API ====================
+    
+    @app.route("/api/venues/discover", methods=["POST"])
+    def api_discover_venues():
+        """动态发现会议并保存到数据库"""
+        from scraper.venue_discovery import VenueDiscovery
+        
+        min_year = request.json.get("min_year", 2022) if request.json else 2022
+        include_workshops = request.json.get("include_workshops", False) if request.json else False
+        
+        try:
+            discovery = VenueDiscovery()
+            venues = discovery.discover_conferences(
+                min_year=min_year,
+                include_workshops=include_workshops
+            )
+            
+            # 保存到数据库
+            saved_count = 0
+            for v in venues:
+                # 按会议名称分组，合并年份
+                existing_venues = {}
+                for venue in venues:
+                    if venue.name not in existing_venues:
+                        existing_venues[venue.name] = {
+                            "openreview_ids": [],
+                            "years": []
+                        }
+                    existing_venues[venue.name]["openreview_ids"].append(venue.venue_id)
+                    existing_venues[venue.name]["years"].append(venue.year)
+                
+                # 批量保存
+                for name, data in existing_venues.items():
+                    venue_obj = next((v for v in venues if v.name == name), None)
+                    if venue_obj:
+                        repo.structured.save_discovered_venue(
+                            name=name,
+                            full_name=venue_obj.full_name,
+                            domain=venue_obj.domain,
+                            tier=venue_obj.tier,
+                            venue_type="workshop" if venue_obj.is_workshop else "conference",
+                            openreview_ids=data["openreview_ids"],
+                            years=sorted(set(data["years"]), reverse=True)
+                        )
+                        saved_count += 1
+            
+            summary = discovery.get_summary_by_domain(venues)
+            
+            return jsonify({
+                "status": "success",
+                "discovered": len(venues),
+                "saved": saved_count,
+                "summary": summary
+            })
+        except Exception as e:
+            return jsonify({
+                "status": "error",
+                "message": str(e)
+            }), 500
+    
+    @app.route("/api/venues/stats")
+    def api_venue_stats():
+        """会议统计"""
+        stats = repo.structured.get_venue_stats()
+        return jsonify(stats)
+    
+    @app.route("/api/venues/by-domain")
+    def api_venues_by_domain():
+        """按领域获取会议"""
+        domain = request.args.get("domain")
+        if not domain:
+            return jsonify({"error": "domain parameter required"}), 400
+        
+        venues_list = repo.structured.get_venues_by_domain(domain)
+        result = []
+        for v in venues_list:
+            result.append({
+                "name": v.canonical_name,
+                "full_name": v.full_name,
+                "domain": v.domain,
+                "tier": getattr(v, 'tier', 'C'),
+                "years": getattr(v, 'years_available', []),
+                "openreview_ids": getattr(v, 'openreview_ids', []),
+            })
+        return jsonify({"domain": domain, "venues": result})
+    
+    @app.route("/api/venues/by-tier")
+    def api_venues_by_tier():
+        """按等级获取会议"""
+        tier = request.args.get("tier", "A")
+        
+        venues_list = repo.structured.get_venues_by_tier(tier)
+        result = []
+        for v in venues_list:
+            result.append({
+                "name": v.canonical_name,
+                "full_name": v.full_name,
+                "domain": v.domain,
+                "tier": getattr(v, 'tier', 'C'),
+                "years": getattr(v, 'years_available', []),
+                "paper_count": repo.get_paper_count(venue=v.canonical_name),
+            })
+        return jsonify({"tier": tier, "venues": result})
+    
+    @app.route("/api/venues/explorer")
+    def api_venue_explorer():
+        """会议浏览器 - 完整数据"""
+        venues_list = repo.structured.get_all_venues()
+        
+        result = {
+            "total": len(venues_list),
+            "venues": [],
+            "by_domain": {},
+            "by_tier": {}
+        }
+        
+        for v in venues_list:
+            venue_data = {
+                "name": v.canonical_name,
+                "full_name": v.full_name,
+                "domain": v.domain,
+                "tier": getattr(v, 'tier', 'C'),
+                "type": v.venue_type,
+                "years": getattr(v, 'years_available', []),
+                "paper_count": repo.get_paper_count(venue=v.canonical_name),
+                "openreview_ids": getattr(v, 'openreview_ids', [])[:3],  # 只返回前3个
+            }
+            result["venues"].append(venue_data)
+            
+            # 按领域分组
+            domain = v.domain or "General"
+            if domain not in result["by_domain"]:
+                result["by_domain"][domain] = []
+            result["by_domain"][domain].append(venue_data)
+            
+            # 按等级分组
+            tier = getattr(v, 'tier', 'C')
+            if tier not in result["by_tier"]:
+                result["by_tier"][tier] = []
+            result["by_tier"][tier].append(venue_data)
+        
+        return jsonify(result)
+    
     return app
 
 

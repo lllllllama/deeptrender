@@ -1,0 +1,48 @@
+﻿============================================================
+Venue Discovery System Test
+============================================================
+
+[Test 1] Discovering venues from 2024...
+python : Traceback (most rece
+nt call last):
+所在位置 行:1 字符: 1
++ python test_venues_simple.p
+y 2>&1 | Out-File -Encoding u
+tf8 test_outp ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~
+    + CategoryInfo           
+   : NotSpecified: (Traceba  
+  ck (most recent call las   
+ t)::String) [], RemoteEx    
+ception
+    + FullyQualifiedErrorId  
+   : NativeCommandError
+ 
+  File "D:\test_projects\dept
+htrender\test_venues_simple.p
+y", line 18, in <module>
+    venues = discovery.discov
+er_conferences(min_year=2024,
+ max_year=2024)
+             ^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^
+  File "D:\test_projects\dept
+htrender\src\scraper\venue_di
+scovery.py", line 121, in dis
+cover_conferences
+    all_venues = self.get_all
+_venue_ids()
+                 ^^^^^^^^^^^^
+^^^^^^^^^^^^
+  File "D:\test_projects\dept
+htrender\src\scraper\venue_di
+scovery.py", line 98, in get_
+all_venue_ids
+    print("\U0001f50d 正在从 Ope
+nReview 获取会议列表...")
+UnicodeEncodeError: 'gbk' cod
+ec can't encode character '\U
+0001f50d' in position 0: ille
+gal multibyte sequence

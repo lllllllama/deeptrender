@@ -31,10 +31,14 @@ CREATE TABLE IF NOT EXISTS venues (
     venue_id        INTEGER PRIMARY KEY AUTOINCREMENT,
     canonical_name  TEXT UNIQUE NOT NULL,  -- CVPR, ICML, NeurIPS, etc.
     full_name       TEXT,
-    domain          TEXT,  -- CV / NLP / ML / RL / AI
+    domain          TEXT,  -- CV / NLP / ML / RL / Theory / Graphics / General
+    tier            TEXT CHECK(tier IN ('A', 'B', 'C')) DEFAULT 'C',  -- 会议等级
     venue_type      TEXT CHECK(venue_type IN ('conference', 'journal', 'workshop')),
+    openreview_ids  TEXT,  -- JSON array: ["ICLR.cc/2024/Conference", ...]
+    years_available TEXT,  -- JSON array: [2024, 2023, 2022, ...]
     first_year      INTEGER,
     last_year       INTEGER,
+    discovered_at   DATETIME,  -- 首次发现时间
     created_at      DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 
@@ -112,6 +116,53 @@ CREATE TABLE IF NOT EXISTS scrape_logs (
     scraped_at      DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 
+-- ========== ANALYSIS CACHE TABLES ==========
+-- Pre-computed analysis results for fast frontend access
+
+-- A) 分析元信息（全局）- 用于判断是否需要重跑分析
+CREATE TABLE IF NOT EXISTS analysis_meta (
+    key TEXT PRIMARY KEY,
+    value TEXT,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+-- B) 会议卡片/总览缓存（前端直读）
+CREATE TABLE IF NOT EXISTS analysis_venue_summary (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    venue TEXT NOT NULL,
+    year INTEGER DEFAULT 0,  -- 0 表示全量汇总
+    paper_count INTEGER DEFAULT 0,
+    top_keywords_json TEXT,  -- JSON: [{"keyword": "x", "count": 10}, ...]
+    emerging_keywords_json TEXT,  -- JSON array
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    UNIQUE (venue, year)
+);
+
+-- C) 关键词趋势缓存（通用）
+CREATE TABLE IF NOT EXISTS analysis_keyword_trends (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    scope TEXT NOT NULL,  -- 'venue' / 'overall' / 'arxiv'
+    venue TEXT DEFAULT '',  -- empty string for overall/arxiv scope
+    keyword TEXT NOT NULL,
+    granularity TEXT NOT NULL,  -- 'year'/'week'/'day'
+    bucket TEXT NOT NULL,  -- year="2024", week="2024-W05", day="2024-02-03"
+    count INTEGER DEFAULT 0,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    UNIQUE (scope, venue, keyword, granularity, bucket)
+);
+
+-- D) arXiv 时间序列缓存（专用，快）
+CREATE TABLE IF NOT EXISTS analysis_arxiv_timeseries (
+    category TEXT NOT NULL,  -- cs.LG/cs.CL/cs.CV/cs.AI/ALL
+    granularity TEXT NOT NULL,  -- 'year'/'week'/'day'
+    bucket TEXT NOT NULL,  -- ISO format
+    paper_count INTEGER DEFAULT 0,
+    top_keywords_json TEXT,  -- JSON array
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (category, granularity, bucket)
+);
+
+
 -- ========== INDEXES ==========
 -- Optimized for common query patterns
 
@@ -136,3 +187,9 @@ CREATE INDEX IF NOT EXISTS idx_trend_cache_keyword_year ON trend_cache(keyword, 
 -- Operational indexes
 CREATE INDEX IF NOT EXISTS idx_ingestion_logs_source ON ingestion_logs(source, completed_at);
 CREATE INDEX IF NOT EXISTS idx_scrape_logs_venue_year ON scrape_logs(venue, year);
+
+-- Analysis Cache indexes
+CREATE INDEX IF NOT EXISTS idx_analysis_venue_summary_venue ON analysis_venue_summary(venue);
+CREATE INDEX IF NOT EXISTS idx_analysis_keyword_trends_scope ON analysis_keyword_trends(scope, granularity);
+CREATE INDEX IF NOT EXISTS idx_analysis_keyword_trends_keyword ON analysis_keyword_trends(keyword);
+CREATE INDEX IF NOT EXISTS idx_analysis_arxiv_category ON analysis_arxiv_timeseries(category, granularity);
