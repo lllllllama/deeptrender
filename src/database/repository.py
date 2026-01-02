@@ -983,6 +983,83 @@ class AnalysisRepository(BaseRepository):
             cursor.execute("SELECT COUNT(*) as count FROM papers")
             return cursor.fetchone()["count"]
 
+    # ========== Analysis arXiv Emerging 操作 ==========
+
+    def save_emerging_topic(
+        self,
+        category: str,
+        keyword: str,
+        growth_rate: float,
+        first_seen: str,
+        recent_count: int,
+        trend: str
+    ):
+        """保存新兴主题"""
+        with self._get_connection() as conn:
+            cursor = conn.cursor()
+            cursor.execute("""
+                INSERT OR REPLACE INTO analysis_arxiv_emerging
+                (category, keyword, growth_rate, first_seen, recent_count, trend, updated_at)
+                VALUES (?, ?, ?, ?, ?, ?, ?)
+            """, (
+                category,
+                keyword.lower(),
+                growth_rate,
+                first_seen,
+                recent_count,
+                trend,
+                datetime.now().isoformat()
+            ))
+            conn.commit()
+
+    def save_emerging_topics_batch(self, topics: List[Dict]):
+        """批量保存新兴主题"""
+        with self._get_connection() as conn:
+            cursor = conn.cursor()
+            for t in topics:
+                cursor.execute("""
+                    INSERT OR REPLACE INTO analysis_arxiv_emerging
+                    (category, keyword, growth_rate, first_seen, recent_count, trend, updated_at)
+                    VALUES (?, ?, ?, ?, ?, ?, ?)
+                """, (
+                    t["category"],
+                    t["keyword"].lower(),
+                    t["growth_rate"],
+                    t["first_seen"],
+                    t["recent_count"],
+                    t["trend"],
+                    datetime.now().isoformat()
+                ))
+            conn.commit()
+
+    def get_emerging_topics(
+        self,
+        category: str = "ALL",
+        limit: int = 20,
+        min_growth_rate: float = 1.5
+    ) -> List[Dict]:
+        """获取新兴主题"""
+        with self._get_connection() as conn:
+            cursor = conn.cursor()
+            cursor.execute("""
+                SELECT * FROM analysis_arxiv_emerging
+                WHERE category = ? AND growth_rate >= ?
+                ORDER BY growth_rate DESC
+                LIMIT ?
+            """, (category, min_growth_rate, limit))
+            return [
+                {
+                    "category": row["category"],
+                    "keyword": row["keyword"],
+                    "growth_rate": row["growth_rate"],
+                    "first_seen": row["first_seen"],
+                    "recent_count": row["recent_count"],
+                    "trend": row["trend"],
+                    "updated_at": row["updated_at"]
+                }
+                for row in cursor.fetchall()
+            ]
+
 
 # ============================================================
 # UNIFIED REPOSITORY (向后兼容)

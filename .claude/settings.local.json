@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(grep:*)",
+      "Bash(sqlite3:*)",
+      "Bash(python -c:*)",
+      "Bash(ls:*)",
+      "Bash(python:*)"
+    ]
+  }
+}

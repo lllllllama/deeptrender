@@ -1,5 +1,5 @@
 -- ============================================================
--- DepthTrender Database Schema
+-- DeepTrender Database Schema
 -- Three-Layer Architecture: Raw → Structured → Analysis
 -- ============================================================
 
@@ -160,6 +160,18 @@ CREATE TABLE IF NOT EXISTS analysis_arxiv_timeseries (
     top_keywords_json TEXT,  -- JSON array
     updated_at DATETIME DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (category, granularity, bucket)
+);
+
+-- E) arXiv 新兴主题缓存（新增）
+CREATE TABLE IF NOT EXISTS analysis_arxiv_emerging (
+    category TEXT NOT NULL,
+    keyword TEXT NOT NULL,
+    growth_rate REAL DEFAULT 0.0,  -- 增长率（环比/同比）
+    first_seen TEXT,  -- 首次出现时间
+    recent_count INTEGER DEFAULT 0,  -- 最近出现次数
+    trend TEXT CHECK(trend IN ('rising', 'stable', 'declining')) DEFAULT 'stable',
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (category, keyword)
 );
 
 

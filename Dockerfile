@@ -1,4 +1,4 @@
-# DepthTrender Docker 镜像
+# DeepTrender Docker 镜像
 FROM python:3.11-slim
 
 # 设置工作目录

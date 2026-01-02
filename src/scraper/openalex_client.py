@@ -56,9 +56,9 @@ class OpenAlexClient:
         self.session = requests.Session()
         
         # 设置 User-Agent（OpenAlex 推荐）
-        headers = {"User-Agent": "DepthTrender/1.0"}
+        headers = {"User-Agent": "DeepTrender/1.0"}
         if email:
-            headers["User-Agent"] = f"DepthTrender/1.0 (mailto:{email})"
+            headers["User-Agent"] = f"DeepTrender/1.0 (mailto:{email})"
         self.session.headers.update(headers)
         
         self._last_request = 0

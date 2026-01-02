@@ -14,7 +14,7 @@ const state = {
  * 初始化
  */
 async function init() {
-    console.log('🚀 DepthTrender Dashboard 初始化中...');
+    console.log('🚀 DeepTrender Dashboard 初始化中...');
 
     try {
         // 加载总览数据

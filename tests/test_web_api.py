@@ -17,7 +17,7 @@ class TestHealthEndpoint:
         
         data = json.loads(response.data)
         assert data["status"] == "healthy"
-        assert data["service"] == "depthtrender"
+        assert data["service"] == "deeptrender"
 
 
 class TestOverviewEndpoint:

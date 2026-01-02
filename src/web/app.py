@@ -190,7 +190,7 @@ def create_app():
         """健康检查"""
         return jsonify({
             "status": "healthy",
-            "service": "depthtrender",
+            "service": "deeptrender",
         })
     
     @app.route("/api/status")
@@ -328,29 +328,212 @@ def create_app():
     def api_arxiv_keyword_trends():
         """
         arXiv 关键词趋势 API
-        
+
         GET /api/arxiv/keywords/trends?granularity=week&keyword=diffusion&category=ALL
         """
         granularity = request.args.get("granularity", "year")
         keyword = request.args.get("keyword")
         category = request.args.get("category", "ALL")
-        
+
         if not keyword:
             return jsonify({"error": "keyword parameter is required"}), 400
-        
+
         # 从缓存读取
         data = repo.analysis.get_keyword_trends_cached(
             scope="arxiv",
             keyword=keyword,
             granularity=granularity
         )
-        
+
         return jsonify({
             "keyword": keyword,
             "granularity": granularity,
             "category": category,
             "data": data
         })
+
+    @app.route("/api/arxiv/stats")
+    def api_arxiv_stats():
+        """
+        arXiv 统计概览 API
+
+        GET /api/arxiv/stats
+        """
+        # 获取 arXiv 论文总数
+        total_papers = repo.raw.get_raw_paper_count(source="arxiv")
+
+        # 按分类统计
+        categories_stats = {}
+        for category in ["cs.LG", "cs.CL", "cs.CV", "cs.AI", "cs.RO"]:
+            # 简单统计：从 raw_papers 中查询
+            with repo._get_connection() as conn:
+                cursor = conn.cursor()
+                cursor.execute("""
+                    SELECT COUNT(*) as count
+                    FROM raw_papers
+                    WHERE source = 'arxiv' AND categories LIKE ?
+                """, (f"%{category}%",))
+                count = cursor.fetchone()["count"]
+                categories_stats[category] = count
+
+        # 获取日期范围
+        with repo._get_connection() as conn:
+            cursor = conn.cursor()
+            cursor.execute("""
+                SELECT MIN(retrieved_at) as min_date, MAX(retrieved_at) as max_date
+                FROM raw_papers
+                WHERE source = 'arxiv'
+            """)
+            row = cursor.fetchone()
+            date_range = {
+                "min": row["min_date"] if row["min_date"] else None,
+                "max": row["max_date"] if row["max_date"] else None
+            }
+
+        # 获取最后更新时间
+        latest_update = repo.analysis.get_meta("arxiv_last_run_ALL_year")
+
+        return jsonify({
+            "total_papers": total_papers,
+            "categories": categories_stats,
+            "date_range": date_range,
+            "latest_update": latest_update
+        })
+
+    @app.route("/api/arxiv/compare")
+    def api_arxiv_compare():
+        """
+        arXiv 分类对比 API
+
+        GET /api/arxiv/compare?categories=cs.LG,cs.CV&granularity=year
+        """
+        from analysis.arxiv_agent import ArxivAnalysisAgent
+
+        categories_str = request.args.get("categories", "cs.LG,cs.CV")
+        categories = [c.strip() for c in categories_str.split(",")]
+        granularity = request.args.get("granularity", "year")
+
+        agent = ArxivAnalysisAgent()
+        result = agent.compare_categories(categories, granularity)
+
+        return jsonify(result)
+
+    @app.route("/api/arxiv/emerging")
+    def api_arxiv_emerging():
+        """
+        arXiv 新兴主题 API
+
+        GET /api/arxiv/emerging?category=ALL&limit=20
+        """
+        category = request.args.get("category", "ALL")
+        limit = request.args.get("limit", 20, type=int)
+        min_growth_rate = request.args.get("min_growth_rate", 1.5, type=float)
+
+        # 从数据库读取缓存的新兴主题
+        topics = repo.analysis.get_emerging_topics(
+            category=category,
+            limit=limit,
+            min_growth_rate=min_growth_rate
+        )
+
+        return jsonify(topics)
+
+    @app.route("/api/arxiv/papers")
+    def api_arxiv_papers():
+        """
+        arXiv 论文列表 API
+
+        GET /api/arxiv/papers?category=cs.LG&limit=20&offset=0
+        """
+        category = request.args.get("category")
+        limit = request.args.get("limit", 20, type=int)
+        offset = request.args.get("offset", 0, type=int)
+
+        # 查询论文
+        with repo._get_connection() as conn:
+            cursor = conn.cursor()
+
+            query = "SELECT * FROM raw_papers WHERE source = 'arxiv'"
+            params = []
+
+            if category and category != "ALL":
+                query += " AND categories LIKE ?"
+                params.append(f"%{category}%")
+
+            # 获取总数
+            count_query = query.replace("SELECT *", "SELECT COUNT(*) as total")
+            cursor.execute(count_query, params)
+            total = cursor.fetchone()["total"]
+
+            # 分页查询
+            query += " ORDER BY retrieved_at DESC LIMIT ? OFFSET ?"
+            params.extend([limit, offset])
+            cursor.execute(query, params)
+
+            papers = []
+            for row in cursor.fetchall():
+                import json
+                papers.append({
+                    "arxiv_id": row["source_paper_id"],
+                    "title": row["title"],
+                    "abstract": row["abstract"],
+                    "authors": json.loads(row["authors"]) if row["authors"] else [],
+                    "categories": row["categories"],
+                    "year": row["year"],
+                    "retrieved_at": row["retrieved_at"],
+                    "doi": row["doi"],
+                    "journal_ref": row["journal_ref"],
+                    "comments": row["comments"]
+                })
+
+        return jsonify({
+            "total": total,
+            "limit": limit,
+            "offset": offset,
+            "papers": papers
+        })
+
+    @app.route("/api/arxiv/paper/<arxiv_id>")
+    def api_arxiv_paper_detail(arxiv_id):
+        """
+        arXiv 论文详情 API
+
+        GET /api/arxiv/paper/<arxiv_id>
+        """
+        # 获取论文
+        paper = repo.raw.get_raw_paper_by_source("arxiv", arxiv_id)
+
+        if not paper:
+            return jsonify({"error": "Paper not found"}), 404
+
+        # 构建响应
+        result = {
+            "arxiv_id": paper.source_paper_id,
+            "title": paper.title,
+            "abstract": paper.abstract,
+            "authors": paper.authors,
+            "categories": paper.categories,
+            "year": paper.year,
+            "doi": paper.doi,
+            "journal_ref": paper.journal_ref,
+            "comments": paper.comments,
+            "retrieved_at": paper.retrieved_at.isoformat() if paper.retrieved_at else None,
+            "pdf_url": f"https://arxiv.org/pdf/{arxiv_id}.pdf",
+            "abs_url": f"https://arxiv.org/abs/{arxiv_id}"
+        }
+
+        # 尝试获取关键词（如果已结构化）
+        paper_id = repo.structured.find_paper_by_title(paper.title)
+        if paper_id:
+            keywords = repo.analysis.get_paper_keywords(paper_id)
+            result["keywords"] = [kw.keyword for kw in keywords[:10]]
+        else:
+            result["keywords"] = []
+
+        # TODO: 获取相关论文（基于关键词相似度）
+        result["related_papers"] = []
+
+        return jsonify(result)
     
     @app.route("/api/analysis/meta")
     def api_analysis_meta():

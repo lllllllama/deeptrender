@@ -1,8 +1,8 @@
-# 🔬 DepthTrender
+# 🔬 DeepTrender
 
 **AI 顶会论文关键词追踪系统** | 实时掌握研究热点与发展趋势
 
-[![Update Keywords](https://github.com/YOUR_USERNAME/depthtrender/actions/workflows/update.yml/badge.svg)](https://github.com/YOUR_USERNAME/depthtrender/actions/workflows/update.yml)
+[![Update Keywords](https://github.com/YOUR_USERNAME/deeptrender/actions/workflows/update.yml/badge.svg)](https://github.com/YOUR_USERNAME/deeptrender/actions/workflows/update.yml)
 [![Python 3.11+](https://img.shields.io/badge/python-3.11+-blue.svg)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
@@ -65,8 +65,8 @@
 ### 安装
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/depthtrender.git
-cd depthtrender
+git clone https://github.com/YOUR_USERNAME/deeptrender.git
+cd deeptrender
 pip install -r requirements.txt
 ```
 
@@ -197,7 +197,7 @@ python src/web/app.py
 ## 📁 项目结构
 
 ```
-depthtrender/
+deeptrender/
 ├── .github/workflows/update.yml    # 自动化工作流
 ├── src/
 │   ├── scraper/                   # 多源爬取（OpenReview + S2）

@@ -1,5 +1,5 @@
 """
-DepthTrender - 顶会论文关键词追踪系统
+DeepTrender - 顶会论文关键词追踪系统
 
 三阶段工作流架构：
 1. Ingestion Agent: 采集原始数据 → Raw Layer
@@ -51,7 +51,7 @@ def run_pipeline(
         报告路径
     """
     print("=" * 60)
-    print("🚀 DepthTrender - 三阶段工作流")
+    print("🚀 DeepTrender - 三阶段工作流")
     print("=" * 60)
     print(f"⏰ 开始时间: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
     print()
@@ -84,9 +84,9 @@ def run_pipeline(
     # Stage 3: Analysis (Analysis Layer)
     print("\n🔑 阶段 3/3: 关键词分析 (Analysis)")
     print("-" * 40)
-    
+
     analysis_agent = AnalysisAgent()
-    
+
     # 根据 extractor 参数运行相应的提取器
     if extractor == "yake":
         result_yake = analysis_agent.run(method="yake", limit=limit)
@@ -99,7 +99,37 @@ def run_pipeline(
         print(f"   - YAKE: {result_yake['processed']} 篇, {result_yake['keywords']} 个关键词")
         result_kb = analysis_agent.run(method="keybert", limit=limit)
         print(f"   - KeyBERT: {result_kb['processed']} 篇, {result_kb['keywords']} 个关键词")
-    
+
+    # Stage 3.5: arXiv 专项分析
+    print("\n📊 arXiv 专项分析")
+    print("-" * 40)
+
+    from analysis.arxiv_agent import ArxivAnalysisAgent
+
+    arxiv_agent = ArxivAnalysisAgent()
+
+    # 运行所有粒度的分析（年/周/日）
+    print("   运行多粒度趋势分析...")
+    arxiv_results = arxiv_agent.run_all_granularities(category="ALL", force=False)
+
+    for granularity, result in arxiv_results.items():
+        if result.get("status") == "completed":
+            print(f"   - {granularity}: {result.get('paper_count', 0)} 篇论文, {result.get('buckets', 0)} 个时间桶")
+        elif result.get("status") == "skipped":
+            print(f"   - {granularity}: 跳过（无新数据）")
+
+    # 识别新兴主题
+    print("   识别新兴主题...")
+    try:
+        emerging = arxiv_agent.detect_emerging_topics(category="ALL", threshold=1.5)
+        print(f"   - 发现 {len(emerging)} 个新兴主题")
+        if emerging:
+            top_3 = emerging[:3]
+            for topic in top_3:
+                print(f"     • {topic['keyword']}: 增长率 {topic['growth_rate']}x")
+    except Exception as e:
+        print(f"   - 新兴主题识别失败: {e}")
+
     # 运行统计分析
     analyzer = get_analyzer()
     result = analyzer.analyze()
@@ -131,7 +161,7 @@ def run_pipeline(
 def main():
     """命令行入口"""
     parser = argparse.ArgumentParser(
-        description="DepthTrender - 顶会论文关键词追踪系统",
+        description="DeepTrender - 顶会论文关键词追踪系统",
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
 示例:

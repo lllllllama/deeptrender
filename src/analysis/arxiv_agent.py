@@ -226,39 +226,334 @@ class ArxivAnalysisAgent:
         limit: int = 10
     ) -> List[Dict]:
         """
-        从论文标题中提取关键词
-        
-        简单实现：统计标题中的词频
-        更好的实现应该使用 YAKE 或 KeyBERT
+        增强版关键词提取
+
+        三级策略：
+        1. 优先使用 paper_keywords 表中已提取的关键词（最优）
+        2. 使用 YAKE 从 title + abstract 提取（次优）
+        3. 使用词频统计（兜底）
         """
+        # 策略1：尝试从 paper_keywords 表获取
+        keywords_from_db = self._get_keywords_from_db(papers)
+        if keywords_from_db:
+            return keywords_from_db[:limit]
+
+        # 策略2：尝试使用 YAKE 提取
+        keywords_from_yake = self._extract_with_yake(papers, limit)
+        if keywords_from_yake:
+            return keywords_from_yake
+
+        # 策略3：使用词频统计（兜底）
+        return self._extract_with_frequency(papers, limit)
+
+    def _get_keywords_from_db(self, papers: List[Dict]) -> List[Dict]:
+        """从 paper_keywords 表获取关键词"""
+        try:
+            from database.repository import get_structured_repository, get_analysis_repository
+
+            structured_repo = get_structured_repository()
+            analysis_repo = get_analysis_repository()
+
+            # 获取这些论文对应的 paper_id
+            keyword_counts = defaultdict(int)
+
+            for paper in papers:
+                title = paper.get("title", "")
+                if not title:
+                    continue
+
+                # 尝试通过标题查找 paper_id
+                paper_id = structured_repo.find_paper_by_title(title)
+                if paper_id:
+                    # 获取该论文的关键词
+                    keywords = analysis_repo.get_paper_keywords(paper_id)
+                    for kw in keywords:
+                        if self._is_valid_keyword(kw.keyword):
+                            keyword_counts[kw.keyword] += 1
+
+            if keyword_counts:
+                # 返回 top keywords
+                top = sorted(keyword_counts.items(), key=lambda x: x[1], reverse=True)
+                return [{"keyword": kw, "count": count} for kw, count in top]
+
+            return []
+        except Exception as e:
+            logger.debug(f"Failed to get keywords from DB: {e}")
+            return []
+
+    def _extract_with_yake(self, papers: List[Dict], limit: int) -> List[Dict]:
+        """使用 YAKE 提取关键词"""
+        try:
+            import yake
+
+            # 合并所有论文的标题和摘要
+            texts = []
+            for paper in papers:
+                title = paper.get("title", "")
+                abstract = paper.get("abstract", "")
+                if title or abstract:
+                    texts.append(f"{title}. {abstract}")
+
+            if not texts:
+                return []
+
+            combined_text = " ".join(texts)
+
+            # 使用 YAKE 提取关键词
+            kw_extractor = yake.KeywordExtractor(
+                lan="en",
+                n=3,  # n-gram size
+                dedupLim=0.9,
+                top=limit * 2,  # 提取更多，然后过滤
+                features=None
+            )
+
+            keywords = kw_extractor.extract_keywords(combined_text)
+
+            # 过滤和统计
+            keyword_counts = defaultdict(int)
+            for kw, score in keywords:
+                if self._is_valid_keyword(kw):
+                    # YAKE 的 score 越小越好，转换为 count
+                    keyword_counts[kw] += 1
+
+            if keyword_counts:
+                top = sorted(keyword_counts.items(), key=lambda x: x[1], reverse=True)[:limit]
+                return [{"keyword": kw, "count": count} for kw, count in top]
+
+            return []
+        except Exception as e:
+            logger.debug(f"Failed to extract with YAKE: {e}")
+            return []
+
+    def _extract_with_frequency(self, papers: List[Dict], limit: int) -> List[Dict]:
+        """使用词频统计提取关键词（兜底方案）"""
         from collections import Counter
         import re
-        
-        # 停用词
+
+        # 扩展的停用词列表
         stopwords = {
+            # 基础停用词
             'a', 'an', 'the', 'and', 'or', 'but', 'in', 'on', 'at', 'to', 'for',
             'of', 'with', 'by', 'from', 'is', 'are', 'was', 'were', 'be', 'been',
             'being', 'have', 'has', 'had', 'do', 'does', 'did', 'will', 'would',
-            'could', 'should', 'may', 'might', 'must', 'can', 'this', 'that',
-            'these', 'those', 'it', 'its', 'as', 'we', 'our', 'using', 'via',
-            'based', 'approach', 'method', 'methods', 'new', 'novel', 'towards',
-            'paper', 'study', 'analysis', 'model', 'models', 'learning', 'network',
-            'networks', 'neural', 'deep', 'data'
+            'could', 'should', 'may', 'must', 'can', 'this', 'that',
+            'these', 'those', 'it', 'its', 'as', 'we', 'our', 'their', 'your',
+
+            # 学术常用词
+            'paper', 'study', 'analysis', 'approach', 'method', 'methods',
+            'model', 'models', 'learning', 'network', 'networks', 'neural',
+            'deep', 'data', 'using', 'via', 'based', 'novel', 'new', 'towards',
+            'propose', 'proposed', 'present', 'show', 'demonstrate', 'introduce',
+            'framework', 'system', 'algorithm', 'technique', 'techniques',
         }
-        
+
         word_counts = Counter()
-        
+
         for paper in papers:
             title = paper.get("title", "")
-            # 提取词语
+            # 提取词语（3个字符以上）
             words = re.findall(r'\b[a-zA-Z]{3,}\b', title.lower())
             for word in words:
-                if word not in stopwords:
+                if self._is_valid_keyword(word) and word not in stopwords:
                     word_counts[word] += 1
-        
+
         # 返回 top keywords
         top = word_counts.most_common(limit)
         return [{"keyword": kw, "count": count} for kw, count in top]
+
+    def _is_valid_keyword(self, keyword: str) -> bool:
+        """
+        验证关键词是否有效
+
+        过滤规则：
+        - 过滤纯数字
+        - 过滤单字符和双字符
+        - 过滤特殊字符
+        """
+        import re
+
+        if not keyword:
+            return False
+
+        keyword = keyword.strip().lower()
+
+        # 过滤纯数字
+        if re.match(r'^\d+$', keyword):
+            return False
+
+        # 过滤太短的词
+        if len(keyword) <= 2:
+            return False
+
+        # 过滤包含特殊字符的词（允许字母、空格、连字符）
+        if not re.match(r'^[a-z][a-z\s-]*$', keyword):
+            return False
+
+        return True
+
+    def detect_emerging_topics(
+        self,
+        category: str = "ALL",
+        threshold: float = 1.5,
+        recent_window: int = 4
+    ) -> List[Dict]:
+        """
+        识别新兴研究主题
+
+        算法：
+        1. 计算关键词的环比增长率（最近 N 个时间窗口 vs 之前 N 个时间窗口）
+        2. 识别突然出现的新关键词
+        3. 标记趋势（rising/stable/declining）
+
+        Args:
+            category: arXiv 分类
+            threshold: 增长率阈值（默认 1.5 = 50% 增长）
+            recent_window: 最近时间窗口数量（默认 4 周）
+
+        Returns:
+            新兴主题列表
+        """
+        logger.info(f"Detecting emerging topics for category={category}")
+
+        # 获取周粒度的时间序列数据
+        timeseries = self.analysis_repo.get_arxiv_timeseries(category, "week")
+
+        if len(timeseries) < recent_window * 2:
+            logger.warning(f"Not enough data for emerging topic detection (need {recent_window * 2} weeks)")
+            return []
+
+        # 按时间排序
+        timeseries = sorted(timeseries, key=lambda x: x["bucket"])
+
+        # 收集所有关键词及其时间序列
+        keyword_timeseries = defaultdict(list)
+        for ts in timeseries:
+            bucket = ts["bucket"]
+            for kw_data in ts.get("top_keywords", []):
+                keyword = kw_data.get("keyword")
+                count = kw_data.get("count", 0)
+                if keyword:
+                    keyword_timeseries[keyword].append((bucket, count))
+
+        # 分析每个关键词的趋势
+        emerging_topics = []
+
+        for keyword, data_points in keyword_timeseries.items():
+            if len(data_points) < recent_window:
+                continue
+
+            # 按时间排序
+            data_points = sorted(data_points, key=lambda x: x[0])
+
+            # 计算最近窗口和历史窗口的平均值
+            recent_counts = [count for _, count in data_points[-recent_window:]]
+            recent_avg = sum(recent_counts) / len(recent_counts)
+
+            if len(data_points) >= recent_window * 2:
+                historical_counts = [count for _, count in data_points[-recent_window*2:-recent_window]]
+                historical_avg = sum(historical_counts) / len(historical_counts) if historical_counts else 0.1
+            else:
+                historical_avg = 0.1  # 避免除零
+
+            # 计算增长率
+            if historical_avg > 0:
+                growth_rate = recent_avg / historical_avg
+            else:
+                growth_rate = recent_avg * 10  # 新出现的关键词
+
+            # 判断趋势
+            if growth_rate >= threshold:
+                trend = "rising"
+            elif growth_rate <= 0.7:
+                trend = "declining"
+            else:
+                trend = "stable"
+
+            # 只保留上升趋势的关键词
+            if trend == "rising" and growth_rate >= threshold:
+                first_seen = data_points[0][0]
+                recent_count = int(recent_avg)
+
+                emerging_topics.append({
+                    "category": category,
+                    "keyword": keyword,
+                    "growth_rate": round(growth_rate, 2),
+                    "first_seen": first_seen,
+                    "recent_count": recent_count,
+                    "trend": trend
+                })
+
+        # 按增长率排序
+        emerging_topics = sorted(emerging_topics, key=lambda x: x["growth_rate"], reverse=True)
+
+        # 保存到数据库
+        if emerging_topics:
+            self.analysis_repo.save_emerging_topics_batch(emerging_topics)
+            logger.info(f"Detected {len(emerging_topics)} emerging topics")
+
+        return emerging_topics
+
+    def compare_categories(
+        self,
+        categories: List[str],
+        granularity: str = "year"
+    ) -> Dict:
+        """
+        对比多个分类的趋势
+
+        Args:
+            categories: 分类列表（如 ["cs.LG", "cs.CV"]）
+            granularity: 时间粒度
+
+        Returns:
+            对比结果，包含时间序列、重叠关键词、独特关键词
+        """
+        logger.info(f"Comparing categories: {categories}")
+
+        result = {
+            "categories": categories,
+            "timeseries": {},
+            "overlap": {
+                "keywords": [],
+                "overlap_rate": 0.0
+            },
+            "unique": {}
+        }
+
+        # 获取每个分类的时间序列
+        all_keywords = defaultdict(set)
+
+        for category in categories:
+            timeseries = self.analysis_repo.get_arxiv_timeseries(category, granularity)
+            result["timeseries"][category] = timeseries
+
+            # 收集该分类的所有关键词
+            for ts in timeseries:
+                for kw_data in ts.get("top_keywords", []):
+                    keyword = kw_data.get("keyword")
+                    if keyword:
+                        all_keywords[category].add(keyword)
+
+        # 计算重叠关键词
+        if len(categories) >= 2:
+            overlap_keywords = set.intersection(*[all_keywords[cat] for cat in categories])
+            result["overlap"]["keywords"] = sorted(list(overlap_keywords))
+
+            # 计算重叠率
+            total_unique = len(set.union(*[all_keywords[cat] for cat in categories]))
+            if total_unique > 0:
+                result["overlap"]["overlap_rate"] = round(len(overlap_keywords) / total_unique, 2)
+
+        # 计算每个分类的独特关键词
+        for category in categories:
+            other_keywords = set.union(*[all_keywords[cat] for cat in categories if cat != category])
+            unique_keywords = all_keywords[category] - other_keywords
+            result["unique"][category] = sorted(list(unique_keywords))[:10]  # 只保留前 10 个
+
+        logger.info(f"Comparison completed: {len(result['overlap']['keywords'])} overlapping keywords")
+
+        return result
 
 
 def run_arxiv_analysis(

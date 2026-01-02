@@ -21,7 +21,7 @@ errorlog = "-"
 loglevel = "info"
 
 # 进程名
-proc_name = "depthtrender"
+proc_name = "deeptrender"
 
 # 重载（仅开发模式）
 reload = False

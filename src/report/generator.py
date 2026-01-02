@@ -160,7 +160,7 @@ class ReportGenerator:
         # 页脚
         lines.append("---")
         lines.append("")
-        lines.append("*本报告由 [DepthTrender](https://github.com/your-repo/depthtrender) 自动生成*")
+        lines.append("*本报告由 [DeepTrender](https://github.com/your-repo/deeptrender) 自动生成*")
         
         # 写入文件
         output_path = self.output_dir / filename

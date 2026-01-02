@@ -3,7 +3,7 @@ version: '3.8'
 services:
   web:
     build: .
-    container_name: depthtrender-web
+    container_name: deeptrender-web
     ports:
       - "5000:5000"
     volumes:
@@ -24,7 +24,7 @@ services:
   # 定时爬取任务（可选）
   scraper:
     build: .
-    container_name: depthtrender-scraper
+    container_name: deeptrender-scraper
     volumes:
       - ./data:/app/data
       - ./output:/app/output
