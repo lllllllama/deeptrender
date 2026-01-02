@@ -1,0 +1,102 @@
+{
+  "timestamp": "2026-01-02T23:13:00.674927",
+  "checks": {
+    "raw_completeness": {
+      "total_papers": 84,
+      "checks": {
+        "title_non_null_rate": {
+          "value": 100.0,
+          "threshold": 99.0,
+          "passed": true
+        },
+        "abstract_non_null_rate": {
+          "value": 100.0,
+          "threshold": 95.0,
+          "passed": true
+        },
+        "year_parseable_rate": {
+          "value": 100.0,
+          "threshold": 99.0,
+          "passed": true
+        },
+        "retrieved_at_filled": {
+          "value": 100.0,
+          "threshold": 100.0,
+          "passed": true
+        }
+      }
+    },
+    "raw_duplicates": {
+      "checks": {
+        "unique_constraint_violations": {
+          "value": 0,
+          "threshold": 0,
+          "passed": true
+        },
+        "title_duplicate_rate": {
+          "value": 0.0,
+          "threshold": 3.0,
+          "passed": true
+        }
+      },
+      "duplicate_examples": []
+    },
+    "raw_anomalies": {
+      "checks": {
+        "anomaly_rate": {
+          "value": 0.0,
+          "threshold": 1.0,
+          "passed": true
+        },
+        "anomaly_year_count": {
+          "value": 0,
+          "info": true
+        },
+        "anomaly_title_count": {
+          "value": 0,
+          "info": true
+        }
+      }
+    },
+    "analysis_cache": {
+      "checks": {
+        "timeseries_cached": {
+          "value": 4,
+          "threshold": 1,
+          "passed": true
+        },
+        "emerging_topics_cached": {
+          "value": 0,
+          "info": true
+        },
+        "meta_entries": {
+          "value": 6,
+          "info": true
+        }
+      }
+    },
+    "keyword_quality": {
+      "checks": {
+        "keyword_quality": {
+          "value": 100.0,
+          "threshold": 95.0,
+          "passed": true
+        },
+        "total_sampled": {
+          "value": 40,
+          "info": true
+        },
+        "invalid_count": {
+          "value": 0,
+          "info": true
+        }
+      }
+    }
+  },
+  "summary": {
+    "total_checks": 9,
+    "passed": 9,
+    "failed": 0,
+    "warnings": 0
+  }
+}

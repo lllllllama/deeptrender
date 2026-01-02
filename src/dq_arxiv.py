@@ -34,12 +34,12 @@ class ArxivDataQualityChecker:
     def run_all_checks(self) -> Dict:
         """运行所有质量检查"""
         print("=" * 60)
-        print("🔍 arXiv 数据质量检查")
+        print("arXiv Data Quality Check")
         print("=" * 60)
         print()
 
         # Raw Layer 检查
-        print("📥 Raw Layer 检查")
+        print("Raw Layer Checks")
         print("-" * 40)
         self._check_raw_completeness()
         self._check_raw_duplicates()
@@ -47,7 +47,7 @@ class ArxivDataQualityChecker:
         print()
 
         # Analysis Layer 检查
-        print("📊 Analysis Layer 检查")
+        print("Analysis Layer Checks")
         print("-" * 40)
         self._check_analysis_cache()
         self._check_keyword_quality()
@@ -131,10 +131,10 @@ class ArxivDataQualityChecker:
         }
 
         # 打印结果
-        print(f"  总论文数: {total}")
+        print(f"  Total papers: {total}")
         for key, check in checks.items():
-            status = "✅" if check["passed"] else "❌"
-            print(f"  {status} {key}: {check['value']}% (阈值: {check['threshold']}%)")
+            status = "[PASS]" if check["passed"] else "[FAIL]"
+            print(f"  {status} {key}: {check['value']}% (threshold: {check['threshold']}%)")
             self._update_summary(check["passed"])
 
     def _check_raw_duplicates(self):
@@ -193,8 +193,8 @@ class ArxivDataQualityChecker:
 
         # 打印结果
         for key, check in checks.items():
-            status = "✅" if check["passed"] else "❌"
-            print(f"  {status} {key}: {check['value']} (阈值: {check['threshold']})")
+            status = "[PASS]" if check["passed"] else "[FAIL]"
+            print(f"  {status} {key}: {check['value']} (threshold: {check['threshold']})")
             self._update_summary(check["passed"])
 
     def _check_raw_anomalies(self):
@@ -244,10 +244,10 @@ class ArxivDataQualityChecker:
         # 打印结果
         for key, check in checks.items():
             if check.get("info"):
-                print(f"  ℹ️  {key}: {check['value']}")
+                print(f"  [INFO] {key}: {check['value']}")
             else:
-                status = "✅" if check["passed"] else "⚠️"
-                print(f"  {status} {key}: {check['value']}% (阈值: {check['threshold']}%)")
+                status = "[PASS]" if check["passed"] else "[WARN]"
+                print(f"  {status} {key}: {check['value']}% (threshold: {check['threshold']}%)")
                 if not check["passed"]:
                     self.results["summary"]["warnings"] += 1
                 else:
@@ -293,10 +293,10 @@ class ArxivDataQualityChecker:
         # 打印结果
         for key, check in checks.items():
             if check.get("info"):
-                print(f"  ℹ️  {key}: {check['value']}")
+                print(f"  [INFO] {key}: {check['value']}")
             else:
-                status = "✅" if check["passed"] else "❌"
-                print(f"  {status} {key}: {check['value']} (阈值: > {check['threshold']})")
+                status = "[PASS]" if check["passed"] else "[FAIL]"
+                print(f"  {status} {key}: {check['value']} (threshold: > {check['threshold']})")
                 self._update_summary(check["passed"])
 
     def _check_keyword_quality(self):
@@ -357,10 +357,10 @@ class ArxivDataQualityChecker:
         # 打印结果
         for key, check in checks.items():
             if check.get("info"):
-                print(f"  ℹ️  {key}: {check['value']}")
+                print(f"  [INFO] {key}: {check['value']}")
             else:
-                status = "✅" if check["passed"] else "❌"
-                print(f"  {status} {key}: {check['value']}% (阈值: {check['threshold']}%)")
+                status = "[PASS]" if check["passed"] else "[FAIL]"
+                print(f"  {status} {key}: {check['value']}% (threshold: {check['threshold']}%)")
                 self._update_summary(check["passed"])
 
     def _update_summary(self, passed: bool):
@@ -376,22 +376,22 @@ class ArxivDataQualityChecker:
         summary = self.results["summary"]
 
         print("=" * 60)
-        print("📋 检查汇总")
+        print("Summary")
         print("=" * 60)
-        print(f"  总检查项: {summary['total_checks']}")
-        print(f"  ✅ 通过: {summary['passed']}")
-        print(f"  ❌ 失败: {summary['failed']}")
-        print(f"  ⚠️  警告: {summary['warnings']}")
+        print(f"  Total checks: {summary['total_checks']}")
+        print(f"  Passed: {summary['passed']}")
+        print(f"  Failed: {summary['failed']}")
+        print(f"  Warnings: {summary['warnings']}")
 
         pass_rate = summary['passed'] / summary['total_checks'] * 100 if summary['total_checks'] > 0 else 0
-        print(f"  通过率: {pass_rate:.1f}%")
+        print(f"  Pass rate: {pass_rate:.1f}%")
 
         if pass_rate >= 95:
-            print("\n  🎉 数据质量优秀！")
+            print("\n  [EXCELLENT] Data quality is excellent!")
         elif pass_rate >= 80:
-            print("\n  ✅ 数据质量良好")
+            print("\n  [GOOD] Data quality is good")
         else:
-            print("\n  ⚠️  数据质量需要改进")
+            print("\n  [NEEDS IMPROVEMENT] Data quality needs improvement")
 
         print("=" * 60)
 
@@ -407,7 +407,7 @@ class ArxivDataQualityChecker:
         with open(output_path, 'w', encoding='utf-8') as f:
             json.dump(self.results, f, indent=2, ensure_ascii=False)
 
-        print(f"\n📄 报告已保存: {output_path}")
+        print(f"\nReport saved: {output_path}")
 
 
 def main():
