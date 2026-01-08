@@ -1,785 +1,305 @@
-# DeepTrender Agent 执行文档（Playbook）
+下面我按你“短期可落地成品”的目标（**arXiv 日/月/年趋势 + 会议关键词趋势排行 + 搜索/筛选关键词 + GitHub Actions 定时更新 + GitHub Pages 一键打开**）给出：
 
-**版本**: v2.0 - arXiv 优化版
-**更新时间**: 2025-01-02
-**状态**: ✅ 生产就绪
-
----
-
-## 0. 总目标与原则
-
-**目标**：构建长期可信、可扩展的"论文数据基础设施"，而不是一次性分析脚本。
-
-**硬原则**：
-
-1. **Coverage First**：最大化覆盖
-2. **Raw Preservation**：Raw 数据永不覆盖、永不删除
-3. **结构化 ≠ 分析**：采集/结构化阶段不做趋势判断
-4. **处理流**：Ingestion → Structuring → Analysis → Visualization，各阶段可独立重复执行
+1. **大致规划（能完全实现）**
+2. **任务划分（按依赖顺序）**
+3. **每个任务可直接丢给 AI 的“详细提示词”（包含修改/实施/测试/验收）**
+   并把**必须人工**的部分尽量放到最后。
 
 ---
 
-## 1. 分层与职责边界
+## 一、MVP 大致规划（可完全实现）
 
-### 1.1 Raw Layer（原始数据层）
+### 目标产物（你说的“打开网页就能看”）
 
-**职责**：把每个数据源返回的元数据**尽量完整**落库，保留追溯性。
+* 一个 GitHub Pages 网站（静态）：
 
-**核心表**：`raw_papers`
+  * **arXiv 趋势**：按 *year / month / day* 切换；支持 category（cs.LG/cs.CV/…）筛选；展示 Top keywords 排行与变化
+  * **会议趋势**：选择会议（尽量覆盖 CCF 列表），展示 *year* 维度的关键词排行与趋势折线
+  * **关键词搜索**：在 arXiv 与会议页面都能搜索关键词（在“可用关键词索引”范围内），查看数量曲线 + rank
+* GitHub Actions 每天跑：
 
-**字段说明**：
-- `source`: 数据源标识（arxiv/openreview/s2/openalex）
-- `source_paper_id`: 源系统的论文ID
-- `title`: 论文标题
-- `abstract`: 摘要
-- `authors`: 作者列表（JSON）
-- `year`: 发表年份
-- `venue_raw`: 原始会议/期刊名称（不解释）
-- `journal_ref`: 期刊引用
-- `comments`: 备注信息（可能包含会议信息）
-- `categories`: arXiv 分类（如 cs.LG, cs.CV）
-- `doi`: DOI
-- `raw_json`: 完整原始数据（JSON）
-- `retrieved_at`: 采集时间
+  * 拉取最近 N 天 arXiv（你 workflow 里已有 `--arxiv-days` 默认 7，见 `.github/workflows/update.yml` ）
+  * 更新数据库（SQLite）与分析缓存
+  * 导出静态 JSON 数据到 `docs/data/`，并把页面/资源拷贝到 `docs/`（供 Pages 直接托管）
+  * 自动 commit 回仓库（你 workflow 已会 commit `data/ output/` ，我们扩展为也提交 `docs/`）
 
-**关键原则**：
-- ✅ Append-only：只允许 INSERT 或 INSERT OR IGNORE
-- ✅ 唯一键：`(source, source_paper_id)` 唯一
-- ✅ 不解释：`venue_raw/comments/categories` 仅保存，不做解析
+### 关键实现策略（为了“快落地、偏差不大、可长期维护”）
 
----
+* **数据层**：真实、实时、可用即可（你要求），重点保证时间轴统计正确
 
-### 1.2 Structured Layer（结构化论文层）
+  * arXiv 趋势用 **published**（论文真正发布时间）做 bucket，而不是 retrieved_at（你现在的 API 与分析缓存是有的，但要确认 arXiv 分析是否用对时间字段）
+* **分析层**：不追求完美语义理解，追求“趋势偏差不大”
 
-**职责**：把 raw 对齐成"统一的 paper 事实表"，建立 venue/year/domain 等可分析字段。
+  * 关键词抽取用你项目已经集成的 **YAKE/KeyBERT/both**（`requirements.txt` 已包含 ，`config.py` 默认 extractor 可选 ）
+* **可视化层**：静态 JSON + 前端渲染（避免后端部署复杂度）
+* **会议覆盖**：用“会议注册表（registry）”管理（CCF 列表靠你提供/导入），爬取源可分层：
 
-**核心表**：
-- `papers`: 结构化论文表
-- `venues`: 会议/期刊表
-- `paper_sources`: 多源对齐表
-
-**结构化策略**：
-1. **去重与归一**：生成 `canonical_title`（标准化标题）
-2. **会议识别**：识别 `canonical_venue` 和 `venue_type`
-3. **多源对齐**：通过 `paper_sources` 表追溯原始数据
-
-**对齐优先级**：
-```
-OpenReview（会议权威） > OpenAlex（结构化锚点） > S2（补全） > arXiv（preprint）
-```
+  * OpenReview（你 config 里已有 VENUES，且 web API 会从 config 读 ）
+  * Semantic Scholar / OpenAlex 作为补充（你的 README 已声明支持 S2 会议如 CVPR/ACL/AAAI 等 ）
+  * 短期先实现：**CCF 列表 → 注册表 → 作为“展示与筛选的会议全集”**；数据抓取先覆盖“能抓到的部分”，抓不到的标记为 pending（这样能尽快上线，后续再补齐映射与抓取策略）
 
 ---
 
-### 1.3 Analysis Layer（分析特征层）
+## 二、任务划分（按依赖顺序）
 
-**职责**：关键词提取、趋势统计、新兴词识别；分析结果必须可缓存（落库），避免重复算。
+> 你可以把每个任务交给 AI 独立执行（一次一个任务），做完你只需要做最后的“人工步骤”，项目就能跑起来并上线可用。
 
-**核心表**：
-- `paper_keywords`: 论文关键词表
-- `analysis_meta`: 分析元信息（用于判断是否需要重算）
-- `analysis_venue_summary`: 会议总览缓存
-- `analysis_keyword_trends`: 关键词趋势缓存
-- `analysis_arxiv_timeseries`: arXiv 时间序列缓存
-- `analysis_arxiv_emerging`: arXiv 新兴主题缓存（新增）
-
-**分析执行规则**：
-```python
-# 判断是否需要重算
-if raw_max_retrieved_at > analysis_meta.last_raw_max_retrieved_at:
-    # 有新数据，需要重算
-    run_analysis()
-else:
-    # 无新数据，跳过
-    skip_analysis()
-```
+1. **T0 基线检查**：本地可跑、测试可跑、Actions 可跑（最小改动前的安全网）
+2. **T1 arXiv 时间轴正确化 + 增加 month 粒度**（year/month/day 三档必须准）
+3. **T2 arXiv 关键词抽取与清洗统一**（用现有 extractor 管线，保证一致、可控、可复现）
+4. **T3 生成 “可静态化” 的 arXiv 缓存**（timeseries/top keywords/keyword index）
+5. **T4 会议侧：引入 CCF 会议注册表（registry）**（先把“尽可能多会议”组织起来）
+6. **T5 会议侧：生成可静态化缓存（按会议/年份的 top 与趋势）**
+7. **T6 静态站点导出脚本**：把 API 输出“落盘”为 `docs/data/*.json` + 拷贝静态页面到 `docs/`
+8. **T7 前端适配 GitHub Pages**：API 调用改为读本地 JSON；路径改相对；新增搜索/筛选交互
+9. **T8 GitHub Actions 扩展**：workflow 跑完后导出 docs 并 commit；提供手动参数（tier/venues）
+10. **T9 回归测试补齐**：新增单测（bucket/月粒度/导出 json 结构），保证长期可维护
 
 ---
 
-## 2. Raw Layer 维护与质量检验（QA）
+## 三、每个任务的“详细 AI 提示词”（可直接复制给 AI）
 
-### 2.1 Raw 写入策略
-
-**强制规则**：
-- ✅ Append-only：只允许 INSERT（或 INSERT OR IGNORE）
-- ❌ 禁止 UPDATE：不允许覆盖历史 raw 数据
-
-**唯一键约束**：
-```sql
-UNIQUE(source, source_paper_id)
-```
-
-**辅助去重**（可选）：
-```python
-content_hash = sha1(lower(title) + abstract)
-```
-
-### 2.2 Raw QA 检查清单
-
-**基础完整性**：
-- ✅ title 非空率 ≥ 99%
-- ✅ abstract 非空率 ≥ 95%（arXiv/S2 应更高）
-- ✅ year 可解析率 ≥ 99%
-- ✅ retrieved_at 必填
-
-**重复与异常**：
-- ✅ `(source, source_paper_id)` 重复数 = 0
-- ✅ title+abstract 哈希重复率 < 3%
-
-**变化检测**：
-- 记录本次 ingestion 的：
-  - raw 新增条数
-  - raw 最大 retrieved_at
-  - per-source 新增条数
-
-### 2.3 Raw 优化建议
-
-**资源与稳定性**：
-- 分源限速/重试
-- 分页与批处理（边拉边落库）
-- 字段原样落库
-
-**arXiv 特殊处理**：
-- 遵守 3 秒速率限制
-- 保存完整的 categories 字段
-- 从 comments 提取会议信息
+> 下面每段都是你可以直接粘贴给 AI（比如开新对话/新 agent）的“任务卡”。
+> 每张卡都要求：**先读代码 → 再改 → 再测试 → 给出验收方式**。
 
 ---
 
-## 3. Structured Layer 维护与质量检验（QA）
+### ✅ T0 基线检查（先立规矩，后面才不会炸）
 
-### 3.1 结构化策略
+**AI 提示词：**
 
-**三大任务**：
-1. **去重与归一**：生成 `canonical_title`
-2. **会议识别**：识别 `canonical_venue` / `venue_type`
-3. **多源对齐**：建立 `paper_sources` 关联
-
-**Title 归一化**：
-```python
-canonical_title = title.lower().strip()
-canonical_title = re.sub(r'[^\w\s]', '', canonical_title)
-canonical_title = re.sub(r'\s+', ' ', canonical_title)
-```
-
-### 3.2 Structured QA 检查清单
-
-**会议识别质量**：
-- ✅ `canonical_venue != 'UNKNOWN'` 的比例
-- ✅ OpenReview 来源：UNKNOWN 应接近 0
-
-**可追溯性**：
-- ✅ `papers` 中每条必须至少关联 1 条 `paper_sources`
-- ✅ `paper_sources.confidence_score` 分布合理
-
-**字段一致性**：
-- ✅ 同一 `paper_id` 不应出现多版本 abstract
-
-### 3.3 Structured 优化建议
-
-**增量处理**：
-- 只处理新增 raw（通过 raw_id 或 retrieved_at 增量）
-- 避免全表重扫
-
-**可解释置信度**：
-- 追加 `match_reason`（exact_title / doi / openalex_id / arxiv_id）
+> 你现在在一个名为 deeptrender 的 Python 项目仓库里工作。目标：在不改变功能的前提下，建立“可重复”的本地运行与测试基线。
+> **请你先完成：**
+>
+> 1. 阅读并总结目前的运行入口：`src/main.py`、`src/web/app.py`、`.github/workflows/update.yml`（workflow 里已经会运行 `python src/main.py` 并提交 `data/ output/`，见 update.yml）。
+> 2. 给出本地一键运行命令（venv/依赖/初始化数据库/跑一次 pipeline/启动 web）。
+> 3. 运行并通过 pytest（项目已经有 `tests/`、`pytest.ini`、依赖里有 pytest ）。
+> 4. 输出一个“基线检查清单”：后续每个任务改动后都必须跑哪些命令验证。
+>    **约束：**不引入新依赖；不改业务代码；只允许新增 docs/README 的说明或 Makefile（可选）。
+>    **验收：**给出你实际跑过的命令列表、pytest 结果、以及发现的问题（如有）和建议（不改代码也可以先记录）。
 
 ---
 
-## 4. Analysis Layer - 核心优化 ⭐⭐⭐⭐⭐
+### ✅ T1 arXiv 时间轴正确化 + month 粒度
 
-### 4.1 分析缓存表设计
+**AI 提示词：**
 
-#### A) 分析元信息（全局）
-
-**表名**：`analysis_meta`
-
-```sql
-CREATE TABLE analysis_meta (
-    key TEXT PRIMARY KEY,
-    value TEXT,
-    updated_at DATETIME
-);
-```
-
-**用途**：判断是否需要跑 analysis（避免重复分析的闸门）
-
-**关键 keys**：
-- `last_raw_max_retrieved_at`: 上次间
-- `last_structured_run_at`: 上次结构化运行时间
-- `last_analysis_run`: 上次分析运行时间
-- `last_paper_count`: 上次统计的论文数
-- `arxiv_last_run_{category}_{granularity}`: arXiv 分析运行时间
-- `arxiv_last_retrieved_{category}_{granularity}`: arXiv 数据最大时间
-
-#### B) 会议卡片/总览缓存
-
-**表名**：`analysis_venue_summary`
-
-```sql
-CREATE TABLE analysis_venue_summary (
-    venue TEXT,
-    year INTEGER,  -- NULL 表示全量
-    paper_count INTEGER,
-    top_keywords_json TEXT,  -- JSON: [{keyword, count}, ...]
-    emerging_keywords_json TEXT,  -- JSON: [keyword, ...]
-    updated_at DATETIME,
-    PRIMARY KEY (venue, year)
-);
-```
-
-**用途**：前端直读，秒开会议卡片
-
-#### C) 关键词趋势缓存
-
-**表名**：`analysis_keyword_trends`
-
-```sql
-CREATE TABLE analysis_keyword_trends (
-    scope TEXT,  -- 'venue' / 'overall' / 'arxiv'
-    venue TEXT,  -- NULL for overall/arxiv
-    keyword TEXT,
-    granularity TEXT,  -- 'year' / 'week' / 'day'
-    bucket TEXT,  -- '2024' / '2024-W05' / '2024-02-03'
-    count INTEGER,
-    updated_at DATETIME,
-    PRIMARY KEY(scope, venue, keyword, granularity, bucket)
-);
-```
-
-**用途**：支持多粒度关键词趋势查询
-
-#### D) arXiv 时间序列缓存
-
-**表名**：`analysis_arxiv_timeseries`
-
-```sql
-CREATE TABLE analysis_arxiv_timeseries (
-    category TEXT,  -- 'cs.LG' / 'cs.CL' / 'cs.CV' / 'cs.AI' / 'ALL'
- arity TEXT,  -- 'year' / 'week' / 'day'
-    bucket TEXT,  -- '2024' / '2024-W05' / '2024-02-03'
-    paper_count INTEGER,
-    top_keywords_json TEXT,  -- JSON: [{keyword, count}, ...]
-    updated_at DATETIME,
-    PRIMARY KEY(category, granularity, bucket)
-);
-```
-
-**用途**：arXiv 专用，快速加载时间序列
-
-**注意**：周趋势使用 ISO week（`YYYY-Www`），避免跨年混乱
-
-#### E) arXiv 新兴主题缓存（新增）
-
-**表名**：`analysis_arxiv_emerging`
-
-```sql
-CREATE TABLE analysis_arxiv_emerging (
-    category TEXT,
-    keyword TEXT,
-    growth_rate REAL,  -- 增长率（环比/同比）
-    first_seen TEXT,  -- 首次出现时间
-    recent_count INTEGER,  -- 最近出现次数
-    trend TEXT,  -- 'rising' / 'stable' / 'declining'
-    updated_at DATETIME,
-    PRIMARY KEY(category, keyword)
-);
-```
-
-**用途**：识别快速增长的研究主题
-
-### 4.2 分析执行规则
-
-**判断逻辑**：
-```python
-def should_run_analysis():
-    # 获取当前 raw 最大时间
-    current_max = get_max_retrieved_at()
-
-    # 获取上次分析时的 raw 最大时间
-    last_max = analysis_meta.get('last_raw_max_retrieved_at')
-
-    # 判断是否有新数据
-    if current_max > last_max:
-        return True  # 有新数据，需要重算
-
-    # 检查结构化层是否有变化
-    current_paper_count = count_papers()
-    last_paper_count = analysis_meta.get('last_paper_count')
-
-    if current_paper_count != last_paper_count:
-        return True  # 论文数变化，需要重算
-
-    return False  # 无变化，跳过
-```
-
-**执行流程**：
-```
-1. 检查是否需要重算 (should_run_analysis)
-2. 如果需要：
-   a. 提取关键词 (paper_keywords)
-   b. 生成会议总览 (analysis_venue_summary)
-   c. 生成关键词趋势 (analysis_keyword_trends)
-   d. 生成 arXiv 时间序列 (analysis_arxiv_timeseries)
-   e. 识别新兴主题 (analysis_arxiv_emerging)
-   f. 更新元信息 (analysis_meta)
-3. 如果不需要：
-   - 直接返回，提供 Web 服务
-```
+> 目标：arXiv 趋势统计必须以论文的 **published 日期**做时间 bucket，并新增 `month` 粒度。
+> 背景：当前 web API 已有 `/api/arxiv/timeseries`（从 `repo.analysis.get_arxiv_timeseries(category, granularity)` 取缓存 ），granularity 目前文档写 year/week/day。我们要补齐 month，并保证 bucket 的时间字段正确。
+> **请你按步骤做：**
+>
+> 1. 定位 arXiv 分析 agent / 统计逻辑（例如 `src/analysis/...arxiv...py`），确认目前 bucket 用的是 `retrieved_at` 还是 `published`。
+> 2. 修改：
+>
+>    * bucket 统一使用 `published_at`（如果 raw 数据里只有字符串，解析为 datetime；没有则降级为 retrieved_at，但要打日志并计数）。
+>    * 增加 `_group_by_month()`（或等价实现），输出 bucket key：`YYYY-MM`。
+>    * 更新 `repo.analysis.get_arxiv_timeseries(..., granularity)` 的可选值：`year|month|day`（如果保留 week 也行，但 MVP 必须 year/month/day）。
+> 3. 同步 web：
+>
+>    * `/api/arxiv/timeseries` 文档注释更新 granularity 可选值（见 `src/web/app.py` 的注释块 ）。
+> 4. 写测试：
+>
+>    * 新增 `tests/test_arxiv_timeseries.py`（或合适位置），构造几条带 published_at 的样本，断言 month/day/year bucket 计数正确。
+> 5. 跑：`pytest -q`。
+>    **约束：**不改数据库 schema（除非完全必要）；尽量只改分析与 API 层。
+>    **验收：**pytest 通过；本地跑一次 pipeline 后，`/api/arxiv/timeseries?granularity=month&category=ALL` 返回非空且 bucket key 形如 `2025-12`。
 
 ---
 
-## 5. arXiv 分析 Agent - 重点优化 ⭐⭐⭐⭐⭐
+### ✅ T2 arXiv 关键词抽取与清洗统一（复用现有 extractor）
 
-### 5.1 ArxivAnalysisAgent 职责
+**AI 提示词：**
 
-**模块**：`src/analysis/arxiv_agent.py`
-
-**核心职责**：
-1. 统计 paper_count：年/周/日
-2. 每个 bucket 提取 top keywords
-3. 写入 `analysis_arxiv_timeseries`
-4. 写入 `analysis_keyword_trends(scope='arxiv')`
-5. 识别新兴主题 → `analysis_arxiv_emerging`
-
-### 5.2 关键词提取优化
-
-**当前问题**：
-- ❌ 仅基于标题词频，质量较低
-- ❌ 停用词过滤不够完善
-- ❌ 未利用 abstract 和已有的 paper_keywords
-
-**优化方案**：
-```python
-def _extract_bucket_keywords(self, papers, limit=10):
-    """
-    增强版关键词提取
-
-    优先级：
-    1. 使用 paper_keywords 表中已提取的关键词（最优）
-    2. 使用 YAKE 从 title + abstract 提取（次优）
-    3. 使用词频统计（兜底）
-    """
-
-    # 方案1：从 paper_keywords 表获取
-    keywords_from_db = self._get_keywords_from_db(papers)
-    if keywords_from_db:
-        return keywords_from_db
-
-    # 方案2：使用 YAKE 提取
-    keywords_from_yake = self._extract_with_yake(papers)
-    if keywords_from_yake:
-        return keywords_from_yake
-
-    # 方案3：词频统计（兜底）
-    return self._extract_with_frequency(papers)
-```
-
-**改进的停用词列表**：
-```python
-STOPWORDS = {
-    # 基础停用词
-    'a', 'an', 'the', 'and', 'or', 'but', 'in', 'on', 'at', 'to', 'for',
-    'of', 'with', 'by', 'from', 'is', 'are', 'was', 'were', 'be', 'been',
-
-    # 学术常用词
-    'paper', 'study', 'analysis', 'approach', 'method', 'methods',
-    'model', 'models', 'learning', 'network', 'networks', 'neural',
-    'deep', 'data', 'using', 'via', 'based', 'novel', 'new', 'towards',
-
-    # 数字和单字符
-    # 通过正则过滤：r'^\d+$' 和 }
-```
-
-**过滤规则**：
-```python
-def is_valid_keyword(keyword):
-    # 过滤纯数字
-    if re.match(r'^\d+$', keyword):
-        return False
-
-    # 过滤单字符
-    if len(keyword) <= 2:
-        return False
-
-    # 过滤停用词
-    if keyword.lower() in STOPWORDS:
-        return False
-
-    # 过滤特殊字符
-    if not re.match(r'^[a-zA-Z][a-zA-Z\s-]*$', keyword):
-        return False
-
-    return True
-```
-
-### 5.3 新增功能
-
-#### A) 跨分类对比
-
-```python
-def compare_categories(
-    self,
-    categories: List[str],
-    granularity: str = "year"
-) -> Dict:
-    """
-    对比多个分类的趋势
-
-    Returns:
-             "categories": ["cs.LG", "cs.CV"],
-            "timeseries": {
-                "cs.LG": [...],
-                "cs.CV": [...]
-            },
-            "overlap": {
-                "keywords": ["transformer", "attention"],
-                "overlap_rate": 0.35
-            },
-            "unique": {
-                "cs.LG": ["reinforcement", "policy"],
-                "cs.CV": ["segmentation", "detection"]
-            }
-        }
-    """
-```
-
-###兴主题识别
-
-```python
-def detect_emerging_topics(
-    self,
-    category: str = "ALL",
-    threshold: float = 1.5  # 增长率阈值
-) -> List[Dict]:
-    """
-    识别新兴研究主题
-
-    算法：
-    1. 计算关键词的环比增长率
-    2. 识别突然出现的新关键词
-    3. 分析关键词组合（co-occurrence）
-
-    Returns:
-        [
-            {
-                "keyword": "multimodal learning",
-                "growth_rate": 2.5,
-                "first_seen": "2024-W10",
-                "recent_count": 15,
-                "trend": "rising"
-            },
-            ...
-        ]
-    """
-```
-
-### 5.4 API 设计
-
-**新增 endpoints**：
-
-```python
-# 1. 时间序列（已有）
-GET /api/arxiv/timeseries?granularity=year|week|day&category=cs.LG
-
-# 2. 关键词趋势（已有）
-GET /api/arxiv/keywords/trends?granularity=week&keyword=diffusion&category=ALL
-
-# 3. 统计概览（新增）
-GET /api/arxiv/stats
-Response: {
-    "total_papers": 84,
-    "categories": {
-        "cs.LG": 46,
-        "cs.CV": 29,
-        ...
-    },
-    "date_range": {
-        "min": "2023-01-01",
-        "max": "2025-12-16"
-    },
-    "latest_update": "2025-12-19T10:24:55"
-}
-
-# 4. 分类对比（新增）
-GET /api/arxiv/compare?categories=cs.LG,cs.CV&granularity=year
-Response: {
-    "categories": ["cs.LG", "cs.CV"],
-    "timeseries": {...},
-    "overlap": {...},
-    "unique": {...}
-}
-
-# 5. 新兴主题（新增）
-GET /api/arxiv/emerging?category=ALL&limit=20
-Response: [
-    {
-        "keyword": "multimodal learning",
-        "growth_rat,
-        "trend": "rising",
-        ...
-    },
-    ...
-]
-
-# 6. 论文列表（新增）
-GET /api/arxiv/papers?category=cs.LG&limit=20&offset=0
-Response: {
-    "total": 46,
-    "papers": [
-        {
-            "arxiv_id": "2312.12345",
-            "title": "...",
-            "abstract": "...",
-            "categories": ["cs.LG", "cs.AI"],
-            "year": 2025,
-            "retrieved_at": "2025-12-16",
-            "keywords": ["transformer", "attention"]
-        },
-        ...
-    ]
-}
-
-# 7. 论文详情（新增）
-GET /api/arxiv/paper/<arxiv_id>
-Response: {
-    "arxiv_id": "2312.12345",
-    "title": "...",
-    "abstract": "...",
-    "authors": [...],
-    "categories": [...],
-    "year": 2025,
-    "pdf_url": "...",
-    "keywords": [...],
-    "related_papers": [...]
-}
-```
+> 目标：arXiv 关键词抽取必须复用项目现有 extractor（YAKE/KeyBERT/both），并复用统一的关键词清洗/去重规则，保证 arXiv 与会议关键词“可比”。
+> 背景：项目已经有 extractor 体系（`requirements.txt` 包含 yake/keybert/sentence-transformers ，`config.py` 有 `EXTRACTOR_CONFIG.default_extractor` ，并且 tests 里已有 extractor 测试 ）。
+> **请你按步骤做：**
+>
+> 1. 找到当前 arXiv 分析里关键词是怎么来的（title/abstract 提取？还是 categories？）
+> 2. 改造为：
+>
+>    * 对每篇 arXiv paper：用 `KeywordProcessor(extractor_type=...)` 从 `title + ". " + abstract` 提取关键词
+>    * 然后走同一套 normalize/filter（如果 KeywordProcessor 已有 `_normalize_keywords` 就复用；如果项目里还有 `AnalysisAgent.filter_keywords` 也可复用，但要避免重复过滤导致过度丢词）
+> 3. 性能要求：
+>
+>    * GitHub Actions 每日跑，默认 `--arxiv-days 7`，不要让 KeyBERT 导致超时：
+>
+>      * 如果 extractor=both：允许 KeyBERT 只对“候选关键词集合”或“抽样论文”跑；或者在 Actions 默认改为 yake，手动再用 both（由你决定并说明）。
+> 4. 写测试：
+>
+>    * arXiv 关键词抽取函数：空文本返回空；正常文本返回小写、长度合理的词。
+> 5. 跑：`pytest -q`。
+>    **验收：**arXiv 分析输出的 top_keywords 看起来合理（不会全是 stopword / 单字母 / 超长串），并且 tests 通过。
 
 ---
 
-## 6. 会议矩阵式前端展示
+### ✅ T3 生成可静态化的 arXiv 缓存（timeseries + keyword index + top）
 
-### 6.1 会议注册表（Registry）
+**AI 提示词：**
 
-**来源**：
-- `src/config.py` 的 VENUES（OpenReview 侧）
-- README 表中的 S2 会议（CVPR/ICCV/ECCV/ACL/NAACL/AAAI/IJCAI）
-
-**前端资源**：
-```
-src/web/static/assets/venues/
-├── ICLR.svg
-├── NeurIPS.svg
-├── CVPR.svg
-├── default.svg
-└── ...
-```
-
-**API**：
-```
-GET /api/registry/venues
-Response: {
-    "venues": [
-        {
-            "name": "ICLR",
-            "full_name": "International Conference on Learning Representations",
-            "domain": "ML",
-            "years_supported": [2021, 2022, 2023, 2024, 2025],
-            "icon_url": "/static/assets/venues/ICLR.svg",
-            "paper_count": 30,
-            "latest_year": 2024,
-            "top_keywords": [...]
-        },
-        ...
-    ]
-}
-```
+> 目标：为了 GitHub Pages 静态站点，arXiv 侧必须产出“可落盘”的 JSON 缓存：
+>
+> * timeseries：year/month/day 各一份
+> * keyword index：用于前端搜索的关键词列表（建议只保留最近 90 天出现次数>=阈值的关键词）
+> * top keywords：每个 bucket 的 top N
+>   背景：web API 当前 `/api/arxiv/timeseries` 与 `/api/arxiv/keywords/trends` 都是从 analysis repo 的缓存取（`repo.analysis.get_arxiv_timeseries`、`repo.analysis.get_keyword_trends_cached(scope="arxiv", ...)` ）。但静态站点不能实时 query keyword，因此要把“可搜索范围”与趋势数据落盘。
+>   **请你做：**
+>
+> 1. 在 analysis 层新增一个 arXiv 导出用的数据结构（或直接在 export 脚本里查询并生成）：
+>
+>    * `arxiv_timeseries_{granularity}_{category}.json`
+>    * `arxiv_keywords_index.json`（list[str]）
+>    * `arxiv_keyword_trends_day.json`（dict: keyword -> [[date, count], ...]），仅保留最近 90 天、总次数>=5 的关键词（阈值可配）
+> 2. 你需要决定在哪里生成它：
+>
+>    * 方案 A：分析阶段写入 analysis_* 表，并由 export 脚本读出来落盘
+>    * 方案 B：export 脚本直接扫 paper_keywords 聚合生成
+>      请选择更快且 Actions 不容易超时的方式，并实现。
+> 3. 写测试：
+>
+>    * 生成的 json 必须可被 `json.load` 读入
+>    * 关键字段存在且格式正确
+>      **验收：**本地跑一次 pipeline + 导出后，能在 `docs/data/`（或你选择的目录）看到上述 json，且体积可控（建议 < 20MB）。
 
 ---
 
-## 7. GitHub Actions 自动化
+### ✅ T4 引入 CCF 会议注册表（registry，尽可能多会议的“组织中枢”）
 
-### 7.1 标准流水线
+**AI 提示词：**
 
-```yaml
-name: Update Keywords
-
-on:
-  schedule:
-    - cron: '0 0 * * 0'  # 每周日 UTC 0:00
-  workflow_dispatch:
-
-jobs:
-  update:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-
-      - name: Setup Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.11'
-
-      - name: Install dependencies
-        run: pip install -r requirements.txt
-
-      - name: Run Ingestion
-        run: python src/main.py --source all --limit 1000
-
-      - name: Run Analysis
-        run: python src/main.py --skiion --extractor both
-
-      - name: Run arXiv Analysis
-        run: python -c "from analysis import ArxivAnalysisAgent; ArxivAnalysisAgent().run_all_granularities(force=True)"
-
-      - name: Commit and Push
-        run: |
-          git config user.name "GitHub Actions"
-          git config user.email "actions@github.com"
-          git add data/ output/
-          git commit -m "chore: auto-update keywords [$(date +%Y-%m-%d)]" || exit 0
-          git push
-```
-
-### 7.2 本地使用体验
-
-**用户 clone 后**：
-```bash
-# 1. 直接启动 Web 服务（无需重算）
-python src/web/app.py
-
-# 2. 如果想重算分析
-python src/main.py --skip-ingestion --extracn
-# 3. 如果想重新采集数据
-python src/main.py --source arxiv --arxiv-days 30
-```
+> 目标：实现一个“会议注册表 registry”，用于承载 **CCF 尽可能多会议** 的清单、分级(A/B/C)、领域、别名、抓取源映射（openreview/s2/openalex）。
+> 要求：即使某些会议暂时抓不到数据，也要能在 UI 里展示为“待补齐/无数据”，不阻塞上线。
+> **请你做：**
+>
+> 1. 新增 `data/registry/ccf_venues.csv` 模板（或 `venues/ccf_venues.csv`）：字段建议：
+>
+>    * `canonical_name, full_name, domain, tier, source_preference, openreview_id_pattern, s2_venue_key, openalex_venue_name, aliases`
+> 2. 新增一个导入脚本：`src/tools/import_ccf_registry.py`
+>
+>    * 读 CSV，写入 structured 层（如果已有 structured 表/接口就复用；如果没有就新建 `structured_venues` 表，字段最少包含 canonical_name/full_name/domain/tier/aliases/mappings）
+> 3. 在 web API 增加一个 registry 输出（如果已有 `/api/venues/explorer` 等 structured API 就扩展）：保证前端能拿到“会议全集 + tier/domain”。
+>    **约束：**先不追求立刻全量抓取；先把“会议管理与展示”打通。
+>    **测试：**给一个小 CSV fixture（3 条），导入后 API 能返回这 3 条。
+>    **验收：**你给出 CSV 模板 + 导入脚本 + 能在本地跑通导入与查询。
 
 ---
 
-## 8. 运行与验收（Definition of Done）
+### ✅ T5 会议侧静态缓存（按会议/年份 top 与趋势，支持搜索）
 
-### 8.1 功能验收
+**AI 提示词：**
 
-**前端**：
-- ✅ 首页出现会议矩阵
-- ✅ 点击会议卡片秒开
-- ✅ arXiv 页面支持年/周/日切换
-- ✅ 切换 granularity 不触发后端重算
-
-**后端**：
-- ✅ 所有 API 正常响应
-- ✅ 缓存机制正常工作
-- ✅ QA 检查通过率 > 95%
-
-**性能**：
-- ✅ 页面加载时间 < 2s
-- ✅ API 响应时间 < 500ms
-- ✅ 分析任务执行时间 < 30s
-
-### 8.2 数据质量验收
-
-**Raw Layer**：
-- ✅ title 非空率 ≥ 99%
-- ✅ abstract 非空率 ≥ 95%
-- ✅ 无重复数据
-
-**Analysis Layer**：
-- ✅ 关键词质量提升（无纯数字）
-- ✅ 缓存数据完整
-- ✅ 元信息正确更新
-
-### 8.3 用户体验验收
-
-- ✅ UI 交互流畅
-- ✅ 数据可视化清晰
-- ✅ 错误提示友好
-- ✅ 支持移动n
-## 9. 维护与监控
-
-### 9.1 日常维护
-
-**每周**：
-- 检查 GitHub Actions 运行状态
-- 查看数据增长情况
-- 检查 QA 报告
-
-**每月**：
-- 清理过期缓存
-- 优化数据库索引
-- 更新会议列表
-
-### 9.2 监控指标
-
-**数据指标**：
-- Raw 层数据量
-- Structured 层数据量
-- Analysis 层缓存命中率
-
-**性能指标**：
-- API 响应时间
-- 页面加载时间
-- 分析任务执行时间
-
-**质量指标**：
-- QA 检查通过率
-- 数据完整性
-- 用户反馈
+> 目标：会议页面需要“选择会议 → 看关键词排行/趋势 → 搜索关键词看曲线与 rank”。由于 GitHub Pages 静态化，必须导出会议侧 JSON：
+>
+> * `venues_index.json`：会议列表（含 tier/domain/paper_count/可用年份）
+> * `venue_{name}_top_keywords.json`：每年 top N
+> * `venue_{name}_keyword_trends.json`：仅保留 top M 可搜索关键词的 yearly trends（keyword->[[year,count],...]）
+>   背景：`src/web/app.py` 当前有 registry 相关 API（如 `/api/registry/venues` 会从 config.VENUES 读取，并尝试从 `repo.analysis.get_all_venue_summaries()` 拿缓存 ）。我们要把“静态站点需要的数据”导出成文件。
+>   **请你做：**
+>
+> 1. 选择聚合来源：优先从 analysis 缓存读（快），没有则从 DB 聚合（慢但可用）。
+> 2. 限制规模：每个会议只导出 top M（如 300）关键词趋势，保证体积可控。
+> 3. 给出 rank 计算方式：同一年里按 count 排名（并把 rank 也导出，前端就能直接画 rank）。
+> 4. 写测试：生成的 json 结构正确，包含必要字段。
+>    **验收：**导出后，任意会议都能在静态数据里找到：年份列表、top keywords、关键词趋势。
 
 ---
 
-## 10. 附录
+### ✅ T6 静态站点导出脚本（docs/ = GitHub Pages 根目录）
 
-### 10.1 常用命令
+**AI 提示词：**
 
-```bash
-# 运行完整流水线
-python src/main.py
-
-# 只运行 arXiv 采集
-python src/main.py --source arxiv --arxiv-days 7
-
-# 只运行分析
-python src/main.py --skip-ingestion --extractor both
-
-# 运行 arXiv 分析
-python -c "from analysis import ArxivAnalysisAgent; ArxivAnalysisAgent().run_all_granularities(force=True)"
-
-# 运行 QA 检查
-python src/dq_arxiv.py
-
-# 启动 Web 服务
-python src/web/app.py
-```
-
-### 10.2 故障排查
-
-**问题1：缓存未更新**
-```bash
-# 强制刷新缓存
-python -c "from analysis import ArxivAnalysisAgent; ArxivAnalysisAgent().run_all_granularities(force=True)"
-```
-
-**问题2：API 返回空数据**
-```bash
-# 检查数据库
-sqlite3 data/keywords.db "SELECT COUNT(*) FROM analysis_arxiv_timeseries;"
-
-# 重新运行分析
-python src/main.py --skip-ingestion
-```
-
-**问题3：关键词质量差**
-```bash
-# 检查 paper_keywords 表
-sqlite3 data/keywords.db "SELECT COUNT(*) FROM paper_keywords;"
-
-# 重新提取关键词
-python src/main.py --skip-ingestion --extractor both
-```
+> 目标：新增一个命令 `python src/tools/export_static_site.py`，把项目的 web 静态资源与数据导出到 `docs/`，用于 GitHub Pages 部署。
+> **你需要完成：**
+>
+> 1. 输出目录结构：
+>
+>    * `docs/index.html` 等页面（从 `src/web/static/` 拷贝）
+>    * `docs/static/...`（CSS/JS/assets）
+>    * `docs/data/...json`（T3/T5 的导出数据）
+> 2. 处理路径问题：把 HTML/JS/CSS 中以 `/static/...`、`/api/...` 这种“绝对路径”改为相对路径或可配置 basePath（让 GitHub Pages 的 `/repo-name/` 子路径下也能工作）。
+> 3. 增加一个“静态模式”开关：
+>
+>    * 例如前端 `API_BASE = "./data"`（静态） vs `API_BASE = "/api"`（本地 Flask）
+> 4. 写测试：export 后检查关键文件存在（index.html、data json、static js/css）。
+>    **验收：**本地跑 export 后，用任意静态服务器打开 `docs/`（如 `python -m http.server -d docs 8000`），页面能加载并渲染图表（不需要 Flask）。
 
 ---
 
-**文档版本**: v2.0
-**最后更新**: 2025-01-02
-**维护者**: DeepTrender Team
-**状态**: ✅ 生产就绪
+### ✅ T7 前端适配与交互增强（趋势+搜索+筛选）
+
+**AI 提示词：**
+
+> 目标：实现你要的“打开网页立刻看到趋势 + 可点会议 + 可搜索/筛选关键词”。前端为原生 HTML/JS（项目当前也是原生前端，Flask 只是静态托管与 API，见 `src/web/app.py` 的静态路由与 API ）。
+> **请你做：**
+>
+> 1. 梳理现有页面：`src/web/static/index.html`、可能的 `arxiv.html`、`venues.html`（按仓库实际为准）。
+> 2. 把 API 调用改为读 `docs/data/*.json`：
+>
+>    * arXiv：默认展示 day（最近 90 天）+ top 新兴关键词（最近 7 天 vs 28 天增长率）
+>    * 会议：左侧会议列表（支持 tier/domain 过滤），右侧显示 top 与趋势
+> 3. 加入关键词搜索：
+>
+>    * 输入框联想（基于 `*_keywords_index.json`）
+>    * 选中后画 count 曲线 + rank 曲线（如果你在导出里给了 rank）
+> 4. 兼容本地 Flask：如果存在 `/api/health` 则走 API，否则走静态 json。
+>    **验收：**
+>
+> * GitHub Pages 静态打开可用
+> * 本地 `python src/web/app.py` 也可用（不强制，但尽量兼容）
+> * 关键词搜索不卡顿（索引用 list + 前端前缀过滤即可）
+
+---
+
+### ✅ T8 GitHub Actions 扩展：跑完 pipeline 自动导出 docs 并提交
+
+**AI 提示词：**
+
+> 目标：扩展 `.github/workflows/update.yml`：在跑完 `python src/main.py` 后，自动执行 `python src/tools/export_static_site.py`，并把 `docs/` 一起 commit。
+> 背景：当前 workflow 会在最后 `git add data/ output/ -f` 并 push 。
+> **请你做：**
+>
+> 1. 在 workflow 增加一步：`python src/tools/export_static_site.py`
+> 2. 修改 add：`git add data/ output/ docs/ -f`
+> 3. 增加可选 inputs：
+>
+>    * `ccf_tier`（A/B/C/all）
+>    * `export_only`（只导出 docs 不跑采集，便于调 UI）
+> 4. 给出 Actions 运行时长控制建议：默认只跑 arXiv 7 天 + CCF-A 会议；手动可跑全量。
+>    **验收：**workflow 运行结束后仓库出现 `docs/` 更新；Pages 可直接访问。
+
+---
+
+### ✅ T9 回归测试补齐（保证“以后好维护”）
+
+**AI 提示词：**
+
+> 目标：把本次改动的关键风险点加上单测，避免以后改崩：
+>
+> * arXiv bucket(year/month/day) 正确
+> * export_static_site 导出文件齐全、json 格式正确
+> * registry 导入正确
+>   **请你做：**
+>
+> 1. 为 bucket 函数与导出 JSON 增加 tests
+> 2. 如需要，为测试加 fixture（小型 sqlite 临时库，项目已有 `tests/conftest.py` 里提供 temp_db_path 与 repo fixture ）
+> 3. 跑 `pytest -q` 并确保通过
+>    **验收：**CI/本地都能稳定通过；测试运行时间可控（<30s）。
+
+---
+
+## 四、最后必须人工做的事情（尽量放后）
+
+1. **准备 CCF 会议列表 CSV**（这是最关键的人为输入之一）
+
+* 你把 CCF 会议清单整理进 `ccf_venues.csv`（AI 可给模板与导入脚本，但“权威清单内容”最好由你提供/粘贴）
+
+2. **打开 GitHub Pages**
+
+* Settings → Pages → Source 选 `docs/`（或 GitHub Pages 新版的 “Deploy from a branch”，选择 main / docs）
+
+3. **（可选）配置 Secrets**
+
+* 如果你需要 OpenReview 抓取更多：设置 `OPENREVIEW_USERNAME` / `OPENREVIEW_PASSWORD`（README 里也提到了 ）
+
+---
+
+如果你愿意，我下一步可以**先回答你“当前项目已经涉及哪些会议”**（从 `config.py` 的 OpenReview VENUES  + README 的 S2 列表  + 你 web 的 registry API  这三处合并），然后我们再按上面任务从 T1 开始逐个落地改代码。

@@ -182,18 +182,22 @@ CREATE TABLE IF NOT EXISTS analysis_arxiv_emerging (
 CREATE INDEX IF NOT EXISTS idx_raw_papers_source ON raw_papers(source, source_paper_id);
 CREATE INDEX IF NOT EXISTS idx_raw_papers_year ON raw_papers(year);
 CREATE INDEX IF NOT EXISTS idx_raw_papers_categories ON raw_papers(categories);
+CREATE INDEX IF NOT EXISTS idx_raw_papers_retrieved_at ON raw_papers(retrieved_at DESC);  -- 新增：时间序列查询优化
 
 -- Structured Layer indexes
 CREATE INDEX IF NOT EXISTS idx_papers_venue_year ON papers(venue_id, year);
+CREATE INDEX IF NOT EXISTS idx_papers_canonical_title ON papers(LOWER(canonical_title));  -- 新增：标题去重优化
 CREATE INDEX IF NOT EXISTS idx_papers_domain ON papers(domain);
 CREATE INDEX IF NOT EXISTS idx_papers_quality ON papers(quality_flag);
 CREATE INDEX IF NOT EXISTS idx_paper_sources_paper ON paper_sources(paper_id);
 CREATE INDEX IF NOT EXISTS idx_paper_sources_raw ON paper_sources(raw_id);
+CREATE INDEX IF NOT EXISTS idx_venues_domain_tier ON venues(domain, tier);  -- 新增：会议查询优化
 
 -- Analysis Layer indexes
 CREATE INDEX IF NOT EXISTS idx_paper_keywords_paper ON paper_keywords(paper_id);
 CREATE INDEX IF NOT EXISTS idx_paper_keywords_keyword ON paper_keywords(keyword);
 CREATE INDEX IF NOT EXISTS idx_paper_keywords_method ON paper_keywords(method);
+CREATE INDEX IF NOT EXISTS idx_paper_keywords_keyword_paper ON paper_keywords(keyword, paper_id);  -- 新增：复合索引优化聚合查询
 CREATE INDEX IF NOT EXISTS idx_trend_cache_keyword_year ON trend_cache(keyword, year);
 
 -- Operational indexes

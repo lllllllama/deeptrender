@@ -3,6 +3,7 @@
 **AI 顶会论文关键词追踪系统** | 实时掌握研究热点与发展趋势
 
 [![Update Keywords](https://github.com/YOUR_USERNAME/deeptrender/actions/workflows/update.yml/badge.svg)](https://github.com/YOUR_USERNAME/deeptrender/actions/workflows/update.yml)
+[![Test Pipeline](https://github.com/YOUR_USERNAME/deeptrender/actions/workflows/test.yml/badge.svg)](https://github.com/YOUR_USERNAME/deeptrender/actions/workflows/test.yml)
 [![Python 3.11+](https://img.shields.io/badge/python-3.11+-blue.svg)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
@@ -176,21 +177,47 @@ python src/web/app.py
 
 ## ⚙️ GitHub Actions 自动化
 
-### 自动触发
+### 🤖 自动触发
 - **时间**：每周日 UTC 0:00（北京时间 8:00）
 - **内容**：自动爬取、分析、生成报告并提交
+- **超时**：60分钟
+- **缓存**：Python依赖 + Sentence-Transformers模型
 
-### 手动触发
+### 🎯 手动触发
 1. 进入 GitHub 仓库 → **Actions** 标签页
 2. 选择 **Update Keywords** 工作流
 3. 点击 **Run workflow**
-4. 可选参数：`venues`、`years`、`limit`
+4. 配置参数：
+   - **source**: 数据源（all/arxiv/openalex/s2/openreview）
+   - **venues**: 会议列表（逗号分隔，如 `ICLR,NeurIPS`）
+   - **years**: 年份列表（逗号分隔，如 `2024,2023`）
+   - **limit**: 处理上限（测试用）
+   - **arxiv_days**: arXiv采集天数（默认7天）
 
-### 配置 Secrets（可选）
+### 🧪 测试工作流
+- **触发**：PR提交或推送到main分支
+- **测试**：Python 3.11 和 3.12
+- **覆盖率**：自动上传到Codecov
+- **验证**：运行pytest + 管道干运行
+
+### 🔐 配置 Secrets（可选）
 
 在 **Settings → Secrets → Actions** 添加：
 - `OPENREVIEW_USERNAME` - OpenReview 账号
 - `OPENREVIEW_PASSWORD` - OpenReview 密码
+
+### 📊 工作流特性
+
+| 特性 | 说明 |
+|------|------|
+| ✅ 依赖缓存 | 加速安装（pip + transformers模型） |
+| ✅ 超时保护 | 总计60分钟，安装10分钟，运行45分钟 |
+| ✅ 错误处理 | 详细的错误日志和退出码 |
+| ✅ 健康检查 | 环境验证 + 目录结构检查 |
+| ✅ 自动提交 | 仅在有变更时提交 |
+| ✅ 构建产物 | 保留30天的数据库和报告 |
+| ✅ 作业摘要 | GitHub UI显示统计信息 |
+| ✅ 服务器通知 | 可选的部署服务器刷新 |
 
 ---
 

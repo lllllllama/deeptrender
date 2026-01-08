@@ -40,6 +40,10 @@ class BaseRepository:
         
         with self._get_connection() as conn:
             conn.executescript(schema)
+            conn.execute("PRAGMA journal_mode = WAL")
+            conn.execute("PRAGMA synchronous = NORMAL")
+            conn.execute("PRAGMA cache_size = -64000")
+            conn.execute("PRAGMA temp_store = MEMORY")
             conn.commit()
     
     @contextmanager

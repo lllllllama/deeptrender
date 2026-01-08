@@ -5,7 +5,19 @@
       "Bash(sqlite3:*)",
       "Bash(python -c:*)",
       "Bash(ls:*)",
-      "Bash(python:*)"
+      "Bash(python:*)",
+      "Bash(python3 -m pip:*)",
+      "Bash(cat:*)",
+      "Bash(tree:*)",
+      "Bash(pip3 list:*)",
+      "Bash(pip3 install:*)",
+      "Bash(bash:*)",
+      "Bash(~/miniconda3/bin/conda init:*)",
+      "Bash(source:*)",
+      "Bash(conda --version)",
+      "Bash(~/miniconda3/bin/conda create:*)",
+      "Bash(~/miniconda3/bin/conda config:*)",
+      "Bash(pip install:*)"
     ]
   }
 }

@@ -142,8 +142,8 @@ class ArxivClient:
         """
         categories = categories or DEFAULT_CATEGORIES
         
-        print(f"🔍 正在从 arXiv 获取最近 {days} 天的论文...")
-        print(f"   类别: {', '.join(categories)}")
+        print(f"Fetching papers from arXiv (last {days} days)...")
+        print(f"   Categories: {', '.join(categories)}")
         
         all_papers = []
         start = 0
@@ -176,9 +176,9 @@ class ArxivClient:
                 break
             
             start += batch_size
-            print(f"   已获取 {len(all_papers)} 篇论文...")
-        
-        print(f"✅ arXiv: 共获取 {len(all_papers)} 篇论文")
+            print(f"   Fetched {len(all_papers)} papers...")
+
+        print(f"SUCCESS: Fetched {len(all_papers)} papers from arXiv")
         return all_papers
     
     def search_by_category(
@@ -196,7 +196,7 @@ class ArxivClient:
         Returns:
             RawPaper 列表
         """
-        print(f"🔍 正在从 arXiv 获取 {category} 类别论文...")
+        print(f"Fetching {category} papers from arXiv...")
         
         all_papers = []
         start = 0
@@ -215,9 +215,9 @@ class ArxivClient:
             all_papers.extend(papers)
             start += batch_size
             
-            print(f"   已获取 {len(all_papers)} 篇论文...")
-        
-        print(f"✅ arXiv {category}: 共获取 {len(all_papers)} 篇论文")
+            print(f"   Fetched {len(all_papers)} papers...")
+
+        print(f"SUCCESS: Fetched {len(all_papers)} papers from arXiv {category}")
         return all_papers
     
     def get_paper(self, arxiv_id: str) -> Optional[RawPaper]:

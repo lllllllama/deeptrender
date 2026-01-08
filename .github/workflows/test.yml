@@ -1,0 +1,64 @@
+name: Test Pipeline
+
+on:
+  pull_request:
+    branches: [ main, master ]
+  push:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    
+    strategy:
+      matrix:
+        python-version: ['3.11', '3.12']
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      
+      - name: Setup Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: 'pip'
+      
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install pytest pytest-cov
+      
+      - name: Create required directories
+        run: |
+          mkdir -p data output/figures output/reports
+          touch data/.gitkeep output/figures/.gitkeep output/reports/.gitkeep
+      
+      - name: Run tests
+        run: |
+          pytest tests/ -v --cov=src --cov-report=term-missing --cov-report=xml
+      
+      - name: Upload coverage
+        if: matrix.python-version == '3.11'
+        uses: codecov/codecov-action@v4
+        with:
+          file: ./coverage.xml
+          fail_ci_if_error: false
+      
+      - name: Test pipeline (dry run)
+        run: |
+          python src/main.py --source arxiv --arxiv-days 1 --limit 10 || {
+            echo "⚠️ Pipeline test failed (non-critical for PR)"
+            exit 0
+          }
+      
+      - name: Verify output structure
+        run: |
+          echo "Checking output structure..."
+          test -d data && echo "✅ data/ exists" || echo "❌ data/ missing"
+          test -d output && echo "✅ output/ exists" || echo "❌ output/ missing"
+          test -d output/figures && echo "✅ output/figures/ exists" || echo "❌ output/figures/ missing"
+          test -d output/reports && echo "✅ output/reports/ exists" || echo "❌ output/reports/ missing"

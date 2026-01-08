@@ -72,6 +72,9 @@ const Charts = {
 
     // 显示加载状态
     showLoading(containerId) {
+        const container = document.getElementById(containerId);
+        if (!container) return;
+        
         const chart = this.get(containerId);
         if (chart) {
             chart.showLoading({
@@ -80,7 +83,55 @@ const Charts = {
                 textColor: '#8b949e',
                 maskColor: 'rgba(13, 17, 23, 0.8)'
             });
+        } else {
+            container.innerHTML = '<div class="loading">加载中...</div>';
         }
+    },
+
+    hideLoading(containerId) {
+        const chart = this.get(containerId);
+        if (chart) {
+            chart.hideLoading();
+        }
+    },
+    
+    showError(containerId, message = '加载失败') {
+        const container = document.getElementById(containerId);
+        if (!container) return;
+        
+        const chart = this.get(containerId);
+        if (chart) {
+            chart.clear();
+        }
+        
+        container.innerHTML = `
+            <div class="error-state">
+                <div class="error-state-icon">⚠️</div>
+                <div class="error-state-title">加载失败</div>
+                <div class="error-state-message">${message}</div>
+                <div class="error-state-actions">
+                    <button class="btn-retry" onclick="refreshData()">重试</button>
+                </div>
+            </div>
+        `;
+    },
+    
+    showEmpty(containerId, message = '暂无数据') {
+        const container = document.getElementById(containerId);
+        if (!container) return;
+        
+        const chart = this.get(containerId);
+        if (chart) {
+            chart.clear();
+        }
+        
+        container.innerHTML = `
+            <div class="empty-state">
+                <div class="empty-state-icon">📭</div>
+                <div class="empty-state-title">暂无数据</div>
+                <div class="empty-state-message">${message}</div>
+            </div>
+        `;
     },
 
     // 隐藏加载状态

@@ -300,7 +300,14 @@ def create_app():
         """
         arXiv 时间序列 API
         
-        GET /api/arxiv/timeseries?granularity=year|week|day&category=cs.LG
+        GET /api/arxiv/timeseries?granularity=year|month|week|day&category=cs.LG
+        
+        Parameters:
+            granularity: year|month|week|day (default: year)
+            category: cs.LG|cs.CV|cs.CL|cs.AI|cs.RO|ALL (default: ALL)
+        
+        Returns:
+            JSON with timeseries data, bucketed by published_at (fallback to retrieved_at)
         """
         granularity = request.args.get("granularity", "year")
         category = request.args.get("category", "ALL")

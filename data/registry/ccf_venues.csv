@@ -1,0 +1,21 @@
+canonical_name,full_name,domain,tier,source_preference,openreview_id_pattern,s2_venue_key,openalex_venue_name,aliases
+ICLR,International Conference on Learning Representations,ML,A,openreview,ICLR.cc/.*,ICLR,ICLR,iclr
+NeurIPS,Conference on Neural Information Processing Systems,ML,A,openreview,NeurIPS.cc/.*,NeurIPS,NeurIPS,"neurips,nips"
+ICML,International Conference on Machine Learning,ML,A,openreview,ICML.cc/.*,ICML,ICML,icml
+CVPR,Conference on Computer Vision and Pattern Recognition,CV,A,s2,,CVPR,CVPR,cvpr
+ICCV,International Conference on Computer Vision,CV,A,s2,,ICCV,ICCV,iccv
+ECCV,European Conference on Computer Vision,CV,A,s2,,ECCV,ECCV,eccv
+ACL,Annual Meeting of the Association for Computational Linguistics,NLP,A,s2,,ACL,ACL,acl
+EMNLP,Conference on Empirical Methods in Natural Language Processing,NLP,A,openreview,EMNLP/.*,EMNLP,EMNLP,emnlp
+NAACL,North American Chapter of the Association for Computational Linguistics,NLP,A,s2,,NAACL,NAACL,naacl
+AAAI,AAAI Conference on Artificial Intelligence,AI,A,s2,,AAAI,AAAI,aaai
+IJCAI,International Joint Conference on Artificial Intelligence,AI,A,s2,,IJCAI,IJCAI,ijcai
+KDD,ACM SIGKDD Conference on Knowledge Discovery and Data Mining,DM,A,s2,,KDD,KDD,kdd
+SIGIR,International ACM SIGIR Conference on Research and Development in Information Retrieval,IR,A,s2,,SIGIR,SIGIR,sigir
+WWW,The Web Conference,Web,A,s2,,WWW,WWW,"www,thewebconf"
+SIGMOD,ACM SIGMOD International Conference on Management of Data,DB,A,s2,,SIGMOD,SIGMOD,sigmod
+VLDB,International Conference on Very Large Data Bases,DB,A,s2,,VLDB,VLDB,vldb
+ICDE,IEEE International Conference on Data Engineering,DB,A,s2,,ICDE,ICDE,icde
+CoRL,Conference on Robot Learning,RL,B,openreview,CoRL/.*,CoRL,CoRL,corl
+AISTATS,International Conference on Artificial Intelligence and Statistics,ML,B,openreview,AISTATS/.*,AISTATS,AISTATS,aistats
+UAI,Conference on Uncertainty in Artificial Intelligence,ML,B,s2,,UAI,UAI,uai

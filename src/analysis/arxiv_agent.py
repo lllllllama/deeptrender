@@ -23,7 +23,7 @@ from database.repository import (
 
 logger = logging.getLogger(__name__)
 
-GranularityType = Literal["year", "week", "day"]
+GranularityType = Literal["year", "month", "week", "day"]
 
 
 class ArxivAnalysisAgent:
@@ -80,6 +80,8 @@ class ArxivAnalysisAgent:
         # 按时间桶分组
         if granularity == "year":
             buckets = self._group_by_year(papers)
+        elif granularity == "month":
+            buckets = self._group_by_month(papers)
         elif granularity == "week":
             buckets = self._group_by_week(papers)
         else:  # day
@@ -119,7 +121,7 @@ class ArxivAnalysisAgent:
     def run_all_granularities(self, category: str = "ALL", force: bool = False) -> Dict:
         """运行所有粒度的分析"""
         results = {}
-        for granularity in ["year", "week", "day"]:
+        for granularity in ["year", "month", "week", "day"]:
             results[granularity] = self.run(granularity, category, force)
         return results
     
@@ -169,6 +171,7 @@ class ArxivAnalysisAgent:
                 "abstract": paper.abstract,
                 "year": paper.year,
                 "categories": paper.categories,
+                "published_at": getattr(paper, 'published_at', None),
                 "retrieved_at": paper.retrieved_at
             })
         
@@ -184,39 +187,98 @@ class ArxivAnalysisAgent:
                 buckets[bucket_key].append(paper)
         return dict(buckets)
     
-    def _group_by_week(self, papers: List[Dict]) -> Dict[str, List[Dict]]:
-        """按 ISO 周分组 (YYYY-Www)"""
+    def _group_by_month(self, papers: List[Dict]) -> Dict[str, List[Dict]]:
+        """按月份分组 (YYYY-MM)，优先使用 published_at"""
         buckets = defaultdict(list)
+        missing_published_count = 0
+        
         for paper in papers:
-            retrieved_at = paper.get("retrieved_at")
-            if isinstance(retrieved_at, str):
+            # 优先使用 published_at
+            date_field = paper.get("published_at")
+            if not date_field:
+                # 降级为 retrieved_at
+                date_field = paper.get("retrieved_at")
+                missing_published_count += 1
+            
+            if isinstance(date_field, str):
                 try:
-                    retrieved_at = datetime.fromisoformat(retrieved_at)
+                    date_field = datetime.fromisoformat(date_field)
                 except:
                     continue
             
-            if retrieved_at:
+            if date_field:
+                bucket_key = date_field.strftime("%Y-%m")
+                buckets[bucket_key].append(paper)
+        
+        if missing_published_count > 0:
+            logger.warning(
+                f"{missing_published_count}/{len(papers)} papers missing published_at, "
+                f"used retrieved_at as fallback"
+            )
+        
+        return dict(buckets)
+    
+    def _group_by_week(self, papers: List[Dict]) -> Dict[str, List[Dict]]:
+        """按 ISO 周分组 (YYYY-Www)，优先使用 published_at"""
+        buckets = defaultdict(list)
+        missing_published_count = 0
+        
+        for paper in papers:
+            # 优先使用 published_at
+            date_field = paper.get("published_at")
+            if not date_field:
+                # 降级为 retrieved_at
+                date_field = paper.get("retrieved_at")
+                missing_published_count += 1
+            
+            if isinstance(date_field, str):
+                try:
+                    date_field = datetime.fromisoformat(date_field)
+                except:
+                    continue
+            
+            if date_field:
                 # ISO week format: 2024-W05
-                iso_cal = retrieved_at.isocalendar()
+                iso_cal = date_field.isocalendar()
                 bucket_key = f"{iso_cal.year}-W{iso_cal.week:02d}"
                 buckets[bucket_key].append(paper)
+        
+        if missing_published_count > 0:
+            logger.warning(
+                f"{missing_published_count}/{len(papers)} papers missing published_at, "
+                f"used retrieved_at as fallback"
+            )
         
         return dict(buckets)
     
     def _group_by_day(self, papers: List[Dict]) -> Dict[str, List[Dict]]:
-        """按日期分组 (YYYY-MM-DD)"""
+        """按日期分组 (YYYY-MM-DD)，优先使用 published_at"""
         buckets = defaultdict(list)
+        missing_published_count = 0
+        
         for paper in papers:
-            retrieved_at = paper.get("retrieved_at")
-            if isinstance(retrieved_at, str):
+            # 优先使用 published_at
+            date_field = paper.get("published_at")
+            if not date_field:
+                # 降级为 retrieved_at
+                date_field = paper.get("retrieved_at")
+                missing_published_count += 1
+            
+            if isinstance(date_field, str):
                 try:
-                    retrieved_at = datetime.fromisoformat(retrieved_at)
+                    date_field = datetime.fromisoformat(date_field)
                 except:
                     continue
             
-            if retrieved_at:
-                bucket_key = retrieved_at.strftime("%Y-%m-%d")
+            if date_field:
+                bucket_key = date_field.strftime("%Y-%m-%d")
                 buckets[bucket_key].append(paper)
+        
+        if missing_published_count > 0:
+            logger.warning(
+                f"{missing_published_count}/{len(papers)} papers missing published_at, "
+                f"used retrieved_at as fallback"
+            )
         
         return dict(buckets)
     

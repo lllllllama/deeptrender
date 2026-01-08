@@ -17,21 +17,22 @@ async function init() {
     console.log('🚀 DeepTrender Dashboard 初始化中...');
 
     try {
-        // 加载总览数据
         await loadOverview();
-
-        // 加载筛选选项
         await loadFilters();
-
-        // 加载所有图表
         await refreshData();
-
-        // 加载会议卡片
         await loadVenueCards();
 
         console.log('✅ 初始化完成');
+        
+        if (window.Toast) {
+            Toast.success('数据加载完成', 2000);
+        }
     } catch (error) {
         console.error('❌ 初始化失败:', error);
+        
+        if (window.Toast) {
+            Toast.error('初始化失败，请刷新页面重试');
+        }
     }
 }
 
@@ -117,9 +118,16 @@ async function loadWordcloud() {
             state.year || null,
             100
         );
+        
+        if (!data || data.length === 0) {
+            Charts.showEmpty(containerId, '暂无关键词数据');
+            return;
+        }
+        
         Charts.renderWordcloud(containerId, data);
     } catch (error) {
         console.error('加载词云失败:', error);
+        Charts.showError(containerId, '词云加载失败，请重试');
     } finally {
         Charts.hideLoading(containerId);
     }
@@ -138,9 +146,16 @@ async function loadTopKeywords() {
             year: state.year || null,
             limit: 20
         });
+        
+        if (!data || data.length === 0) {
+            Charts.showEmpty(containerId, '暂无关键词数据');
+            return;
+        }
+        
         Charts.renderBarChart(containerId, data);
     } catch (error) {
         console.error('加载 Top 关键词失败:', error);
+        Charts.showError(containerId, 'Top 关键词加载失败，请重试');
     } finally {
         Charts.hideLoading(containerId);
     }
@@ -155,9 +170,16 @@ async function loadTrends() {
 
     try {
         const trends = await API.getKeywordTrends([], state.venue || null);
+        
+        if (!trends || trends.length === 0) {
+            Charts.showEmpty(containerId, '暂无趋势数据');
+            return;
+        }
+        
         Charts.renderTrendChart(containerId, trends);
     } catch (error) {
         console.error('加载趋势失败:', error);
+        Charts.showError(containerId, '趋势数据加载失败，请重试');
     } finally {
         Charts.hideLoading(containerId);
     }

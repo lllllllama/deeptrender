@@ -2,8 +2,7 @@ name: Update Keywords
 
 on:
   schedule:
-    # 每天 UTC 0:00（北京时间 8:00）
-    - cron: '0 0 * * *'
+    - cron: '0 0 * * 0'
   workflow_dispatch:
     inputs:
       source:
@@ -33,10 +32,26 @@ on:
         description: 'arXiv 采集天数'
         required: false
         default: '7'
+      ccf_tier:
+        description: 'CCF 等级过滤 (A/B/C/all)'
+        required: false
+        default: 'all'
+        type: choice
+        options:
+          - all
+          - A
+          - B
+          - C
+      export_only:
+        description: '仅导出静态站点（跳过数据采集）'
+        required: false
+        default: false
+        type: boolean
 
 jobs:
   update:
     runs-on: ubuntu-latest
+    timeout-minutes: 60
     
     permissions:
       contents: write
@@ -44,6 +59,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       
       - name: Setup Python
         uses: actions/setup-python@v5
@@ -51,89 +68,253 @@ jobs:
           python-version: '3.11'
           cache: 'pip'
       
+      - name: Cache sentence-transformers models
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/torch/sentence_transformers
+          key: ${{ runner.os }}-sentence-transformers-${{ hashFiles('requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-sentence-transformers-
+      
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
+        timeout-minutes: 10
+      
+      - name: Create required directories
+        run: |
+          mkdir -p data output/figures output/reports
+          touch data/.gitkeep output/figures/.gitkeep output/reports/.gitkeep
+      
+      - name: Verify environment
+        run: |
+          echo "Python version: $(python --version)"
+          echo "Pip version: $(pip --version)"
+          echo "Working directory: $(pwd)"
+          echo "Directory structure:"
+          ls -la
+          echo "Data directory:"
+          ls -la data/ || echo "data/ not found"
+          pip list | grep -E "(openreview|yake|keybert|sentence-transformers|flask)" || echo "Some packages not found"
       
       - name: Run update pipeline
+        if: ${{ github.event.inputs.export_only != 'true' }}
         env:
           OPENREVIEW_USERNAME: ${{ secrets.OPENREVIEW_USERNAME }}
           OPENREVIEW_PASSWORD: ${{ secrets.OPENREVIEW_PASSWORD }}
+          PYTHONUNBUFFERED: "1"
+        timeout-minutes: 45
         run: |
-          # 构建命令参数（三阶段工作流）
+          set -e
+          
           CMD="python src/main.py"
           
-          # 数据源
           SOURCE="${{ github.event.inputs.source }}"
           if [ -z "$SOURCE" ]; then
             SOURCE="all"
           fi
           CMD="$CMD --source $SOURCE"
           
-          # arXiv 天数
           ARXIV_DAYS="${{ github.event.inputs.arxiv_days }}"
           if [ -n "$ARXIV_DAYS" ]; then
             CMD="$CMD --arxiv-days $ARXIV_DAYS"
           fi
           
-          # 会议
           if [ -n "${{ github.event.inputs.venues }}" ]; then
             VENUES=$(echo "${{ github.event.inputs.venues }}" | tr ',' ' ')
             CMD="$CMD --venue $VENUES"
           fi
           
-          # 年份
           if [ -n "${{ github.event.inputs.years }}" ]; then
             YEARS=$(echo "${{ github.event.inputs.years }}" | tr ',' ' ')
             CMD="$CMD --year $YEARS"
           fi
           
-          # 限制
           if [ -n "${{ github.event.inputs.limit }}" ]; then
             CMD="$CMD --limit ${{ github.event.inputs.limit }}"
           fi
           
+          echo "========================================="
           echo "Running: $CMD"
-          $CMD
+          echo "========================================="
+          
+          $CMD || {
+            echo "Pipeline failed with exit code $?"
+            exit 1
+          }
+          
+          echo "========================================="
+          echo "Pipeline completed successfully"
+          echo "========================================="
+      
+      - name: Export static site
+        timeout-minutes: 10
+        run: |
+          set -e
+          
+          echo "========================================="
+          echo "Exporting static site to docs/"
+          echo "========================================="
+          
+          python src/tools/export_static_site.py --output-dir docs --top-keywords 300 || {
+            echo "❌ Static site export failed with exit code $?"
+            exit 1
+          }
+          
+          echo "========================================="
+          echo "Static site export completed"
+          echo "========================================="
+          
+          if [ -d "docs" ]; then
+            echo "📁 docs/ directory contents:"
+            ls -lah docs/
+            echo ""
+            echo "📊 docs/data/ structure:"
+            find docs/data -type f -name "*.json" | head -20
+          fi
+      
+      - name: Generate summary
+        if: always()
+        run: |
+          echo "========================================="
+          echo "Pipeline Summary"
+          echo "========================================="
+          
+          if [ -f "data/keywords.db" ]; then
+            DB_SIZE=$(du -h data/keywords.db | cut -f1)
+            echo "Database size: $DB_SIZE"
+            
+            PAPER_COUNT=$(python -c "
+            import sys
+            sys.path.insert(0, 'src')
+            try:
+                from database import get_repository
+                repo = get_repository()
+                print(repo.get_paper_count())
+            except Exception as e:
+                print('Error:', e)
+            " 2>/dev/null || echo "N/A")
+            
+            echo "Total papers: $PAPER_COUNT"
+          else
+            echo "Database not found"
+          fi
+          
+          if [ -d "output/figures" ]; then
+            FIGURE_COUNT=$(find output/figures -type f -name "*.png" 2>/dev/null | wc -l)
+            echo "Generated figures: $FIGURE_COUNT"
+          fi
+          
+          if [ -d "output/reports" ]; then
+            REPORT_COUNT=$(find output/reports -type f -name "*.md" 2>/dev/null | wc -l)
+            echo "Generated reports: $REPORT_COUNT"
+          fi
+          
+          echo "========================================="
       
       - name: Commit and push changes
+        if: success()
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           
-          # 添加数据库和输出
-          git add data/ output/ -f
+          git add data/ output/ docs/ -f
           
-          # 检查是否有更改
           if git diff --staged --quiet; then
-            echo "No changes to commit"
-          else
-            # 生成提交信息
-            DATE=$(date +%Y-%m-%d)
-            PAPER_COUNT=$(python -c "import sys; sys.path.insert(0,'src'); from database import get_repository; print(get_repository().get_paper_count())" 2>/dev/null || echo "N/A")
-            
-            git commit -m "chore: auto-update keywords [$DATE]" \
-                       -m "📊 Total papers: $PAPER_COUNT"
-            
-            git push
+            echo "✅ No changes to commit"
+            exit 0
           fi
+          
+          DATE=$(date +%Y-%m-%d)
+          PAPER_COUNT=$(python -c "
+          import sys
+          sys.path.insert(0, 'src')
+          try:
+              from database import get_repository
+              print(get_repository().get_paper_count())
+          except:
+              print('N/A')
+          " 2>/dev/null || echo "A")
+          
+          git commit -m "chore: auto-update keywords [$DATE]" \
+                     -m "📊 Total papers: $PAPER_COUNT" \
+                     -m "🤖 Automated by GitHub Actions"
+          
+          git push || {
+            echo "❌ Failed to push changes"
+            exit 1
+          }
+          
+          echo "✅ Changes committed and pushed successfully"
       
       - name: Notify deployed server (optional)
-        if: ${{ vars.DEPLOY_URL != '' }}
+        if: success() && vars.DEPLOY_URL != ''
+        continue-on-error: true
         run: |
-          # 调用部署服务器的刷新 API
+          echo "Notifying deployed server..."
           curl -X POST "${{ vars.DEPLOY_URL }}/api/refresh" \
             --connect-timeout 10 \
             --max-time 30 \
-            -H "Content-Type: application/json" || true
+            -H "Content-Type: application/json" \
+            -d '{"source": "github-actions", "timestamp": "'$(date -u +%Y-%m-%dT%H:%M:%SZ)'"}' || {
+            echo "⚠️ Failed to notify server (non-critical)"
+          }
       
       - name: Upload artifacts
+        if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: reports-${{ github.run_id }}
+          name: deeptrender-data-${{ github.run_number }}
           path: |
             data/keywords.db
             output/reports/
             output/figures/
+            docs/
           retention-days: 30
+          if-no-files-found: warn
+      
+      - name: Create job summary
+        if: always()
+        run: |
+          echo "## 🔬 DeepTrender Update Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Date**: $(date -u +%Y-%m-%d\ %H:%M:%S\ UTC)" >> $GITHUB_STEP_SUMMARY
+          echo "**Trigger**: ${{ github.event_name }}" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          
+          if [ -f "data/keywords.db" ]; then
+            DB_SIZE=$(du -h data/keywords.db | cut -f1)
+            echo "### 📊 Statistics" >> $GITHUB_STEP_SUMMARY
+            echo "- Database size: \`$DB_SIZE\`" >> $GITHUB_STEP_SUMMARY
+            
+            PAPER_COUNT=$(python -c "
+            import sys
+            sys.path.insert(0, 'src')
+            try:
+                from database import get_repository
+                print(get_repository().get_paper_count())
+            except:
+                print('N/A')
+            " 2>/dev/null || echo "N/A")
+            echo "- Total papers: \`$PAPER_COUNT\`" >> $GITHUB_STEP_SUMMARY
+          fi
+          
+          if [ -d "output/figures" ]; then
+            FIGURE_COUNT=$(find output/figures -type f -name "*.png" 2>/dev/null | wc -l)
+            echo "- Generated figures: \`$FIGURE_COUNT\`" >> $GITHUB_STEP_SUMMARY
+          fi
+          
+          if [ -d "output/reports" ]; then
+            REPORT_COUNT=$(find output/reports -type f -name "*.md" 2>/dev/null | wc -l)
+            echo "- Generated reports: \`$REPORT_COUNT\`" >> $GITHUB_STEP_SUMMARY
+          fi
+          
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### ✅ Status" >> $GITHUB_STEP_SUMMARY
+          
+          if [ "${{ job.status }}" == "success" ]; then
+            echo "Pipeline completed successfully! 🎉" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "Pipeline encountered issues. Check logs for details. ⚠️" >> $GITHUB_STEP_SUMMARY
+          fi
