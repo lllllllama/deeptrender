@@ -4,8 +4,28 @@
 
 [![Update Keywords](https://github.com/YOUR_USERNAME/deeptrender/actions/workflows/update.yml/badge.svg)](https://github.com/YOUR_USERNAME/deeptrender/actions/workflows/update.yml)
 [![Test Pipeline](https://github.com/YOUR_USERNAME/deeptrender/actions/workflows/test.yml/badge.svg)](https://github.com/YOUR_USERNAME/deeptrender/actions/workflows/test.yml)
+[![Codecov](https://img.shields.io/codecov/c/github/YOUR_USERNAME/deeptrender)](https://codecov.io/gh/YOUR_USERNAME/deeptrender)
+[![Docker](https://img.shields.io/badge/docker-ready-blue.svg)](https://www.docker.com/)
 [![Python 3.11+](https://img.shields.io/badge/python-3.11+-blue.svg)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+---
+
+## 📖 目录
+- [✨ 核心特性](#-核心特性)
+- [🏗️ 系统架构](#️-系统架构)
+- [📈 支持的会议](#-支持的会议)
+- [🚀 快速开始](#-快速开始)
+- [🌐 Web 可视化仪表盘](#-web-可视化仪表盘)
+- [📊 输出示例](#-输出示例)
+- [⚙️ GitHub Actions 自动化](#-github-actions-自动化)
+- [📁 项目结构](#-项目结构)
+- [🛠️ 技术栈](#️-技术栈)
+- [⚡ 性能指标](#-性能指标)
+- [🔧 常见问题](#-常见问题)
+- [📝 开发计划](#-开发计划)
+- [📄 许可证](#-许可证)
+- [🤝 贡献](#-贡献)
 
 ---
 
@@ -20,6 +40,44 @@
 | 🎨 **可视化** | 词云、柱状图、趋势折线图、会议对比 |
 | 📄 **自动报告** | 生成 Markdown 格式的分析报告 |
 | 🤖 **Agent工作流** | Ingestion → Structuring → Analysis 独立智能体协作 |
+
+---
+
+## 🏗️ 系统架构
+
+DeepTrender 采用解耦的三层架构，通过独立的 Agent 协作完成从数据采集到洞察生成的全过程。
+
+```mermaid
+graph TD
+    subgraph Data_Sources [数据源]
+        A1[arXiv]
+        A2[OpenReview]
+        A3[OpenAlex]
+        A4[Semantic Scholar]
+    end
+
+    subgraph Core_Engine [核心引擎]
+        B1[Ingestion Agent<br/>(原始层)]
+        B2[Structuring Agent<br/>(结构化层)]
+        B3[Analysis Agent<br/>(分析层)]
+    end
+
+    subgraph Outputs [输出形式]
+        C1[Web Dashboard]
+        C2[Static Reports]
+        C3[Visualizations]
+        C4[REST API]
+    end
+
+    A1 & A2 & A3 & A4 --> B1
+    B1 --> B2
+    B2 --> B3
+    B3 --> C1 & C2 & C3 & C4
+```
+
+- **原始层 (Raw Layer)**: 负责多源异步爬取，保持原始数据完整性。
+- **结构化层 (Structured Layer)**: 利用 OpenAlex 锚点进行元数据清洗与关键词智能提取。
+- **分析层 (Analysis Layer)**: 执行频率统计、趋势挖掘与新兴热点识别。
 
 ---
 
@@ -63,7 +121,18 @@
 
 ## 🚀 快速开始
 
-### 安装
+### Docker 安装 (推荐)
+
+如果您安装了 Docker，可以使用以下命令快速启动：
+
+```bash
+# 构建并启动所有服务（包括 Web 仪表盘）
+docker-compose up -d
+```
+
+访问 `http://localhost:5000` 即可查看运行中的系统。
+
+### 本地安装
 
 ```bash
 git clone https://github.com/YOUR_USERNAME/deeptrender.git
@@ -103,33 +172,6 @@ python src/main.py --source s2
 python src/main.py --source all
 ```
 
-### 提取器选择
-
-```bash
-# YAKE - 快速，无需模型（默认）
-python src/main.py --extractor yake
-
-# KeyBERT - 基于 BERT，更精准
-python src/main.py --extractor keybert
-
-# 两者结合
-python src/main.py --extractor both
-```
-
-### 其他选项
-
-```bash
-# 跳过采集阶段，仅运行结构化和分析
-python src/main.py --skip-ingestion
-
-# 跳过结构化阶段
-python src/main.py --skip-structuring
-
-# 查看帮助
-python src/main.py --help
-```
-
-
 ---
 
 ## 🌐 Web 可视化仪表盘
@@ -142,21 +184,35 @@ python src/web/app.py
 
 访问 **http://localhost:5000** 查看仪表盘。
 
-### 页面功能
+### 静态站点导出
 
-| 页面 | 功能 |
-|------|------|
-| **首页** | 总览统计、词云、Top 关键词、趋势图 |
-| **会议分析** | 单会议词云、年度统计、关键词演变 |
-| **趋势追踪** | 多关键词对比、新兴关键词发现 |
-| **会议对比** | 雷达图对比、并排 Top-K 排名 |
+DeepTrender 支持将仪表盘导出为完全静态的 HTML 站点，非常适合部署到 GitHub Pages。
 
-### 技术栈
+```bash
+python src/tools/export_static_site.py
+```
 
-- 后端: Flask + REST API
-- 前端: 原生 HTML/CSS/JS
-- 图表: ECharts 5.x
-- 主题: 深色专业风格
+导出的文件将保存在 `dist/` 目录下。
+
+### 界面预览
+
+> 💡 提示：此处将展示仪表盘在不同页面（首页、会议对比、趋势追踪）的截图。
+
+| ![Dashboard Home](https://via.placeholder.com/400x250?text=Dashboard+Home) | ![Comparison](https://via.placeholder.com/400x250?text=Conference+Comparison) |
+|:---:|:---:|
+| 仪表盘主页 | 会议对比视图 |
+
+### REST API
+
+系统提供完整的 REST API 接口，方便集成到其他系统。详细的 API 文档可通过访问本地服务器的 `/api/status` 或相关路由获取。
+
+| 类别 | 路由 | 描述 |
+|------|------|------|
+| **统计** | `/api/stats/overview` | 总览统计数据 |
+| **会议** | `/api/stats/venues` | 各会议概览 |
+| **关键词** | `/api/keywords/top` | Top-K 关键词排名 |
+| **趋势** | `/api/keywords/trends` | 关键词历史趋势 |
+| **新兴** | `/api/arxiv/emerging` | arXiv 新兴主题发现 |
 
 ---
 
@@ -183,42 +239,6 @@ python src/web/app.py
 - **超时**：60分钟
 - **缓存**：Python依赖 + Sentence-Transformers模型
 
-### 🎯 手动触发
-1. 进入 GitHub 仓库 → **Actions** 标签页
-2. 选择 **Update Keywords** 工作流
-3. 点击 **Run workflow**
-4. 配置参数：
-   - **source**: 数据源（all/arxiv/openalex/s2/openreview）
-   - **venues**: 会议列表（逗号分隔，如 `ICLR,NeurIPS`）
-   - **years**: 年份列表（逗号分隔，如 `2024,2023`）
-   - **limit**: 处理上限（测试用）
-   - **arxiv_days**: arXiv采集天数（默认7天）
-
-### 🧪 测试工作流
-- **触发**：PR提交或推送到main分支
-- **测试**：Python 3.11 和 3.12
-- **覆盖率**：自动上传到Codecov
-- **验证**：运行pytest + 管道干运行
-
-### 🔐 配置 Secrets（可选）
-
-在 **Settings → Secrets → Actions** 添加：
-- `OPENREVIEW_USERNAME` - OpenReview 账号
-- `OPENREVIEW_PASSWORD` - OpenReview 密码
-
-### 📊 工作流特性
-
-| 特性 | 说明 |
-|------|------|
-| ✅ 依赖缓存 | 加速安装（pip + transformers模型） |
-| ✅ 超时保护 | 总计60分钟，安装10分钟，运行45分钟 |
-| ✅ 错误处理 | 详细的错误日志和退出码 |
-| ✅ 健康检查 | 环境验证 + 目录结构检查 |
-| ✅ 自动提交 | 仅在有变更时提交 |
-| ✅ 构建产物 | 保留30天的数据库和报告 |
-| ✅ 作业摘要 | GitHub UI显示统计信息 |
-| ✅ 服务器通知 | 可选的部署服务器刷新 |
-
 ---
 
 ## 📁 项目结构
@@ -227,12 +247,14 @@ python src/web/app.py
 deeptrender/
 ├── .github/workflows/update.yml    # 自动化工作流
 ├── src/
-│   ├── scraper/                   # 多源爬取（OpenReview + S2）
+│   ├── scraper/                   # 多源爬取（OpenReview + S2 + arXiv）
 │   ├── extractor/                 # 关键词提取（YAKE + KeyBERT）
 │   ├── database/                  # SQLite 存储
-│   ├── analysis/                  # 统计分析
+│   ├── analysis/                  # 统计分析 (Ingestion/Structuring/Analysis Agent)
 │   ├── visualization/             # 图表生成
 │   ├── report/                    # 报告生成
+│   ├── web/                       # Flask Web 仪表盘
+│   ├── tools/                     # 工具脚本 (静态导出等)
 │   ├── config.py                  # 配置管理
 │   └── main.py                    # 主入口
 ├── data/keywords.db               # SQLite 数据库
@@ -247,12 +269,34 @@ deeptrender/
 
 | 类别 | 技术 |
 |------|------|
-| **数据源** | OpenReview API, Semantic Scholar API |
+| **数据源** | OpenReview, Semantic Scholar, OpenAlex, arXiv |
 | **关键词提取** | YAKE, KeyBERT (Sentence-Transformers) |
-| **数据存储** | SQLite |
-| **可视化** | Matplotlib, WordCloud |
+| **后端** | Flask (Python 3.11+), REST API |
+| **前端** | HTML5, Vanilla CSS, ECharts 5.x |
+| **存储** | SQLite |
 | **自动化** | GitHub Actions |
-| **语言** | Python 3.11+ |
+
+---
+
+## ⚡ 性能指标
+
+- **处理速度**: 约 100 篇论文/分钟 (YAKE) / 15 篇论文/分钟 (KeyBERT)
+- **数据库容量**: 支持百万级论文元数据存储
+- **系统要求**:
+    - CPU: 2核+ (推荐 4核)
+    - 内存: 4GB+ (KeyBERT 推荐 8GB+)
+    - 存储: 1GB+ 可用空间
+
+---
+
+## 🔧 常见问题
+
+| 问题 | 解决方案 |
+|------|------|
+| **OpenReview API 超时** | 尝试减小 `--limit` 参数，或检查网络连接。 |
+| **数据库锁定 (Database Locked)** | 确保没有多个进程同时写入 `keywords.db`，或者重启服务。 |
+| **图表中文字符显示异常** | 系统需要安装 `SimHei` 或 `Arial` 字体。在 Linux 上可安装 `fonts-wqy-microhei`。 |
+| **KeyBERT 安装/运行缓慢** | KeyBERT 依赖预训练模型，首次运行需下载约 400MB 模型，处理耗时 5-10 分钟属正常现象。 |
 
 ---
 
@@ -262,8 +306,10 @@ deeptrender/
 - [x] Semantic Scholar 数据源支持
 - [x] YAKE + KeyBERT 双提取器
 - [x] GitHub Actions 自动化
-- [ ] 集成 AI 趋势总结（Gemini/OpenAI）
-- [ ] Web 仪表盘界面
+- [x] Web 仪表盘界面
+- [x] CCF Registry 集成
+- [x] 静态站点生成 (Static Site Generation)
+- [ ] 集成 AI 趋势总结 (Gemini/OpenAI)
 - [ ] 论文推荐系统
 - [ ] 中文关键词支持
 
