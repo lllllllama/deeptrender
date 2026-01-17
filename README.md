@@ -48,31 +48,40 @@
 DeepTrender 采用解耦的三层架构，通过独立的 Agent 协作完成从数据采集到洞察生成的全过程。
 
 ```mermaid
-graph TD
-    subgraph Data_Sources [数据源]
+flowchart TD
+    subgraph Data_Sources["数据源"]
         A1[arXiv]
         A2[OpenReview]
         A3[OpenAlex]
         A4[Semantic Scholar]
     end
 
-    subgraph Core_Engine [核心引擎]
-        B1[Ingestion Agent<br/>(原始层)]
-        B2[Structuring Agent<br/>(结构化层)]
-        B3[Analysis Agent<br/>(分析层)]
+    subgraph Core_Engine["核心引擎"]
+        B1[Ingestion Agent]
+        B2[Structuring Agent]
+        B3[Analysis Agent]
     end
 
-    subgraph Outputs [输出形式]
+    subgraph Outputs["输出形式"]
         C1[Web Dashboard]
         C2[Static Reports]
         C3[Visualizations]
         C4[REST API]
     end
 
-    A1 & A2 & A3 & A4 --> B1
+    A1 --> B1
+    A2 --> B1
+    A3 --> B1
+    A4 --> B1
+
     B1 --> B2
     B2 --> B3
-    B3 --> C1 & C2 & C3 & C4
+
+    B3 --> C1
+    B3 --> C2
+    B3 --> C3
+    B3 --> C4
+
 ```
 
 - **原始层 (Raw Layer)**: 负责多源异步爬取，保持原始数据完整性。
