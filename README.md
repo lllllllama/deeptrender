@@ -48,31 +48,37 @@
 DeepTrender 采用解耦的三层架构，通过独立的 Agent 协作完成从数据采集到洞察生成的全过程。
 
 ```mermaid
-graph TD
-    subgraph Data_Sources [数据源]
+flowchart LR
+    subgraph sources["📥 数据源"]
         A1[arXiv]
         A2[OpenReview]
         A3[OpenAlex]
         A4[Semantic Scholar]
     end
 
-    subgraph Core_Engine [核心引擎]
-        B1[Ingestion Agent<br/>(原始层)]
-        B2[Structuring Agent<br/>(结构化层)]
-        B3[Analysis Agent<br/>(分析层)]
+    subgraph engine["🤖 核心引擎"]
+        B1[Ingestion Agent]
+        B2[Structuring Agent]
+        B3[Analysis Agent]
     end
 
-    subgraph Outputs [输出形式]
+    subgraph outputs["📊 输出形式"]
         C1[Web Dashboard]
         C2[Static Reports]
         C3[Visualizations]
         C4[REST API]
     end
 
-    A1 & A2 & A3 & A4 --> B1
+    A1 --> B1
+    A2 --> B1
+    A3 --> B1
+    A4 --> B1
     B1 --> B2
     B2 --> B3
-    B3 --> C1 & C2 & C3 & C4
+    B3 --> C1
+    B3 --> C2
+    B3 --> C3
+    B3 --> C4
 ```
 
 - **原始层 (Raw Layer)**: 负责多源异步爬取，保持原始数据完整性。
@@ -196,11 +202,34 @@ python src/tools/export_static_site.py
 
 ### 界面预览
 
-> 💡 提示：此处将展示仪表盘在不同页面（首页、会议对比、趋势追踪）的截图。
+<table>
+<tr>
+<td width="50%" align="center">
+<img src="https://via.placeholder.com/600x400/1a1a2e/eee?text=Dashboard+Home" alt="Dashboard Home" width="100%"/>
+<br/>
+<b>仪表盘主页</b>
+</td>
+<td width="50%" align="center">
+<img src="https://via.placeholder.com/600x400/1a1a2e/eee?text=Conference+Comparison" alt="Conference Comparison" width="100%"/>
+<br/>
+<b>会议对比视图</b>
+</td>
+</tr>
+<tr>
+<td width="50%" align="center">
+<img src="https://via.placeholder.com/600x400/1a1a2e/eee?text=Trend+Tracking" alt="Trend Tracking" width="100%"/>
+<br/>
+<b>趋势追踪</b>
+</td>
+<td width="50%" align="center">
+<img src="https://via.placeholder.com/600x400/1a1a2e/eee?text=Keyword+Analysis" alt="Keyword Analysis" width="100%"/>
+<br/>
+<b>关键词分析</b>
+</td>
+</tr>
+</table>
 
-| ![Dashboard Home](https://via.placeholder.com/400x250?text=Dashboard+Home) | ![Comparison](https://via.placeholder.com/400x250?text=Conference+Comparison) |
-|:---:|:---:|
-| 仪表盘主页 | 会议对比视图 |
+> 💡 **提示**: 实际部署后，可将上述占位图替换为真实截图。建议截图尺寸为 1200x800 像素。
 
 ### REST API
 
