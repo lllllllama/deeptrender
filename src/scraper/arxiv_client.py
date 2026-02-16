@@ -274,9 +274,11 @@ class ArxivClient:
             # 发布日期
             published = entry.get("published", "")
             year = None
+            published_at = None
             if published:
                 try:
                     year = int(published[:4])
+                    published_at = datetime.fromisoformat(published.replace("Z", "+00:00"))
                 except:
                     pass
             
@@ -322,6 +324,7 @@ class ArxivClient:
                     "pdf_url": pdf_url,
                     "links": [l.get("href") for l in entry.get("links", [])],
                 },
+                published_at=published_at,
                 retrieved_at=datetime.now(),
             )
             

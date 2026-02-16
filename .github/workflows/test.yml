@@ -36,10 +36,29 @@ jobs:
         run: |
           mkdir -p data output/figures output/reports
           touch data/.gitkeep output/figures/.gitkeep output/reports/.gitkeep
+
+      - name: Compile check
+        run: |
+          python -m compileall -q src
       
       - name: Run tests
         run: |
-          pytest tests/ -v --cov=src --cov-report=term-missing --cov-report=xml
+          set -o pipefail
+          pytest tests/ -q --cov=src --cov-report=term-missing --cov-report=xml | tee pytest_output.txt
+
+      - name: Test snapshot output
+        if: always()
+        run: |
+          summary=$(grep -Eo '[0-9]+ passed.*' pytest_output.txt | tail -1 || true)
+          echo "Pytest summary: ${summary:-summary not found}"
+          python - <<'PY'
+          from web.app import create_app
+          app = create_app()
+          client = app.test_client()
+          for ep in ["/api/health", "/api/status"]:
+              resp = client.get(ep)
+              print(f"{ep}={resp.status_code}")
+          PY
       
       - name: Upload coverage
         if: matrix.python-version == '3.11'

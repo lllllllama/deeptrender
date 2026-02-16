@@ -1,4 +1,4 @@
-"""
+﻿"""
 Tests for arXiv timeseries analysis with published_at bucketing
 """
 
@@ -59,7 +59,7 @@ class TestArxivTimeseries:
         """Test month bucketing falls back to retrieved_at when published_at missing"""
         from analysis.arxiv_agent import ArxivAnalysisAgent
         
-        agent = ArxivAngent()
+        agent = ArxivAnalysisAgent()
         
         # Papers without published_at
         papers = [
@@ -174,7 +174,7 @@ class TestArxivTimeseries:
     
     def test_month_bucket_format(self):
         """Test month bucket key format is YYYY-MM"""
-        from analysis.arxiv_agent import ArxivAnaAgent
+        from analysis.arxiv_agent import ArxivAnalysisAgent
         
         agent = ArxivAnalysisAgent()
         
@@ -243,3 +243,4 @@ class TestArxivTimeseries:
         # Both should be in 2024-01 (one from published_at, one from retrieved_at)
         assert "2024-01" in buckets
         assert len(buckets["2024-01"]) == 2
+

@@ -1,6 +1,6 @@
--- ============================================================
+﻿-- ============================================================
 -- DeepTrender Database Schema
--- Three-Layer Architecture: Raw → Structured → Analysis
+-- Three-Layer Architecture: Raw 鈫?Structured 鈫?Analysis
 -- ============================================================
 
 -- ========== RAW LAYER ==========
@@ -20,6 +20,7 @@ CREATE TABLE IF NOT EXISTS raw_papers (
     categories      TEXT,           -- arXiv categories (cs.CV, cs.LG, etc.)
     doi             TEXT,
     raw_json        TEXT,           -- Complete original API response
+    published_at    DATETIME,       -- Source publication timestamp (if available)
     retrieved_at    DATETIME DEFAULT CURRENT_TIMESTAMP,
     UNIQUE(source, source_paper_id)
 );
@@ -32,13 +33,13 @@ CREATE TABLE IF NOT EXISTS venues (
     canonical_name  TEXT UNIQUE NOT NULL,  -- CVPR, ICML, NeurIPS, etc.
     full_name       TEXT,
     domain          TEXT,  -- CV / NLP / ML / RL / Theory / Graphics / General
-    tier            TEXT CHECK(tier IN ('A', 'B', 'C')) DEFAULT 'C',  -- 会议等级
+    tier            TEXT CHECK(tier IN ('A', 'B', 'C')) DEFAULT 'C',  -- 浼氳绛夌骇
     venue_type      TEXT CHECK(venue_type IN ('conference', 'journal', 'workshop')),
     openreview_ids  TEXT,  -- JSON array: ["ICLR.cc/2024/Conference", ...]
     years_available TEXT,  -- JSON array: [2024, 2023, 2022, ...]
     first_year      INTEGER,
     last_year       INTEGER,
-    discovered_at   DATETIME,  -- 首次发现时间
+    discovered_at   DATETIME,  -- 棣栨鍙戠幇鏃堕棿
     created_at      DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 
@@ -119,18 +120,18 @@ CREATE TABLE IF NOT EXISTS scrape_logs (
 -- ========== ANALYSIS CACHE TABLES ==========
 -- Pre-computed analysis results for fast frontend access
 
--- A) 分析元信息（全局）- 用于判断是否需要重跑分析
+-- A) 鍒嗘瀽鍏冧俊鎭紙鍏ㄥ眬锛? 鐢ㄤ簬鍒ゆ柇鏄惁闇€瑕侀噸璺戝垎鏋?
 CREATE TABLE IF NOT EXISTS analysis_meta (
     key TEXT PRIMARY KEY,
     value TEXT,
     updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 
--- B) 会议卡片/总览缓存（前端直读）
+-- B) 浼氳鍗＄墖/鎬昏缂撳瓨锛堝墠绔洿璇伙級
 CREATE TABLE IF NOT EXISTS analysis_venue_summary (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     venue TEXT NOT NULL,
-    year INTEGER DEFAULT 0,  -- 0 表示全量汇总
+    year INTEGER DEFAULT 0,  -- 0 琛ㄧず鍏ㄩ噺姹囨€?
     paper_count INTEGER DEFAULT 0,
     top_keywords_json TEXT,  -- JSON: [{"keyword": "x", "count": 10}, ...]
     emerging_keywords_json TEXT,  -- JSON array
@@ -138,7 +139,7 @@ CREATE TABLE IF NOT EXISTS analysis_venue_summary (
     UNIQUE (venue, year)
 );
 
--- C) 关键词趋势缓存（通用）
+-- C) 鍏抽敭璇嶈秼鍔跨紦瀛橈紙閫氱敤锛?
 CREATE TABLE IF NOT EXISTS analysis_keyword_trends (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     scope TEXT NOT NULL,  -- 'venue' / 'overall' / 'arxiv'
@@ -151,7 +152,7 @@ CREATE TABLE IF NOT EXISTS analysis_keyword_trends (
     UNIQUE (scope, venue, keyword, granularity, bucket)
 );
 
--- D) arXiv 时间序列缓存（专用，快）
+-- D) arXiv 鏃堕棿搴忓垪缂撳瓨锛堜笓鐢紝蹇級
 CREATE TABLE IF NOT EXISTS analysis_arxiv_timeseries (
     category TEXT NOT NULL,  -- cs.LG/cs.CL/cs.CV/cs.AI/ALL
     granularity TEXT NOT NULL,  -- 'year'/'week'/'day'
@@ -162,13 +163,13 @@ CREATE TABLE IF NOT EXISTS analysis_arxiv_timeseries (
     PRIMARY KEY (category, granularity, bucket)
 );
 
--- E) arXiv 新兴主题缓存（新增）
+-- E) arXiv 鏂板叴涓婚缂撳瓨锛堟柊澧烇級
 CREATE TABLE IF NOT EXISTS analysis_arxiv_emerging (
     category TEXT NOT NULL,
     keyword TEXT NOT NULL,
-    growth_rate REAL DEFAULT 0.0,  -- 增长率（环比/同比）
-    first_seen TEXT,  -- 首次出现时间
-    recent_count INTEGER DEFAULT 0,  -- 最近出现次数
+    growth_rate REAL DEFAULT 0.0,  -- 澧為暱鐜囷紙鐜瘮/鍚屾瘮锛?
+    first_seen TEXT,  -- 棣栨鍑虹幇鏃堕棿
+    recent_count INTEGER DEFAULT 0,  -- 鏈€杩戝嚭鐜版鏁?
     trend TEXT CHECK(trend IN ('rising', 'stable', 'declining')) DEFAULT 'stable',
     updated_at DATETIME DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (category, keyword)
@@ -182,23 +183,19 @@ CREATE TABLE IF NOT EXISTS analysis_arxiv_emerging (
 CREATE INDEX IF NOT EXISTS idx_raw_papers_source ON raw_papers(source, source_paper_id);
 CREATE INDEX IF NOT EXISTS idx_raw_papers_year ON raw_papers(year);
 CREATE INDEX IF NOT EXISTS idx_raw_papers_categories ON raw_papers(categories);
-CREATE INDEX IF NOT EXISTS idx_raw_papers_retrieved_at ON raw_papers(retrieved_at DESC);  -- 新增：时间序列查询优化
-
+CREATE INDEX IF NOT EXISTS idx_raw_papers_retrieved_at ON raw_papers(retrieved_at DESC);  -- 鏂板锛氭椂闂村簭鍒楁煡璇紭鍖?
 -- Structured Layer indexes
 CREATE INDEX IF NOT EXISTS idx_papers_venue_year ON papers(venue_id, year);
-CREATE INDEX IF NOT EXISTS idx_papers_canonical_title ON papers(LOWER(canonical_title));  -- 新增：标题去重优化
-CREATE INDEX IF NOT EXISTS idx_papers_domain ON papers(domain);
+CREATE INDEX IF NOT EXISTS idx_papers_canonical_title ON papers(LOWER(canonical_title));  -- 鏂板锛氭爣棰樺幓閲嶄紭鍖?CREATE INDEX IF NOT EXISTS idx_papers_domain ON papers(domain);
 CREATE INDEX IF NOT EXISTS idx_papers_quality ON papers(quality_flag);
 CREATE INDEX IF NOT EXISTS idx_paper_sources_paper ON paper_sources(paper_id);
 CREATE INDEX IF NOT EXISTS idx_paper_sources_raw ON paper_sources(raw_id);
-CREATE INDEX IF NOT EXISTS idx_venues_domain_tier ON venues(domain, tier);  -- 新增：会议查询优化
-
+CREATE INDEX IF NOT EXISTS idx_venues_domain_tier ON venues(domain, tier);  -- 鏂板锛氫細璁煡璇紭鍖?
 -- Analysis Layer indexes
 CREATE INDEX IF NOT EXISTS idx_paper_keywords_paper ON paper_keywords(paper_id);
 CREATE INDEX IF NOT EXISTS idx_paper_keywords_keyword ON paper_keywords(keyword);
 CREATE INDEX IF NOT EXISTS idx_paper_keywords_method ON paper_keywords(method);
-CREATE INDEX IF NOT EXISTS idx_paper_keywords_keyword_paper ON paper_keywords(keyword, paper_id);  -- 新增：复合索引优化聚合查询
-CREATE INDEX IF NOT EXISTS idx_trend_cache_keyword_year ON trend_cache(keyword, year);
+CREATE INDEX IF NOT EXISTS idx_paper_keywords_keyword_paper ON paper_keywords(keyword, paper_id);  -- 鏂板锛氬鍚堢储寮曚紭鍖栬仛鍚堟煡璇?CREATE INDEX IF NOT EXISTS idx_trend_cache_keyword_year ON trend_cache(keyword, year);
 
 -- Operational indexes
 CREATE INDEX IF NOT EXISTS idx_ingestion_logs_source ON ingestion_logs(source, completed_at);
@@ -209,3 +206,4 @@ CREATE INDEX IF NOT EXISTS idx_analysis_venue_summary_venue ON analysis_venue_su
 CREATE INDEX IF NOT EXISTS idx_analysis_keyword_trends_scope ON analysis_keyword_trends(scope, granularity);
 CREATE INDEX IF NOT EXISTS idx_analysis_keyword_trends_keyword ON analysis_keyword_trends(keyword);
 CREATE INDEX IF NOT EXISTS idx_analysis_arxiv_category ON analysis_arxiv_timeseries(category, granularity);
+

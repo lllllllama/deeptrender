@@ -1,16 +1,10 @@
-"""
-数据模型定义
-
-包含三层架构的数据模型：
-- Raw Layer: RawPaper
-- Structured Layer: Paper, Venue
-- Analysis Layer: Keyword, TrendData
+﻿"""
+Data models for three-layer architecture.
 """
 
 from dataclasses import dataclass, field
 from typing import List, Optional, Dict, Any
 from datetime import datetime
-import json
 
 
 # ============================================================
@@ -19,28 +13,25 @@ import json
 
 @dataclass
 class RawPaper:
-    """
-    原始论文数据（Raw Layer）
-    
-    保存从各数据源获取的原始数据，不做任何解释或标准化。
-    """
+    """Raw paper payload from upstream sources."""
+
     source: str  # arxiv / openalex / s2 / openreview
     source_paper_id: str
     title: str
     abstract: str = ""
     authors: List[str] = field(default_factory=list)
     year: Optional[int] = None
-    venue_raw: Optional[str] = None  # 原始 venue 字符串
+    venue_raw: Optional[str] = None
     journal_ref: Optional[str] = None
-    comments: Optional[str] = None  # arXiv comments（用于会议识别）
-    categories: Optional[str] = None  # arXiv categories
+    comments: Optional[str] = None
+    categories: Optional[str] = None
     doi: Optional[str] = None
-    raw_json: Optional[Dict[str, Any]] = None  # 完整原始响应
+    raw_json: Optional[Dict[str, Any]] = None
+    published_at: Optional[datetime] = None
     retrieved_at: datetime = field(default_factory=datetime.now)
-    raw_id: Optional[int] = None  # 数据库 ID
-    
+    raw_id: Optional[int] = None
+
     def to_dict(self) -> dict:
-        """转换为字典"""
         return {
             "source": self.source,
             "source_paper_id": self.source_paper_id,
@@ -54,16 +45,20 @@ class RawPaper:
             "categories": self.categories,
             "doi": self.doi,
             "raw_json": self.raw_json,
+            "published_at": self.published_at.isoformat() if self.published_at else None,
             "retrieved_at": self.retrieved_at.isoformat() if self.retrieved_at else None,
         }
-    
+
     @classmethod
     def from_dict(cls, data: dict) -> "RawPaper":
-        """从字典创建"""
         retrieved_at = data.get("retrieved_at")
         if isinstance(retrieved_at, str):
             retrieved_at = datetime.fromisoformat(retrieved_at)
-        
+
+        published_at = data.get("published_at")
+        if isinstance(published_at, str):
+            published_at = datetime.fromisoformat(published_at)
+
         return cls(
             source=data["source"],
             source_paper_id=data["source_paper_id"],
@@ -77,6 +72,7 @@ class RawPaper:
             categories=data.get("categories"),
             doi=data.get("doi"),
             raw_json=data.get("raw_json"),
+            published_at=published_at,
             retrieved_at=retrieved_at or datetime.now(),
             raw_id=data.get("raw_id"),
         )
@@ -88,52 +84,46 @@ class RawPaper:
 
 @dataclass
 class Venue:
-    """
-    会议/期刊（Structured Layer）
-    
-    标准化的会议或期刊信息。
-    """
-    canonical_name: str  # CVPR, ICML, NeurIPS 等
+    """Canonical venue model."""
+
+    canonical_name: str
     full_name: Optional[str] = None
-    domain: Optional[str] = None  # CV / NLP / ML / RL / AI
-    venue_type: Optional[str] = None  # conference / journal / workshop
+    domain: Optional[str] = None
+    venue_type: Optional[str] = None
     first_year: Optional[int] = None
     last_year: Optional[int] = None
-    venue_id: Optional[int] = None  # 数据库 ID
+    venue_id: Optional[int] = None
 
 
 @dataclass
 class Paper:
-    """
-    论文数据模型（Structured Layer）
-    
-    标准化、去重后的论文数据。
-    """
+    """Structured/deduplicated paper model."""
+
     canonical_title: str
     abstract: str = ""
     authors: List[str] = field(default_factory=list)
     year: Optional[int] = None
     venue_id: Optional[int] = None
-    venue_type: str = "unknown"  # conference / journal / preprint / unknown
-    domain: Optional[str] = None  # CV / NLP / ML / RL / AI
-    quality_flag: str = "unknown"  # accepted / unknown / filtered
+    venue_type: str = "unknown"
+    domain: Optional[str] = None
+    quality_flag: str = "unknown"
     doi: Optional[str] = None
     url: Optional[str] = None
     pdf_url: Optional[str] = None
-    paper_id: Optional[int] = None  # 数据库 ID
+    paper_id: Optional[int] = None
     created_at: datetime = field(default_factory=datetime.now)
-    
-    # 关联的原始数据源
-    source_ids: List[int] = field(default_factory=list)  # raw_paper IDs
-    
-    # 运行时填充的字段（不存储）
+
+    source_ids: List[int] = field(default_factory=list)
     keywords: List[str] = field(default_factory=list)
     extracted_keywords: List[str] = field(default_factory=list)
-    venue_name: Optional[str] = None  # 从 venue_id 解析
-    
+    venue_name: Optional[str] = None
+    legacy_id: Optional[str] = None
+
     def to_dict(self) -> dict:
-        """转换为字典"""
         return {
+            "id": self.id,
+            "title": self.title,
+            "venue": self.venue,
             "paper_id": self.paper_id,
             "canonical_title": self.canonical_title,
             "abstract": self.abstract,
@@ -151,14 +141,13 @@ class Paper:
             "extracted_keywords": self.extracted_keywords,
             "venue_name": self.venue_name,
         }
-    
+
     @classmethod
     def from_dict(cls, data: dict) -> "Paper":
-        """从字典创建"""
         created_at = data.get("created_at")
         if isinstance(created_at, str):
             created_at = datetime.fromisoformat(created_at)
-        
+
         return cls(
             canonical_title=data.get("canonical_title") or data.get("title", ""),
             abstract=data.get("abstract", ""),
@@ -175,42 +164,37 @@ class Paper:
             created_at=created_at or datetime.now(),
             keywords=data.get("keywords", []),
             extracted_keywords=data.get("extracted_keywords", []),
-            venue_name=data.get("venue_name"),
+            venue_name=data.get("venue_name") or data.get("venue"),
+            legacy_id=data.get("id"),
         )
-    
+
     @property
     def title(self) -> str:
-        """兼容旧接口"""
         return self.canonical_title
-    
+
     @property
     def venue(self) -> str:
-        """兼容旧接口"""
         return self.venue_name or ""
-    
+
     @property
     def id(self) -> str:
-        """兼容旧接口"""
+        if self.legacy_id:
+            return self.legacy_id
         return str(self.paper_id) if self.paper_id else ""
-    
+
     @property
     def text_for_extraction(self) -> str:
-        """用于关键词提取的文本"""
         return f"{self.canonical_title}. {self.abstract}"
-    
+
     @property
     def all_keywords(self) -> List[str]:
-        """所有关键词（作者提交 + 自动提取）"""
         return list(set(self.keywords + self.extracted_keywords))
 
 
 @dataclass
 class PaperSource:
-    """
-    论文-原始数据源关联（Structured Layer）
-    
-    记录结构化论文与原始数据的对应关系。
-    """
+    """Link between structured paper and raw payload."""
+
     paper_id: int
     raw_id: int
     source: str
@@ -224,41 +208,30 @@ class PaperSource:
 
 @dataclass
 class PaperKeyword:
-    """
-    论文关键词（Analysis Layer）
-    
-    分析阶段提取的关键词。
-    """
+    """Extracted keyword per paper."""
+
     paper_id: int
     keyword: str
-    method: str  # yake / keybert / llm / author
+    method: str
     score: float = 1.0
     id: Optional[int] = None
 
 
 @dataclass
 class TrendData:
-    """趋势数据"""
+    """Trend series model."""
+
     keyword: str
     years: List[int] = field(default_factory=list)
     counts: List[int] = field(default_factory=list)
     venue_id: Optional[int] = None
-    
+
     @property
     def growth_rate(self) -> float:
-        """计算增长率"""
         if len(self.counts) < 2 or self.counts[0] == 0:
             return 0.0
         return (self.counts[-1] - self.counts[0]) / self.counts[0]
 
-
-# ============================================================
-# LEGACY COMPATIBILITY
-# ============================================================
-
-# 保持向后兼容的别名
-# 旧代码中使用的 Paper 类现在指向新的 Paper 类
-# 如果需要创建用于旧接口的对象，可以使用以下函数
 
 def create_legacy_paper(
     id: str,
@@ -272,11 +245,8 @@ def create_legacy_paper(
     extracted_keywords: List[str] = None,
     pdf_url: str = None,
 ) -> Paper:
-    """
-    创建兼容旧接口的 Paper 对象
-    
-    用于迁移期间保持与旧代码的兼容性。
-    """
+    """Create a Paper with legacy id/title/venue semantics."""
+
     return Paper(
         canonical_title=title,
         abstract=abstract,
@@ -288,4 +258,5 @@ def create_legacy_paper(
         keywords=keywords or [],
         extracted_keywords=extracted_keywords or [],
         venue_name=venue,
+        legacy_id=id,
     )

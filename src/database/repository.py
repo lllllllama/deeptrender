@@ -1,4 +1,4 @@
-"""
+﻿"""
 数据库操作仓库
 
 三层架构的数据库操作：
@@ -64,6 +64,20 @@ class BaseRepository:
 
 class RawRepository(BaseRepository):
     """原始数据层仓库"""
+
+    def __init__(self, db_path: Path = None):
+        super().__init__(db_path)
+        self._ensure_raw_schema_columns()
+
+    def _ensure_raw_schema_columns(self):
+        """Add newly introduced columns for existing DB files."""
+        with self._get_connection() as conn:
+            cursor = conn.cursor()
+            cursor.execute("PRAGMA table_info(raw_papers)")
+            columns = {row["name"] for row in cursor.fetchall()}
+            if "published_at" not in columns:
+                cursor.execute("ALTER TABLE raw_papers ADD COLUMN published_at DATETIME")
+            conn.commit()
     
     def save_raw_paper(self, paper: RawPaper) -> int:
         """
@@ -77,8 +91,8 @@ class RawRepository(BaseRepository):
             cursor.execute("""
                 INSERT OR REPLACE INTO raw_papers 
                 (source, source_paper_id, title, abstract, authors, year,
-                 venue_raw, journal_ref, comments, categories, doi, raw_json, retrieved_at)
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                 venue_raw, journal_ref, comments, categories, doi, raw_json, published_at, retrieved_at)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
             """, (
                 paper.source,
                 paper.source_paper_id,
@@ -92,6 +106,7 @@ class RawRepository(BaseRepository):
                 paper.categories,
                 paper.doi,
                 json.dumps(paper.raw_json) if paper.raw_json else None,
+                paper.published_at.isoformat() if getattr(paper, "published_at", None) else None,
                 datetime.now().isoformat(),
             ))
             conn.commit()
@@ -170,6 +185,10 @@ class RawRepository(BaseRepository):
         raw_json = row["raw_json"]
         if isinstance(raw_json, str):
             raw_json = json.loads(raw_json)
+
+        published_at = row["published_at"] if "published_at" in row.keys() else None
+        if isinstance(published_at, str):
+            published_at = datetime.fromisoformat(published_at)
         
         retrieved_at = row["retrieved_at"]
         if isinstance(retrieved_at, str):
@@ -189,6 +208,7 @@ class RawRepository(BaseRepository):
             categories=row["categories"],
             doi=row["doi"],
             raw_json=raw_json,
+            published_at=published_at,
             retrieved_at=retrieved_at or datetime.now(),
         )
 
@@ -386,9 +406,9 @@ class StructuredRepository(BaseRepository):
             last_year=row["last_year"],
         )
         # 添加新字段
-        venue.tier = row.get("tier", "C")
-        venue.openreview_ids = json.loads(row.get("openreview_ids") or "[]")
-        venue.years_available = json.loads(row.get("years_available") or "[]")
+        venue.tier = row["tier"] if "tier" in row.keys() and row["tier"] else "C"
+        venue.openreview_ids = json.loads(row["openreview_ids"] or "[]") if "openreview_ids" in row.keys() else []
+        venue.years_available = json.loads(row["years_available"] or "[]") if "years_available" in row.keys() else []
         return venue
     
     # ========== Paper 操作 ==========
@@ -1087,6 +1107,9 @@ class DatabaseRepository(BaseRepository):
     def save_paper(self, paper: Paper) -> bool:
         """保存论文（兼容旧接口）"""
         try:
+            if not paper.venue_name and getattr(paper, "venue", None):
+                paper.venue_name = paper.venue
+
             # 处理 venue
             venue_id = None
             if paper.venue_name:
@@ -1100,8 +1123,13 @@ class DatabaseRepository(BaseRepository):
                     venue_id = venue.venue_id
                 paper.venue_id = venue_id
             
-            # 保存论文
-            paper_id = self.structured.save_paper(paper)
+            # Upsert-like behavior based on normalized title/year
+            paper_id = self.structured.find_paper_by_title(
+                paper.canonical_title.lower(),
+                paper.year,
+            )
+            if not paper_id:
+                paper_id = self.structured.save_paper(paper)
             paper.paper_id = paper_id
             
             # 保存关键词
@@ -1125,6 +1153,11 @@ class DatabaseRepository(BaseRepository):
     
     def get_paper(self, paper_id: int) -> Optional[Paper]:
         """获取论文"""
+        if isinstance(paper_id, str):
+            if not paper_id.isdigit():
+                return None
+            paper_id = int(paper_id)
+
         paper = self.structured.get_paper(paper_id)
         if paper:
             # 加载关键词
@@ -1132,6 +1165,13 @@ class DatabaseRepository(BaseRepository):
             paper.keywords = [k.keyword for k in keywords if k.method == "author"]
             paper.extracted_keywords = [k.keyword for k in keywords if k.method != "author"]
         return paper
+
+    def get_papers_by_venue_year(self, venue: str, year: int) -> List[Paper]:
+        """Compatibility wrapper accepting venue canonical name."""
+        v = self.structured.get_venue_by_name(venue)
+        if not v:
+            return []
+        return self.structured.get_papers_by_venue_year(v.venue_id, year)
     
     def get_paper_count(self, venue: str = None, year: int = None) -> int:
         """获取论文数量（兼容旧接口）"""

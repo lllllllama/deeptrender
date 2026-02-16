@@ -1,29 +1,25 @@
-"""
-测试夹具 (Fixtures)
-
-提供测试用共享资源和数据。
-"""
+﻿"""Test fixtures."""
 
 import pytest
 import tempfile
-import sqlite3
 from pathlib import Path
-from datetime import datetime
 
 import sys
 sys.path.insert(0, str(Path(__file__).parent.parent / "src"))
 
-from scraper.models import Paper
+from scraper.models import create_legacy_paper
 from database.repository import DatabaseRepository
 
 
 @pytest.fixture
 def sample_paper():
-    """创建测试用 Paper 对象"""
-    return Paper(
+    return create_legacy_paper(
         id="test_paper_001",
         title="Deep Learning for Natural Language Processing",
-        abstract="This paper presents a comprehensive study of deep learning methods for NLP tasks including sentiment analysis, machine translation, and question answering.",
+        abstract=(
+            "This paper presents a comprehensive study of deep learning methods for "
+            "NLP tasks including sentiment analysis, machine translation, and question answering."
+        ),
         authors=["Alice Smith", "Bob Johnson"],
         venue="ICLR",
         year=2024,
@@ -36,9 +32,8 @@ def sample_paper():
 
 @pytest.fixture
 def sample_papers():
-    """创建多个测试用 Paper 对象"""
     return [
-        Paper(
+        create_legacy_paper(
             id="paper_001",
             title="Attention Is All You Need",
             abstract="We propose a new architecture called Transformer based solely on attention mechanisms.",
@@ -48,7 +43,7 @@ def sample_papers():
             url="https://example.com/1",
             keywords=["transformer", "attention"],
         ),
-        Paper(
+        create_legacy_paper(
             id="paper_002",
             title="BERT: Pre-training of Deep Bidirectional Transformers",
             abstract="We introduce BERT, a language representation model.",
@@ -58,7 +53,7 @@ def sample_papers():
             url="https://example.com/2",
             keywords=["bert", "pre-training", "transformer"],
         ),
-        Paper(
+        create_legacy_paper(
             id="paper_003",
             title="GPT-4 Technical Report",
             abstract="We report the development of GPT-4, a large multimodal model.",
@@ -73,20 +68,17 @@ def sample_papers():
 
 @pytest.fixture
 def temp_db_path():
-    """创建临时数据库路径"""
     with tempfile.NamedTemporaryFile(suffix=".db", delete=False) as f:
         yield Path(f.name)
 
 
 @pytest.fixture
 def repo(temp_db_path):
-    """创建测试用 DatabaseRepository 实例"""
     return DatabaseRepository(db_path=temp_db_path)
 
 
 @pytest.fixture
 def repo_with_data(repo, sample_papers):
-    """创建带有示例数据的 DatabaseRepository"""
     for paper in sample_papers:
         paper.extracted_keywords = ["machine learning", "neural network"]
         repo.save_paper(paper)
@@ -94,9 +86,16 @@ def repo_with_data(repo, sample_papers):
 
 
 @pytest.fixture
-def flask_app():
-    """创建 Flask 测试应用"""
+def flask_app(temp_db_path):
     from web.app import create_app
+    from database import repository as repo_module
+
+    repo_module._repository = None
+    repo_module._raw_repository = None
+    repo_module._structured_repository = None
+    repo_module._analysis_repository = None
+    repo_module.get_repository(db_path=temp_db_path)
+
     app = create_app()
     app.config["TESTING"] = True
     return app
@@ -104,5 +103,4 @@ def flask_app():
 
 @pytest.fixture
 def test_client(flask_app):
-    """创建 Flask 测试客户端"""
     return flask_app.test_client()
