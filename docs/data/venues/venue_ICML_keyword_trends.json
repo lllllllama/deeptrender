@@ -1,0 +1,554 @@
+{
+  "vision language models": [
+    {
+      "year": 2025,
+      "count": 0,
+      "rank": 0
+    },
+    {
+      "year": 2026,
+      "count": 2,
+      "rank": 1
+    }
+  ],
+  "robustness": [
+    {
+      "year": 2025,
+      "count": 1,
+      "rank": 1
+    },
+    {
+      "year": 2026,
+      "count": 0,
+      "rank": 0
+    }
+  ],
+  "natural corruptions": [
+    {
+      "year": 2025,
+      "count": 1,
+      "rank": 2
+    },
+    {
+      "year": 2026,
+      "count": 0,
+      "rank": 0
+    }
+  ],
+  "natural": [
+    {
+      "year": 2025,
+      "count": 1,
+      "rank": 3
+    },
+    {
+      "year": 2026,
+      "count": 0,
+      "rank": 0
+    }
+  ],
+  "impact of compression": [
+    {
+      "year": 2025,
+      "count": 1,
+      "rank": 4
+    },
+    {
+      "year": 2026,
+      "count": 0,
+      "rank": 0
+    }
+  ],
+  "impact": [
+    {
+      "year": 2025,
+      "count": 1,
+      "rank": 5
+    },
+    {
+      "year": 2026,
+      "count": 0,
+      "rank": 0
+    }
+  ],
+  "evaluating the impact": [
+    {
+      "year": 2025,
+      "count": 1,
+      "rank": 6
+    },
+    {
+      "year": 2026,
+      "count": 0,
+      "rank": 0
+    }
+  ],
+  "computer vision systems": [
+    {
+      "year": 2025,
+      "count": 1,
+      "rank": 7
+    },
+    {
+      "year": 2026,
+      "count": 0,
+      "rank": 0
+    }
+  ],
+  "compression": [
+    {
+      "year": 2025,
+      "count": 1,
+      "rank": 8
+    },
+    {
+      "year": 2026,
+      "count": 0,
+      "rank": 0
+    }
+  ],
+  "cnns under natural": [
+    {
+      "year": 2025,
+      "count": 1,
+      "rank": 9
+    },
+    {
+      "year": 2026,
+      "count": 0,
+      "rank": 0
+    }
+  ],
+  "visual data corrects": [
+    {
+      "year": 2025,
+      "count": 0,
+      "rank": 0
+    },
+    {
+      "year": 2026,
+      "count": 1,
+      "rank": 2
+    }
+  ],
+  "visual data": [
+    {
+      "year": 2025,
+      "count": 0,
+      "rank": 0
+    },
+    {
+      "year": 2026,
+      "count": 1,
+      "rank": 3
+    }
+  ],
+  "vision language": [
+    {
+      "year": 2025,
+      "count": 0,
+      "rank": 0
+    },
+    {
+      "year": 2026,
+      "count": 1,
+      "rank": 4
+    }
+  ],
+  "unlearning methods remains": [
+    {
+      "year": 2025,
+      "count": 0,
+      "rank": 0
+    },
+    {
+      "year": 2026,
+      "count": 1,
+      "rank": 5
+    }
+  ],
+  "unlearning methods": [
+    {
+      "year": 2025,
+      "count": 0,
+      "rank": 0
+    },
+    {
+      "year": 2026,
+      "count": 1,
+      "rank": 6
+    }
+  ],
+  "unlearning": [
+    {
+      "year": 2025,
+      "count": 0,
+      "rank": 0
+    },
+    {
+      "year": 2026,
+      "count": 1,
+      "rank": 7
+    }
+  ],
+  "steepest descent": [
+    {
+      "year": 2025,
+      "count": 0,
+      "rank": 0
+    },
+    {
+      "year": 2026,
+      "count": 1,
+      "rank": 8
+    }
+  ],
+  "smooth homogeneous neural": [
+    {
+      "year": 2025,
+      "count": 0,
+      "rank": 0
+    },
+    {
+      "year": 2026,
+      "count": 1,
+      "rank": 9
+    }
+  ],
+  "smooth homogeneous models": [
+    {
+      "year": 2025,
+      "count": 0,
+      "rank": 0
+    },
+    {
+      "year": 2026,
+      "count": 1,
+      "rank": 10
+    }
+  ],
+  "smooth homogeneous": [
+    {
+      "year": 2025,
+      "count": 0,
+      "rank": 0
+    },
+    {
+      "year": 2026,
+      "count": 1,
+      "rank": 11
+    }
+  ],
+  "neural networks": [
+    {
+      "year": 2025,
+      "count": 0,
+      "rank": 0
+    },
+    {
+      "year": 2026,
+      "count": 1,
+      "rank": 12
+    }
+  ],
+  "negation handling": [
+    {
+      "year": 2025,
+      "count": 0,
+      "rank": 0
+    },
+    {
+      "year": 2026,
+      "count": 1,
+      "rank": 13
+    }
+  ],
+  "negation": [
+    {
+      "year": 2025,
+      "count": 0,
+      "rank": 0
+    },
+    {
+      "year": 2026,
+      "count": 1,
+      "rank": 14
+    }
+  ],
+  "medical vision language models": [
+    {
+      "year": 2025,
+      "count": 0,
+      "rank": 0
+    },
+    {
+      "year": 2026,
+      "count": 1,
+      "rank": 15
+    }
+  ],
+  "medical": [
+    {
+      "year": 2025,
+      "count": 0,
+      "rank": 0
+    },
+    {
+      "year": 2026,
+      "count": 1,
+      "rank": 16
+    }
+  ],
+  "machine unlearning": [
+    {
+      "year": 2025,
+      "count": 0,
+      "rank": 0
+    },
+    {
+      "year": 2026,
+      "count": 1,
+      "rank": 17
+    }
+  ],
+  "layer specific fine tuning": [
+    {
+      "year": 2025,
+      "count": 0,
+      "rank": 0
+    },
+    {
+      "year": 2026,
+      "count": 1,
+      "rank": 18
+    }
+  ],
+  "large language model": [
+    {
+      "year": 2025,
+      "count": 0,
+      "rank": 0
+    },
+    {
+      "year": 2026,
+      "count": 1,
+      "rank": 19
+    }
+  ],
+  "language models": [
+    {
+      "year": 2025,
+      "count": 0,
+      "rank": 0
+    },
+    {
+      "year": 2026,
+      "count": 1,
+      "rank": 20
+    }
+  ],
+  "improved negation handling": [
+    {
+      "year": 2025,
+      "count": 0,
+      "rank": 0
+    },
+    {
+      "year": 2026,
+      "count": 1,
+      "rank": 21
+    }
+  ],
+  "implicit bias": [
+    {
+      "year": 2025,
+      "count": 0,
+      "rank": 0
+    },
+    {
+      "year": 2026,
+      "count": 1,
+      "rank": 22
+    }
+  ],
+  "homogeneous neural networks": [
+    {
+      "year": 2025,
+      "count": 0,
+      "rank": 0
+    },
+    {
+      "year": 2026,
+      "count": 1,
+      "rank": 23
+    }
+  ],
+  "homogeneous neural": [
+    {
+      "year": 2025,
+      "count": 0,
+      "rank": 0
+    },
+    {
+      "year": 2026,
+      "count": 1,
+      "rank": 24
+    }
+  ],
+  "homogeneous models": [
+    {
+      "year": 2025,
+      "count": 0,
+      "rank": 0
+    },
+    {
+      "year": 2026,
+      "count": 1,
+      "rank": 25
+    }
+  ],
+  "homogeneous": [
+    {
+      "year": 2025,
+      "count": 0,
+      "rank": 0
+    },
+    {
+      "year": 2026,
+      "count": 1,
+      "rank": 26
+    }
+  ],
+  "handling in medical": [
+    {
+      "year": 2025,
+      "count": 0,
+      "rank": 0
+    },
+    {
+      "year": 2026,
+      "count": 1,
+      "rank": 27
+    }
+  ],
+  "handling": [
+    {
+      "year": 2025,
+      "count": 0,
+      "rank": 0
+    },
+    {
+      "year": 2026,
+      "count": 1,
+      "rank": 28
+    }
+  ],
+  "extend large language": [
+    {
+      "year": 2025,
+      "count": 0,
+      "rank": 0
+    },
+    {
+      "year": 2026,
+      "count": 1,
+      "rank": 29
+    }
+  ],
+  "evaluating machine unlearning": [
+    {
+      "year": 2025,
+      "count": 0,
+      "rank": 0
+    },
+    {
+      "year": 2026,
+      "count": 1,
+      "rank": 30
+    }
+  ],
+  "easy data unlearning": [
+    {
+      "year": 2025,
+      "count": 0,
+      "rank": 0
+    },
+    {
+      "year": 2026,
+      "count": 1,
+      "rank": 31
+    }
+  ],
+  "easy data": [
+    {
+      "year": 2025,
+      "count": 0,
+      "rank": 0
+    },
+    {
+      "year": 2026,
+      "count": 1,
+      "rank": 32
+    }
+  ],
+  "data unlearning bench": [
+    {
+      "year": 2025,
+      "count": 0,
+      "rank": 0
+    },
+    {
+      "year": 2026,
+      "count": 1,
+      "rank": 33
+    }
+  ],
+  "data corrects binding": [
+    {
+      "year": 2025,
+      "count": 0,
+      "rank": 0
+    },
+    {
+      "year": 2026,
+      "count": 1,
+      "rank": 34
+    }
+  ],
+  "data corrects": [
+    {
+      "year": 2025,
+      "count": 0,
+      "rank": 0
+    },
+    {
+      "year": 2026,
+      "count": 1,
+      "rank": 35
+    }
+  ],
+  "corrects binding shortcuts": [
+    {
+      "year": 2025,
+      "count": 0,
+      "rank": 0
+    },
+    {
+      "year": 2026,
+      "count": 1,
+      "rank": 36
+    }
+  ],
+  "bench": [
+    {
+      "year": 2025,
+      "count": 0,
+      "rank": 0
+    },
+    {
+      "year": 2026,
+      "count": 1,
+      "rank": 37
+    }
+  ]
+}

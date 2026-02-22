@@ -1,0 +1,236 @@
+{
+  "2025": [
+    {
+      "keyword": "robustness",
+      "count": 1,
+      "rank": 1
+    },
+    {
+      "keyword": "natural corruptions",
+      "count": 1,
+      "rank": 2
+    },
+    {
+      "keyword": "natural",
+      "count": 1,
+      "rank": 3
+    },
+    {
+      "keyword": "impact of compression",
+      "count": 1,
+      "rank": 4
+    },
+    {
+      "keyword": "impact",
+      "count": 1,
+      "rank": 5
+    },
+    {
+      "keyword": "evaluating the impact",
+      "count": 1,
+      "rank": 6
+    },
+    {
+      "keyword": "computer vision systems",
+      "count": 1,
+      "rank": 7
+    },
+    {
+      "keyword": "compression",
+      "count": 1,
+      "rank": 8
+    },
+    {
+      "keyword": "cnns under natural",
+      "count": 1,
+      "rank": 9
+    }
+  ],
+  "2026": [
+    {
+      "keyword": "vision language models",
+      "count": 2,
+      "rank": 1
+    },
+    {
+      "keyword": "visual data corrects",
+      "count": 1,
+      "rank": 2
+    },
+    {
+      "keyword": "visual data",
+      "count": 1,
+      "rank": 3
+    },
+    {
+      "keyword": "vision language",
+      "count": 1,
+      "rank": 4
+    },
+    {
+      "keyword": "unlearning methods remains",
+      "count": 1,
+      "rank": 5
+    },
+    {
+      "keyword": "unlearning methods",
+      "count": 1,
+      "rank": 6
+    },
+    {
+      "keyword": "unlearning",
+      "count": 1,
+      "rank": 7
+    },
+    {
+      "keyword": "steepest descent",
+      "count": 1,
+      "rank": 8
+    },
+    {
+      "keyword": "smooth homogeneous neural",
+      "count": 1,
+      "rank": 9
+    },
+    {
+      "keyword": "smooth homogeneous models",
+      "count": 1,
+      "rank": 10
+    },
+    {
+      "keyword": "smooth homogeneous",
+      "count": 1,
+      "rank": 11
+    },
+    {
+      "keyword": "neural networks",
+      "count": 1,
+      "rank": 12
+    },
+    {
+      "keyword": "negation handling",
+      "count": 1,
+      "rank": 13
+    },
+    {
+      "keyword": "negation",
+      "count": 1,
+      "rank": 14
+    },
+    {
+      "keyword": "medical vision language models",
+      "count": 1,
+      "rank": 15
+    },
+    {
+      "keyword": "medical",
+      "count": 1,
+      "rank": 16
+    },
+    {
+      "keyword": "machine unlearning",
+      "count": 1,
+      "rank": 17
+    },
+    {
+      "keyword": "layer specific fine tuning",
+      "count": 1,
+      "rank": 18
+    },
+    {
+      "keyword": "large language model",
+      "count": 1,
+      "rank": 19
+    },
+    {
+      "keyword": "language models",
+      "count": 1,
+      "rank": 20
+    },
+    {
+      "keyword": "improved negation handling",
+      "count": 1,
+      "rank": 21
+    },
+    {
+      "keyword": "implicit bias",
+      "count": 1,
+      "rank": 22
+    },
+    {
+      "keyword": "homogeneous neural networks",
+      "count": 1,
+      "rank": 23
+    },
+    {
+      "keyword": "homogeneous neural",
+      "count": 1,
+      "rank": 24
+    },
+    {
+      "keyword": "homogeneous models",
+      "count": 1,
+      "rank": 25
+    },
+    {
+      "keyword": "homogeneous",
+      "count": 1,
+      "rank": 26
+    },
+    {
+      "keyword": "handling in medical",
+      "count": 1,
+      "rank": 27
+    },
+    {
+      "keyword": "handling",
+      "count": 1,
+      "rank": 28
+    },
+    {
+      "keyword": "extend large language",
+      "count": 1,
+      "rank": 29
+    },
+    {
+      "keyword": "evaluating machine unlearning",
+      "count": 1,
+      "rank": 30
+    },
+    {
+      "keyword": "easy data unlearning",
+      "count": 1,
+      "rank": 31
+    },
+    {
+      "keyword": "easy data",
+      "count": 1,
+      "rank": 32
+    },
+    {
+      "keyword": "data unlearning bench",
+      "count": 1,
+      "rank": 33
+    },
+    {
+      "keyword": "data corrects binding",
+      "count": 1,
+      "rank": 34
+    },
+    {
+      "keyword": "data corrects",
+      "count": 1,
+      "rank": 35
+    },
+    {
+      "keyword": "corrects binding shortcuts",
+      "count": 1,
+      "rank": 36
+    },
+    {
+      "keyword": "bench",
+      "count": 1,
+      "rank": 37
+    }
+  ]
+}

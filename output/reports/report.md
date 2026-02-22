@@ -1,15 +1,15 @@
 # 🔬 顶会论文关键词趋势报告
 
-> 自动生成于 2026-02-16 18:49:23
+> 自动生成于 2026-02-22 02:26:30
 
 ## 📊 数据概览
 
 | 指标 | 数值 |
 |------|------|
-| 论文总数 | 2,897 |
+| 论文总数 | 4,947 |
 | 关键词总数 | 10,000 |
-| 覆盖会议 | AAAI, AIMOTION, ARR, AUAI, CVPR, DEEPLEARNINGINDABA, HIGHLIGHTS-CONFERENCE, IACS, ICLR, JDSE, NEURONOVEMBER, NeurIPS, PHILANDNEURO, RESYLAB, UIT |
-| 年份范围 | 2023 - 2025 |
+| 覆盖会议 | AAAI, AIMOTION, AISTATS, ARR, AUAI, CVPR, DEEPLEARNINGINDABA, HIGHLIGHTS-CONFERENCE, IACS, ICLR, ICML, IJCAI, JDSE, NEURONOVEMBER, NeurIPS, PHILANDNEURO, RESYLAB, UIT |
+| 年份范围 | 2023 - 2026 |
 
 ## ☁️ 关键词云
 
@@ -24,56 +24,56 @@
 
 | 排名 | 关键词 | 出现次数 |
 |------|--------|----------|
-| 1 | diffusion model | 177 |
-| 2 | diffusion | 159 |
-| 3 | image | 155 |
-| 4 | generation | 151 |
-| 5 | video | 139 |
-| 6 | large language model | 113 |
-| 7 | detection | 90 |
-| 8 | segmentation | 80 |
-| 9 | large language | 77 |
-| 10 | object | 76 |
-| 11 | human | 70 |
-| 12 | visual | 67 |
-| 13 | language models | 63 |
-| 14 | object detection | 63 |
-| 15 | motion | 62 |
-| 16 | scene | 60 |
-| 17 | gaussian splatting | 59 |
-| 18 | gaussian | 52 |
-| 19 | semantic | 50 |
-| 20 | vision language models | 49 |
-| 21 | language | 48 |
-| 22 | reconstruction | 48 |
-| 23 | synthesis | 47 |
-| 24 | vision | 46 |
-| 25 | estimation | 42 |
-| 26 | transformer | 42 |
-| 27 | multimodal large language | 41 |
-| 28 | images | 40 |
-| 29 | semantic segmentation | 39 |
-| 30 | editing | 37 |
-| 31 | neural | 37 |
-| 32 | point cloud | 37 |
-| 33 | pose | 37 |
-| 34 | understanding | 37 |
-| 35 | adversarial | 36 |
-| 36 | depth | 36 |
-| 37 | radiance fields | 36 |
-| 38 | splatting | 34 |
-| 39 | image generation | 33 |
-| 40 | neural radiance | 32 |
-| 41 | neural radiance fields | 32 |
-| 42 | vision transformer | 32 |
-| 43 | multimodal | 31 |
-| 44 | point | 30 |
-| 45 | pose estimation | 30 |
-| 46 | generative | 29 |
-| 47 | recognition | 29 |
-| 48 | text | 29 |
-| 49 | vision language | 29 |
-| 50 | adaptation | 28 |
+| 1 | large language model | 347 |
+| 2 | diffusion model | 200 |
+| 3 | large language | 195 |
+| 4 | generation | 188 |
+| 5 | language models | 186 |
+| 6 | diffusion | 185 |
+| 7 | image | 168 |
+| 8 | video | 155 |
+| 9 | detection | 123 |
+| 10 | language | 114 |
+| 11 | reasoning | 91 |
+| 12 | visual | 90 |
+| 13 | segmentation | 87 |
+| 14 | object | 86 |
+| 15 | human | 82 |
+| 16 | gaussian splatting | 72 |
+| 17 | gaussian | 70 |
+| 18 | object detection | 69 |
+| 19 | motion | 67 |
+| 20 | scene | 67 |
+| 21 | transformer | 67 |
+| 22 | multimodal large language | 65 |
+| 23 | vision language models | 65 |
+| 24 | reinforcement learning | 62 |
+| 25 | neural | 61 |
+| 26 | semantic | 60 |
+| 27 | neural networks | 57 |
+| 28 | reconstruction | 55 |
+| 29 | synthesis | 53 |
+| 30 | estimation | 52 |
+| 31 | vision | 52 |
+| 32 | understanding | 51 |
+| 33 | images | 49 |
+| 34 | multimodal | 49 |
+| 35 | generative | 46 |
+| 36 | editing | 45 |
+| 37 | adversarial | 40 |
+| 38 | splatting | 40 |
+| 39 | point cloud | 39 |
+| 40 | prediction | 39 |
+| 41 | semantic segmentation | 39 |
+| 42 | depth | 38 |
+| 43 | federated learning | 38 |
+| 44 | language model | 38 |
+| 45 | pose | 38 |
+| 46 | vision language | 38 |
+| 47 | alignment | 37 |
+| 48 | radiance fields | 37 |
+| 49 | text | 37 |
+| 50 | vision transformer | 37 |
 
 </details>
 
@@ -85,8 +85,16 @@
 
 以下关键词在最近一年增长显著：
 
-1. **generation**
-2. **transformer**
+1. **llm agents**
+2. **multi agent reinforcement learning**
+3. **series**
+4. **agentic**
+5. **machine**
+6. **natural language processing**
+7. **safe**
+8. **emph**
+9. **extraction**
+10. **privacy**
 
 ## 📚 会议详情
 
@@ -96,12 +104,21 @@
 
 | 年份 | 论文数 | Top 5 关键词 |
 |------|--------|--------------|
-| 2025 | 2 | transformer based, reasoning, perform multi modal multi hop, multimodal multi hop reasoning, multimodal multi hop |
+| 2026 | 12 | x ray angiogram pre training, x ray angiogram analysis, x ray angiogram, x ray, wary |
+| 2025 | 5 | multimodal, large language model, understanding, transformer based, temporal corruption |
 
 ### AIMOTION
 
 | 年份 | 论文数 | Top 5 关键词 |
 |------|--------|--------------|
+
+### AISTATS
+
+![AISTATS 词云](../figures/wordcloud_aistats.png)
+
+| 年份 | 论文数 | Top 5 关键词 |
+|------|--------|--------------|
+| 2026 | 4 | wsbd, weighted stochastic block, utility markov games, stochastic block descent, quantum neural networks |
 
 ### ARR
 
@@ -119,6 +136,7 @@
 
 | 年份 | 论文数 | Top 5 关键词 |
 |------|--------|--------------|
+| 2026 | 2 | vision transformer, svda, reproducing dragdiffusion, point based image editing, monocular depth estimation |
 | 2024 | 2755 | diffusion model, image, diffusion, generation, video |
 
 ### DEEPLEARNINGINDABA
@@ -142,7 +160,26 @@
 
 | 年份 | 论文数 | Top 5 关键词 |
 |------|--------|--------------|
+| 2026 | 64 | large language model, reasoning, reinforcement learning, language models, neural |
+| 2025 | 1 | spurious, learn shortcuts, generative classifiers, generative, classifiers avoid shortcut |
 | 2024 | 30 | diffusion model, normalizing, multimodal, information, gradient |
+
+### ICML
+
+![ICML 词云](../figures/wordcloud_icml.png)
+
+| 年份 | 论文数 | Top 5 关键词 |
+|------|--------|--------------|
+| 2026 | 4 | vision language models, visual data corrects, visual data, vision language, unlearning methods remains |
+| 2025 | 1 | robustness, natural corruptions, natural, impact of compression, impact |
+
+### IJCAI
+
+![IJCAI 词云](../figures/wordcloud_ijcai.png)
+
+| 年份 | 论文数 | Top 5 关键词 |
+|------|--------|--------------|
+| 2026 | 1 | video retrieval platform, video, semantic profiling, platform via natural, natural language semantic |
 
 ### JDSE
 
@@ -160,7 +197,8 @@
 
 | 年份 | 论文数 | Top 5 关键词 |
 |------|--------|--------------|
-| 2025 | 1 | transformer models, temperature forecasting, long horizon exogenous temperature, long horizon exogenous, linear |
+| 2026 | 2 | large language model, large language, temporal credit assignment, temporal credit, temporal |
+| 2025 | 2 | transformer models, temperature forecasting, strength, signals, reward modeling |
 | 2023 | 30 | large language model, neural networks, understanding, transformer, textbf |
 
 ### PHILANDNEURO
@@ -178,9 +216,9 @@
 | 年份 | 论文数 | Top 5 关键词 |
 |------|--------|--------------|
 
-## ⚖️ 会议对比 (2025)
+## ⚖️ 会议对比 (2026)
 
-![会议对比](../figures/comparison_2025.png)
+![会议对比](../figures/comparison_2026.png)
 
 ---
 

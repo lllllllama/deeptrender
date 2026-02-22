@@ -1,0 +1,189 @@
+{
+  "2026": [
+    {
+      "keyword": "wsbd",
+      "count": 1,
+      "rank": 1
+    },
+    {
+      "keyword": "weighted stochastic block",
+      "count": 1,
+      "rank": 2
+    },
+    {
+      "keyword": "utility markov games",
+      "count": 1,
+      "rank": 3
+    },
+    {
+      "keyword": "stochastic block descent",
+      "count": 1,
+      "rank": 4
+    },
+    {
+      "keyword": "quantum neural networks",
+      "count": 1,
+      "rank": 5
+    },
+    {
+      "keyword": "quantum neural",
+      "count": 1,
+      "rank": 6
+    },
+    {
+      "keyword": "quantum",
+      "count": 1,
+      "rank": 7
+    },
+    {
+      "keyword": "physics",
+      "count": 1,
+      "rank": 8
+    },
+    {
+      "keyword": "particle system",
+      "count": 1,
+      "rank": 9
+    },
+    {
+      "keyword": "neural odes",
+      "count": 1,
+      "rank": 10
+    },
+    {
+      "keyword": "neural networks",
+      "count": 1,
+      "rank": 11
+    },
+    {
+      "keyword": "neural",
+      "count": 1,
+      "rank": 12
+    },
+    {
+      "keyword": "nash equilibria",
+      "count": 1,
+      "rank": 13
+    },
+    {
+      "keyword": "mean field optimization",
+      "count": 1,
+      "rank": 14
+    },
+    {
+      "keyword": "matching",
+      "count": 1,
+      "rank": 15
+    },
+    {
+      "keyword": "markov games",
+      "count": 1,
+      "rank": 16
+    },
+    {
+      "keyword": "markov",
+      "count": 1,
+      "rank": 17
+    },
+    {
+      "keyword": "learning algorithms",
+      "count": 1,
+      "rank": 18
+    },
+    {
+      "keyword": "grey box dynamics matching",
+      "count": 1,
+      "rank": 19
+    },
+    {
+      "keyword": "gradient flow",
+      "count": 1,
+      "rank": 20
+    },
+    {
+      "keyword": "generative models",
+      "count": 1,
+      "rank": 21
+    },
+    {
+      "keyword": "generalize markov games",
+      "count": 1,
+      "rank": 22
+    },
+    {
+      "keyword": "general utility markov",
+      "count": 1,
+      "rank": 23
+    },
+    {
+      "keyword": "games",
+      "count": 1,
+      "rank": 24
+    },
+    {
+      "keyword": "freezing based optimizer",
+      "count": 1,
+      "rank": 25
+    },
+    {
+      "keyword": "flow matching framework",
+      "count": 1,
+      "rank": 26
+    },
+    {
+      "keyword": "flow matching",
+      "count": 1,
+      "rank": 27
+    },
+    {
+      "keyword": "flow",
+      "count": 1,
+      "rank": 28
+    },
+    {
+      "keyword": "fisher rao gradient flow",
+      "count": 1,
+      "rank": 29
+    },
+    {
+      "keyword": "entropic mean field optimization",
+      "count": 1,
+      "rank": 30
+    },
+    {
+      "keyword": "entropic mean field",
+      "count": 1,
+      "rank": 31
+    },
+    {
+      "keyword": "energy function",
+      "count": 1,
+      "rank": 32
+    },
+    {
+      "keyword": "dynamics matching",
+      "count": 1,
+      "rank": 33
+    },
+    {
+      "keyword": "dynamics",
+      "count": 1,
+      "rank": 34
+    },
+    {
+      "keyword": "convex markov games",
+      "count": 1,
+      "rank": 35
+    },
+    {
+      "keyword": "convex markov",
+      "count": 1,
+      "rank": 36
+    },
+    {
+      "keyword": "continuous time gradient flows",
+      "count": 1,
+      "rank": 37
+    }
+  ]
+}
