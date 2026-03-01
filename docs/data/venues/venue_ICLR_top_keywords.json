@@ -296,251 +296,251 @@
   "2026": [
     {
       "keyword": "large language model",
-      "count": 10,
+      "count": 14,
       "rank": 1
     },
     {
       "keyword": "reasoning",
-      "count": 5,
+      "count": 7,
       "rank": 2
+    },
+    {
+      "keyword": "language models",
+      "count": 6,
+      "rank": 3
     },
     {
       "keyword": "reinforcement learning",
       "count": 4,
-      "rank": 3
-    },
-    {
-      "keyword": "language models",
-      "count": 4,
       "rank": 4
     },
     {
-      "keyword": "neural",
+      "keyword": "time series",
       "count": 3,
       "rank": 5
     },
     {
-      "keyword": "alignment",
+      "keyword": "optimization",
       "count": 3,
       "rank": 6
     },
     {
-      "keyword": "visual",
-      "count": 2,
+      "keyword": "neural",
+      "count": 3,
       "rank": 7
     },
     {
-      "keyword": "reward model",
-      "count": 2,
+      "keyword": "multivariate time series",
+      "count": 3,
       "rank": 8
     },
     {
-      "keyword": "reward",
-      "count": 2,
+      "keyword": "multivariate time",
+      "count": 3,
       "rank": 9
     },
     {
-      "keyword": "reference",
-      "count": 2,
+      "keyword": "large reasoning models",
+      "count": 3,
       "rank": 10
     },
     {
-      "keyword": "multi agent reinforcement learning",
-      "count": 2,
+      "keyword": "large reasoning",
+      "count": 3,
       "rank": 11
     },
     {
-      "keyword": "multi agent reinforcement",
-      "count": 2,
+      "keyword": "large language",
+      "count": 3,
       "rank": 12
     },
     {
-      "keyword": "llm alignment",
-      "count": 2,
+      "keyword": "generation",
+      "count": 3,
       "rank": 13
     },
     {
-      "keyword": "large reasoning models",
-      "count": 2,
+      "keyword": "alignment",
+      "count": 3,
       "rank": 14
     },
     {
-      "keyword": "large reasoning",
-      "count": 2,
+      "keyword": "agents",
+      "count": 3,
       "rank": 15
     },
     {
-      "keyword": "large language",
+      "keyword": "visual",
       "count": 2,
       "rank": 16
     },
     {
-      "keyword": "generation",
+      "keyword": "understanding",
       "count": 2,
       "rank": 17
     },
     {
-      "keyword": "flow",
+      "keyword": "transformer",
       "count": 2,
       "rank": 18
     },
     {
-      "keyword": "discovery",
+      "keyword": "time series forecasting",
       "count": 2,
       "rank": 19
     },
     {
-      "keyword": "cooperative multi agent reinforcement",
+      "keyword": "text",
       "count": 2,
       "rank": 20
     },
     {
-      "keyword": "category",
+      "keyword": "steering",
       "count": 2,
       "rank": 21
     },
     {
-      "keyword": "benchmarking",
+      "keyword": "scene",
       "count": 2,
       "rank": 22
     },
     {
-      "keyword": "agents",
+      "keyword": "robotic manipulation",
       "count": 2,
       "rank": 23
     },
     {
-      "keyword": "zero shot human object interaction",
-      "count": 1,
+      "keyword": "robotic",
+      "count": 2,
       "rank": 24
     },
     {
-      "keyword": "zero shot hoi detection",
-      "count": 1,
+      "keyword": "reward model",
+      "count": 2,
       "rank": 25
     },
     {
-      "keyword": "zero shot hoi",
-      "count": 1,
+      "keyword": "reward",
+      "count": 2,
       "rank": 26
     },
     {
-      "keyword": "zero shot classifier edits",
-      "count": 1,
+      "keyword": "reference",
+      "count": 2,
       "rank": 27
     },
     {
-      "keyword": "world model",
-      "count": 1,
+      "keyword": "prediction",
+      "count": 2,
       "rank": 28
     },
     {
-      "keyword": "weighted ranking",
-      "count": 1,
+      "keyword": "policy",
+      "count": 2,
       "rank": 29
     },
     {
-      "keyword": "weighted",
-      "count": 1,
+      "keyword": "object",
+      "count": 2,
       "rank": 30
     },
     {
-      "keyword": "weight regularization",
-      "count": 1,
+      "keyword": "multivariate",
+      "count": 2,
       "rank": 31
     },
     {
-      "keyword": "weight disentanglement",
-      "count": 1,
+      "keyword": "multi agent reinforcement learning",
+      "count": 2,
       "rank": 32
     },
     {
-      "keyword": "weight decay",
-      "count": 1,
+      "keyword": "multi agent reinforcement",
+      "count": 2,
       "rank": 33
     },
     {
-      "keyword": "weight",
-      "count": 1,
+      "keyword": "machine learning",
+      "count": 2,
       "rank": 34
     },
     {
-      "keyword": "weakly supervised class agnostic object",
-      "count": 1,
+      "keyword": "llm alignment",
+      "count": 2,
       "rank": 35
     },
     {
-      "keyword": "wavelet scattering transform",
-      "count": 1,
+      "keyword": "language model agents",
+      "count": 2,
       "rank": 36
     },
     {
-      "keyword": "visual generation",
-      "count": 1,
+      "keyword": "information",
+      "count": 2,
       "rank": 37
     },
     {
-      "keyword": "visual cortex",
-      "count": 1,
+      "keyword": "inference",
+      "count": 2,
       "rank": 38
     },
     {
-      "keyword": "vision proprioception policies fail",
-      "count": 1,
+      "keyword": "flow",
+      "count": 2,
       "rank": 39
     },
     {
-      "keyword": "vision proprioception",
-      "count": 1,
+      "keyword": "discovery",
+      "count": 2,
       "rank": 40
     },
     {
-      "keyword": "video understanding",
-      "count": 1,
+      "keyword": "cooperative multi agent reinforcement",
+      "count": 2,
       "rank": 41
     },
     {
-      "keyword": "video",
-      "count": 1,
+      "keyword": "category",
+      "count": 2,
       "rank": 42
     },
     {
-      "keyword": "verifier constrained flow expansion",
-      "count": 1,
+      "keyword": "benchmarking",
+      "count": 2,
       "rank": 43
     },
     {
-      "keyword": "vector algebra",
-      "count": 1,
+      "keyword": "agentic",
+      "count": 2,
       "rank": 44
     },
     {
-      "keyword": "valid design space",
-      "count": 1,
+      "keyword": "activation steering",
+      "count": 2,
       "rank": 45
     },
     {
-      "keyword": "user based scaling",
+      "keyword": "zero shot human object interaction",
       "count": 1,
       "rank": 46
     },
     {
-      "keyword": "user",
+      "keyword": "zero shot hoi detection",
       "count": 1,
       "rank": 47
     },
     {
-      "keyword": "unverifiable data",
+      "keyword": "zero shot hoi",
       "count": 1,
       "rank": 48
     },
     {
-      "keyword": "universal prediction",
+      "keyword": "zero shot classifier edits",
       "count": 1,
       "rank": 49
     },
     {
-      "keyword": "unimodal learning",
+      "keyword": "world model",
       "count": 1,
       "rank": 50
     }

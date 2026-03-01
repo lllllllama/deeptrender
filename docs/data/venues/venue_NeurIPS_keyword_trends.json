@@ -64,7 +64,7 @@
     {
       "year": 2026,
       "count": 1,
-      "rank": 10
+      "rank": 31
     }
   ],
   "understanding": [
@@ -217,7 +217,7 @@
     {
       "year": 2026,
       "count": 1,
-      "rank": 8
+      "rank": 14
     }
   ],
   "word translation": [
@@ -1971,7 +1971,7 @@
       "rank": 0
     }
   ],
-  "temporal credit assignment": [
+  "world models": [
     {
       "year": 2023,
       "count": 0,
@@ -1988,7 +1988,7 @@
       "rank": 3
     }
   ],
-  "temporal credit": [
+  "world": [
     {
       "year": 2023,
       "count": 0,
@@ -2005,7 +2005,7 @@
       "rank": 4
     }
   ],
-  "temporal": [
+  "vector symbolic architecture": [
     {
       "year": 2023,
       "count": 0,
@@ -2022,7 +2022,7 @@
       "rank": 5
     }
   ],
-  "single cell analysis": [
+  "vector symbolic": [
     {
       "year": 2023,
       "count": 0,
@@ -2039,7 +2039,7 @@
       "rank": 6
     }
   ],
-  "retrospective in context learning": [
+  "temporal credit assignment": [
     {
       "year": 2023,
       "count": 0,
@@ -2056,7 +2056,24 @@
       "rank": 7
     }
   ],
-  "omics native reasoning": [
+  "temporal credit": [
+    {
+      "year": 2023,
+      "count": 0,
+      "rank": 0
+    },
+    {
+      "year": 2025,
+      "count": 0,
+      "rank": 0
+    },
+    {
+      "year": 2026,
+      "count": 1,
+      "rank": 8
+    }
+  ],
+  "temporal": [
     {
       "year": 2023,
       "count": 0,
@@ -2073,7 +2090,24 @@
       "rank": 9
     }
   ],
-  "language model reasoning": [
+  "state space": [
+    {
+      "year": 2023,
+      "count": 0,
+      "rank": 0
+    },
+    {
+      "year": 2025,
+      "count": 0,
+      "rank": 0
+    },
+    {
+      "year": 2026,
+      "count": 1,
+      "rank": 10
+    }
+  ],
+  "single cell analysis": [
     {
       "year": 2023,
       "count": 0,
@@ -2090,7 +2124,7 @@
       "rank": 11
     }
   ],
-  "language model": [
+  "rmit adm": [
     {
       "year": 2023,
       "count": 0,
@@ -2107,7 +2141,7 @@
       "rank": 12
     }
   ],
-  "credit assignment": [
+  "retrospective in context learning": [
     {
       "year": 2023,
       "count": 0,
@@ -2124,24 +2158,7 @@
       "rank": 13
     }
   ],
-  "credit": [
-    {
-      "year": 2023,
-      "count": 0,
-      "rank": 0
-    },
-    {
-      "year": 2025,
-      "count": 0,
-      "rank": 0
-    },
-    {
-      "year": 2026,
-      "count": 1,
-      "rank": 14
-    }
-  ],
-  "automated single cell analysis": [
+  "quantum diffusion model": [
     {
       "year": 2023,
       "count": 0,
@@ -2158,7 +2175,7 @@
       "rank": 15
     }
   ],
-  "automated single cell": [
+  "quantum data pose": [
     {
       "year": 2023,
       "count": 0,
@@ -2175,7 +2192,7 @@
       "rank": 16
     }
   ],
-  "assignment": [
+  "quantum data distribution": [
     {
       "year": 2023,
       "count": 0,
@@ -2192,7 +2209,7 @@
       "rank": 17
     }
   ],
-  "analysis and discovery": [
+  "quantum data": [
     {
       "year": 2023,
       "count": 0,
@@ -2207,6 +2224,550 @@
       "year": 2026,
       "count": 1,
       "rank": 18
+    }
+  ],
+  "quantum": [
+    {
+      "year": 2023,
+      "count": 0,
+      "rank": 0
+    },
+    {
+      "year": 2025,
+      "count": 0,
+      "rank": 0
+    },
+    {
+      "year": 2026,
+      "count": 1,
+      "rank": 19
+    }
+  ],
+  "open source category": [
+    {
+      "year": 2023,
+      "count": 0,
+      "rank": 0
+    },
+    {
+      "year": 2025,
+      "count": 0,
+      "rank": 0
+    },
+    {
+      "year": 2026,
+      "count": 1,
+      "rank": 20
+    }
+  ],
+  "omics native reasoning": [
+    {
+      "year": 2023,
+      "count": 0,
+      "rank": 0
+    },
+    {
+      "year": 2025,
+      "count": 0,
+      "rank": 0
+    },
+    {
+      "year": 2026,
+      "count": 1,
+      "rank": 21
+    }
+  ],
+  "neurips": [
+    {
+      "year": 2023,
+      "count": 0,
+      "rank": 0
+    },
+    {
+      "year": 2025,
+      "count": 0,
+      "rank": 0
+    },
+    {
+      "year": 2026,
+      "count": 1,
+      "rank": 22
+    }
+  ],
+  "mmu rag neurips": [
+    {
+      "year": 2023,
+      "count": 0,
+      "rank": 0
+    },
+    {
+      "year": 2025,
+      "count": 0,
+      "rank": 0
+    },
+    {
+      "year": 2026,
+      "count": 1,
+      "rank": 23
+    }
+  ],
+  "mmu rag competition": [
+    {
+      "year": 2023,
+      "count": 0,
+      "rank": 0
+    },
+    {
+      "year": 2025,
+      "count": 0,
+      "rank": 0
+    },
+    {
+      "year": 2026,
+      "count": 1,
+      "rank": 24
+    }
+  ],
+  "mmu rag": [
+    {
+      "year": 2023,
+      "count": 0,
+      "rank": 0
+    },
+    {
+      "year": 2025,
+      "count": 0,
+      "rank": 0
+    },
+    {
+      "year": 2026,
+      "count": 1,
+      "rank": 25
+    }
+  ],
+  "matters": [
+    {
+      "year": 2023,
+      "count": 0,
+      "rank": 0
+    },
+    {
+      "year": 2025,
+      "count": 0,
+      "rank": 0
+    },
+    {
+      "year": 2026,
+      "count": 1,
+      "rank": 26
+    }
+  ],
+  "learning quantum data": [
+    {
+      "year": 2023,
+      "count": 0,
+      "rank": 0
+    },
+    {
+      "year": 2025,
+      "count": 0,
+      "rank": 0
+    },
+    {
+      "year": 2026,
+      "count": 1,
+      "rank": 27
+    }
+  ],
+  "learning deep state space": [
+    {
+      "year": 2023,
+      "count": 0,
+      "rank": 0
+    },
+    {
+      "year": 2025,
+      "count": 0,
+      "rank": 0
+    },
+    {
+      "year": 2026,
+      "count": 1,
+      "rank": 28
+    }
+  ],
+  "learning deep": [
+    {
+      "year": 2023,
+      "count": 0,
+      "rank": 0
+    },
+    {
+      "year": 2025,
+      "count": 0,
+      "rank": 0
+    },
+    {
+      "year": 2026,
+      "count": 1,
+      "rank": 29
+    }
+  ],
+  "latent matters": [
+    {
+      "year": 2023,
+      "count": 0,
+      "rank": 0
+    },
+    {
+      "year": 2025,
+      "count": 0,
+      "rank": 0
+    },
+    {
+      "year": 2026,
+      "count": 1,
+      "rank": 30
+    }
+  ],
+  "language model reasoning": [
+    {
+      "year": 2023,
+      "count": 0,
+      "rank": 0
+    },
+    {
+      "year": 2025,
+      "count": 0,
+      "rank": 0
+    },
+    {
+      "year": 2026,
+      "count": 1,
+      "rank": 32
+    }
+  ],
+  "language model": [
+    {
+      "year": 2023,
+      "count": 0,
+      "rank": 0
+    },
+    {
+      "year": 2025,
+      "count": 0,
+      "rank": 0
+    },
+    {
+      "year": 2026,
+      "count": 1,
+      "rank": 33
+    }
+  ],
+  "geometric priors": [
+    {
+      "year": 2023,
+      "count": 0,
+      "rank": 0
+    },
+    {
+      "year": 2025,
+      "count": 0,
+      "rank": 0
+    },
+    {
+      "year": 2026,
+      "count": 1,
+      "rank": 34
+    }
+  ],
+  "generalizable world models": [
+    {
+      "year": 2023,
+      "count": 0,
+      "rank": 0
+    },
+    {
+      "year": 2025,
+      "count": 0,
+      "rank": 0
+    },
+    {
+      "year": 2026,
+      "count": 1,
+      "rank": 35
+    }
+  ],
+  "generalizable world": [
+    {
+      "year": 2023,
+      "count": 0,
+      "rank": 0
+    },
+    {
+      "year": 2025,
+      "count": 0,
+      "rank": 0
+    },
+    {
+      "year": 2026,
+      "count": 1,
+      "rank": 36
+    }
+  ],
+  "fourier holographic reduced": [
+    {
+      "year": 2023,
+      "count": 0,
+      "rank": 0
+    },
+    {
+      "year": 2025,
+      "count": 0,
+      "rank": 0
+    },
+    {
+      "year": 2026,
+      "count": 1,
+      "rank": 37
+    }
+  ],
+  "dynamic evaluation award": [
+    {
+      "year": 2023,
+      "count": 0,
+      "rank": 0
+    },
+    {
+      "year": 2025,
+      "count": 0,
+      "rank": 0
+    },
+    {
+      "year": 2026,
+      "count": 1,
+      "rank": 38
+    }
+  ],
+  "deep state space models": [
+    {
+      "year": 2023,
+      "count": 0,
+      "rank": 0
+    },
+    {
+      "year": 2025,
+      "count": 0,
+      "rank": 0
+    },
+    {
+      "year": 2026,
+      "count": 1,
+      "rank": 39
+    }
+  ],
+  "deep state space": [
+    {
+      "year": 2023,
+      "count": 0,
+      "rank": 0
+    },
+    {
+      "year": 2025,
+      "count": 0,
+      "rank": 0
+    },
+    {
+      "year": 2026,
+      "count": 1,
+      "rank": 40
+    }
+  ],
+  "deep": [
+    {
+      "year": 2023,
+      "count": 0,
+      "rank": 0
+    },
+    {
+      "year": 2025,
+      "count": 0,
+      "rank": 0
+    },
+    {
+      "year": 2026,
+      "count": 1,
+      "rank": 41
+    }
+  ],
+  "data distribution": [
+    {
+      "year": 2023,
+      "count": 0,
+      "rank": 0
+    },
+    {
+      "year": 2025,
+      "count": 0,
+      "rank": 0
+    },
+    {
+      "year": 2026,
+      "count": 1,
+      "rank": 42
+    }
+  ],
+  "credit assignment": [
+    {
+      "year": 2023,
+      "count": 0,
+      "rank": 0
+    },
+    {
+      "year": 2025,
+      "count": 0,
+      "rank": 0
+    },
+    {
+      "year": 2026,
+      "count": 1,
+      "rank": 43
+    }
+  ],
+  "credit": [
+    {
+      "year": 2023,
+      "count": 0,
+      "rank": 0
+    },
+    {
+      "year": 2025,
+      "count": 0,
+      "rank": 0
+    },
+    {
+      "year": 2026,
+      "count": 1,
+      "rank": 44
+    }
+  ],
+  "competition": [
+    {
+      "year": 2023,
+      "count": 0,
+      "rank": 0
+    },
+    {
+      "year": 2025,
+      "count": 0,
+      "rank": 0
+    },
+    {
+      "year": 2026,
+      "count": 1,
+      "rank": 45
+    }
+  ],
+  "chaotic quantum diffusion": [
+    {
+      "year": 2023,
+      "count": 0,
+      "rank": 0
+    },
+    {
+      "year": 2025,
+      "count": 0,
+      "rank": 0
+    },
+    {
+      "year": 2026,
+      "count": 1,
+      "rank": 46
+    }
+  ],
+  "award winning rmit adm": [
+    {
+      "year": 2023,
+      "count": 0,
+      "rank": 0
+    },
+    {
+      "year": 2025,
+      "count": 0,
+      "rank": 0
+    },
+    {
+      "year": 2026,
+      "count": 1,
+      "rank": 47
+    }
+  ],
+  "automated single cell analysis": [
+    {
+      "year": 2023,
+      "count": 0,
+      "rank": 0
+    },
+    {
+      "year": 2025,
+      "count": 0,
+      "rank": 0
+    },
+    {
+      "year": 2026,
+      "count": 1,
+      "rank": 48
+    }
+  ],
+  "automated single cell": [
+    {
+      "year": 2023,
+      "count": 0,
+      "rank": 0
+    },
+    {
+      "year": 2025,
+      "count": 0,
+      "rank": 0
+    },
+    {
+      "year": 2026,
+      "count": 1,
+      "rank": 49
+    }
+  ],
+  "assignment": [
+    {
+      "year": 2023,
+      "count": 0,
+      "rank": 0
+    },
+    {
+      "year": 2025,
+      "count": 0,
+      "rank": 0
+    },
+    {
+      "year": 2026,
+      "count": 1,
+      "rank": 50
+    }
+  ],
+  "analysis and discovery": [
+    {
+      "year": 2023,
+      "count": 0,
+      "rank": 0
+    },
+    {
+      "year": 2025,
+      "count": 0,
+      "rank": 0
+    },
+    {
+      "year": 2026,
+      "count": 1,
+      "rank": 51
     }
   ]
 }

@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-02-22T02:26:32.095001",
+  "generated_at": "2026-03-01T02:32:25.583856",
   "stats": {
-    "venues_exported": 4,
+    "venues_exported": 5,
     "arxiv_exported": 2,
     "files_copied": 13,
-    "total_size_bytes": 294660
+    "total_size_bytes": 319660
   }
 }

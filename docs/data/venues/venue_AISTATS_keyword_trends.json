@@ -20,242 +20,312 @@
       "rank": 3
     }
   ],
-  "stochastic block descent": [
+  "uncoupled learning dynamics": [
     {
       "year": 2026,
       "count": 1,
       "rank": 4
     }
   ],
-  "quantum neural networks": [
+  "uncoupled learning algorithm": [
     {
       "year": 2026,
       "count": 1,
       "rank": 5
     }
   ],
-  "quantum neural": [
+  "uncoupled learning": [
     {
       "year": 2026,
       "count": 1,
       "rank": 6
     }
   ],
-  "quantum": [
+  "stochastic block descent": [
     {
       "year": 2026,
       "count": 1,
       "rank": 7
     }
   ],
-  "physics": [
+  "saddle point problems": [
     {
       "year": 2026,
       "count": 1,
       "rank": 8
     }
   ],
-  "particle system": [
+  "quantum neural networks": [
     {
       "year": 2026,
       "count": 1,
       "rank": 9
     }
   ],
-  "neural odes": [
+  "quantum neural": [
     {
       "year": 2026,
       "count": 1,
       "rank": 10
     }
   ],
-  "neural networks": [
+  "quantum": [
     {
       "year": 2026,
       "count": 1,
       "rank": 11
     }
   ],
-  "neural": [
+  "physics": [
     {
       "year": 2026,
       "count": 1,
       "rank": 12
     }
   ],
-  "nash equilibria": [
+  "particle system": [
     {
       "year": 2026,
       "count": 1,
       "rank": 13
     }
   ],
-  "mean field optimization": [
+  "neural odes": [
     {
       "year": 2026,
       "count": 1,
       "rank": 14
     }
   ],
-  "matching": [
+  "neural networks": [
     {
       "year": 2026,
       "count": 1,
       "rank": 15
     }
   ],
-  "markov games": [
+  "neural": [
     {
       "year": 2026,
       "count": 1,
       "rank": 16
     }
   ],
-  "markov": [
+  "nash equilibria": [
     {
       "year": 2026,
       "count": 1,
       "rank": 17
     }
   ],
-  "learning algorithms": [
+  "mean field optimization": [
     {
       "year": 2026,
       "count": 1,
       "rank": 18
     }
   ],
-  "grey box dynamics matching": [
+  "matching": [
     {
       "year": 2026,
       "count": 1,
       "rank": 19
     }
   ],
-  "gradient flow": [
+  "markov games": [
     {
       "year": 2026,
       "count": 1,
       "rank": 20
     }
   ],
-  "generative models": [
+  "markov": [
     {
       "year": 2026,
       "count": 1,
       "rank": 21
     }
   ],
-  "generalize markov games": [
+  "learning dynamics": [
     {
       "year": 2026,
       "count": 1,
       "rank": 22
     }
   ],
-  "general utility markov": [
+  "learning algorithms": [
     {
       "year": 2026,
       "count": 1,
       "rank": 23
     }
   ],
-  "games": [
+  "last iterate convergence": [
     {
       "year": 2026,
       "count": 1,
       "rank": 24
     }
   ],
-  "freezing based optimizer": [
+  "grey box dynamics matching": [
     {
       "year": 2026,
       "count": 1,
       "rank": 25
     }
   ],
-  "flow matching framework": [
+  "gradient flow": [
     {
       "year": 2026,
       "count": 1,
       "rank": 26
     }
   ],
-  "flow matching": [
+  "generative models": [
     {
       "year": 2026,
       "count": 1,
       "rank": 27
     }
   ],
-  "flow": [
+  "generalize markov games": [
     {
       "year": 2026,
       "count": 1,
       "rank": 28
     }
   ],
-  "fisher rao gradient flow": [
+  "general utility markov": [
     {
       "year": 2026,
       "count": 1,
       "rank": 29
     }
   ],
-  "entropic mean field optimization": [
+  "games": [
     {
       "year": 2026,
       "count": 1,
       "rank": 30
     }
   ],
-  "entropic mean field": [
+  "freezing based optimizer": [
     {
       "year": 2026,
       "count": 1,
       "rank": 31
     }
   ],
-  "energy function": [
+  "flow matching framework": [
     {
       "year": 2026,
       "count": 1,
       "rank": 32
     }
   ],
-  "dynamics matching": [
+  "flow matching": [
     {
       "year": 2026,
       "count": 1,
       "rank": 33
     }
   ],
-  "dynamics": [
+  "flow": [
     {
       "year": 2026,
       "count": 1,
       "rank": 34
     }
   ],
-  "convex markov games": [
+  "fisher rao gradient flow": [
     {
       "year": 2026,
       "count": 1,
       "rank": 35
     }
   ],
-  "convex markov": [
+  "entropic mean field optimization": [
     {
       "year": 2026,
       "count": 1,
       "rank": 36
     }
   ],
-  "continuous time gradient flows": [
+  "entropic mean field": [
     {
       "year": 2026,
       "count": 1,
       "rank": 37
+    }
+  ],
+  "energy function": [
+    {
+      "year": 2026,
+      "count": 1,
+      "rank": 38
+    }
+  ],
+  "efficient uncoupled learning": [
+    {
+      "year": 2026,
+      "count": 1,
+      "rank": 39
+    }
+  ],
+  "dynamics matching": [
+    {
+      "year": 2026,
+      "count": 1,
+      "rank": 40
+    }
+  ],
+  "dynamics": [
+    {
+      "year": 2026,
+      "count": 1,
+      "rank": 41
+    }
+  ],
+  "convex markov games": [
+    {
+      "year": 2026,
+      "count": 1,
+      "rank": 42
+    }
+  ],
+  "convex markov": [
+    {
+      "year": 2026,
+      "count": 1,
+      "rank": 43
+    }
+  ],
+  "continuous time gradient flows": [
+    {
+      "year": 2026,
+      "count": 1,
+      "rank": 44
+    }
+  ],
+  "bilinear saddle point problems": [
+    {
+      "year": 2026,
+      "count": 1,
+      "rank": 45
+    }
+  ],
+  "bilinear saddle point": [
+    {
+      "year": 2026,
+      "count": 1,
+      "rank": 46
+    }
+  ],
+  "bandit feedback": [
+    {
+      "year": 2026,
+      "count": 1,
+      "rank": 47
     }
   ]
 }

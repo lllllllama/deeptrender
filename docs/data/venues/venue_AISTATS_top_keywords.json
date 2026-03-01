@@ -16,174 +16,224 @@
       "rank": 3
     },
     {
-      "keyword": "stochastic block descent",
+      "keyword": "uncoupled learning dynamics",
       "count": 1,
       "rank": 4
     },
     {
-      "keyword": "quantum neural networks",
+      "keyword": "uncoupled learning algorithm",
       "count": 1,
       "rank": 5
     },
     {
-      "keyword": "quantum neural",
+      "keyword": "uncoupled learning",
       "count": 1,
       "rank": 6
     },
     {
-      "keyword": "quantum",
+      "keyword": "stochastic block descent",
       "count": 1,
       "rank": 7
     },
     {
-      "keyword": "physics",
+      "keyword": "saddle point problems",
       "count": 1,
       "rank": 8
     },
     {
-      "keyword": "particle system",
+      "keyword": "quantum neural networks",
       "count": 1,
       "rank": 9
     },
     {
-      "keyword": "neural odes",
+      "keyword": "quantum neural",
       "count": 1,
       "rank": 10
     },
     {
-      "keyword": "neural networks",
+      "keyword": "quantum",
       "count": 1,
       "rank": 11
     },
     {
-      "keyword": "neural",
+      "keyword": "physics",
       "count": 1,
       "rank": 12
     },
     {
-      "keyword": "nash equilibria",
+      "keyword": "particle system",
       "count": 1,
       "rank": 13
     },
     {
-      "keyword": "mean field optimization",
+      "keyword": "neural odes",
       "count": 1,
       "rank": 14
     },
     {
-      "keyword": "matching",
+      "keyword": "neural networks",
       "count": 1,
       "rank": 15
     },
     {
-      "keyword": "markov games",
+      "keyword": "neural",
       "count": 1,
       "rank": 16
     },
     {
-      "keyword": "markov",
+      "keyword": "nash equilibria",
       "count": 1,
       "rank": 17
     },
     {
-      "keyword": "learning algorithms",
+      "keyword": "mean field optimization",
       "count": 1,
       "rank": 18
     },
     {
-      "keyword": "grey box dynamics matching",
+      "keyword": "matching",
       "count": 1,
       "rank": 19
     },
     {
-      "keyword": "gradient flow",
+      "keyword": "markov games",
       "count": 1,
       "rank": 20
     },
     {
-      "keyword": "generative models",
+      "keyword": "markov",
       "count": 1,
       "rank": 21
     },
     {
-      "keyword": "generalize markov games",
+      "keyword": "learning dynamics",
       "count": 1,
       "rank": 22
     },
     {
-      "keyword": "general utility markov",
+      "keyword": "learning algorithms",
       "count": 1,
       "rank": 23
     },
     {
-      "keyword": "games",
+      "keyword": "last iterate convergence",
       "count": 1,
       "rank": 24
     },
     {
-      "keyword": "freezing based optimizer",
+      "keyword": "grey box dynamics matching",
       "count": 1,
       "rank": 25
     },
     {
-      "keyword": "flow matching framework",
+      "keyword": "gradient flow",
       "count": 1,
       "rank": 26
     },
     {
-      "keyword": "flow matching",
+      "keyword": "generative models",
       "count": 1,
       "rank": 27
     },
     {
-      "keyword": "flow",
+      "keyword": "generalize markov games",
       "count": 1,
       "rank": 28
     },
     {
-      "keyword": "fisher rao gradient flow",
+      "keyword": "general utility markov",
       "count": 1,
       "rank": 29
     },
     {
-      "keyword": "entropic mean field optimization",
+      "keyword": "games",
       "count": 1,
       "rank": 30
     },
     {
-      "keyword": "entropic mean field",
+      "keyword": "freezing based optimizer",
       "count": 1,
       "rank": 31
     },
     {
-      "keyword": "energy function",
+      "keyword": "flow matching framework",
       "count": 1,
       "rank": 32
     },
     {
-      "keyword": "dynamics matching",
+      "keyword": "flow matching",
       "count": 1,
       "rank": 33
     },
     {
-      "keyword": "dynamics",
+      "keyword": "flow",
       "count": 1,
       "rank": 34
     },
     {
-      "keyword": "convex markov games",
+      "keyword": "fisher rao gradient flow",
       "count": 1,
       "rank": 35
     },
     {
-      "keyword": "convex markov",
+      "keyword": "entropic mean field optimization",
       "count": 1,
       "rank": 36
     },
     {
-      "keyword": "continuous time gradient flows",
+      "keyword": "entropic mean field",
       "count": 1,
       "rank": 37
+    },
+    {
+      "keyword": "energy function",
+      "count": 1,
+      "rank": 38
+    },
+    {
+      "keyword": "efficient uncoupled learning",
+      "count": 1,
+      "rank": 39
+    },
+    {
+      "keyword": "dynamics matching",
+      "count": 1,
+      "rank": 40
+    },
+    {
+      "keyword": "dynamics",
+      "count": 1,
+      "rank": 41
+    },
+    {
+      "keyword": "convex markov games",
+      "count": 1,
+      "rank": 42
+    },
+    {
+      "keyword": "convex markov",
+      "count": 1,
+      "rank": 43
+    },
+    {
+      "keyword": "continuous time gradient flows",
+      "count": 1,
+      "rank": 44
+    },
+    {
+      "keyword": "bilinear saddle point problems",
+      "count": 1,
+      "rank": 45
+    },
+    {
+      "keyword": "bilinear saddle point",
+      "count": 1,
+      "rank": 46
+    },
+    {
+      "keyword": "bandit feedback",
+      "count": 1,
+      "rank": 47
     }
   ]
 }
