@@ -296,252 +296,252 @@
   "2026": [
     {
       "keyword": "large language model",
-      "count": 14,
+      "count": 18,
       "rank": 1
     },
     {
       "keyword": "reasoning",
-      "count": 7,
+      "count": 8,
       "rank": 2
     },
     {
       "keyword": "language models",
-      "count": 6,
+      "count": 8,
       "rank": 3
+    },
+    {
+      "keyword": "large language",
+      "count": 6,
+      "rank": 4
+    },
+    {
+      "keyword": "transformer",
+      "count": 4,
+      "rank": 5
     },
     {
       "keyword": "reinforcement learning",
       "count": 4,
-      "rank": 4
-    },
-    {
-      "keyword": "time series",
-      "count": 3,
-      "rank": 5
-    },
-    {
-      "keyword": "optimization",
-      "count": 3,
       "rank": 6
     },
     {
-      "keyword": "neural",
-      "count": 3,
+      "keyword": "large reasoning models",
+      "count": 4,
       "rank": 7
     },
     {
-      "keyword": "multivariate time series",
-      "count": 3,
+      "keyword": "generation",
+      "count": 4,
       "rank": 8
     },
     {
-      "keyword": "multivariate time",
-      "count": 3,
+      "keyword": "diffusion model",
+      "count": 4,
       "rank": 9
     },
     {
-      "keyword": "large reasoning models",
+      "keyword": "visual",
       "count": 3,
       "rank": 10
     },
     {
-      "keyword": "large reasoning",
+      "keyword": "time series",
       "count": 3,
       "rank": 11
     },
     {
-      "keyword": "large language",
+      "keyword": "reward",
       "count": 3,
       "rank": 12
     },
     {
-      "keyword": "generation",
+      "keyword": "optimization",
       "count": 3,
       "rank": 13
     },
     {
-      "keyword": "alignment",
+      "keyword": "neural",
       "count": 3,
       "rank": 14
     },
     {
-      "keyword": "agents",
+      "keyword": "multivariate time series",
       "count": 3,
       "rank": 15
     },
     {
-      "keyword": "visual",
-      "count": 2,
+      "keyword": "multivariate time",
+      "count": 3,
       "rank": 16
     },
     {
-      "keyword": "understanding",
-      "count": 2,
+      "keyword": "large reasoning",
+      "count": 3,
       "rank": 17
     },
     {
-      "keyword": "transformer",
-      "count": 2,
+      "keyword": "information",
+      "count": 3,
       "rank": 18
     },
     {
-      "keyword": "time series forecasting",
-      "count": 2,
+      "keyword": "diffusion",
+      "count": 3,
       "rank": 19
     },
     {
-      "keyword": "text",
-      "count": 2,
+      "keyword": "benchmarking",
+      "count": 3,
       "rank": 20
     },
     {
-      "keyword": "steering",
-      "count": 2,
+      "keyword": "alignment",
+      "count": 3,
       "rank": 21
     },
     {
-      "keyword": "scene",
-      "count": 2,
+      "keyword": "agents",
+      "count": 3,
       "rank": 22
     },
     {
-      "keyword": "robotic manipulation",
-      "count": 2,
+      "keyword": "agentic",
+      "count": 3,
       "rank": 23
     },
     {
-      "keyword": "robotic",
+      "keyword": "world model",
       "count": 2,
       "rank": 24
     },
     {
-      "keyword": "reward model",
+      "keyword": "video",
       "count": 2,
       "rank": 25
     },
     {
-      "keyword": "reward",
+      "keyword": "unlearnable",
       "count": 2,
       "rank": 26
     },
     {
-      "keyword": "reference",
+      "keyword": "understanding",
       "count": 2,
       "rank": 27
     },
     {
-      "keyword": "prediction",
+      "keyword": "time series forecasting",
       "count": 2,
       "rank": 28
     },
     {
-      "keyword": "policy",
+      "keyword": "text",
       "count": 2,
       "rank": 29
     },
     {
-      "keyword": "object",
+      "keyword": "test time adaptation",
       "count": 2,
       "rank": 30
     },
     {
-      "keyword": "multivariate",
+      "keyword": "steering",
       "count": 2,
       "rank": 31
     },
     {
-      "keyword": "multi agent reinforcement learning",
+      "keyword": "state space models",
       "count": 2,
       "rank": 32
     },
     {
-      "keyword": "multi agent reinforcement",
+      "keyword": "segmentation",
       "count": 2,
       "rank": 33
     },
     {
-      "keyword": "machine learning",
+      "keyword": "scene",
       "count": 2,
       "rank": 34
     },
     {
-      "keyword": "llm alignment",
+      "keyword": "robust",
       "count": 2,
       "rank": 35
     },
     {
-      "keyword": "language model agents",
+      "keyword": "robotic manipulation",
       "count": 2,
       "rank": 36
     },
     {
-      "keyword": "information",
+      "keyword": "robotic",
       "count": 2,
       "rank": 37
     },
     {
-      "keyword": "inference",
+      "keyword": "reward model",
       "count": 2,
       "rank": 38
     },
     {
-      "keyword": "flow",
+      "keyword": "reference",
       "count": 2,
       "rank": 39
     },
     {
-      "keyword": "discovery",
+      "keyword": "probabilistic",
       "count": 2,
       "rank": 40
     },
     {
-      "keyword": "cooperative multi agent reinforcement",
+      "keyword": "priors",
       "count": 2,
       "rank": 41
     },
     {
-      "keyword": "category",
+      "keyword": "preference alignment",
       "count": 2,
       "rank": 42
     },
     {
-      "keyword": "benchmarking",
+      "keyword": "prediction",
       "count": 2,
       "rank": 43
     },
     {
-      "keyword": "agentic",
+      "keyword": "policy",
       "count": 2,
       "rank": 44
     },
     {
-      "keyword": "activation steering",
+      "keyword": "object",
       "count": 2,
       "rank": 45
     },
     {
-      "keyword": "zero shot human object interaction",
-      "count": 1,
+      "keyword": "multivariate",
+      "count": 2,
       "rank": 46
     },
     {
-      "keyword": "zero shot hoi detection",
-      "count": 1,
+      "keyword": "multilingual",
+      "count": 2,
       "rank": 47
     },
     {
-      "keyword": "zero shot hoi",
-      "count": 1,
+      "keyword": "multi agent reinforcement learning",
+      "count": 2,
       "rank": 48
     },
     {
-      "keyword": "zero shot classifier edits",
-      "count": 1,
+      "keyword": "multi agent reinforcement",
+      "count": 2,
       "rank": 49
     },
     {
-      "keyword": "world model",
-      "count": 1,
+      "keyword": "machine learning",
+      "count": 2,
       "rank": 50
     }
   ]

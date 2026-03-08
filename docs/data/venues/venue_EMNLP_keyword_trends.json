@@ -1,65 +1,135 @@
 {
-  "synthesizing cross disciplinary communication": [
+  "transformer quantization": [
     {
       "year": 2026,
       "count": 1,
       "rank": 1
     }
   ],
-  "synthesizing cross disciplinary": [
+  "tradeoffs": [
     {
       "year": 2026,
       "count": 1,
       "rank": 2
     }
   ],
-  "persuasive dialogue agents": [
+  "synthesizing cross disciplinary communication": [
     {
       "year": 2026,
       "count": 1,
       "rank": 3
     }
   ],
-  "persuasive dialogue": [
+  "synthesizing cross disciplinary": [
     {
       "year": 2026,
       "count": 1,
       "rank": 4
     }
   ],
-  "enhancing persuasive dialogue": [
+  "structured activation outliers": [
     {
       "year": 2026,
       "count": 1,
       "rank": 5
     }
   ],
-  "dialogue agents": [
+  "statistical analysis": [
     {
       "year": 2026,
       "count": 1,
       "rank": 6
     }
   ],
-  "dialogue": [
+  "quantization": [
     {
       "year": 2026,
       "count": 1,
       "rank": 7
     }
   ],
-  "developing persuasive dialogue": [
+  "qualcomm ai research": [
     {
       "year": 2026,
       "count": 1,
       "rank": 8
     }
   ],
-  "cross disciplinary communication strategies": [
+  "persuasive dialogue agents": [
     {
       "year": 2026,
       "count": 1,
       "rank": 9
+    }
+  ],
+  "persuasive dialogue": [
+    {
+      "year": 2026,
+      "count": 1,
+      "rank": 10
+    }
+  ],
+  "outliers": [
+    {
+      "year": 2026,
+      "count": 1,
+      "rank": 11
+    }
+  ],
+  "enhancing persuasive dialogue": [
+    {
+      "year": 2026,
+      "count": 1,
+      "rank": 12
+    }
+  ],
+  "dialogue agents": [
+    {
+      "year": 2026,
+      "count": 1,
+      "rank": 13
+    }
+  ],
+  "dialogue": [
+    {
+      "year": 2026,
+      "count": 1,
+      "rank": 14
+    }
+  ],
+  "developing persuasive dialogue": [
+    {
+      "year": 2026,
+      "count": 1,
+      "rank": 15
+    }
+  ],
+  "deployment tradeoffs": [
+    {
+      "year": 2026,
+      "count": 1,
+      "rank": 16
+    }
+  ],
+  "cross disciplinary communication strategies": [
+    {
+      "year": 2026,
+      "count": 1,
+      "rank": 17
+    }
+  ],
+  "analyzed by bondarenko": [
+    {
+      "year": 2026,
+      "count": 1,
+      "rank": 18
+    }
+  ],
+  "activation outliers": [
+    {
+      "year": 2026,
+      "count": 1,
+      "rank": 19
     }
   ]
 }
