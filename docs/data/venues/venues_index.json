@@ -1,0 +1,417 @@
+[
+  {
+    "name": "ICLR",
+    "full_name": "International Conference on Learning Representations",
+    "domain": "ML",
+    "tier": "A",
+    "years_available": [
+      2026,
+      2025,
+      2024
+    ],
+    "paper_count": 166,
+    "top_keywords": [
+      {
+        "keyword": "large language model",
+        "count": 19
+      },
+      {
+        "keyword": "reasoning",
+        "count": 8
+      },
+      {
+        "keyword": "language models",
+        "count": 8
+      },
+      {
+        "keyword": "large language",
+        "count": 7
+      },
+      {
+        "keyword": "diffusion model",
+        "count": 7
+      },
+      {
+        "keyword": "reinforcement learning",
+        "count": 5
+      },
+      {
+        "keyword": "information",
+        "count": 5
+      },
+      {
+        "keyword": "diffusion",
+        "count": 5
+      },
+      {
+        "keyword": "transformer",
+        "count": 4
+      },
+      {
+        "keyword": "neural",
+        "count": 4
+      }
+    ]
+  },
+  {
+    "name": "NeurIPS",
+    "full_name": "Conference on Neural Information Processing Systems",
+    "domain": "ML",
+    "tier": "A",
+    "years_available": [
+      2026,
+      2025,
+      2023
+    ],
+    "paper_count": 40,
+    "top_keywords": [
+      {
+        "keyword": "large language model",
+        "count": 6
+      },
+      {
+        "keyword": "large language",
+        "count": 4
+      },
+      {
+        "keyword": "neural networks",
+        "count": 3
+      },
+      {
+        "keyword": "language models",
+        "count": 3
+      },
+      {
+        "keyword": "understanding",
+        "count": 2
+      },
+      {
+        "keyword": "transformer",
+        "count": 2
+      },
+      {
+        "keyword": "textbf",
+        "count": 2
+      },
+      {
+        "keyword": "reasoning",
+        "count": 2
+      },
+      {
+        "keyword": "neural",
+        "count": 2
+      },
+      {
+        "keyword": "language",
+        "count": 2
+      }
+    ]
+  },
+  {
+    "name": "ICML",
+    "full_name": "International Conference on Machine Learning",
+    "domain": "ML",
+    "tier": "A",
+    "years_available": [
+      2026,
+      2025
+    ],
+    "paper_count": 10,
+    "top_keywords": [
+      {
+        "keyword": "vision language models",
+        "count": 2
+      },
+      {
+        "keyword": "visual data corrects",
+        "count": 1
+      },
+      {
+        "keyword": "visual data",
+        "count": 1
+      },
+      {
+        "keyword": "vision language",
+        "count": 1
+      },
+      {
+        "keyword": "user centric non terrestrial networks",
+        "count": 1
+      },
+      {
+        "keyword": "unlearning methods remains",
+        "count": 1
+      },
+      {
+        "keyword": "unlearning methods",
+        "count": 1
+      },
+      {
+        "keyword": "unlearning",
+        "count": 1
+      },
+      {
+        "keyword": "trust weighting",
+        "count": 1
+      },
+      {
+        "keyword": "treatment effect heterogeneity",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "name": "EMNLP",
+    "full_name": "Conference on Empirical Methods in Natural Language Processing",
+    "domain": "ML",
+    "tier": "A",
+    "years_available": [
+      2026
+    ],
+    "paper_count": 2,
+    "top_keywords": [
+      {
+        "keyword": "transformer quantization",
+        "count": 1
+      },
+      {
+        "keyword": "tradeoffs",
+        "count": 1
+      },
+      {
+        "keyword": "synthesizing cross disciplinary communication",
+        "count": 1
+      },
+      {
+        "keyword": "synthesizing cross disciplinary",
+        "count": 1
+      },
+      {
+        "keyword": "structured activation outliers",
+        "count": 1
+      },
+      {
+        "keyword": "statistical analysis",
+        "count": 1
+      },
+      {
+        "keyword": "quantization",
+        "count": 1
+      },
+      {
+        "keyword": "qualcomm ai research",
+        "count": 1
+      },
+      {
+        "keyword": "persuasive dialogue agents",
+        "count": 1
+      },
+      {
+        "keyword": "persuasive dialogue",
+        "count": 1
+      }
+    ]
+  },
+  {
+    "name": "COLM",
+    "full_name": "Conference on Language Modeling",
+    "domain": "ML",
+    "tier": "A",
+    "years_available": [],
+    "paper_count": 6947,
+    "top_keywords": [
+      {
+        "keyword": "large language model",
+        "count": 566
+      },
+      {
+        "keyword": "large language",
+        "count": 294
+      },
+      {
+        "keyword": "language models",
+        "count": 292
+      },
+      {
+        "keyword": "generation",
+        "count": 233
+      },
+      {
+        "keyword": "diffusion",
+        "count": 227
+      },
+      {
+        "keyword": "diffusion model",
+        "count": 227
+      },
+      {
+        "keyword": "image",
+        "count": 195
+      },
+      {
+        "keyword": "video",
+        "count": 178
+      },
+      {
+        "keyword": "language",
+        "count": 163
+      },
+      {
+        "keyword": "detection",
+        "count": 148
+      }
+    ]
+  },
+  {
+    "name": "CoRL",
+    "full_name": "Conference on Robot Learning",
+    "domain": "ML",
+    "tier": "A",
+    "years_available": [],
+    "paper_count": 6947,
+    "top_keywords": [
+      {
+        "keyword": "large language model",
+        "count": 566
+      },
+      {
+        "keyword": "large language",
+        "count": 294
+      },
+      {
+        "keyword": "language models",
+        "count": 292
+      },
+      {
+        "keyword": "generation",
+        "count": 233
+      },
+      {
+        "keyword": "diffusion",
+        "count": 227
+      },
+      {
+        "keyword": "diffusion model",
+        "count": 227
+      },
+      {
+        "keyword": "image",
+        "count": 195
+      },
+      {
+        "keyword": "video",
+        "count": 178
+      },
+      {
+        "keyword": "language",
+        "count": 163
+      },
+      {
+        "keyword": "detection",
+        "count": 148
+      }
+    ]
+  },
+  {
+    "name": "LOG",
+    "full_name": "Learning on Graphs Conference",
+    "domain": "ML",
+    "tier": "A",
+    "years_available": [],
+    "paper_count": 6947,
+    "top_keywords": [
+      {
+        "keyword": "large language model",
+        "count": 566
+      },
+      {
+        "keyword": "large language",
+        "count": 294
+      },
+      {
+        "keyword": "language models",
+        "count": 292
+      },
+      {
+        "keyword": "generation",
+        "count": 233
+      },
+      {
+        "keyword": "diffusion",
+        "count": 227
+      },
+      {
+        "keyword": "diffusion model",
+        "count": 227
+      },
+      {
+        "keyword": "image",
+        "count": 195
+      },
+      {
+        "keyword": "video",
+        "count": 178
+      },
+      {
+        "keyword": "language",
+        "count": 163
+      },
+      {
+        "keyword": "detection",
+        "count": 148
+      }
+    ]
+  },
+  {
+    "name": "AISTATS",
+    "full_name": "International Conference on Artificial Intelligence and Statistics",
+    "domain": "ML",
+    "tier": "A",
+    "years_available": [
+      2026
+    ],
+    "paper_count": 5,
+    "top_keywords": [
+      {
+        "keyword": "wsbd",
+        "count": 1
+      },
+      {
+        "keyword": "weighted stochastic block",
+        "count": 1
+      },
+      {
+        "keyword": "utility markov games",
+        "count": 1
+      },
+      {
+        "keyword": "uncoupled learning dynamics",
+        "count": 1
+      },
+      {
+        "keyword": "uncoupled learning algorithm",
+        "count": 1
+      },
+      {
+        "keyword": "uncoupled learning",
+        "count": 1
+      },
+      {
+        "keyword": "stochastic block descent",
+        "count": 1
+      },
+      {
+        "keyword": "saddle point problems",
+        "count": 1
+      },
+      {
+        "keyword": "quantum neural networks",
+        "count": 1
+      },
+      {
+        "keyword": "quantum neural",
+        "count": 1
+      }
+    ]
+  }
+]

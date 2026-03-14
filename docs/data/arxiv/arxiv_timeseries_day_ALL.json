@@ -1,0 +1,698 @@
+{
+  "granularity": "day",
+  "category": "ALL",
+  "data": [
+    {
+      "bucket": "2025-12-16",
+      "paper_count": 84,
+      "top_keywords": [
+        {
+          "keyword": "large language model",
+          "count": 8
+        },
+        {
+          "keyword": "transformer",
+          "count": 7
+        },
+        {
+          "keyword": "large language",
+          "count": 6
+        },
+        {
+          "keyword": "language",
+          "count": 5
+        },
+        {
+          "keyword": "generation",
+          "count": 5
+        },
+        {
+          "keyword": "language models",
+          "count": 4
+        },
+        {
+          "keyword": "reasoning",
+          "count": 4
+        },
+        {
+          "keyword": "spatial",
+          "count": 3
+        },
+        {
+          "keyword": "structural pruning",
+          "count": 2
+        },
+        {
+          "keyword": "tabular data",
+          "count": 2
+        }
+      ]
+    },
+    {
+      "bucket": "2026-01-03",
+      "paper_count": 50,
+      "top_keywords": [
+        {
+          "keyword": "large language model",
+          "count": 7
+        },
+        {
+          "keyword": "generative",
+          "count": 3
+        },
+        {
+          "keyword": "language models",
+          "count": 3
+        },
+        {
+          "keyword": "benchmarking",
+          "count": 2
+        },
+        {
+          "keyword": "diffusion",
+          "count": 2
+        },
+        {
+          "keyword": "diffusion model",
+          "count": 2
+        },
+        {
+          "keyword": "reasoning",
+          "count": 2
+        },
+        {
+          "keyword": "video",
+          "count": 2
+        },
+        {
+          "keyword": "impact",
+          "count": 2
+        },
+        {
+          "keyword": "language",
+          "count": 2
+        }
+      ]
+    },
+    {
+      "bucket": "2026-02-11",
+      "paper_count": 305,
+      "top_keywords": [
+        {
+          "keyword": "large language model",
+          "count": 33
+        },
+        {
+          "keyword": "language models",
+          "count": 12
+        },
+        {
+          "keyword": "large language",
+          "count": 11
+        },
+        {
+          "keyword": "reasoning",
+          "count": 9
+        },
+        {
+          "keyword": "optimization",
+          "count": 8
+        },
+        {
+          "keyword": "language",
+          "count": 8
+        },
+        {
+          "keyword": "agents",
+          "count": 7
+        },
+        {
+          "keyword": "llm agents",
+          "count": 6
+        },
+        {
+          "keyword": "neural",
+          "count": 6
+        },
+        {
+          "keyword": "reinforcement learning",
+          "count": 6
+        }
+      ]
+    },
+    {
+      "bucket": "2026-02-12",
+      "paper_count": 436,
+      "top_keywords": [
+        {
+          "keyword": "large language model",
+          "count": 59
+        },
+        {
+          "keyword": "large language",
+          "count": 31
+        },
+        {
+          "keyword": "language models",
+          "count": 30
+        },
+        {
+          "keyword": "reasoning",
+          "count": 22
+        },
+        {
+          "keyword": "reinforcement learning",
+          "count": 17
+        },
+        {
+          "keyword": "language",
+          "count": 16
+        },
+        {
+          "keyword": "generation",
+          "count": 12
+        },
+        {
+          "keyword": "multimodal large language",
+          "count": 9
+        },
+        {
+          "keyword": "benchmarking",
+          "count": 8
+        },
+        {
+          "keyword": "time series",
+          "count": 8
+        }
+      ]
+    },
+    {
+      "bucket": "2026-02-13",
+      "paper_count": 259,
+      "top_keywords": [
+        {
+          "keyword": "large language model",
+          "count": 32
+        },
+        {
+          "keyword": "language models",
+          "count": 21
+        },
+        {
+          "keyword": "large language",
+          "count": 20
+        },
+        {
+          "keyword": "reasoning",
+          "count": 8
+        },
+        {
+          "keyword": "reinforcement learning",
+          "count": 8
+        },
+        {
+          "keyword": "language",
+          "count": 7
+        },
+        {
+          "keyword": "neural networks",
+          "count": 7
+        },
+        {
+          "keyword": "hierarchical",
+          "count": 5
+        },
+        {
+          "keyword": "visual",
+          "count": 4
+        },
+        {
+          "keyword": "reinforcement",
+          "count": 4
+        }
+      ]
+    },
+    {
+      "bucket": "2026-02-16",
+      "paper_count": 155,
+      "top_keywords": [
+        {
+          "keyword": "large language model",
+          "count": 14
+        },
+        {
+          "keyword": "reasoning",
+          "count": 10
+        },
+        {
+          "keyword": "language models",
+          "count": 8
+        },
+        {
+          "keyword": "neural networks",
+          "count": 7
+        },
+        {
+          "keyword": "transformer",
+          "count": 5
+        },
+        {
+          "keyword": "dynamics",
+          "count": 4
+        },
+        {
+          "keyword": "reinforcement learning",
+          "count": 4
+        },
+        {
+          "keyword": "quantum",
+          "count": 4
+        },
+        {
+          "keyword": "generation",
+          "count": 4
+        },
+        {
+          "keyword": "large language",
+          "count": 3
+        }
+      ]
+    },
+    {
+      "bucket": "2026-02-17",
+      "paper_count": 283,
+      "top_keywords": [
+        {
+          "keyword": "large language model",
+          "count": 34
+        },
+        {
+          "keyword": "large language",
+          "count": 21
+        },
+        {
+          "keyword": "language models",
+          "count": 18
+        },
+        {
+          "keyword": "language",
+          "count": 10
+        },
+        {
+          "keyword": "detection",
+          "count": 7
+        },
+        {
+          "keyword": "federated",
+          "count": 5
+        },
+        {
+          "keyword": "multimodal large language",
+          "count": 5
+        },
+        {
+          "keyword": "reinforcement learning",
+          "count": 5
+        },
+        {
+          "keyword": "neural networks",
+          "count": 5
+        },
+        {
+          "keyword": "information",
+          "count": 4
+        }
+      ]
+    },
+    {
+      "bucket": "2026-02-18",
+      "paper_count": 306,
+      "top_keywords": [
+        {
+          "keyword": "large language model",
+          "count": 30
+        },
+        {
+          "keyword": "large language",
+          "count": 17
+        },
+        {
+          "keyword": "language models",
+          "count": 14
+        },
+        {
+          "keyword": "language",
+          "count": 12
+        },
+        {
+          "keyword": "neural networks",
+          "count": 9
+        },
+        {
+          "keyword": "agents",
+          "count": 8
+        },
+        {
+          "keyword": "reasoning",
+          "count": 6
+        },
+        {
+          "keyword": "reinforcement learning",
+          "count": 6
+        },
+        {
+          "keyword": "llm agents",
+          "count": 6
+        },
+        {
+          "keyword": "time series",
+          "count": 6
+        }
+      ]
+    },
+    {
+      "bucket": "2026-02-19",
+      "paper_count": 256,
+      "top_keywords": [
+        {
+          "keyword": "large language model",
+          "count": 25
+        },
+        {
+          "keyword": "language models",
+          "count": 17
+        },
+        {
+          "keyword": "large language",
+          "count": 14
+        },
+        {
+          "keyword": "reasoning",
+          "count": 8
+        },
+        {
+          "keyword": "language",
+          "count": 8
+        },
+        {
+          "keyword": "reinforcement learning",
+          "count": 7
+        },
+        {
+          "keyword": "time series",
+          "count": 6
+        },
+        {
+          "keyword": "detection",
+          "count": 6
+        },
+        {
+          "keyword": "diffusion",
+          "count": 5
+        },
+        {
+          "keyword": "gaussian",
+          "count": 5
+        }
+      ]
+    },
+    {
+      "bucket": "2026-02-24",
+      "paper_count": 249,
+      "top_keywords": [
+        {
+          "keyword": "large language model",
+          "count": 28
+        },
+        {
+          "keyword": "large language",
+          "count": 13
+        },
+        {
+          "keyword": "language models",
+          "count": 11
+        },
+        {
+          "keyword": "reasoning",
+          "count": 11
+        },
+        {
+          "keyword": "reinforcement learning",
+          "count": 9
+        },
+        {
+          "keyword": "generation",
+          "count": 7
+        },
+        {
+          "keyword": "image",
+          "count": 6
+        },
+        {
+          "keyword": "vision language models",
+          "count": 6
+        },
+        {
+          "keyword": "visual",
+          "count": 6
+        },
+        {
+          "keyword": "segmentation",
+          "count": 5
+        }
+      ]
+    },
+    {
+      "bucket": "2026-02-25",
+      "paper_count": 377,
+      "top_keywords": [
+        {
+          "keyword": "large language model",
+          "count": 39
+        },
+        {
+          "keyword": "large language",
+          "count": 26
+        },
+        {
+          "keyword": "language models",
+          "count": 26
+        },
+        {
+          "keyword": "reasoning",
+          "count": 11
+        },
+        {
+          "keyword": "generation",
+          "count": 11
+        },
+        {
+          "keyword": "language",
+          "count": 11
+        },
+        {
+          "keyword": "image",
+          "count": 10
+        },
+        {
+          "keyword": "multimodal large language",
+          "count": 10
+        },
+        {
+          "keyword": "reinforcement learning",
+          "count": 7
+        },
+        {
+          "keyword": "alignment",
+          "count": 7
+        }
+      ]
+    },
+    {
+      "bucket": "2026-02-26",
+      "paper_count": 374,
+      "top_keywords": [
+        {
+          "keyword": "large language model",
+          "count": 42
+        },
+        {
+          "keyword": "language models",
+          "count": 26
+        },
+        {
+          "keyword": "large language",
+          "count": 17
+        },
+        {
+          "keyword": "reasoning",
+          "count": 11
+        },
+        {
+          "keyword": "language",
+          "count": 10
+        },
+        {
+          "keyword": "agents",
+          "count": 10
+        },
+        {
+          "keyword": "diffusion",
+          "count": 9
+        },
+        {
+          "keyword": "reinforcement learning",
+          "count": 8
+        },
+        {
+          "keyword": "detection",
+          "count": 7
+        },
+        {
+          "keyword": "neural networks",
+          "count": 6
+        }
+      ]
+    },
+    {
+      "bucket": "2026-03-03",
+      "paper_count": 257,
+      "top_keywords": [
+        {
+          "keyword": "large language model",
+          "count": 27
+        },
+        {
+          "keyword": "language models",
+          "count": 15
+        },
+        {
+          "keyword": "large language",
+          "count": 10
+        },
+        {
+          "keyword": "diffusion",
+          "count": 7
+        },
+        {
+          "keyword": "neural networks",
+          "count": 7
+        },
+        {
+          "keyword": "verification",
+          "count": 6
+        },
+        {
+          "keyword": "reinforcement learning",
+          "count": 6
+        },
+        {
+          "keyword": "language",
+          "count": 6
+        },
+        {
+          "keyword": "reasoning",
+          "count": 5
+        },
+        {
+          "keyword": "human",
+          "count": 5
+        }
+      ]
+    },
+    {
+      "bucket": "2026-03-04",
+      "paper_count": 391,
+      "top_keywords": [
+        {
+          "keyword": "large language model",
+          "count": 42
+        },
+        {
+          "keyword": "large language",
+          "count": 15
+        },
+        {
+          "keyword": "language models",
+          "count": 14
+        },
+        {
+          "keyword": "reinforcement learning",
+          "count": 11
+        },
+        {
+          "keyword": "generation",
+          "count": 11
+        },
+        {
+          "keyword": "neural",
+          "count": 9
+        },
+        {
+          "keyword": "visual",
+          "count": 9
+        },
+        {
+          "keyword": "diffusion",
+          "count": 9
+        },
+        {
+          "keyword": "neural networks",
+          "count": 8
+        },
+        {
+          "keyword": "language",
+          "count": 8
+        }
+      ]
+    },
+    {
+      "bucket": "2026-03-05",
+      "paper_count": 352,
+      "top_keywords": [
+        {
+          "keyword": "large language model",
+          "count": 41
+        },
+        {
+          "keyword": "large language",
+          "count": 18
+        },
+        {
+          "keyword": "language models",
+          "count": 14
+        },
+        {
+          "keyword": "reasoning",
+          "count": 10
+        },
+        {
+          "keyword": "language",
+          "count": 10
+        },
+        {
+          "keyword": "diffusion",
+          "count": 8
+        },
+        {
+          "keyword": "generation",
+          "count": 8
+        },
+        {
+          "keyword": "time series",
+          "count": 7
+        },
+        {
+          "keyword": "multimodal",
+          "count": 6
+        },
+        {
+          "keyword": "reinforcement learning",
+          "count": 6
+        }
+      ]
+    }
+  ],
+  "cached": true,
+  "exported_at": "2026-03-08T02:16:15.855443"
+}

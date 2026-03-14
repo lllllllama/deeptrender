@@ -1,0 +1,239 @@
+{
+  "2026": [
+    {
+      "keyword": "wsbd",
+      "count": 1,
+      "rank": 1
+    },
+    {
+      "keyword": "weighted stochastic block",
+      "count": 1,
+      "rank": 2
+    },
+    {
+      "keyword": "utility markov games",
+      "count": 1,
+      "rank": 3
+    },
+    {
+      "keyword": "uncoupled learning dynamics",
+      "count": 1,
+      "rank": 4
+    },
+    {
+      "keyword": "uncoupled learning algorithm",
+      "count": 1,
+      "rank": 5
+    },
+    {
+      "keyword": "uncoupled learning",
+      "count": 1,
+      "rank": 6
+    },
+    {
+      "keyword": "stochastic block descent",
+      "count": 1,
+      "rank": 7
+    },
+    {
+      "keyword": "saddle point problems",
+      "count": 1,
+      "rank": 8
+    },
+    {
+      "keyword": "quantum neural networks",
+      "count": 1,
+      "rank": 9
+    },
+    {
+      "keyword": "quantum neural",
+      "count": 1,
+      "rank": 10
+    },
+    {
+      "keyword": "quantum",
+      "count": 1,
+      "rank": 11
+    },
+    {
+      "keyword": "physics",
+      "count": 1,
+      "rank": 12
+    },
+    {
+      "keyword": "particle system",
+      "count": 1,
+      "rank": 13
+    },
+    {
+      "keyword": "neural odes",
+      "count": 1,
+      "rank": 14
+    },
+    {
+      "keyword": "neural networks",
+      "count": 1,
+      "rank": 15
+    },
+    {
+      "keyword": "neural",
+      "count": 1,
+      "rank": 16
+    },
+    {
+      "keyword": "nash equilibria",
+      "count": 1,
+      "rank": 17
+    },
+    {
+      "keyword": "mean field optimization",
+      "count": 1,
+      "rank": 18
+    },
+    {
+      "keyword": "matching",
+      "count": 1,
+      "rank": 19
+    },
+    {
+      "keyword": "markov games",
+      "count": 1,
+      "rank": 20
+    },
+    {
+      "keyword": "markov",
+      "count": 1,
+      "rank": 21
+    },
+    {
+      "keyword": "learning dynamics",
+      "count": 1,
+      "rank": 22
+    },
+    {
+      "keyword": "learning algorithms",
+      "count": 1,
+      "rank": 23
+    },
+    {
+      "keyword": "last iterate convergence",
+      "count": 1,
+      "rank": 24
+    },
+    {
+      "keyword": "grey box dynamics matching",
+      "count": 1,
+      "rank": 25
+    },
+    {
+      "keyword": "gradient flow",
+      "count": 1,
+      "rank": 26
+    },
+    {
+      "keyword": "generative models",
+      "count": 1,
+      "rank": 27
+    },
+    {
+      "keyword": "generalize markov games",
+      "count": 1,
+      "rank": 28
+    },
+    {
+      "keyword": "general utility markov",
+      "count": 1,
+      "rank": 29
+    },
+    {
+      "keyword": "games",
+      "count": 1,
+      "rank": 30
+    },
+    {
+      "keyword": "freezing based optimizer",
+      "count": 1,
+      "rank": 31
+    },
+    {
+      "keyword": "flow matching framework",
+      "count": 1,
+      "rank": 32
+    },
+    {
+      "keyword": "flow matching",
+      "count": 1,
+      "rank": 33
+    },
+    {
+      "keyword": "flow",
+      "count": 1,
+      "rank": 34
+    },
+    {
+      "keyword": "fisher rao gradient flow",
+      "count": 1,
+      "rank": 35
+    },
+    {
+      "keyword": "entropic mean field optimization",
+      "count": 1,
+      "rank": 36
+    },
+    {
+      "keyword": "entropic mean field",
+      "count": 1,
+      "rank": 37
+    },
+    {
+      "keyword": "energy function",
+      "count": 1,
+      "rank": 38
+    },
+    {
+      "keyword": "efficient uncoupled learning",
+      "count": 1,
+      "rank": 39
+    },
+    {
+      "keyword": "dynamics matching",
+      "count": 1,
+      "rank": 40
+    },
+    {
+      "keyword": "dynamics",
+      "count": 1,
+      "rank": 41
+    },
+    {
+      "keyword": "convex markov games",
+      "count": 1,
+      "rank": 42
+    },
+    {
+      "keyword": "convex markov",
+      "count": 1,
+      "rank": 43
+    },
+    {
+      "keyword": "continuous time gradient flows",
+      "count": 1,
+      "rank": 44
+    },
+    {
+      "keyword": "bilinear saddle point problems",
+      "count": 1,
+      "rank": 45
+    },
+    {
+      "keyword": "bilinear saddle point",
+      "count": 1,
+      "rank": 46
+    },
+    {
+      "keyword": "bandit feedback",
+      "count": 1,
+      "rank": 47
+    }
+  ]
+}

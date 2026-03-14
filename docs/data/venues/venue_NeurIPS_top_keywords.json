@@ -1,0 +1,588 @@
+{
+  "2023": [
+    {
+      "keyword": "large language model",
+      "count": 4,
+      "rank": 1
+    },
+    {
+      "keyword": "neural networks",
+      "count": 3,
+      "rank": 2
+    },
+    {
+      "keyword": "understanding",
+      "count": 2,
+      "rank": 3
+    },
+    {
+      "keyword": "transformer",
+      "count": 2,
+      "rank": 4
+    },
+    {
+      "keyword": "textbf",
+      "count": 2,
+      "rank": 5
+    },
+    {
+      "keyword": "neural",
+      "count": 2,
+      "rank": 6
+    },
+    {
+      "keyword": "large language",
+      "count": 2,
+      "rank": 7
+    },
+    {
+      "keyword": "language models",
+      "count": 2,
+      "rank": 8
+    },
+    {
+      "keyword": "language",
+      "count": 2,
+      "rank": 9
+    },
+    {
+      "keyword": "fields",
+      "count": 2,
+      "rank": 10
+    },
+    {
+      "keyword": "causal",
+      "count": 2,
+      "rank": 11
+    },
+    {
+      "keyword": "camera",
+      "count": 2,
+      "rank": 12
+    },
+    {
+      "keyword": "word translation",
+      "count": 1,
+      "rank": 13
+    },
+    {
+      "keyword": "word",
+      "count": 1,
+      "rank": 14
+    },
+    {
+      "keyword": "vpg transfer",
+      "count": 1,
+      "rank": 15
+    },
+    {
+      "keyword": "vpg",
+      "count": 1,
+      "rank": 16
+    },
+    {
+      "keyword": "visual prompt generator",
+      "count": 1,
+      "rank": 17
+    },
+    {
+      "keyword": "visual prompt",
+      "count": 1,
+      "rank": 18
+    },
+    {
+      "keyword": "vision language pre training",
+      "count": 1,
+      "rank": 19
+    },
+    {
+      "keyword": "video understanding",
+      "count": 1,
+      "rank": 20
+    },
+    {
+      "keyword": "unsupervised word translation",
+      "count": 1,
+      "rank": 21
+    },
+    {
+      "keyword": "unsupervised word",
+      "count": 1,
+      "rank": 22
+    },
+    {
+      "keyword": "unsupervised",
+      "count": 1,
+      "rank": 23
+    },
+    {
+      "keyword": "unseen domains",
+      "count": 1,
+      "rank": 24
+    },
+    {
+      "keyword": "unseen",
+      "count": 1,
+      "rank": 25
+    },
+    {
+      "keyword": "unique spike based event driven",
+      "count": 1,
+      "rank": 26
+    },
+    {
+      "keyword": "understanding and enhancing",
+      "count": 1,
+      "rank": 27
+    },
+    {
+      "keyword": "two player constant sum games",
+      "count": 1,
+      "rank": 28
+    },
+    {
+      "keyword": "translation for daily",
+      "count": 1,
+      "rank": 29
+    },
+    {
+      "keyword": "transformer module",
+      "count": 1,
+      "rank": 30
+    },
+    {
+      "keyword": "transfer visual prompt",
+      "count": 1,
+      "rank": 31
+    },
+    {
+      "keyword": "transfer",
+      "count": 1,
+      "rank": 32
+    },
+    {
+      "keyword": "tone mapping aims",
+      "count": 1,
+      "rank": 33
+    },
+    {
+      "keyword": "tone mapping",
+      "count": 1,
+      "rank": 34
+    },
+    {
+      "keyword": "timing representation",
+      "count": 1,
+      "rank": 35
+    },
+    {
+      "keyword": "timely outcome prediction",
+      "count": 1,
+      "rank": 36
+    },
+    {
+      "keyword": "timely outcome",
+      "count": 1,
+      "rank": 37
+    },
+    {
+      "keyword": "time series prediction",
+      "count": 1,
+      "rank": 38
+    },
+    {
+      "keyword": "time series",
+      "count": 1,
+      "rank": 39
+    },
+    {
+      "keyword": "theoretical",
+      "count": 1,
+      "rank": 40
+    },
+    {
+      "keyword": "task automation",
+      "count": 1,
+      "rank": 41
+    },
+    {
+      "keyword": "tart",
+      "count": 1,
+      "rank": 42
+    },
+    {
+      "keyword": "table meets local",
+      "count": 1,
+      "rank": 43
+    },
+    {
+      "keyword": "synthetic representative samples",
+      "count": 1,
+      "rank": 44
+    },
+    {
+      "keyword": "supervised oriented object",
+      "count": 1,
+      "rank": 45
+    },
+    {
+      "keyword": "super resolution",
+      "count": 1,
+      "rank": 46
+    },
+    {
+      "keyword": "structural pruning",
+      "count": 1,
+      "rank": 47
+    },
+    {
+      "keyword": "spiking neural networks",
+      "count": 1,
+      "rank": 48
+    },
+    {
+      "keyword": "spike streams",
+      "count": 1,
+      "rank": 49
+    },
+    {
+      "keyword": "spike driven transformer",
+      "count": 1,
+      "rank": 50
+    }
+  ],
+  "2025": [
+    {
+      "keyword": "transformer models",
+      "count": 1,
+      "rank": 1
+    },
+    {
+      "keyword": "temperature forecasting",
+      "count": 1,
+      "rank": 2
+    },
+    {
+      "keyword": "strength",
+      "count": 1,
+      "rank": 3
+    },
+    {
+      "keyword": "signals",
+      "count": 1,
+      "rank": 4
+    },
+    {
+      "keyword": "reward modeling",
+      "count": 1,
+      "rank": 5
+    },
+    {
+      "keyword": "reward",
+      "count": 1,
+      "rank": 6
+    },
+    {
+      "keyword": "preference strength",
+      "count": 1,
+      "rank": 7
+    },
+    {
+      "keyword": "preference",
+      "count": 1,
+      "rank": 8
+    },
+    {
+      "keyword": "pearson distance correlation",
+      "count": 1,
+      "rank": 9
+    },
+    {
+      "keyword": "long horizon exogenous temperature",
+      "count": 1,
+      "rank": 10
+    },
+    {
+      "keyword": "long horizon exogenous",
+      "count": 1,
+      "rank": 11
+    },
+    {
+      "keyword": "linear",
+      "count": 1,
+      "rank": 12
+    },
+    {
+      "keyword": "exogenous temperature forecasting",
+      "count": 1,
+      "rank": 13
+    },
+    {
+      "keyword": "exogenous temperature",
+      "count": 1,
+      "rank": 14
+    },
+    {
+      "keyword": "data efficient reward modeling",
+      "count": 1,
+      "rank": 15
+    },
+    {
+      "keyword": "data efficient reward",
+      "count": 1,
+      "rank": 16
+    }
+  ],
+  "2026": [
+    {
+      "keyword": "large language model",
+      "count": 2,
+      "rank": 1
+    },
+    {
+      "keyword": "large language",
+      "count": 2,
+      "rank": 2
+    },
+    {
+      "keyword": "world models",
+      "count": 1,
+      "rank": 3
+    },
+    {
+      "keyword": "world",
+      "count": 1,
+      "rank": 4
+    },
+    {
+      "keyword": "wavelet based cross band integration",
+      "count": 1,
+      "rank": 5
+    },
+    {
+      "keyword": "wavelet based cross band",
+      "count": 1,
+      "rank": 6
+    },
+    {
+      "keyword": "vector symbolic architecture",
+      "count": 1,
+      "rank": 7
+    },
+    {
+      "keyword": "vector symbolic",
+      "count": 1,
+      "rank": 8
+    },
+    {
+      "keyword": "temporal credit assignment",
+      "count": 1,
+      "rank": 9
+    },
+    {
+      "keyword": "temporal credit",
+      "count": 1,
+      "rank": 10
+    },
+    {
+      "keyword": "temporal",
+      "count": 1,
+      "rank": 11
+    },
+    {
+      "keyword": "state space",
+      "count": 1,
+      "rank": 12
+    },
+    {
+      "keyword": "single cell analysis",
+      "count": 1,
+      "rank": 13
+    },
+    {
+      "keyword": "shop",
+      "count": 1,
+      "rank": 14
+    },
+    {
+      "keyword": "rmit adm",
+      "count": 1,
+      "rank": 15
+    },
+    {
+      "keyword": "retrospective in context learning",
+      "count": 1,
+      "rank": 16
+    },
+    {
+      "keyword": "reasoning",
+      "count": 1,
+      "rank": 17
+    },
+    {
+      "keyword": "quantum diffusion model",
+      "count": 1,
+      "rank": 18
+    },
+    {
+      "keyword": "quantum data pose",
+      "count": 1,
+      "rank": 19
+    },
+    {
+      "keyword": "quantum data distribution",
+      "count": 1,
+      "rank": 20
+    },
+    {
+      "keyword": "quantum data",
+      "count": 1,
+      "rank": 21
+    },
+    {
+      "keyword": "quantum",
+      "count": 1,
+      "rank": 22
+    },
+    {
+      "keyword": "polyp segmentation",
+      "count": 1,
+      "rank": 23
+    },
+    {
+      "keyword": "open source category",
+      "count": 1,
+      "rank": 24
+    },
+    {
+      "keyword": "omics native reasoning",
+      "count": 1,
+      "rank": 25
+    },
+    {
+      "keyword": "neurips",
+      "count": 1,
+      "rank": 26
+    },
+    {
+      "keyword": "mmu rag neurips",
+      "count": 1,
+      "rank": 27
+    },
+    {
+      "keyword": "mmu rag competition",
+      "count": 1,
+      "rank": 28
+    },
+    {
+      "keyword": "mmu rag",
+      "count": 1,
+      "rank": 29
+    },
+    {
+      "keyword": "memory enhanced improvement",
+      "count": 1,
+      "rank": 30
+    },
+    {
+      "keyword": "matters",
+      "count": 1,
+      "rank": 31
+    },
+    {
+      "keyword": "learning quantum data",
+      "count": 1,
+      "rank": 32
+    },
+    {
+      "keyword": "learning deep state space",
+      "count": 1,
+      "rank": 33
+    },
+    {
+      "keyword": "learning deep",
+      "count": 1,
+      "rank": 34
+    },
+    {
+      "keyword": "latent matters",
+      "count": 1,
+      "rank": 35
+    },
+    {
+      "keyword": "language models",
+      "count": 1,
+      "rank": 36
+    },
+    {
+      "keyword": "language model reasoning",
+      "count": 1,
+      "rank": 37
+    },
+    {
+      "keyword": "language model",
+      "count": 1,
+      "rank": 38
+    },
+    {
+      "keyword": "job shop scheduling",
+      "count": 1,
+      "rank": 39
+    },
+    {
+      "keyword": "job shop",
+      "count": 1,
+      "rank": 40
+    },
+    {
+      "keyword": "job",
+      "count": 1,
+      "rank": 41
+    },
+    {
+      "keyword": "integration for enhanced",
+      "count": 1,
+      "rank": 42
+    },
+    {
+      "keyword": "integration",
+      "count": 1,
+      "rank": 43
+    },
+    {
+      "keyword": "geometric priors",
+      "count": 1,
+      "rank": 44
+    },
+    {
+      "keyword": "generalizable world models",
+      "count": 1,
+      "rank": 45
+    },
+    {
+      "keyword": "generalizable world",
+      "count": 1,
+      "rank": 46
+    },
+    {
+      "keyword": "fourier holographic reduced",
+      "count": 1,
+      "rank": 47
+    },
+    {
+      "keyword": "flexible scheduling techniques",
+      "count": 1,
+      "rank": 48
+    },
+    {
+      "keyword": "flexible job shop",
+      "count": 1,
+      "rank": 49
+    },
+    {
+      "keyword": "flexible job",
+      "count": 1,
+      "rank": 50
+    }
+  ]
+}
