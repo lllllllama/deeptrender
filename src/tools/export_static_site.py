@@ -10,7 +10,7 @@ import shutil
 import argparse
 from pathlib import Path
 from datetime import datetime
-from typing import Dict
+from typing import Dict, Optional
 from collections import defaultdict
 
 if hasattr(sys.stdout, "reconfigure"):
@@ -20,14 +20,19 @@ if hasattr(sys.stderr, "reconfigure"):
 
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
-from database import get_repository
+from database import DatabaseRepository, get_repository
 from config import VENUES, ROOT_DIR
 
 
 class StaticSiteExporter:
     """Exporter for static website data and assets."""
 
-    def __init__(self, output_dir: str = "docs", top_keywords: int = 300):
+    def __init__(
+        self,
+        output_dir: str = "docs",
+        top_keywords: int = 300,
+        repository: Optional[DatabaseRepository] = None,
+    ):
         self.output_dir = Path(output_dir)
         self.data_dir = self.output_dir / "data"
         self.venues_data_dir = self.data_dir / "venues"
@@ -38,7 +43,7 @@ class StaticSiteExporter:
         self.venues_data_dir.mkdir(parents=True, exist_ok=True)
         self.arxiv_data_dir.mkdir(parents=True, exist_ok=True)
 
-        self.repo = get_repository()
+        self.repo = repository or get_repository()
         self.stats = {
             "venues_exported": 0,
             "arxiv_exported": 0,
@@ -211,40 +216,8 @@ class StaticSiteExporter:
         return exported_count
 
     def export_arxiv_stats(self) -> bool:
-        total_papers = self.repo.raw.get_raw_paper_count(source="arxiv")
-
-        categories_stats = {}
-        for category in ["cs.LG", "cs.CL", "cs.CV", "cs.AI", "cs.RO"]:
-            with self.repo._get_connection() as conn:
-                cursor = conn.cursor()
-                cursor.execute(
-                    """
-                    SELECT COUNT(*) as count
-                    FROM raw_papers
-                    WHERE source = 'arxiv' AND categories LIKE ?
-                    """,
-                    (f"%{category}%",),
-                )
-                categories_stats[category] = cursor.fetchone()["count"]
-
-        with self.repo._get_connection() as conn:
-            cursor = conn.cursor()
-            cursor.execute(
-                """
-                SELECT MIN(retrieved_at) as min_date, MAX(retrieved_at) as max_date
-                FROM raw_papers
-                WHERE source = 'arxiv'
-                """
-            )
-            row = cursor.fetchone()
-
-        stats_data = {
-            "total_papers": total_papers,
-            "categories": categories_stats,
-            "date_range": {"min": row["min_date"] if row else None, "max": row["max_date"] if row else None},
-            "latest_update": self.repo.analysis.get_meta("arxiv_last_run_ALL_year"),
-            "exported_at": datetime.now().isoformat(),
-        }
+        stats_data = self.repo.get_arxiv_stats()
+        stats_data["exported_at"] = datetime.now().isoformat()
 
         output_file = self.arxiv_data_dir / "arxiv_stats.json"
         with open(output_file, "w", encoding="utf-8") as f:

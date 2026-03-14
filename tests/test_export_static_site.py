@@ -22,7 +22,11 @@ class TestStaticSiteExporter:
     
     @pytest.fixture
     def exporter(self, temp_output_dir, repo_with_data):
-        return StaticSiteExporter(output_dir=str(temp_output_dir), top_keywords=50)
+        return StaticSiteExporter(
+            output_dir=str(temp_output_dir),
+            top_keywords=50,
+            repository=repo_with_data,
+        )
     
     def test_exporter_initialization(self, exporter, temp_output_dir):
         assert exporter.output_dir == temp_output_dir
@@ -111,6 +115,21 @@ class TestStaticSiteExporter:
     def test_export_handles_empty_venue(self, exporter):
         result = exporter.export_venue_top_keywords("NONEXISTENT_VENUE", top_n=10)
         assert result is False
+
+    def test_export_arxiv_stats(self, exporter):
+        result = exporter.export_arxiv_stats()
+        assert result is True
+
+        output_file = exporter.arxiv_data_dir / "arxiv_stats.json"
+        assert output_file.exists()
+
+        with open(output_file, 'r', encoding='utf-8') as f:
+            data = json.load(f)
+
+        assert "total_papers" in data
+        assert "categories" in data
+        assert "date_range" in data
+        assert "exported_at" in data
     
     def test_json_structure_validation(self, exporter):
         exporter.export_venues_index()
@@ -130,6 +149,25 @@ class TestStaticSiteExporter:
             
             assert isinstance(venue["years_available"], list)
             assert isinstance(venue["top_keywords"], list)
+
+    def test_exported_html_uses_relative_paths(self, exporter):
+        exporter.copy_static_assets()
+
+        index_file = exporter.output_dir / "index.html"
+        venue_file = exporter.output_dir / "venue.html"
+
+        assert index_file.exists()
+        assert venue_file.exists()
+
+        index_html = index_file.read_text(encoding="utf-8")
+        venue_html = venue_file.read_text(encoding="utf-8")
+
+        assert 'href="./static/css/style.css"' in index_html
+        assert 'src="./static/js/api.js"' in index_html
+        assert 'href="./index.html"' in venue_html
+        assert 'href="/static/' not in index_html
+        assert 'src="/static/' not in index_html
+        assert 'href="/"' not in venue_html
 
 
 @pytest.fixture

@@ -88,7 +88,7 @@ def repo_with_data(repo, sample_papers):
 @pytest.fixture
 def flask_app(temp_db_path):
     from web.app import create_app
-    from database import repository as repo_module
+    from database import unified as repo_module
 
     repo_module._repository = None
     repo_module._raw_repository = None

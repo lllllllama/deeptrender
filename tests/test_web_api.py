@@ -28,6 +28,7 @@ class TestOverviewEndpoint:
         assert "years" in data
         assert isinstance(data["venues"], list)
         assert isinstance(data["years"], list)
+        assert isinstance(data["total_keywords"], int)
 
     def test_overview_empty_dataset_contract(self, test_client):
         response = test_client.get("/api/stats/overview")
@@ -136,6 +137,15 @@ class TestStatusEndpoint:
         assert "database" in data
         assert "data" in data
         assert "server_time" in data
+
+    def test_refresh(self, test_client):
+        response = test_client.post("/api/refresh")
+        assert response.status_code == 200
+
+        data = json.loads(response.data)
+        assert data["status"] == "success"
+        assert "database_path" in data
+        assert "total_papers" in data
 
 
 class TestStaticFiles:

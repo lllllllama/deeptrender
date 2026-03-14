@@ -1,4 +1,8 @@
-﻿"""Database repository tests."""
+"""Database repository tests."""
+
+from datetime import datetime
+
+from scraper.models import RawPaper
 
 
 class TestDatabaseRepository:
@@ -64,6 +68,11 @@ class TestDatabaseRepository:
         keywords = repo_with_data.get_top_keywords(venue="ICLR", limit=10)
         assert isinstance(keywords, list)
 
+    def test_get_total_keyword_count(self, repo_with_data):
+        assert repo_with_data.get_total_keyword_count() == 9
+        assert repo_with_data.get_total_keyword_count(venue="ICLR") == 8
+        assert repo_with_data.get_total_keyword_count(venue="NeurIPS") == 4
+
     def test_get_keyword_trend(self, repo_with_data):
         trend = repo_with_data.get_keyword_trend("transformer")
         assert isinstance(trend, dict)
@@ -110,3 +119,24 @@ class TestDatabaseRepository:
         comparison = repo_with_data.get_venue_comparison(year=2023, limit=5)
         assert isinstance(comparison, dict)
         assert "ICLR" in comparison or "NeurIPS" in comparison
+
+    def test_get_arxiv_stats(self, repo):
+        repo.raw.save_raw_paper(
+            RawPaper(
+                source="arxiv",
+                source_paper_id="2401.00001",
+                title="Test arXiv Paper",
+                categories="cs.LG cs.CL",
+                year=2024,
+                retrieved_at=datetime(2024, 1, 2, 3, 4, 5),
+            )
+        )
+
+        stats = repo.get_arxiv_stats()
+
+        assert stats["total_papers"] == 1
+        assert stats["categories"]["cs.LG"] == 1
+        assert stats["categories"]["cs.CL"] == 1
+        assert stats["categories"]["cs.CV"] == 0
+        assert stats["date_range"]["min"] is not None
+        assert stats["date_range"]["max"] is not None

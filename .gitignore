@@ -4,6 +4,7 @@ __pycache__/
 *$py.class
 *.so
 .Python
+.python-version
 build/
 develop-eggs/
 dist/
@@ -29,6 +30,7 @@ env/
 # IDE
 .idea/
 .vscode/
+.claude/
 *.swp
 *.swo
 *~
@@ -36,9 +38,13 @@ env/
 # Environment
 .env
 .env.local
+.env.*
+!.env.example
 
 # Data (but keep structure)
 data/*.db
+data/*.db-*
+data/*.sqlite*
 !data/.gitkeep
 
 # Output (but keep structure)
@@ -46,6 +52,7 @@ output/figures/*
 !output/figures/.gitkeep
 output/reports/*
 !output/reports/.gitkeep
+output/*.json
 
 # OS
 .DS_Store
@@ -53,8 +60,14 @@ Thumbs.db
 
 # Logs
 *.log
+logs/
 
-# Test
+# Test / coverage / caches
 .pytest_cache/
 .coverage
+.coverage.*
+coverage.xml
 htmlcov/
+.mypy_cache/
+.ruff_cache/
+.cache/

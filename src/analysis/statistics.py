@@ -300,7 +300,7 @@ class KeywordAnalyzer:
         
         # 统计总数
         total_papers = self.repo.get_paper_count()
-        total_keywords = len(self.repo.get_top_keywords(limit=10000))
+        total_keywords = self.repo.get_total_keyword_count()
         
         return AnalysisResult(
             generated_at=datetime.now().isoformat(),
@@ -315,6 +315,6 @@ class KeywordAnalyzer:
         )
 
 
-def get_analyzer() -> KeywordAnalyzer:
+def get_analyzer(repository: Optional[DatabaseRepository] = None) -> KeywordAnalyzer:
     """获取分析器"""
-    return KeywordAnalyzer()
+    return KeywordAnalyzer(repository=repository)
