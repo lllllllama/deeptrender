@@ -277,8 +277,54 @@
           "count": 14
         }
       ]
+    },
+    {
+      "bucket": "2026-W11",
+      "paper_count": 1000,
+      "top_keywords": [
+        {
+          "keyword": "large language model",
+          "count": 113
+        },
+        {
+          "keyword": "large language",
+          "count": 61
+        },
+        {
+          "keyword": "language models",
+          "count": 54
+        },
+        {
+          "keyword": "reinforcement learning",
+          "count": 31
+        },
+        {
+          "keyword": "reasoning",
+          "count": 26
+        },
+        {
+          "keyword": "generation",
+          "count": 25
+        },
+        {
+          "keyword": "language",
+          "count": 19
+        },
+        {
+          "keyword": "image",
+          "count": 17
+        },
+        {
+          "keyword": "multimodal large language",
+          "count": 15
+        },
+        {
+          "keyword": "vision language models",
+          "count": 13
+        }
+      ]
     }
   ],
   "cached": true,
-  "exported_at": "2026-03-08T02:16:15.859744"
+  "exported_at": "2026-03-15T02:37:05.850558"
 }
