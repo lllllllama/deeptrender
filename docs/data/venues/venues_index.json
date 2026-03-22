@@ -9,11 +9,11 @@
       2025,
       2024
     ],
-    "paper_count": 192,
+    "paper_count": 203,
     "top_keywords": [
       {
         "keyword": "large language model",
-        "count": 22
+        "count": 23
       },
       {
         "keyword": "reasoning",
@@ -22,6 +22,10 @@
       {
         "keyword": "language models",
         "count": 10
+      },
+      {
+        "keyword": "reinforcement learning",
+        "count": 8
       },
       {
         "keyword": "large language",
@@ -36,19 +40,15 @@
         "count": 7
       },
       {
-        "keyword": "reinforcement learning",
-        "count": 6
-      },
-      {
         "keyword": "generation",
         "count": 6
       },
       {
-        "keyword": "neural",
+        "keyword": "optimization",
         "count": 5
       },
       {
-        "keyword": "large reasoning models",
+        "keyword": "neural",
         "count": 5
       }
     ]
@@ -63,7 +63,7 @@
       2025,
       2023
     ],
-    "paper_count": 42,
+    "paper_count": 43,
     "top_keywords": [
       {
         "keyword": "large language model",
@@ -116,10 +116,14 @@
       2026,
       2025
     ],
-    "paper_count": 10,
+    "paper_count": 12,
     "top_keywords": [
       {
         "keyword": "vision language models",
+        "count": 2
+      },
+      {
+        "keyword": "large language model",
         "count": 2
       },
       {
@@ -135,6 +139,14 @@
         "count": 1
       },
       {
+        "keyword": "verbal confidence",
+        "count": 1
+      },
+      {
+        "keyword": "verbal",
+        "count": 1
+      },
+      {
         "keyword": "user centric non terrestrial networks",
         "count": 1
       },
@@ -144,18 +156,6 @@
       },
       {
         "keyword": "unlearning methods",
-        "count": 1
-      },
-      {
-        "keyword": "unlearning",
-        "count": 1
-      },
-      {
-        "keyword": "trust weighting",
-        "count": 1
-      },
-      {
-        "keyword": "treatment effect heterogeneity",
         "count": 1
       }
     ]
@@ -218,47 +218,47 @@
     "domain": "ML",
     "tier": "A",
     "years_available": [],
-    "paper_count": 7947,
+    "paper_count": 8947,
     "top_keywords": [
       {
         "keyword": "large language model",
-        "count": 680
+        "count": 782
       },
       {
         "keyword": "large language",
-        "count": 356
+        "count": 404
       },
       {
         "keyword": "language models",
-        "count": 347
+        "count": 403
       },
       {
         "keyword": "generation",
-        "count": 258
+        "count": 277
       },
       {
         "keyword": "diffusion",
-        "count": 236
+        "count": 253
       },
       {
         "keyword": "diffusion model",
-        "count": 234
+        "count": 248
       },
       {
         "keyword": "image",
-        "count": 212
+        "count": 225
       },
       {
         "keyword": "video",
-        "count": 191
+        "count": 215
       },
       {
         "keyword": "language",
-        "count": 182
+        "count": 214
       },
       {
         "keyword": "reasoning",
-        "count": 173
+        "count": 208
       }
     ]
   },
@@ -268,47 +268,47 @@
     "domain": "ML",
     "tier": "A",
     "years_available": [],
-    "paper_count": 7947,
+    "paper_count": 8947,
     "top_keywords": [
       {
         "keyword": "large language model",
-        "count": 680
+        "count": 782
       },
       {
         "keyword": "large language",
-        "count": 356
+        "count": 404
       },
       {
         "keyword": "language models",
-        "count": 347
+        "count": 403
       },
       {
         "keyword": "generation",
-        "count": 258
+        "count": 277
       },
       {
         "keyword": "diffusion",
-        "count": 236
+        "count": 253
       },
       {
         "keyword": "diffusion model",
-        "count": 234
+        "count": 248
       },
       {
         "keyword": "image",
-        "count": 212
+        "count": 225
       },
       {
         "keyword": "video",
-        "count": 191
+        "count": 215
       },
       {
         "keyword": "language",
-        "count": 182
+        "count": 214
       },
       {
         "keyword": "reasoning",
-        "count": 173
+        "count": 208
       }
     ]
   },
@@ -318,47 +318,47 @@
     "domain": "ML",
     "tier": "A",
     "years_available": [],
-    "paper_count": 7947,
+    "paper_count": 8947,
     "top_keywords": [
       {
         "keyword": "large language model",
-        "count": 680
+        "count": 782
       },
       {
         "keyword": "large language",
-        "count": 356
+        "count": 404
       },
       {
         "keyword": "language models",
-        "count": 347
+        "count": 403
       },
       {
         "keyword": "generation",
-        "count": 258
+        "count": 277
       },
       {
         "keyword": "diffusion",
-        "count": 236
+        "count": 253
       },
       {
         "keyword": "diffusion model",
-        "count": 234
+        "count": 248
       },
       {
         "keyword": "image",
-        "count": 212
+        "count": 225
       },
       {
         "keyword": "video",
-        "count": 191
+        "count": 215
       },
       {
         "keyword": "language",
-        "count": 182
+        "count": 214
       },
       {
         "keyword": "reasoning",
-        "count": 173
+        "count": 208
       }
     ]
   },
@@ -370,7 +370,7 @@
     "years_available": [
       2026
     ],
-    "paper_count": 5,
+    "paper_count": 6,
     "top_keywords": [
       {
         "keyword": "wsbd",
@@ -401,15 +401,15 @@
         "count": 1
       },
       {
+        "keyword": "segmentation",
+        "count": 1
+      },
+      {
         "keyword": "saddle point problems",
         "count": 1
       },
       {
-        "keyword": "quantum neural networks",
-        "count": 1
-      },
-      {
-        "keyword": "quantum neural",
+        "keyword": "referring image segmentation",
         "count": 1
       }
     ]

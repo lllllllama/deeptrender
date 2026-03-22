@@ -30,7 +30,7 @@
     {
       "year": 2026,
       "count": 1,
-      "rank": 32
+      "rank": 33
     }
   ],
   "large language": [
@@ -64,7 +64,7 @@
     {
       "year": 2026,
       "count": 1,
-      "rank": 45
+      "rank": 48
     }
   ],
   "understanding": [
@@ -2379,7 +2379,7 @@
       "rank": 27
     }
   ],
-  "omics native reasoning": [
+  "online learning": [
     {
       "year": 2023,
       "count": 0,
@@ -2396,7 +2396,7 @@
       "rank": 28
     }
   ],
-  "node classification": [
+  "omics native reasoning": [
     {
       "year": 2023,
       "count": 0,
@@ -2413,7 +2413,7 @@
       "rank": 29
     }
   ],
-  "node": [
+  "node classification": [
     {
       "year": 2023,
       "count": 0,
@@ -2430,7 +2430,7 @@
       "rank": 30
     }
   ],
-  "neurips": [
+  "node": [
     {
       "year": 2023,
       "count": 0,
@@ -2447,7 +2447,7 @@
       "rank": 31
     }
   ],
-  "muon solenoid": [
+  "neurips": [
     {
       "year": 2023,
       "count": 0,
@@ -2461,10 +2461,10 @@
     {
       "year": 2026,
       "count": 1,
-      "rank": 33
+      "rank": 32
     }
   ],
-  "mmu rag neurips": [
+  "muon solenoid": [
     {
       "year": 2023,
       "count": 0,
@@ -2481,7 +2481,7 @@
       "rank": 34
     }
   ],
-  "mmu rag competition": [
+  "mmu rag neurips": [
     {
       "year": 2023,
       "count": 0,
@@ -2498,7 +2498,7 @@
       "rank": 35
     }
   ],
-  "mmu rag": [
+  "mmu rag competition": [
     {
       "year": 2023,
       "count": 0,
@@ -2515,7 +2515,7 @@
       "rank": 36
     }
   ],
-  "mitra": [
+  "mmu rag": [
     {
       "year": 2023,
       "count": 0,
@@ -2532,7 +2532,7 @@
       "rank": 37
     }
   ],
-  "memory enhanced improvement": [
+  "mitra": [
     {
       "year": 2023,
       "count": 0,
@@ -2549,7 +2549,7 @@
       "rank": 38
     }
   ],
-  "matters": [
+  "memory enhanced improvement": [
     {
       "year": 2023,
       "count": 0,
@@ -2566,7 +2566,7 @@
       "rank": 39
     }
   ],
-  "learning quantum data": [
+  "matters": [
     {
       "year": 2023,
       "count": 0,
@@ -2583,7 +2583,7 @@
       "rank": 40
     }
   ],
-  "learning deep state space": [
+  "learning quantum data": [
     {
       "year": 2023,
       "count": 0,
@@ -2600,7 +2600,7 @@
       "rank": 41
     }
   ],
-  "learning deep": [
+  "learning deep state space": [
     {
       "year": 2023,
       "count": 0,
@@ -2617,7 +2617,7 @@
       "rank": 42
     }
   ],
-  "latent matters": [
+  "learning deep": [
     {
       "year": 2023,
       "count": 0,
@@ -2634,7 +2634,7 @@
       "rank": 43
     }
   ],
-  "large scale scientific collaborations": [
+  "learning augmented algorithms": [
     {
       "year": 2023,
       "count": 0,
@@ -2651,7 +2651,24 @@
       "rank": 44
     }
   ],
-  "language model reasoning": [
+  "learning augmented": [
+    {
+      "year": 2023,
+      "count": 0,
+      "rank": 0
+    },
+    {
+      "year": 2025,
+      "count": 0,
+      "rank": 0
+    },
+    {
+      "year": 2026,
+      "count": 1,
+      "rank": 45
+    }
+  ],
+  "latent matters": [
     {
       "year": 2023,
       "count": 0,
@@ -2668,7 +2685,7 @@
       "rank": 46
     }
   ],
-  "language model": [
+  "large scale scientific collaborations": [
     {
       "year": 2023,
       "count": 0,
@@ -2685,24 +2702,7 @@
       "rank": 47
     }
   ],
-  "job shop scheduling": [
-    {
-      "year": 2023,
-      "count": 0,
-      "rank": 0
-    },
-    {
-      "year": 2025,
-      "count": 0,
-      "rank": 0
-    },
-    {
-      "year": 2026,
-      "count": 1,
-      "rank": 48
-    }
-  ],
-  "job shop": [
+  "language model reasoning": [
     {
       "year": 2023,
       "count": 0,
@@ -2719,7 +2719,7 @@
       "rank": 49
     }
   ],
-  "job": [
+  "language model": [
     {
       "year": 2023,
       "count": 0,
@@ -2736,7 +2736,7 @@
       "rank": 50
     }
   ],
-  "integration for enhanced": [
+  "job shop scheduling": [
     {
       "year": 2023,
       "count": 0,
@@ -2753,7 +2753,7 @@
       "rank": 51
     }
   ],
-  "integration": [
+  "job shop": [
     {
       "year": 2023,
       "count": 0,
@@ -2770,7 +2770,7 @@
       "rank": 52
     }
   ],
-  "hindering knowledge sharing": [
+  "job": [
     {
       "year": 2023,
       "count": 0,
@@ -2787,7 +2787,7 @@
       "rank": 53
     }
   ],
-  "graph neural networks": [
+  "integration for enhanced": [
     {
       "year": 2023,
       "count": 0,
@@ -2804,7 +2804,7 @@
       "rank": 54
     }
   ],
-  "graph aware llms": [
+  "integration": [
     {
       "year": 2023,
       "count": 0,
@@ -2821,7 +2821,7 @@
       "rank": 55
     }
   ],
-  "geometric priors": [
+  "instances": [
     {
       "year": 2023,
       "count": 0,
@@ -2838,7 +2838,7 @@
       "rank": 56
     }
   ],
-  "generalizable world models": [
+  "hindering knowledge sharing": [
     {
       "year": 2023,
       "count": 0,
@@ -2855,7 +2855,7 @@
       "rank": 57
     }
   ],
-  "generalizable world": [
+  "graph neural networks": [
     {
       "year": 2023,
       "count": 0,
@@ -2872,7 +2872,7 @@
       "rank": 58
     }
   ],
-  "fourier holographic reduced": [
+  "graph aware llms": [
     {
       "year": 2023,
       "count": 0,
@@ -2889,7 +2889,7 @@
       "rank": 59
     }
   ],
-  "flexible scheduling techniques": [
+  "geometric priors": [
     {
       "year": 2023,
       "count": 0,
@@ -2906,7 +2906,7 @@
       "rank": 60
     }
   ],
-  "flexible job shop": [
+  "generalizable world models": [
     {
       "year": 2023,
       "count": 0,
@@ -2923,7 +2923,7 @@
       "rank": 61
     }
   ],
-  "flexible job": [
+  "generalizable world": [
     {
       "year": 2023,
       "count": 0,
@@ -2940,7 +2940,7 @@
       "rank": 62
     }
   ],
-  "flexible": [
+  "fourier holographic reduced": [
     {
       "year": 2023,
       "count": 0,
@@ -2957,7 +2957,7 @@
       "rank": 63
     }
   ],
-  "enhanced boundary representation": [
+  "flexible scheduling techniques": [
     {
       "year": 2023,
       "count": 0,
@@ -2974,7 +2974,7 @@
       "rank": 64
     }
   ],
-  "enhanced boundary": [
+  "flexible job shop": [
     {
       "year": 2023,
       "count": 0,
@@ -2991,7 +2991,7 @@
       "rank": 65
     }
   ],
-  "enhanced": [
+  "flexible job": [
     {
       "year": 2023,
       "count": 0,
@@ -3008,7 +3008,7 @@
       "rank": 66
     }
   ],
-  "dynamic evaluation award": [
+  "flexible": [
     {
       "year": 2023,
       "count": 0,
@@ -3025,7 +3025,7 @@
       "rank": 67
     }
   ],
-  "deep state space models": [
+  "enhanced boundary representation": [
     {
       "year": 2023,
       "count": 0,
@@ -3042,7 +3042,7 @@
       "rank": 68
     }
   ],
-  "deep state space": [
+  "enhanced boundary": [
     {
       "year": 2023,
       "count": 0,
@@ -3059,7 +3059,7 @@
       "rank": 69
     }
   ],
-  "deep": [
+  "enhanced": [
     {
       "year": 2023,
       "count": 0,
@@ -3076,7 +3076,7 @@
       "rank": 70
     }
   ],
-  "data distribution": [
+  "dynamic evaluation award": [
     {
       "year": 2023,
       "count": 0,
@@ -3093,7 +3093,7 @@
       "rank": 71
     }
   ],
-  "cross band integration": [
+  "deep state space models": [
     {
       "year": 2023,
       "count": 0,
@@ -3110,7 +3110,7 @@
       "rank": 72
     }
   ],
-  "credit assignment": [
+  "deep state space": [
     {
       "year": 2023,
       "count": 0,
@@ -3127,7 +3127,7 @@
       "rank": 73
     }
   ],
-  "credit": [
+  "deep": [
     {
       "year": 2023,
       "count": 0,
@@ -3144,7 +3144,7 @@
       "rank": 74
     }
   ],
-  "competition": [
+  "data distribution": [
     {
       "year": 2023,
       "count": 0,
@@ -3161,7 +3161,7 @@
       "rank": 75
     }
   ],
-  "compact muon solenoid": [
+  "cross band integration": [
     {
       "year": 2023,
       "count": 0,
@@ -3178,7 +3178,7 @@
       "rank": 76
     }
   ],
-  "compact muon": [
+  "credit assignment": [
     {
       "year": 2023,
       "count": 0,
@@ -3195,7 +3195,7 @@
       "rank": 77
     }
   ],
-  "classification": [
+  "credit": [
     {
       "year": 2023,
       "count": 0,
@@ -3212,7 +3212,7 @@
       "rank": 78
     }
   ],
-  "chaotic quantum diffusion": [
+  "competition": [
     {
       "year": 2023,
       "count": 0,
@@ -3229,7 +3229,7 @@
       "rank": 79
     }
   ],
-  "award winning rmit adm": [
+  "compact muon solenoid": [
     {
       "year": 2023,
       "count": 0,
@@ -3246,7 +3246,7 @@
       "rank": 80
     }
   ],
-  "automated single cell analysis": [
+  "compact muon": [
     {
       "year": 2023,
       "count": 0,
@@ -3263,7 +3263,7 @@
       "rank": 81
     }
   ],
-  "automated single cell": [
+  "classification": [
     {
       "year": 2023,
       "count": 0,
@@ -3280,7 +3280,7 @@
       "rank": 82
     }
   ],
-  "assistant for knowledge": [
+  "chaotic quantum diffusion": [
     {
       "year": 2023,
       "count": 0,
@@ -3297,7 +3297,7 @@
       "rank": 83
     }
   ],
-  "assistant": [
+  "award winning rmit adm": [
     {
       "year": 2023,
       "count": 0,
@@ -3314,7 +3314,7 @@
       "rank": 84
     }
   ],
-  "assignment": [
+  "automated single cell analysis": [
     {
       "year": 2023,
       "count": 0,
@@ -3331,7 +3331,7 @@
       "rank": 85
     }
   ],
-  "analysis and discovery": [
+  "automated single cell": [
     {
       "year": 2023,
       "count": 0,
@@ -3348,7 +3348,7 @@
       "rank": 86
     }
   ],
-  "accurate polyp segmentation": [
+  "assistant for knowledge": [
     {
       "year": 2023,
       "count": 0,
@@ -3363,6 +3363,74 @@
       "year": 2026,
       "count": 1,
       "rank": 87
+    }
+  ],
+  "assistant": [
+    {
+      "year": 2023,
+      "count": 0,
+      "rank": 0
+    },
+    {
+      "year": 2025,
+      "count": 0,
+      "rank": 0
+    },
+    {
+      "year": 2026,
+      "count": 1,
+      "rank": 88
+    }
+  ],
+  "assignment": [
+    {
+      "year": 2023,
+      "count": 0,
+      "rank": 0
+    },
+    {
+      "year": 2025,
+      "count": 0,
+      "rank": 0
+    },
+    {
+      "year": 2026,
+      "count": 1,
+      "rank": 89
+    }
+  ],
+  "analysis and discovery": [
+    {
+      "year": 2023,
+      "count": 0,
+      "rank": 0
+    },
+    {
+      "year": 2025,
+      "count": 0,
+      "rank": 0
+    },
+    {
+      "year": 2026,
+      "count": 1,
+      "rank": 90
+    }
+  ],
+  "accurate polyp segmentation": [
+    {
+      "year": 2023,
+      "count": 0,
+      "rank": 0
+    },
+    {
+      "year": 2025,
+      "count": 0,
+      "rank": 0
+    },
+    {
+      "year": 2026,
+      "count": 1,
+      "rank": 91
     }
   ]
 }

@@ -296,7 +296,7 @@
   "2026": [
     {
       "keyword": "large language model",
-      "count": 21,
+      "count": 22,
       "rank": 1
     },
     {
@@ -315,67 +315,67 @@
       "rank": 4
     },
     {
-      "keyword": "large language",
+      "keyword": "reinforcement learning",
       "count": 7,
       "rank": 5
     },
     {
-      "keyword": "generation",
-      "count": 6,
+      "keyword": "large language",
+      "count": 7,
       "rank": 6
     },
     {
-      "keyword": "reinforcement learning",
-      "count": 5,
+      "keyword": "generation",
+      "count": 6,
       "rank": 7
     },
     {
-      "keyword": "large reasoning models",
+      "keyword": "optimization",
       "count": 5,
       "rank": 8
     },
     {
-      "keyword": "alignment",
+      "keyword": "large reasoning models",
       "count": 5,
       "rank": 9
     },
     {
-      "keyword": "time series",
-      "count": 4,
+      "keyword": "language",
+      "count": 5,
       "rank": 10
     },
     {
-      "keyword": "optimization",
-      "count": 4,
+      "keyword": "alignment",
+      "count": 5,
       "rank": 11
     },
     {
-      "keyword": "neural",
-      "count": 4,
+      "keyword": "agents",
+      "count": 5,
       "rank": 12
     },
     {
-      "keyword": "large reasoning",
+      "keyword": "time series",
       "count": 4,
       "rank": 13
     },
     {
-      "keyword": "language",
+      "keyword": "neural",
       "count": 4,
       "rank": 14
     },
     {
-      "keyword": "diffusion model",
+      "keyword": "large reasoning",
       "count": 4,
       "rank": 15
     },
     {
-      "keyword": "benchmarking",
+      "keyword": "diffusion model",
       "count": 4,
       "rank": 16
     },
     {
-      "keyword": "agents",
+      "keyword": "benchmarking",
       "count": 4,
       "rank": 17
     },
@@ -435,112 +435,112 @@
       "rank": 28
     },
     {
-      "keyword": "world model",
+      "keyword": "world models",
       "count": 2,
       "rank": 29
     },
     {
-      "keyword": "video",
+      "keyword": "world model",
       "count": 2,
       "rank": 30
     },
     {
-      "keyword": "unlearnable",
+      "keyword": "world",
       "count": 2,
       "rank": 31
     },
     {
-      "keyword": "understanding",
+      "keyword": "video",
       "count": 2,
       "rank": 32
     },
     {
-      "keyword": "time series forecasting",
+      "keyword": "unlearnable",
       "count": 2,
       "rank": 33
     },
     {
-      "keyword": "time",
+      "keyword": "understanding",
       "count": 2,
       "rank": 34
     },
     {
-      "keyword": "test time adaptation",
+      "keyword": "time series forecasting",
       "count": 2,
       "rank": 35
     },
     {
-      "keyword": "steering",
+      "keyword": "time",
       "count": 2,
       "rank": 36
     },
     {
-      "keyword": "state space models",
+      "keyword": "test time adaptation",
       "count": 2,
       "rank": 37
     },
     {
-      "keyword": "segmentation",
+      "keyword": "steering",
       "count": 2,
       "rank": 38
     },
     {
-      "keyword": "scene",
+      "keyword": "state space models",
       "count": 2,
       "rank": 39
     },
     {
-      "keyword": "routing",
+      "keyword": "segmentation",
       "count": 2,
       "rank": 40
     },
     {
-      "keyword": "robust",
+      "keyword": "scene",
       "count": 2,
       "rank": 41
     },
     {
-      "keyword": "robotic manipulation",
+      "keyword": "routing",
       "count": 2,
       "rank": 42
     },
     {
-      "keyword": "robotic",
+      "keyword": "robust",
       "count": 2,
       "rank": 43
     },
     {
-      "keyword": "reward model",
+      "keyword": "robotic manipulation",
       "count": 2,
       "rank": 44
     },
     {
-      "keyword": "representations",
+      "keyword": "robotic",
       "count": 2,
       "rank": 45
     },
     {
-      "keyword": "reference",
+      "keyword": "reward model",
       "count": 2,
       "rank": 46
     },
     {
-      "keyword": "probabilistic",
+      "keyword": "representations",
       "count": 2,
       "rank": 47
     },
     {
-      "keyword": "priors",
+      "keyword": "reinforcement",
       "count": 2,
       "rank": 48
     },
     {
-      "keyword": "preference alignment",
+      "keyword": "reference",
       "count": 2,
       "rank": 49
     },
     {
-      "keyword": "prediction",
+      "keyword": "proximal policy optimization",
       "count": 2,
       "rank": 50
     }

@@ -323,8 +323,54 @@
           "count": 13
         }
       ]
+    },
+    {
+      "bucket": "2026-W12",
+      "paper_count": 1000,
+      "top_keywords": [
+        {
+          "keyword": "large language model",
+          "count": 102
+        },
+        {
+          "keyword": "language models",
+          "count": 56
+        },
+        {
+          "keyword": "large language",
+          "count": 48
+        },
+        {
+          "keyword": "reasoning",
+          "count": 35
+        },
+        {
+          "keyword": "language",
+          "count": 32
+        },
+        {
+          "keyword": "reinforcement learning",
+          "count": 30
+        },
+        {
+          "keyword": "video",
+          "count": 24
+        },
+        {
+          "keyword": "generation",
+          "count": 19
+        },
+        {
+          "keyword": "diffusion",
+          "count": 17
+        },
+        {
+          "keyword": "segmentation",
+          "count": 17
+        }
+      ]
     }
   ],
   "cached": true,
-  "exported_at": "2026-03-15T02:37:05.850558"
+  "exported_at": "2026-03-22T02:29:40.159097"
 }

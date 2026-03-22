@@ -1,0 +1,65 @@
+[
+  {
+    "category": "ALL",
+    "keyword": "large language",
+    "growth_rate": 520.0,
+    "first_seen": "2025-W51",
+    "recent_count": 52,
+    "trend": "rising",
+    "updated_at": "2026-03-22T02:29:29.181053"
+  },
+  {
+    "category": "ALL",
+    "keyword": "reinforcement learning",
+    "growth_rate": 270.0,
+    "first_seen": "2026-W07",
+    "recent_count": 27,
+    "trend": "rising",
+    "updated_at": "2026-03-22T02:29:29.181929"
+  },
+  {
+    "category": "ALL",
+    "keyword": "generation",
+    "growth_rate": 222.5,
+    "first_seen": "2025-W51",
+    "recent_count": 22,
+    "trend": "rising",
+    "updated_at": "2026-03-22T02:29:29.181945"
+  },
+  {
+    "category": "ALL",
+    "keyword": "diffusion",
+    "growth_rate": 150.0,
+    "first_seen": "2026-W01",
+    "recent_count": 15,
+    "trend": "rising",
+    "updated_at": "2026-03-22T02:29:29.181953"
+  },
+  {
+    "category": "ALL",
+    "keyword": "large language model",
+    "growth_rate": 1.79,
+    "first_seen": "2025-W51",
+    "recent_count": 108,
+    "trend": "rising",
+    "updated_at": "2026-03-22T02:29:29.181960"
+  },
+  {
+    "category": "ALL",
+    "keyword": "language models",
+    "growth_rate": 1.7,
+    "first_seen": "2025-W51",
+    "recent_count": 54,
+    "trend": "rising",
+    "updated_at": "2026-03-22T02:29:29.181967"
+  },
+  {
+    "category": "ALL",
+    "keyword": "reasoning",
+    "growth_rate": 1.6,
+    "first_seen": "2025-W51",
+    "recent_count": 29,
+    "trend": "rising",
+    "updated_at": "2026-03-22T02:29:29.181973"
+  }
+]
