@@ -13,382 +13,690 @@
       "rank": 2
     }
   ],
-  "utility markov games": [
+  "weak overlap": [
     {
       "year": 2026,
       "count": 1,
       "rank": 3
     }
   ],
-  "uncoupled learning dynamics": [
+  "visualizing high dimensional data": [
     {
       "year": 2026,
       "count": 1,
       "rank": 4
     }
   ],
-  "uncoupled learning algorithm": [
+  "visualizing": [
     {
       "year": 2026,
       "count": 1,
       "rank": 5
     }
   ],
-  "uncoupled learning": [
+  "vision transformer": [
     {
       "year": 2026,
       "count": 1,
       "rank": 6
     }
   ],
-  "stochastic block descent": [
+  "variational gaussian processes": [
     {
       "year": 2026,
       "count": 1,
       "rank": 7
     }
   ],
-  "segmentation": [
+  "variational": [
     {
       "year": 2026,
       "count": 1,
       "rank": 8
     }
   ],
-  "saddle point problems": [
+  "utility markov games": [
     {
       "year": 2026,
       "count": 1,
       "rank": 9
     }
   ],
-  "referring image segmentation": [
+  "uncoupled learning dynamics": [
     {
       "year": 2026,
       "count": 1,
       "rank": 10
     }
   ],
-  "referring image": [
+  "uncoupled learning algorithm": [
     {
       "year": 2026,
       "count": 1,
       "rank": 11
     }
   ],
-  "radial contrastive learning": [
+  "uncoupled learning": [
     {
       "year": 2026,
       "count": 1,
       "rank": 12
     }
   ],
-  "quantum neural networks": [
+  "treatment effect estimation": [
     {
       "year": 2026,
       "count": 1,
       "rank": 13
     }
   ],
-  "quantum neural": [
+  "stochastic block descent": [
     {
       "year": 2026,
       "count": 1,
       "rank": 14
     }
   ],
-  "quantum": [
+  "spectral graph neural": [
     {
       "year": 2026,
       "count": 1,
       "rank": 15
     }
   ],
-  "physics": [
+  "spectral gnns": [
     {
       "year": 2026,
       "count": 1,
       "rank": 16
     }
   ],
-  "particle system": [
+  "sparse variational gaussian": [
     {
       "year": 2026,
       "count": 1,
       "rank": 17
     }
   ],
-  "neural odes": [
+  "sparse variational": [
     {
       "year": 2026,
       "count": 1,
       "rank": 18
     }
   ],
-  "neural networks": [
+  "sparse": [
     {
       "year": 2026,
       "count": 1,
       "rank": 19
     }
   ],
-  "neural": [
+  "segmentation": [
     {
       "year": 2026,
       "count": 1,
       "rank": 20
     }
   ],
-  "nash equilibria": [
+  "saddle point problems": [
     {
       "year": 2026,
       "count": 1,
       "rank": 21
     }
   ],
-  "multimodal radial contrastive": [
+  "representation learning": [
     {
       "year": 2026,
       "count": 1,
       "rank": 22
     }
   ],
-  "motion aware referring image": [
+  "regularizing attention scores": [
     {
       "year": 2026,
       "count": 1,
       "rank": 23
     }
   ],
-  "mean field optimization": [
+  "referring image segmentation": [
     {
       "year": 2026,
       "count": 1,
       "rank": 24
     }
   ],
-  "matching": [
+  "referring image": [
     {
       "year": 2026,
       "count": 1,
       "rank": 25
     }
   ],
-  "markov games": [
+  "rashomon set": [
     {
       "year": 2026,
       "count": 1,
       "rank": 26
     }
   ],
-  "markov": [
+  "rashomon effect": [
     {
       "year": 2026,
       "count": 1,
       "rank": 27
     }
   ],
-  "learning dynamics": [
+  "rashomon": [
     {
       "year": 2026,
       "count": 1,
       "rank": 28
     }
   ],
-  "learning algorithms": [
+  "radial contrastive learning": [
     {
       "year": 2026,
       "count": 1,
       "rank": 29
     }
   ],
-  "last iterate convergence": [
+  "quantum neural networks": [
     {
       "year": 2026,
       "count": 1,
       "rank": 30
     }
   ],
-  "images based": [
+  "quantum neural": [
     {
       "year": 2026,
       "count": 1,
       "rank": 31
     }
   ],
-  "image segmentation": [
+  "quantum": [
     {
       "year": 2026,
       "count": 1,
       "rank": 32
     }
   ],
-  "image": [
+  "processes": [
     {
       "year": 2026,
       "count": 1,
       "rank": 33
     }
   ],
-  "grey box dynamics matching": [
+  "physics": [
     {
       "year": 2026,
       "count": 1,
       "rank": 34
     }
   ],
-  "gradient flow": [
+  "particle system": [
     {
       "year": 2026,
       "count": 1,
       "rank": 35
     }
   ],
-  "generative models": [
+  "neural odes": [
     {
       "year": 2026,
       "count": 1,
       "rank": 36
     }
   ],
-  "generalize markov games": [
+  "neural networks": [
     {
       "year": 2026,
       "count": 1,
       "rank": 37
     }
   ],
-  "general utility markov": [
+  "neural": [
     {
       "year": 2026,
       "count": 1,
       "rank": 38
     }
   ],
-  "games": [
+  "nash equilibria": [
     {
       "year": 2026,
       "count": 1,
       "rank": 39
     }
   ],
-  "freezing based optimizer": [
+  "multimodal radial contrastive": [
     {
       "year": 2026,
       "count": 1,
       "rank": 40
     }
   ],
-  "flow matching framework": [
+  "motion aware referring image": [
     {
       "year": 2026,
       "count": 1,
       "rank": 41
     }
   ],
-  "flow matching": [
+  "mean field optimization": [
     {
       "year": 2026,
       "count": 1,
       "rank": 42
     }
   ],
-  "flow": [
+  "matching": [
     {
       "year": 2026,
       "count": 1,
       "rank": 43
     }
   ],
-  "fisher rao gradient flow": [
+  "markov games": [
     {
       "year": 2026,
       "count": 1,
       "rank": 44
     }
   ],
-  "entropic mean field optimization": [
+  "markov": [
     {
       "year": 2026,
       "count": 1,
       "rank": 45
     }
   ],
-  "entropic mean field": [
+  "learning for causal": [
     {
       "year": 2026,
       "count": 1,
       "rank": 46
     }
   ],
-  "energy function": [
+  "learning dynamics": [
     {
       "year": 2026,
       "count": 1,
       "rank": 47
     }
   ],
-  "efficient uncoupled learning": [
+  "learning algorithms": [
     {
       "year": 2026,
       "count": 1,
       "rank": 48
     }
   ],
-  "dynamics matching": [
+  "last iterate convergence": [
     {
       "year": 2026,
       "count": 1,
       "rank": 49
     }
   ],
-  "dynamics": [
+  "inverse free sparse variational": [
     {
       "year": 2026,
       "count": 1,
       "rank": 50
     }
   ],
-  "convex markov games": [
+  "input features": [
     {
       "year": 2026,
       "count": 1,
       "rank": 51
     }
   ],
-  "convex markov": [
+  "images based": [
     {
       "year": 2026,
       "count": 1,
       "rank": 52
     }
   ],
-  "continuous time gradient flows": [
+  "image segmentation": [
     {
       "year": 2026,
       "count": 1,
       "rank": 53
     }
   ],
-  "bilinear saddle point problems": [
+  "image": [
     {
       "year": 2026,
       "count": 1,
       "rank": 54
     }
   ],
-  "bilinear saddle point": [
+  "high dimensional data equally": [
     {
       "year": 2026,
       "count": 1,
       "rank": 55
     }
   ],
-  "bandit feedback": [
+  "high dimensional data": [
     {
       "year": 2026,
       "count": 1,
       "rank": 56
+    }
+  ],
+  "heterogeneous federated learning": [
+    {
+      "year": 2026,
+      "count": 1,
+      "rank": 57
+    }
+  ],
+  "grey box dynamics matching": [
+    {
+      "year": 2026,
+      "count": 1,
+      "rank": 58
+    }
+  ],
+  "graph fourier transform": [
+    {
+      "year": 2026,
+      "count": 1,
+      "rank": 59
+    }
+  ],
+  "graph fourier domain": [
+    {
+      "year": 2026,
+      "count": 1,
+      "rank": 60
+    }
+  ],
+  "graph fourier": [
+    {
+      "year": 2026,
+      "count": 1,
+      "rank": 61
+    }
+  ],
+  "gradient flow": [
+    {
+      "year": 2026,
+      "count": 1,
+      "rank": 62
+    }
+  ],
+  "global model": [
+    {
+      "year": 2026,
+      "count": 1,
+      "rank": 63
+    }
+  ],
+  "generative models": [
+    {
+      "year": 2026,
+      "count": 1,
+      "rank": 64
+    }
+  ],
+  "generalize markov games": [
+    {
+      "year": 2026,
+      "count": 1,
+      "rank": 65
+    }
+  ],
+  "general utility markov": [
+    {
+      "year": 2026,
+      "count": 1,
+      "rank": 66
+    }
+  ],
+  "gaussian processes": [
+    {
+      "year": 2026,
+      "count": 1,
+      "rank": 67
+    }
+  ],
+  "gaussian": [
+    {
+      "year": 2026,
+      "count": 1,
+      "rank": 68
+    }
+  ],
+  "games": [
+    {
+      "year": 2026,
+      "count": 1,
+      "rank": 69
+    }
+  ],
+  "freezing based optimizer": [
+    {
+      "year": 2026,
+      "count": 1,
+      "rank": 70
+    }
+  ],
+  "fourier domain analysis": [
+    {
+      "year": 2026,
+      "count": 1,
+      "rank": 71
+    }
+  ],
+  "fourier domain": [
+    {
+      "year": 2026,
+      "count": 1,
+      "rank": 72
+    }
+  ],
+  "flow matching framework": [
+    {
+      "year": 2026,
+      "count": 1,
+      "rank": 73
+    }
+  ],
+  "flow matching": [
+    {
+      "year": 2026,
+      "count": 1,
+      "rank": 74
+    }
+  ],
+  "flow": [
+    {
+      "year": 2026,
+      "count": 1,
+      "rank": 75
+    }
+  ],
+  "fisher rao gradient flow": [
+    {
+      "year": 2026,
+      "count": 1,
+      "rank": 76
+    }
+  ],
+  "federated learning objective": [
+    {
+      "year": 2026,
+      "count": 1,
+      "rank": 77
+    }
+  ],
+  "federated learning": [
+    {
+      "year": 2026,
+      "count": 1,
+      "rank": 78
+    }
+  ],
+  "federated": [
+    {
+      "year": 2026,
+      "count": 1,
+      "rank": 79
+    }
+  ],
+  "estimation with weak": [
+    {
+      "year": 2026,
+      "count": 1,
+      "rank": 80
+    }
+  ],
+  "entropic mean field optimization": [
+    {
+      "year": 2026,
+      "count": 1,
+      "rank": 81
+    }
+  ],
+  "entropic mean field": [
+    {
+      "year": 2026,
+      "count": 1,
+      "rank": 82
+    }
+  ],
+  "energy function": [
+    {
+      "year": 2026,
+      "count": 1,
+      "rank": 83
+    }
+  ],
+  "efficient uncoupled learning": [
+    {
+      "year": 2026,
+      "count": 1,
+      "rank": 84
+    }
+  ],
+  "effect for visualizing": [
+    {
+      "year": 2026,
+      "count": 1,
+      "rank": 85
+    }
+  ],
+  "effect estimation": [
+    {
+      "year": 2026,
+      "count": 1,
+      "rank": 86
+    }
+  ],
+  "effect": [
+    {
+      "year": 2026,
+      "count": 1,
+      "rank": 87
+    }
+  ],
+  "eagle": [
+    {
+      "year": 2026,
+      "count": 1,
+      "rank": 88
+    }
+  ],
+  "dynamics matching": [
+    {
+      "year": 2026,
+      "count": 1,
+      "rank": 89
+    }
+  ],
+  "dynamics": [
+    {
+      "year": 2026,
+      "count": 1,
+      "rank": 90
+    }
+  ],
+  "domain analysis": [
+    {
+      "year": 2026,
+      "count": 1,
+      "rank": 91
+    }
+  ],
+  "convex markov games": [
+    {
+      "year": 2026,
+      "count": 1,
+      "rank": 92
+    }
+  ],
+  "convex markov": [
+    {
+      "year": 2026,
+      "count": 1,
+      "rank": 93
+    }
+  ],
+  "continuous time gradient flows": [
+    {
+      "year": 2026,
+      "count": 1,
+      "rank": 94
+    }
+  ],
+  "clients": [
+    {
+      "year": 2026,
+      "count": 1,
+      "rank": 95
+    }
+  ],
+  "causal treatment effect": [
+    {
+      "year": 2026,
+      "count": 1,
+      "rank": 96
+    }
+  ],
+  "causal effect estimation": [
+    {
+      "year": 2026,
+      "count": 1,
+      "rank": 97
+    }
+  ],
+  "causal effect": [
+    {
+      "year": 2026,
+      "count": 1,
+      "rank": 98
+    }
+  ],
+  "bootstrapping": [
+    {
+      "year": 2026,
+      "count": 1,
+      "rank": 99
+    }
+  ],
+  "bilinear saddle point problems": [
+    {
+      "year": 2026,
+      "count": 1,
+      "rank": 100
     }
   ]
 }

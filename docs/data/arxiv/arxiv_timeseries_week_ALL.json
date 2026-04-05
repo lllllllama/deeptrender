@@ -369,8 +369,54 @@
           "count": 17
         }
       ]
+    },
+    {
+      "bucket": "2026-W14",
+      "paper_count": 1000,
+      "top_keywords": [
+        {
+          "keyword": "large language model",
+          "count": 114
+        },
+        {
+          "keyword": "language models",
+          "count": 69
+        },
+        {
+          "keyword": "large language",
+          "count": 64
+        },
+        {
+          "keyword": "reinforcement learning",
+          "count": 30
+        },
+        {
+          "keyword": "reasoning",
+          "count": 28
+        },
+        {
+          "keyword": "language",
+          "count": 28
+        },
+        {
+          "keyword": "generation",
+          "count": 26
+        },
+        {
+          "keyword": "detection",
+          "count": 15
+        },
+        {
+          "keyword": "optimization",
+          "count": 15
+        },
+        {
+          "keyword": "gaussian",
+          "count": 15
+        }
+      ]
     }
   ],
   "cached": true,
-  "exported_at": "2026-03-29T02:36:41.500865"
+  "exported_at": "2026-04-05T02:40:16.974464"
 }

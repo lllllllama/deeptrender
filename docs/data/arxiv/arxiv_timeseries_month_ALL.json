@@ -142,51 +142,97 @@
     },
     {
       "bucket": "2026-03",
-      "paper_count": 3000,
+      "paper_count": 3228,
       "top_keywords": [
         {
           "keyword": "large language model",
-          "count": 325
+          "count": 351
         },
         {
           "keyword": "language models",
-          "count": 153
+          "count": 168
         },
         {
           "keyword": "large language",
-          "count": 152
+          "count": 168
         },
         {
           "keyword": "reasoning",
-          "count": 84
+          "count": 90
         },
         {
           "keyword": "reinforcement learning",
-          "count": 84
+          "count": 88
         },
         {
           "keyword": "language",
-          "count": 75
+          "count": 80
         },
         {
           "keyword": "generation",
-          "count": 65
+          "count": 72
+        },
+        {
+          "keyword": "video",
+          "count": 51
         },
         {
           "keyword": "diffusion",
           "count": 50
         },
         {
-          "keyword": "video",
+          "keyword": "neural networks",
+          "count": 42
+        }
+      ]
+    },
+    {
+      "bucket": "2026-04",
+      "paper_count": 772,
+      "top_keywords": [
+        {
+          "keyword": "large language model",
+          "count": 88
+        },
+        {
+          "keyword": "language models",
+          "count": 54
+        },
+        {
+          "keyword": "large language",
           "count": 48
         },
         {
-          "keyword": "neural networks",
-          "count": 40
+          "keyword": "reinforcement learning",
+          "count": 26
+        },
+        {
+          "keyword": "language",
+          "count": 23
+        },
+        {
+          "keyword": "reasoning",
+          "count": 22
+        },
+        {
+          "keyword": "generation",
+          "count": 19
+        },
+        {
+          "keyword": "gaussian",
+          "count": 15
+        },
+        {
+          "keyword": "optimization",
+          "count": 14
+        },
+        {
+          "keyword": "reinforcement",
+          "count": 12
         }
       ]
     }
   ],
   "cached": true,
-  "exported_at": "2026-03-29T02:36:41.504452"
+  "exported_at": "2026-04-05T02:40:16.978164"
 }

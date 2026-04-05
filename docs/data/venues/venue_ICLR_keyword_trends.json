@@ -46,7 +46,7 @@
     },
     {
       "year": 2026,
-      "count": 10,
+      "count": 11,
       "rank": 3
     }
   ],
@@ -63,8 +63,8 @@
     },
     {
       "year": 2026,
-      "count": 7,
-      "rank": 5
+      "count": 8,
+      "rank": 4
     }
   ],
   "diffusion model": [
@@ -80,8 +80,8 @@
     },
     {
       "year": 2026,
-      "count": 4,
-      "rank": 16
+      "count": 5,
+      "rank": 12
     }
   ],
   "transformer": [
@@ -98,7 +98,7 @@
     {
       "year": 2026,
       "count": 7,
-      "rank": 4
+      "rank": 5
     }
   ],
   "large language": [
@@ -118,7 +118,24 @@
       "rank": 6
     }
   ],
-  "generation": [
+  "diffusion": [
+    {
+      "year": 2024,
+      "count": 2,
+      "rank": 6
+    },
+    {
+      "year": 2025,
+      "count": 0,
+      "rank": 0
+    },
+    {
+      "year": 2026,
+      "count": 4,
+      "rank": 19
+    }
+  ],
+  "language": [
     {
       "year": 2024,
       "count": 0,
@@ -135,11 +152,11 @@
       "rank": 7
     }
   ],
-  "information": [
+  "generation": [
     {
       "year": 2024,
-      "count": 2,
-      "rank": 4
+      "count": 0,
+      "rank": 0
     },
     {
       "year": 2025,
@@ -148,15 +165,15 @@
     },
     {
       "year": 2026,
-      "count": 3,
-      "rank": 26
+      "count": 6,
+      "rank": 8
     }
   ],
-  "diffusion": [
+  "information": [
     {
       "year": 2024,
       "count": 2,
-      "rank": 6
+      "rank": 4
     },
     {
       "year": 2025,
@@ -183,27 +200,10 @@
     {
       "year": 2026,
       "count": 5,
-      "rank": 8
-    }
-  ],
-  "large reasoning models": [
-    {
-      "year": 2024,
-      "count": 0,
-      "rank": 0
-    },
-    {
-      "year": 2025,
-      "count": 0,
-      "rank": 0
-    },
-    {
-      "year": 2026,
-      "count": 5,
       "rank": 9
     }
   ],
-  "language": [
+  "neural": [
     {
       "year": 2024,
       "count": 0,
@@ -220,7 +220,7 @@
       "rank": 10
     }
   ],
-  "alignment": [
+  "large reasoning models": [
     {
       "year": 2024,
       "count": 0,
@@ -237,6 +237,23 @@
       "rank": 11
     }
   ],
+  "alignment": [
+    {
+      "year": 2024,
+      "count": 0,
+      "rank": 0
+    },
+    {
+      "year": 2025,
+      "count": 0,
+      "rank": 0
+    },
+    {
+      "year": 2026,
+      "count": 5,
+      "rank": 13
+    }
+  ],
   "agents": [
     {
       "year": 2024,
@@ -251,44 +268,10 @@
     {
       "year": 2026,
       "count": 5,
-      "rank": 12
-    }
-  ],
-  "time series": [
-    {
-      "year": 2024,
-      "count": 0,
-      "rank": 0
-    },
-    {
-      "year": 2025,
-      "count": 0,
-      "rank": 0
-    },
-    {
-      "year": 2026,
-      "count": 4,
-      "rank": 13
-    }
-  ],
-  "neural": [
-    {
-      "year": 2024,
-      "count": 0,
-      "rank": 0
-    },
-    {
-      "year": 2025,
-      "count": 0,
-      "rank": 0
-    },
-    {
-      "year": 2026,
-      "count": 4,
       "rank": 14
     }
   ],
-  "large reasoning": [
+  "visual": [
     {
       "year": 2024,
       "count": 0,
@@ -305,7 +288,24 @@
       "rank": 15
     }
   ],
-  "benchmarking": [
+  "time series": [
+    {
+      "year": 2024,
+      "count": 0,
+      "rank": 0
+    },
+    {
+      "year": 2025,
+      "count": 0,
+      "rank": 0
+    },
+    {
+      "year": 2026,
+      "count": 4,
+      "rank": 16
+    }
+  ],
+  "protein": [
     {
       "year": 2024,
       "count": 0,
@@ -322,6 +322,40 @@
       "rank": 17
     }
   ],
+  "large reasoning": [
+    {
+      "year": 2024,
+      "count": 0,
+      "rank": 0
+    },
+    {
+      "year": 2025,
+      "count": 0,
+      "rank": 0
+    },
+    {
+      "year": 2026,
+      "count": 4,
+      "rank": 18
+    }
+  ],
+  "benchmarking": [
+    {
+      "year": 2024,
+      "count": 0,
+      "rank": 0
+    },
+    {
+      "year": 2025,
+      "count": 0,
+      "rank": 0
+    },
+    {
+      "year": 2026,
+      "count": 4,
+      "rank": 20
+    }
+  ],
   "prediction": [
     {
       "year": 2024,
@@ -336,24 +370,7 @@
     {
       "year": 2026,
       "count": 2,
-      "rank": 54
-    }
-  ],
-  "visual": [
-    {
-      "year": 2024,
-      "count": 0,
-      "rank": 0
-    },
-    {
-      "year": 2025,
-      "count": 0,
-      "rank": 0
-    },
-    {
-      "year": 2026,
-      "count": 3,
-      "rank": 18
+      "rank": 56
     }
   ],
   "text": [
@@ -370,7 +387,7 @@
     {
       "year": 2026,
       "count": 3,
-      "rank": 19
+      "rank": 21
     }
   ],
   "reward": [
@@ -387,24 +404,7 @@
     {
       "year": 2026,
       "count": 3,
-      "rank": 20
-    }
-  ],
-  "protein": [
-    {
-      "year": 2024,
-      "count": 0,
-      "rank": 0
-    },
-    {
-      "year": 2025,
-      "count": 0,
-      "rank": 0
-    },
-    {
-      "year": 2026,
-      "count": 3,
-      "rank": 21
+      "rank": 22
     }
   ],
   "policy": [
@@ -421,7 +421,7 @@
     {
       "year": 2026,
       "count": 3,
-      "rank": 22
+      "rank": 23
     }
   ],
   "object": [
@@ -438,7 +438,7 @@
     {
       "year": 2026,
       "count": 3,
-      "rank": 23
+      "rank": 24
     }
   ],
   "multivariate time series": [
@@ -455,7 +455,7 @@
     {
       "year": 2026,
       "count": 3,
-      "rank": 24
+      "rank": 25
     }
   ],
   "multivariate time": [
@@ -472,7 +472,24 @@
     {
       "year": 2026,
       "count": 3,
-      "rank": 25
+      "rank": 26
+    }
+  ],
+  "foundation models": [
+    {
+      "year": 2024,
+      "count": 0,
+      "rank": 0
+    },
+    {
+      "year": 2025,
+      "count": 0,
+      "rank": 0
+    },
+    {
+      "year": 2026,
+      "count": 3,
+      "rank": 28
     }
   ],
   "agentic": [
@@ -489,7 +506,7 @@
     {
       "year": 2026,
       "count": 3,
-      "rank": 28
+      "rank": 29
     }
   ],
   "normalizing": [
@@ -574,7 +591,7 @@
     {
       "year": 2026,
       "count": 2,
-      "rank": 29
+      "rank": 30
     }
   ],
   "world model": [
@@ -591,7 +608,7 @@
     {
       "year": 2026,
       "count": 2,
-      "rank": 30
+      "rank": 31
     }
   ],
   "world": [
@@ -608,7 +625,7 @@
     {
       "year": 2026,
       "count": 2,
-      "rank": 31
+      "rank": 32
     }
   ],
   "video": [
@@ -625,7 +642,7 @@
     {
       "year": 2026,
       "count": 2,
-      "rank": 32
+      "rank": 33
     }
   ],
   "unlearnable": [
@@ -642,7 +659,7 @@
     {
       "year": 2026,
       "count": 2,
-      "rank": 33
+      "rank": 34
     }
   ],
   "understanding": [
@@ -659,7 +676,7 @@
     {
       "year": 2026,
       "count": 2,
-      "rank": 34
+      "rank": 35
     }
   ],
   "time series forecasting": [
@@ -676,7 +693,7 @@
     {
       "year": 2026,
       "count": 2,
-      "rank": 35
+      "rank": 36
     }
   ],
   "time": [
@@ -693,7 +710,7 @@
     {
       "year": 2026,
       "count": 2,
-      "rank": 36
+      "rank": 37
     }
   ],
   "test time adaptation": [
@@ -710,7 +727,7 @@
     {
       "year": 2026,
       "count": 2,
-      "rank": 37
+      "rank": 38
     }
   ],
   "steering": [
@@ -727,7 +744,7 @@
     {
       "year": 2026,
       "count": 2,
-      "rank": 38
+      "rank": 39
     }
   ],
   "state space models": [
@@ -744,7 +761,7 @@
     {
       "year": 2026,
       "count": 2,
-      "rank": 39
+      "rank": 40
     }
   ],
   "segmentation": [
@@ -761,7 +778,7 @@
     {
       "year": 2026,
       "count": 2,
-      "rank": 40
+      "rank": 41
     }
   ],
   "scene": [
@@ -778,7 +795,7 @@
     {
       "year": 2026,
       "count": 2,
-      "rank": 41
+      "rank": 42
     }
   ],
   "routing": [
@@ -795,7 +812,7 @@
     {
       "year": 2026,
       "count": 2,
-      "rank": 42
+      "rank": 43
     }
   ],
   "robust": [
@@ -812,7 +829,7 @@
     {
       "year": 2026,
       "count": 2,
-      "rank": 43
+      "rank": 44
     }
   ],
   "robotic manipulation": [
@@ -829,7 +846,7 @@
     {
       "year": 2026,
       "count": 2,
-      "rank": 44
+      "rank": 45
     }
   ],
   "robotic": [
@@ -846,7 +863,7 @@
     {
       "year": 2026,
       "count": 2,
-      "rank": 45
+      "rank": 46
     }
   ],
   "reward model": [
@@ -863,7 +880,7 @@
     {
       "year": 2026,
       "count": 2,
-      "rank": 46
+      "rank": 47
     }
   ],
   "representations": [
@@ -880,27 +897,10 @@
     {
       "year": 2026,
       "count": 2,
-      "rank": 47
-    }
-  ],
-  "reinforcement": [
-    {
-      "year": 2024,
-      "count": 0,
-      "rank": 0
-    },
-    {
-      "year": 2025,
-      "count": 0,
-      "rank": 0
-    },
-    {
-      "year": 2026,
-      "count": 2,
       "rank": 48
     }
   ],
-  "reference": [
+  "relational": [
     {
       "year": 2024,
       "count": 0,
@@ -917,7 +917,7 @@
       "rank": 49
     }
   ],
-  "proximal policy optimization": [
+  "reinforcement": [
     {
       "year": 2024,
       "count": 0,
@@ -934,7 +934,7 @@
       "rank": 50
     }
   ],
-  "probabilistic": [
+  "reference": [
     {
       "year": 2024,
       "count": 0,
@@ -951,7 +951,7 @@
       "rank": 51
     }
   ],
-  "priors": [
+  "proximal policy optimization": [
     {
       "year": 2024,
       "count": 0,
@@ -968,7 +968,7 @@
       "rank": 52
     }
   ],
-  "preference alignment": [
+  "probabilistic": [
     {
       "year": 2024,
       "count": 0,
@@ -985,7 +985,24 @@
       "rank": 53
     }
   ],
-  "policy optimization": [
+  "priors": [
+    {
+      "year": 2024,
+      "count": 0,
+      "rank": 0
+    },
+    {
+      "year": 2025,
+      "count": 0,
+      "rank": 0
+    },
+    {
+      "year": 2026,
+      "count": 2,
+      "rank": 54
+    }
+  ],
+  "preference alignment": [
     {
       "year": 2024,
       "count": 0,
@@ -1002,24 +1019,7 @@
       "rank": 55
     }
   ],
-  "multivariate": [
-    {
-      "year": 2024,
-      "count": 0,
-      "rank": 0
-    },
-    {
-      "year": 2025,
-      "count": 0,
-      "rank": 0
-    },
-    {
-      "year": 2026,
-      "count": 2,
-      "rank": 56
-    }
-  ],
-  "multilingual": [
+  "policy optimization": [
     {
       "year": 2024,
       "count": 0,
@@ -1036,7 +1036,7 @@
       "rank": 57
     }
   ],
-  "multi agent reinforcement learning": [
+  "neural networks": [
     {
       "year": 2024,
       "count": 0,
@@ -1053,7 +1053,7 @@
       "rank": 58
     }
   ],
-  "multi agent reinforcement": [
+  "multivariate": [
     {
       "year": 2024,
       "count": 0,
@@ -1070,7 +1070,7 @@
       "rank": 59
     }
   ],
-  "machine learning": [
+  "multilingual": [
     {
       "year": 2024,
       "count": 0,
@@ -1087,7 +1087,7 @@
       "rank": 60
     }
   ],
-  "llm alignment": [
+  "multi agent reinforcement learning": [
     {
       "year": 2024,
       "count": 0,
@@ -1104,7 +1104,7 @@
       "rank": 61
     }
   ],
-  "language model agents": [
+  "multi agent reinforcement": [
     {
       "year": 2024,
       "count": 0,
@@ -1121,7 +1121,7 @@
       "rank": 62
     }
   ],
-  "inference": [
+  "mechanistic": [
     {
       "year": 2024,
       "count": 0,
@@ -1138,7 +1138,7 @@
       "rank": 63
     }
   ],
-  "in context learning": [
+  "machine learning": [
     {
       "year": 2024,
       "count": 0,
@@ -1155,7 +1155,7 @@
       "rank": 64
     }
   ],
-  "imitation learning": [
+  "llm alignment": [
     {
       "year": 2024,
       "count": 0,
@@ -1172,7 +1172,7 @@
       "rank": 65
     }
   ],
-  "imitation": [
+  "large vision language models": [
     {
       "year": 2024,
       "count": 0,
@@ -1189,7 +1189,7 @@
       "rank": 66
     }
   ],
-  "goal drift": [
+  "language model agents": [
     {
       "year": 2024,
       "count": 0,
@@ -1206,7 +1206,7 @@
       "rank": 67
     }
   ],
-  "generalized": [
+  "inference": [
     {
       "year": 2024,
       "count": 0,
@@ -1223,7 +1223,7 @@
       "rank": 68
     }
   ],
-  "fusion": [
+  "in context learning": [
     {
       "year": 2024,
       "count": 0,
@@ -1240,7 +1240,7 @@
       "rank": 69
     }
   ],
-  "foundation models": [
+  "imitation learning": [
     {
       "year": 2024,
       "count": 0,
@@ -1257,7 +1257,7 @@
       "rank": 70
     }
   ],
-  "flow": [
+  "imitation": [
     {
       "year": 2024,
       "count": 0,
@@ -1274,7 +1274,7 @@
       "rank": 71
     }
   ],
-  "fast": [
+  "goal drift": [
     {
       "year": 2024,
       "count": 0,
@@ -1291,7 +1291,7 @@
       "rank": 72
     }
   ],
-  "fail": [
+  "generalized": [
     {
       "year": 2024,
       "count": 0,
@@ -1308,7 +1308,7 @@
       "rank": 73
     }
   ],
-  "entropy": [
+  "fusion": [
     {
       "year": 2024,
       "count": 0,
@@ -1325,7 +1325,7 @@
       "rank": 74
     }
   ],
-  "drift": [
+  "function": [
     {
       "year": 2024,
       "count": 0,
@@ -1342,7 +1342,7 @@
       "rank": 75
     }
   ],
-  "discovery": [
+  "flow": [
     {
       "year": 2024,
       "count": 0,
@@ -1359,7 +1359,7 @@
       "rank": 76
     }
   ],
-  "direct preference optimization": [
+  "fast": [
     {
       "year": 2024,
       "count": 0,
@@ -1376,7 +1376,7 @@
       "rank": 77
     }
   ],
-  "cooperative multi agent reinforcement": [
+  "fail": [
     {
       "year": 2024,
       "count": 0,
@@ -1393,7 +1393,7 @@
       "rank": 78
     }
   ],
-  "control": [
+  "entropy": [
     {
       "year": 2024,
       "count": 0,
@@ -1410,7 +1410,7 @@
       "rank": 79
     }
   ],
-  "continual learning": [
+  "drift": [
     {
       "year": 2024,
       "count": 0,
@@ -1427,7 +1427,7 @@
       "rank": 80
     }
   ],
-  "concept": [
+  "discovery": [
     {
       "year": 2024,
       "count": 0,
@@ -1444,7 +1444,7 @@
       "rank": 81
     }
   ],
-  "compression": [
+  "direct preference optimization": [
     {
       "year": 2024,
       "count": 0,
@@ -1461,7 +1461,7 @@
       "rank": 82
     }
   ],
-  "coding": [
+  "cooperative multi agent reinforcement": [
     {
       "year": 2024,
       "count": 0,
@@ -1478,7 +1478,7 @@
       "rank": 83
     }
   ],
-  "causal": [
+  "control": [
     {
       "year": 2024,
       "count": 0,
@@ -1495,7 +1495,7 @@
       "rank": 84
     }
   ],
-  "category": [
+  "continual learning": [
     {
       "year": 2024,
       "count": 0,
@@ -1512,7 +1512,7 @@
       "rank": 85
     }
   ],
-  "adaptation": [
+  "concept": [
     {
       "year": 2024,
       "count": 0,
@@ -1529,7 +1529,7 @@
       "rank": 86
     }
   ],
-  "activation steering": [
+  "compression": [
     {
       "year": 2024,
       "count": 0,
@@ -1546,7 +1546,7 @@
       "rank": 87
     }
   ],
-  "accurate": [
+  "comprehensive": [
     {
       "year": 2024,
       "count": 0,
@@ -1561,6 +1561,142 @@
       "year": 2026,
       "count": 2,
       "rank": 88
+    }
+  ],
+  "coding": [
+    {
+      "year": 2024,
+      "count": 0,
+      "rank": 0
+    },
+    {
+      "year": 2025,
+      "count": 0,
+      "rank": 0
+    },
+    {
+      "year": 2026,
+      "count": 2,
+      "rank": 89
+    }
+  ],
+  "causal": [
+    {
+      "year": 2024,
+      "count": 0,
+      "rank": 0
+    },
+    {
+      "year": 2025,
+      "count": 0,
+      "rank": 0
+    },
+    {
+      "year": 2026,
+      "count": 2,
+      "rank": 90
+    }
+  ],
+  "category": [
+    {
+      "year": 2024,
+      "count": 0,
+      "rank": 0
+    },
+    {
+      "year": 2025,
+      "count": 0,
+      "rank": 0
+    },
+    {
+      "year": 2026,
+      "count": 2,
+      "rank": 91
+    }
+  ],
+  "bias": [
+    {
+      "year": 2024,
+      "count": 0,
+      "rank": 0
+    },
+    {
+      "year": 2025,
+      "count": 0,
+      "rank": 0
+    },
+    {
+      "year": 2026,
+      "count": 2,
+      "rank": 92
+    }
+  ],
+  "attention": [
+    {
+      "year": 2024,
+      "count": 0,
+      "rank": 0
+    },
+    {
+      "year": 2025,
+      "count": 0,
+      "rank": 0
+    },
+    {
+      "year": 2026,
+      "count": 2,
+      "rank": 93
+    }
+  ],
+  "adaptation": [
+    {
+      "year": 2024,
+      "count": 0,
+      "rank": 0
+    },
+    {
+      "year": 2025,
+      "count": 0,
+      "rank": 0
+    },
+    {
+      "year": 2026,
+      "count": 2,
+      "rank": 94
+    }
+  ],
+  "activation steering": [
+    {
+      "year": 2024,
+      "count": 0,
+      "rank": 0
+    },
+    {
+      "year": 2025,
+      "count": 0,
+      "rank": 0
+    },
+    {
+      "year": 2026,
+      "count": 2,
+      "rank": 95
+    }
+  ],
+  "accurate": [
+    {
+      "year": 2024,
+      "count": 0,
+      "rank": 0
+    },
+    {
+      "year": 2025,
+      "count": 0,
+      "rank": 0
+    },
+    {
+      "year": 2026,
+      "count": 2,
+      "rank": 96
     }
   ],
   "zoo experts": [
@@ -3260,7 +3396,7 @@
     {
       "year": 2026,
       "count": 1,
-      "rank": 89
+      "rank": 97
     }
   ],
   "zsq": [
@@ -3277,7 +3413,7 @@
     {
       "year": 2026,
       "count": 1,
-      "rank": 90
+      "rank": 98
     }
   ],
   "zero shot text classification": [
@@ -3294,146 +3430,10 @@
     {
       "year": 2026,
       "count": 1,
-      "rank": 91
-    }
-  ],
-  "zero shot text": [
-    {
-      "year": 2024,
-      "count": 0,
-      "rank": 0
-    },
-    {
-      "year": 2025,
-      "count": 0,
-      "rank": 0
-    },
-    {
-      "year": 2026,
-      "count": 1,
-      "rank": 92
-    }
-  ],
-  "zero shot quantization": [
-    {
-      "year": 2024,
-      "count": 0,
-      "rank": 0
-    },
-    {
-      "year": 2025,
-      "count": 0,
-      "rank": 0
-    },
-    {
-      "year": 2026,
-      "count": 1,
-      "rank": 93
-    }
-  ],
-  "zero shot human object interaction": [
-    {
-      "year": 2024,
-      "count": 0,
-      "rank": 0
-    },
-    {
-      "year": 2025,
-      "count": 0,
-      "rank": 0
-    },
-    {
-      "year": 2026,
-      "count": 1,
-      "rank": 94
-    }
-  ],
-  "zero shot hoi detection": [
-    {
-      "year": 2024,
-      "count": 0,
-      "rank": 0
-    },
-    {
-      "year": 2025,
-      "count": 0,
-      "rank": 0
-    },
-    {
-      "year": 2026,
-      "count": 1,
-      "rank": 95
-    }
-  ],
-  "zero shot hoi": [
-    {
-      "year": 2024,
-      "count": 0,
-      "rank": 0
-    },
-    {
-      "year": 2025,
-      "count": 0,
-      "rank": 0
-    },
-    {
-      "year": 2026,
-      "count": 1,
-      "rank": 96
-    }
-  ],
-  "zero shot classifier edits": [
-    {
-      "year": 2024,
-      "count": 0,
-      "rank": 0
-    },
-    {
-      "year": 2025,
-      "count": 0,
-      "rank": 0
-    },
-    {
-      "year": 2026,
-      "count": 1,
-      "rank": 97
-    }
-  ],
-  "wins": [
-    {
-      "year": 2024,
-      "count": 0,
-      "rank": 0
-    },
-    {
-      "year": 2025,
-      "count": 0,
-      "rank": 0
-    },
-    {
-      "year": 2026,
-      "count": 1,
-      "rank": 98
-    }
-  ],
-  "wind object interaction modeling": [
-    {
-      "year": 2024,
-      "count": 0,
-      "rank": 0
-    },
-    {
-      "year": 2025,
-      "count": 0,
-      "rank": 0
-    },
-    {
-      "year": 2026,
-      "count": 1,
       "rank": 99
     }
   ],
-  "wind driven object dynamics": [
+  "zero shot text": [
     {
       "year": 2024,
       "count": 0,

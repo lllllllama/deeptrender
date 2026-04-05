@@ -9,7 +9,7 @@
       2025,
       2024
     ],
-    "paper_count": 203,
+    "paper_count": 217,
     "top_keywords": [
       {
         "keyword": "large language model",
@@ -21,14 +21,18 @@
       },
       {
         "keyword": "language models",
-        "count": 10
+        "count": 11
       },
       {
         "keyword": "reinforcement learning",
-        "count": 8
+        "count": 9
       },
       {
         "keyword": "large language",
+        "count": 8
+      },
+      {
+        "keyword": "diffusion model",
         "count": 8
       },
       {
@@ -36,20 +40,16 @@
         "count": 7
       },
       {
-        "keyword": "diffusion model",
-        "count": 7
+        "keyword": "neural",
+        "count": 6
+      },
+      {
+        "keyword": "language",
+        "count": 6
       },
       {
         "keyword": "generation",
         "count": 6
-      },
-      {
-        "keyword": "optimization",
-        "count": 5
-      },
-      {
-        "keyword": "neural",
-        "count": 5
       }
     ]
   },
@@ -63,7 +63,7 @@
       2025,
       2023
     ],
-    "paper_count": 43,
+    "paper_count": 44,
     "top_keywords": [
       {
         "keyword": "large language model",
@@ -98,11 +98,11 @@
         "count": 2
       },
       {
-        "keyword": "neural",
+        "keyword": "prediction",
         "count": 2
       },
       {
-        "keyword": "language",
+        "keyword": "neural",
         "count": 2
       }
     ]
@@ -116,14 +116,18 @@
       2026,
       2025
     ],
-    "paper_count": 12,
+    "paper_count": 13,
     "top_keywords": [
+      {
+        "keyword": "large language model",
+        "count": 3
+      },
       {
         "keyword": "vision language models",
         "count": 2
       },
       {
-        "keyword": "large language model",
+        "keyword": "language models",
         "count": 2
       },
       {
@@ -153,10 +157,6 @@
       {
         "keyword": "unlearning methods remains",
         "count": 1
-      },
-      {
-        "keyword": "unlearning methods",
-        "count": 1
       }
     ]
   },
@@ -168,7 +168,7 @@
     "years_available": [
       2026
     ],
-    "paper_count": 2,
+    "paper_count": 3,
     "top_keywords": [
       {
         "keyword": "transformer quantization",
@@ -195,19 +195,19 @@
         "count": 1
       },
       {
+        "keyword": "sentiment analysis",
+        "count": 1
+      },
+      {
+        "keyword": "rlf",
+        "count": 1
+      },
+      {
+        "keyword": "repetitive lengthening form",
+        "count": 1
+      },
+      {
         "keyword": "quantization",
-        "count": 1
-      },
-      {
-        "keyword": "qualcomm ai research",
-        "count": 1
-      },
-      {
-        "keyword": "persuasive dialogue agents",
-        "count": 1
-      },
-      {
-        "keyword": "persuasive dialogue",
         "count": 1
       }
     ]
@@ -218,47 +218,47 @@
     "domain": "ML",
     "tier": "A",
     "years_available": [],
-    "paper_count": 8947,
+    "paper_count": 9947,
     "top_keywords": [
       {
         "keyword": "large language model",
-        "count": 782
-      },
-      {
-        "keyword": "large language",
-        "count": 404
+        "count": 896
       },
       {
         "keyword": "language models",
-        "count": 403
+        "count": 472
+      },
+      {
+        "keyword": "large language",
+        "count": 468
       },
       {
         "keyword": "generation",
-        "count": 277
+        "count": 303
       },
       {
         "keyword": "diffusion",
-        "count": 253
+        "count": 265
       },
       {
         "keyword": "diffusion model",
-        "count": 248
-      },
-      {
-        "keyword": "image",
-        "count": 225
-      },
-      {
-        "keyword": "video",
-        "count": 215
+        "count": 258
       },
       {
         "keyword": "language",
-        "count": 214
+        "count": 242
       },
       {
         "keyword": "reasoning",
-        "count": 208
+        "count": 236
+      },
+      {
+        "keyword": "image",
+        "count": 235
+      },
+      {
+        "keyword": "video",
+        "count": 227
       }
     ]
   },
@@ -268,47 +268,47 @@
     "domain": "ML",
     "tier": "A",
     "years_available": [],
-    "paper_count": 8947,
+    "paper_count": 9947,
     "top_keywords": [
       {
         "keyword": "large language model",
-        "count": 782
-      },
-      {
-        "keyword": "large language",
-        "count": 404
+        "count": 896
       },
       {
         "keyword": "language models",
-        "count": 403
+        "count": 472
+      },
+      {
+        "keyword": "large language",
+        "count": 468
       },
       {
         "keyword": "generation",
-        "count": 277
+        "count": 303
       },
       {
         "keyword": "diffusion",
-        "count": 253
+        "count": 265
       },
       {
         "keyword": "diffusion model",
-        "count": 248
-      },
-      {
-        "keyword": "image",
-        "count": 225
-      },
-      {
-        "keyword": "video",
-        "count": 215
+        "count": 258
       },
       {
         "keyword": "language",
-        "count": 214
+        "count": 242
       },
       {
         "keyword": "reasoning",
-        "count": 208
+        "count": 236
+      },
+      {
+        "keyword": "image",
+        "count": 235
+      },
+      {
+        "keyword": "video",
+        "count": 227
       }
     ]
   },
@@ -318,47 +318,47 @@
     "domain": "ML",
     "tier": "A",
     "years_available": [],
-    "paper_count": 8947,
+    "paper_count": 9947,
     "top_keywords": [
       {
         "keyword": "large language model",
-        "count": 782
-      },
-      {
-        "keyword": "large language",
-        "count": 404
+        "count": 896
       },
       {
         "keyword": "language models",
-        "count": 403
+        "count": 472
+      },
+      {
+        "keyword": "large language",
+        "count": 468
       },
       {
         "keyword": "generation",
-        "count": 277
+        "count": 303
       },
       {
         "keyword": "diffusion",
-        "count": 253
+        "count": 265
       },
       {
         "keyword": "diffusion model",
-        "count": 248
-      },
-      {
-        "keyword": "image",
-        "count": 225
-      },
-      {
-        "keyword": "video",
-        "count": 215
+        "count": 258
       },
       {
         "keyword": "language",
-        "count": 214
+        "count": 242
       },
       {
         "keyword": "reasoning",
-        "count": 208
+        "count": 236
+      },
+      {
+        "keyword": "image",
+        "count": 235
+      },
+      {
+        "keyword": "video",
+        "count": 227
       }
     ]
   },
@@ -370,7 +370,7 @@
     "years_available": [
       2026
     ],
-    "paper_count": 6,
+    "paper_count": 12,
     "top_keywords": [
       {
         "keyword": "wsbd",
@@ -381,35 +381,35 @@
         "count": 1
       },
       {
+        "keyword": "weak overlap",
+        "count": 1
+      },
+      {
+        "keyword": "visualizing high dimensional data",
+        "count": 1
+      },
+      {
+        "keyword": "visualizing",
+        "count": 1
+      },
+      {
+        "keyword": "vision transformer",
+        "count": 1
+      },
+      {
+        "keyword": "variational gaussian processes",
+        "count": 1
+      },
+      {
+        "keyword": "variational",
+        "count": 1
+      },
+      {
         "keyword": "utility markov games",
         "count": 1
       },
       {
         "keyword": "uncoupled learning dynamics",
-        "count": 1
-      },
-      {
-        "keyword": "uncoupled learning algorithm",
-        "count": 1
-      },
-      {
-        "keyword": "uncoupled learning",
-        "count": 1
-      },
-      {
-        "keyword": "stochastic block descent",
-        "count": 1
-      },
-      {
-        "keyword": "segmentation",
-        "count": 1
-      },
-      {
-        "keyword": "saddle point problems",
-        "count": 1
-      },
-      {
-        "keyword": "referring image segmentation",
         "count": 1
       }
     ]
