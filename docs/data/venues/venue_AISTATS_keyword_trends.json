@@ -1,698 +1,698 @@
 {
-  "wsbd": [
+  "processes": [
     {
       "year": 2026,
-      "count": 1,
+      "count": 2,
       "rank": 1
     }
   ],
-  "weighted stochastic block": [
+  "markov": [
     {
       "year": 2026,
-      "count": 1,
+      "count": 2,
       "rank": 2
     }
   ],
-  "weak overlap": [
+  "wsbd": [
     {
       "year": 2026,
       "count": 1,
       "rank": 3
     }
   ],
-  "visualizing high dimensional data": [
+  "weighted stochastic block": [
     {
       "year": 2026,
       "count": 1,
       "rank": 4
     }
   ],
-  "visualizing": [
+  "weakly supervised kernel": [
     {
       "year": 2026,
       "count": 1,
       "rank": 5
     }
   ],
-  "vision transformer": [
+  "weak overlap": [
     {
       "year": 2026,
       "count": 1,
       "rank": 6
     }
   ],
-  "variational gaussian processes": [
+  "visualizing high dimensional data": [
     {
       "year": 2026,
       "count": 1,
       "rank": 7
     }
   ],
-  "variational": [
+  "visualizing": [
     {
       "year": 2026,
       "count": 1,
       "rank": 8
     }
   ],
-  "utility markov games": [
+  "visual prompting reimagined": [
     {
       "year": 2026,
       "count": 1,
       "rank": 9
     }
   ],
-  "uncoupled learning dynamics": [
+  "visual prompting": [
     {
       "year": 2026,
       "count": 1,
       "rank": 10
     }
   ],
-  "uncoupled learning algorithm": [
+  "visual": [
     {
       "year": 2026,
       "count": 1,
       "rank": 11
     }
   ],
-  "uncoupled learning": [
+  "vision transformer": [
     {
       "year": 2026,
       "count": 1,
       "rank": 12
     }
   ],
-  "treatment effect estimation": [
+  "verification relaxed speculative": [
     {
       "year": 2026,
       "count": 1,
       "rank": 13
     }
   ],
-  "stochastic block descent": [
+  "variational gaussian processes": [
     {
       "year": 2026,
       "count": 1,
       "rank": 14
     }
   ],
-  "spectral graph neural": [
+  "variational": [
     {
       "year": 2026,
       "count": 1,
       "rank": 15
     }
   ],
-  "spectral gnns": [
+  "valuation": [
     {
       "year": 2026,
       "count": 1,
       "rank": 16
     }
   ],
-  "sparse variational gaussian": [
+  "utility markov games": [
     {
       "year": 2026,
       "count": 1,
       "rank": 17
     }
   ],
-  "sparse variational": [
+  "unlearning": [
     {
       "year": 2026,
       "count": 1,
       "rank": 18
     }
   ],
-  "sparse": [
+  "uncoupled learning dynamics": [
     {
       "year": 2026,
       "count": 1,
       "rank": 19
     }
   ],
-  "segmentation": [
+  "uncoupled learning algorithm": [
     {
       "year": 2026,
       "count": 1,
       "rank": 20
     }
   ],
-  "saddle point problems": [
+  "uncoupled learning": [
     {
       "year": 2026,
       "count": 1,
       "rank": 21
     }
   ],
-  "representation learning": [
+  "tree height estimation": [
     {
       "year": 2026,
       "count": 1,
       "rank": 22
     }
   ],
-  "regularizing attention scores": [
+  "tree height": [
     {
       "year": 2026,
       "count": 1,
       "rank": 23
     }
   ],
-  "referring image segmentation": [
+  "treatment effect estimation": [
     {
       "year": 2026,
       "count": 1,
       "rank": 24
     }
   ],
-  "referring image": [
+  "termed activation prompt": [
     {
       "year": 2026,
       "count": 1,
       "rank": 25
     }
   ],
-  "rashomon set": [
+  "stochastic block descent": [
     {
       "year": 2026,
       "count": 1,
       "rank": 26
     }
   ],
-  "rashomon effect": [
+  "speculative decoding": [
     {
       "year": 2026,
       "count": 1,
       "rank": 27
     }
   ],
-  "rashomon": [
+  "speculative": [
     {
       "year": 2026,
       "count": 1,
       "rank": 28
     }
   ],
-  "radial contrastive learning": [
+  "spectral graph neural": [
     {
       "year": 2026,
       "count": 1,
       "rank": 29
     }
   ],
-  "quantum neural networks": [
+  "spectral gnns": [
     {
       "year": 2026,
       "count": 1,
       "rank": 30
     }
   ],
-  "quantum neural": [
+  "sparse variational gaussian": [
     {
       "year": 2026,
       "count": 1,
       "rank": 31
     }
   ],
-  "quantum": [
+  "sparse variational": [
     {
       "year": 2026,
       "count": 1,
       "rank": 32
     }
   ],
-  "processes": [
+  "sparse": [
     {
       "year": 2026,
       "count": 1,
       "rank": 33
     }
   ],
-  "physics": [
+  "segmentation": [
     {
       "year": 2026,
       "count": 1,
       "rank": 34
     }
   ],
-  "particle system": [
+  "saddle point problems": [
     {
       "year": 2026,
       "count": 1,
       "rank": 35
     }
   ],
-  "neural odes": [
+  "robust learning": [
     {
       "year": 2026,
       "count": 1,
       "rank": 36
     }
   ],
-  "neural networks": [
+  "risk minimization": [
     {
       "year": 2026,
       "count": 1,
       "rank": 37
     }
   ],
-  "neural": [
+  "representations": [
     {
       "year": 2026,
       "count": 1,
       "rank": 38
     }
   ],
-  "nash equilibria": [
+  "representation learning": [
     {
       "year": 2026,
       "count": 1,
       "rank": 39
     }
   ],
-  "multimodal radial contrastive": [
+  "remote sensing": [
     {
       "year": 2026,
       "count": 1,
       "rank": 40
     }
   ],
-  "motion aware referring image": [
+  "relaxed speculative decoding": [
     {
       "year": 2026,
       "count": 1,
       "rank": 41
     }
   ],
-  "mean field optimization": [
+  "relaxed speculative": [
     {
       "year": 2026,
       "count": 1,
       "rank": 42
     }
   ],
-  "matching": [
+  "regularizing attention scores": [
     {
       "year": 2026,
       "count": 1,
       "rank": 43
     }
   ],
-  "markov games": [
+  "referring image segmentation": [
     {
       "year": 2026,
       "count": 1,
       "rank": 44
     }
   ],
-  "markov": [
+  "referring image": [
     {
       "year": 2026,
       "count": 1,
       "rank": 45
     }
   ],
-  "learning for causal": [
+  "rashomon set": [
     {
       "year": 2026,
       "count": 1,
       "rank": 46
     }
   ],
-  "learning dynamics": [
+  "rashomon effect": [
     {
       "year": 2026,
       "count": 1,
       "rank": 47
     }
   ],
-  "learning algorithms": [
+  "rashomon": [
     {
       "year": 2026,
       "count": 1,
       "rank": 48
     }
   ],
-  "last iterate convergence": [
+  "radial contrastive learning": [
     {
       "year": 2026,
       "count": 1,
       "rank": 49
     }
   ],
-  "inverse free sparse variational": [
+  "quantum neural networks": [
     {
       "year": 2026,
       "count": 1,
       "rank": 50
     }
   ],
-  "input features": [
+  "quantum neural": [
     {
       "year": 2026,
       "count": 1,
       "rank": 51
     }
   ],
-  "images based": [
+  "quantum": [
     {
       "year": 2026,
       "count": 1,
       "rank": 52
     }
   ],
-  "image segmentation": [
+  "quantile regression": [
     {
       "year": 2026,
       "count": 1,
       "rank": 53
     }
   ],
-  "image": [
+  "proportion estimation": [
     {
       "year": 2026,
       "count": 1,
       "rank": 54
     }
   ],
-  "high dimensional data equally": [
+  "proportion": [
     {
       "year": 2026,
       "count": 1,
       "rank": 55
     }
   ],
-  "high dimensional data": [
+  "prompting": [
     {
       "year": 2026,
       "count": 1,
       "rank": 56
     }
   ],
-  "heterogeneous federated learning": [
+  "physics": [
     {
       "year": 2026,
       "count": 1,
       "rank": 57
     }
   ],
-  "grey box dynamics matching": [
+  "particle system": [
     {
       "year": 2026,
       "count": 1,
       "rank": 58
     }
   ],
-  "graph fourier transform": [
+  "numerous machine unlearning": [
     {
       "year": 2026,
       "count": 1,
       "rank": 59
     }
   ],
-  "graph fourier domain": [
+  "noise": [
     {
       "year": 2026,
       "count": 1,
       "rank": 60
     }
   ],
-  "graph fourier": [
+  "neural odes": [
     {
       "year": 2026,
       "count": 1,
       "rank": 61
     }
   ],
-  "gradient flow": [
+  "neural networks": [
     {
       "year": 2026,
       "count": 1,
       "rank": 62
     }
   ],
-  "global model": [
+  "neural": [
     {
       "year": 2026,
       "count": 1,
       "rank": 63
     }
   ],
-  "generative models": [
+  "nash equilibria": [
     {
       "year": 2026,
       "count": 1,
       "rank": 64
     }
   ],
-  "generalize markov games": [
+  "multimodal radial contrastive": [
     {
       "year": 2026,
       "count": 1,
       "rank": 65
     }
   ],
-  "general utility markov": [
+  "motion aware referring image": [
     {
       "year": 2026,
       "count": 1,
       "rank": 66
     }
   ],
-  "gaussian processes": [
+  "modeling and evaluating": [
     {
       "year": 2026,
       "count": 1,
       "rank": 67
     }
   ],
-  "gaussian": [
+  "mixture proportion estimation": [
     {
       "year": 2026,
       "count": 1,
       "rank": 68
     }
   ],
-  "games": [
+  "mixture proportion": [
     {
       "year": 2026,
       "count": 1,
       "rank": 69
     }
   ],
-  "freezing based optimizer": [
+  "mixture": [
     {
       "year": 2026,
       "count": 1,
       "rank": 70
     }
   ],
-  "fourier domain analysis": [
+  "mean field optimization": [
     {
       "year": 2026,
       "count": 1,
       "rank": 71
     }
   ],
-  "fourier domain": [
+  "matching": [
     {
       "year": 2026,
       "count": 1,
       "rank": 72
     }
   ],
-  "flow matching framework": [
+  "markov processes": [
     {
       "year": 2026,
       "count": 1,
       "rank": 73
     }
   ],
-  "flow matching": [
+  "markov games": [
     {
       "year": 2026,
       "count": 1,
       "rank": 74
     }
   ],
-  "flow": [
+  "margin risk minimization": [
     {
       "year": 2026,
       "count": 1,
       "rank": 75
     }
   ],
-  "fisher rao gradient flow": [
+  "margin risk": [
     {
       "year": 2026,
       "count": 1,
       "rank": 76
     }
   ],
-  "federated learning objective": [
+  "machine unlearning": [
     {
       "year": 2026,
       "count": 1,
       "rank": 77
     }
   ],
-  "federated learning": [
+  "learning markov processes": [
     {
       "year": 2026,
       "count": 1,
       "rank": 78
     }
   ],
-  "federated": [
+  "learning for causal": [
     {
       "year": 2026,
       "count": 1,
       "rank": 79
     }
   ],
-  "estimation with weak": [
+  "learning dynamics": [
     {
       "year": 2026,
       "count": 1,
       "rank": 80
     }
   ],
-  "entropic mean field optimization": [
+  "learning algorithms": [
     {
       "year": 2026,
       "count": 1,
       "rank": 81
     }
   ],
-  "entropic mean field": [
+  "last iterate convergence": [
     {
       "year": 2026,
       "count": 1,
       "rank": 82
     }
   ],
-  "energy function": [
+  "label noise": [
     {
       "year": 2026,
       "count": 1,
       "rank": 83
     }
   ],
-  "efficient uncoupled learning": [
+  "inverse free sparse variational": [
     {
       "year": 2026,
       "count": 1,
       "rank": 84
     }
   ],
-  "effect for visualizing": [
+  "internal representations": [
     {
       "year": 2026,
       "count": 1,
       "rank": 85
     }
   ],
-  "effect estimation": [
+  "input features": [
     {
       "year": 2026,
       "count": 1,
       "rank": 86
     }
   ],
-  "effect": [
+  "images based": [
     {
       "year": 2026,
       "count": 1,
       "rank": 87
     }
   ],
-  "eagle": [
+  "image segmentation": [
     {
       "year": 2026,
       "count": 1,
       "rank": 88
     }
   ],
-  "dynamics matching": [
+  "image": [
     {
       "year": 2026,
       "count": 1,
       "rank": 89
     }
   ],
-  "dynamics": [
+  "illusion of unlearning": [
     {
       "year": 2026,
       "count": 1,
       "rank": 90
     }
   ],
-  "domain analysis": [
+  "illusion": [
     {
       "year": 2026,
       "count": 1,
       "rank": 91
     }
   ],
-  "convex markov games": [
+  "high dimensional data equally": [
     {
       "year": 2026,
       "count": 1,
       "rank": 92
     }
   ],
-  "convex markov": [
+  "high dimensional data": [
     {
       "year": 2026,
       "count": 1,
       "rank": 93
     }
   ],
-  "continuous time gradient flows": [
+  "heterogeneous federated learning": [
     {
       "year": 2026,
       "count": 1,
       "rank": 94
     }
   ],
-  "clients": [
+  "height": [
     {
       "year": 2026,
       "count": 1,
       "rank": 95
     }
   ],
-  "causal treatment effect": [
+  "grey box dynamics matching": [
     {
       "year": 2026,
       "count": 1,
       "rank": 96
     }
   ],
-  "causal effect estimation": [
+  "graph fourier transform": [
     {
       "year": 2026,
       "count": 1,
       "rank": 97
     }
   ],
-  "causal effect": [
+  "graph fourier domain": [
     {
       "year": 2026,
       "count": 1,
       "rank": 98
     }
   ],
-  "bootstrapping": [
+  "graph fourier": [
     {
       "year": 2026,
       "count": 1,
       "rank": 99
     }
   ],
-  "bilinear saddle point problems": [
+  "gradient flow": [
     {
       "year": 2026,
       "count": 1,

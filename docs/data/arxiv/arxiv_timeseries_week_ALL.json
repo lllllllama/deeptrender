@@ -415,8 +415,54 @@
           "count": 15
         }
       ]
+    },
+    {
+      "bucket": "2026-W15",
+      "paper_count": 1000,
+      "top_keywords": [
+        {
+          "keyword": "large language model",
+          "count": 129
+        },
+        {
+          "keyword": "large language",
+          "count": 73
+        },
+        {
+          "keyword": "language models",
+          "count": 60
+        },
+        {
+          "keyword": "reasoning",
+          "count": 32
+        },
+        {
+          "keyword": "reinforcement learning",
+          "count": 29
+        },
+        {
+          "keyword": "generation",
+          "count": 25
+        },
+        {
+          "keyword": "language",
+          "count": 22
+        },
+        {
+          "keyword": "detection",
+          "count": 21
+        },
+        {
+          "keyword": "video",
+          "count": 18
+        },
+        {
+          "keyword": "multimodal large language",
+          "count": 16
+        }
+      ]
     }
   ],
   "cached": true,
-  "exported_at": "2026-04-05T02:40:16.974464"
+  "exported_at": "2026-04-12T02:46:15.631194"
 }

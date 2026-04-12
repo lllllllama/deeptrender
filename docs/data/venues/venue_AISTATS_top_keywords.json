@@ -1,252 +1,252 @@
 {
   "2026": [
     {
-      "keyword": "wsbd",
-      "count": 1,
+      "keyword": "processes",
+      "count": 2,
       "rank": 1
     },
     {
-      "keyword": "weighted stochastic block",
-      "count": 1,
+      "keyword": "markov",
+      "count": 2,
       "rank": 2
     },
     {
-      "keyword": "weak overlap",
+      "keyword": "wsbd",
       "count": 1,
       "rank": 3
     },
     {
-      "keyword": "visualizing high dimensional data",
+      "keyword": "weighted stochastic block",
       "count": 1,
       "rank": 4
     },
     {
-      "keyword": "visualizing",
+      "keyword": "weakly supervised kernel",
       "count": 1,
       "rank": 5
     },
     {
-      "keyword": "vision transformer",
+      "keyword": "weak overlap",
       "count": 1,
       "rank": 6
     },
     {
-      "keyword": "variational gaussian processes",
+      "keyword": "visualizing high dimensional data",
       "count": 1,
       "rank": 7
     },
     {
-      "keyword": "variational",
+      "keyword": "visualizing",
       "count": 1,
       "rank": 8
     },
     {
-      "keyword": "utility markov games",
+      "keyword": "visual prompting reimagined",
       "count": 1,
       "rank": 9
     },
     {
-      "keyword": "uncoupled learning dynamics",
+      "keyword": "visual prompting",
       "count": 1,
       "rank": 10
     },
     {
-      "keyword": "uncoupled learning algorithm",
+      "keyword": "visual",
       "count": 1,
       "rank": 11
     },
     {
-      "keyword": "uncoupled learning",
+      "keyword": "vision transformer",
       "count": 1,
       "rank": 12
     },
     {
-      "keyword": "treatment effect estimation",
+      "keyword": "verification relaxed speculative",
       "count": 1,
       "rank": 13
     },
     {
-      "keyword": "stochastic block descent",
+      "keyword": "variational gaussian processes",
       "count": 1,
       "rank": 14
     },
     {
-      "keyword": "spectral graph neural",
+      "keyword": "variational",
       "count": 1,
       "rank": 15
     },
     {
-      "keyword": "spectral gnns",
+      "keyword": "valuation",
       "count": 1,
       "rank": 16
     },
     {
-      "keyword": "sparse variational gaussian",
+      "keyword": "utility markov games",
       "count": 1,
       "rank": 17
     },
     {
-      "keyword": "sparse variational",
+      "keyword": "unlearning",
       "count": 1,
       "rank": 18
     },
     {
-      "keyword": "sparse",
+      "keyword": "uncoupled learning dynamics",
       "count": 1,
       "rank": 19
     },
     {
-      "keyword": "segmentation",
+      "keyword": "uncoupled learning algorithm",
       "count": 1,
       "rank": 20
     },
     {
-      "keyword": "saddle point problems",
+      "keyword": "uncoupled learning",
       "count": 1,
       "rank": 21
     },
     {
-      "keyword": "representation learning",
+      "keyword": "tree height estimation",
       "count": 1,
       "rank": 22
     },
     {
-      "keyword": "regularizing attention scores",
+      "keyword": "tree height",
       "count": 1,
       "rank": 23
     },
     {
-      "keyword": "referring image segmentation",
+      "keyword": "treatment effect estimation",
       "count": 1,
       "rank": 24
     },
     {
-      "keyword": "referring image",
+      "keyword": "termed activation prompt",
       "count": 1,
       "rank": 25
     },
     {
-      "keyword": "rashomon set",
+      "keyword": "stochastic block descent",
       "count": 1,
       "rank": 26
     },
     {
-      "keyword": "rashomon effect",
+      "keyword": "speculative decoding",
       "count": 1,
       "rank": 27
     },
     {
-      "keyword": "rashomon",
+      "keyword": "speculative",
       "count": 1,
       "rank": 28
     },
     {
-      "keyword": "radial contrastive learning",
+      "keyword": "spectral graph neural",
       "count": 1,
       "rank": 29
     },
     {
-      "keyword": "quantum neural networks",
+      "keyword": "spectral gnns",
       "count": 1,
       "rank": 30
     },
     {
-      "keyword": "quantum neural",
+      "keyword": "sparse variational gaussian",
       "count": 1,
       "rank": 31
     },
     {
-      "keyword": "quantum",
+      "keyword": "sparse variational",
       "count": 1,
       "rank": 32
     },
     {
-      "keyword": "processes",
+      "keyword": "sparse",
       "count": 1,
       "rank": 33
     },
     {
-      "keyword": "physics",
+      "keyword": "segmentation",
       "count": 1,
       "rank": 34
     },
     {
-      "keyword": "particle system",
+      "keyword": "saddle point problems",
       "count": 1,
       "rank": 35
     },
     {
-      "keyword": "neural odes",
+      "keyword": "robust learning",
       "count": 1,
       "rank": 36
     },
     {
-      "keyword": "neural networks",
+      "keyword": "risk minimization",
       "count": 1,
       "rank": 37
     },
     {
-      "keyword": "neural",
+      "keyword": "representations",
       "count": 1,
       "rank": 38
     },
     {
-      "keyword": "nash equilibria",
+      "keyword": "representation learning",
       "count": 1,
       "rank": 39
     },
     {
-      "keyword": "multimodal radial contrastive",
+      "keyword": "remote sensing",
       "count": 1,
       "rank": 40
     },
     {
-      "keyword": "motion aware referring image",
+      "keyword": "relaxed speculative decoding",
       "count": 1,
       "rank": 41
     },
     {
-      "keyword": "mean field optimization",
+      "keyword": "relaxed speculative",
       "count": 1,
       "rank": 42
     },
     {
-      "keyword": "matching",
+      "keyword": "regularizing attention scores",
       "count": 1,
       "rank": 43
     },
     {
-      "keyword": "markov games",
+      "keyword": "referring image segmentation",
       "count": 1,
       "rank": 44
     },
     {
-      "keyword": "markov",
+      "keyword": "referring image",
       "count": 1,
       "rank": 45
     },
     {
-      "keyword": "learning for causal",
+      "keyword": "rashomon set",
       "count": 1,
       "rank": 46
     },
     {
-      "keyword": "learning dynamics",
+      "keyword": "rashomon effect",
       "count": 1,
       "rank": 47
     },
     {
-      "keyword": "learning algorithms",
+      "keyword": "rashomon",
       "count": 1,
       "rank": 48
     },
     {
-      "keyword": "last iterate convergence",
+      "keyword": "radial contrastive learning",
       "count": 1,
       "rank": 49
     },
     {
-      "keyword": "inverse free sparse variational",
+      "keyword": "quantum neural networks",
       "count": 1,
       "rank": 50
     }
