@@ -461,8 +461,54 @@
           "count": 16
         }
       ]
+    },
+    {
+      "bucket": "2026-W16",
+      "paper_count": 1000,
+      "top_keywords": [
+        {
+          "keyword": "large language model",
+          "count": 126
+        },
+        {
+          "keyword": "large language",
+          "count": 64
+        },
+        {
+          "keyword": "language models",
+          "count": 63
+        },
+        {
+          "keyword": "reinforcement learning",
+          "count": 28
+        },
+        {
+          "keyword": "language",
+          "count": 26
+        },
+        {
+          "keyword": "generation",
+          "count": 26
+        },
+        {
+          "keyword": "detection",
+          "count": 25
+        },
+        {
+          "keyword": "reasoning",
+          "count": 22
+        },
+        {
+          "keyword": "image",
+          "count": 20
+        },
+        {
+          "keyword": "video",
+          "count": 19
+        }
+      ]
     }
   ],
   "cached": true,
-  "exported_at": "2026-04-12T02:46:15.631194"
+  "exported_at": "2026-04-19T02:51:25.520824"
 }

@@ -30,7 +30,7 @@
     {
       "year": 2026,
       "count": 1,
-      "rank": 36
+      "rank": 45
     }
   ],
   "large language": [
@@ -47,7 +47,7 @@
     {
       "year": 2026,
       "count": 2,
-      "rank": 2
+      "rank": 3
     }
   ],
   "language models": [
@@ -64,7 +64,7 @@
     {
       "year": 2026,
       "count": 1,
-      "rank": 53
+      "rank": 71
     }
   ],
   "understanding": [
@@ -217,7 +217,7 @@
     {
       "year": 2026,
       "count": 1,
-      "rank": 20
+      "rank": 29
     }
   ],
   "prediction": [
@@ -234,7 +234,24 @@
     {
       "year": 2026,
       "count": 1,
-      "rank": 26
+      "rank": 35
+    }
+  ],
+  "monte carlo": [
+    {
+      "year": 2023,
+      "count": 0,
+      "rank": 0
+    },
+    {
+      "year": 2025,
+      "count": 0,
+      "rank": 0
+    },
+    {
+      "year": 2026,
+      "count": 2,
+      "rank": 2
     }
   ],
   "word translation": [
@@ -1985,7 +2002,7 @@
     {
       "year": 2026,
       "count": 1,
-      "rank": 3
+      "rank": 4
     }
   ],
   "world": [
@@ -2002,7 +2019,7 @@
     {
       "year": 2026,
       "count": 1,
-      "rank": 4
+      "rank": 5
     }
   ],
   "wavelet based cross band integration": [
@@ -2019,7 +2036,7 @@
     {
       "year": 2026,
       "count": 1,
-      "rank": 5
+      "rank": 6
     }
   ],
   "wavelet based cross band": [
@@ -2036,27 +2053,10 @@
     {
       "year": 2026,
       "count": 1,
-      "rank": 6
-    }
-  ],
-  "vector symbolic architecture": [
-    {
-      "year": 2023,
-      "count": 0,
-      "rank": 0
-    },
-    {
-      "year": 2025,
-      "count": 0,
-      "rank": 0
-    },
-    {
-      "year": 2026,
-      "count": 1,
       "rank": 7
     }
   ],
-  "vector symbolic": [
+  "video token compression": [
     {
       "year": 2023,
       "count": 0,
@@ -2073,7 +2073,7 @@
       "rank": 8
     }
   ],
-  "temporal credit assignment": [
+  "video": [
     {
       "year": 2023,
       "count": 0,
@@ -2090,7 +2090,7 @@
       "rank": 9
     }
   ],
-  "temporal credit": [
+  "vector symbolic architecture": [
     {
       "year": 2023,
       "count": 0,
@@ -2107,7 +2107,7 @@
       "rank": 10
     }
   ],
-  "temporal": [
+  "vector symbolic": [
     {
       "year": 2023,
       "count": 0,
@@ -2124,7 +2124,7 @@
       "rank": 11
     }
   ],
-  "tags": [
+  "trails before beating": [
     {
       "year": 2023,
       "count": 0,
@@ -2141,7 +2141,7 @@
       "rank": 12
     }
   ],
-  "state space": [
+  "temporal credit assignment": [
     {
       "year": 2023,
       "count": 0,
@@ -2158,7 +2158,7 @@
       "rank": 13
     }
   ],
-  "single cell analysis": [
+  "temporal credit": [
     {
       "year": 2023,
       "count": 0,
@@ -2175,7 +2175,7 @@
       "rank": 14
     }
   ],
-  "shop": [
+  "temporal": [
     {
       "year": 2023,
       "count": 0,
@@ -2192,7 +2192,7 @@
       "rank": 15
     }
   ],
-  "semantically annotated multimodal": [
+  "tags": [
     {
       "year": 2023,
       "count": 0,
@@ -2209,7 +2209,7 @@
       "rank": 16
     }
   ],
-  "semantically annotated": [
+  "subspace monte carlo": [
     {
       "year": 2023,
       "count": 0,
@@ -2226,7 +2226,7 @@
       "rank": 17
     }
   ],
-  "rmit adm": [
+  "states": [
     {
       "year": 2023,
       "count": 0,
@@ -2243,7 +2243,7 @@
       "rank": 18
     }
   ],
-  "retrospective in context learning": [
+  "state space": [
     {
       "year": 2023,
       "count": 0,
@@ -2260,7 +2260,24 @@
       "rank": 19
     }
   ],
-  "quantum diffusion model": [
+  "stabilization": [
+    {
+      "year": 2023,
+      "count": 0,
+      "rank": 0
+    },
+    {
+      "year": 2025,
+      "count": 0,
+      "rank": 0
+    },
+    {
+      "year": 2026,
+      "count": 1,
+      "rank": 20
+    }
+  ],
+  "single cell analysis": [
     {
       "year": 2023,
       "count": 0,
@@ -2277,7 +2294,7 @@
       "rank": 21
     }
   ],
-  "quantum data pose": [
+  "shop": [
     {
       "year": 2023,
       "count": 0,
@@ -2294,7 +2311,7 @@
       "rank": 22
     }
   ],
-  "quantum data distribution": [
+  "semantically annotated multimodal": [
     {
       "year": 2023,
       "count": 0,
@@ -2311,7 +2328,7 @@
       "rank": 23
     }
   ],
-  "quantum data": [
+  "semantically annotated": [
     {
       "year": 2023,
       "count": 0,
@@ -2328,7 +2345,7 @@
       "rank": 24
     }
   ],
-  "quantum": [
+  "selective frame": [
     {
       "year": 2023,
       "count": 0,
@@ -2345,7 +2362,24 @@
       "rank": 25
     }
   ],
-  "polyp segmentation": [
+  "sample efficient monte carlo planning": [
+    {
+      "year": 2023,
+      "count": 0,
+      "rank": 0
+    },
+    {
+      "year": 2025,
+      "count": 0,
+      "rank": 0
+    },
+    {
+      "year": 2026,
+      "count": 1,
+      "rank": 26
+    }
+  ],
+  "rmit adm": [
     {
       "year": 2023,
       "count": 0,
@@ -2362,7 +2396,7 @@
       "rank": 27
     }
   ],
-  "parameter efficient graph aware llms": [
+  "retrospective in context learning": [
     {
       "year": 2023,
       "count": 0,
@@ -2379,24 +2413,7 @@
       "rank": 28
     }
   ],
-  "optical character recognition": [
-    {
-      "year": 2023,
-      "count": 0,
-      "rank": 0
-    },
-    {
-      "year": 2025,
-      "count": 0,
-      "rank": 0
-    },
-    {
-      "year": 2026,
-      "count": 1,
-      "rank": 29
-    }
-  ],
-  "open source category": [
+  "quantum diffusion model": [
     {
       "year": 2023,
       "count": 0,
@@ -2413,7 +2430,7 @@
       "rank": 30
     }
   ],
-  "online learning": [
+  "quantum data pose": [
     {
       "year": 2023,
       "count": 0,
@@ -2430,7 +2447,7 @@
       "rank": 31
     }
   ],
-  "omics native reasoning": [
+  "quantum data distribution": [
     {
       "year": 2023,
       "count": 0,
@@ -2447,7 +2464,7 @@
       "rank": 32
     }
   ],
-  "node classification": [
+  "quantum data": [
     {
       "year": 2023,
       "count": 0,
@@ -2464,7 +2481,7 @@
       "rank": 33
     }
   ],
-  "node": [
+  "quantum": [
     {
       "year": 2023,
       "count": 0,
@@ -2481,7 +2498,7 @@
       "rank": 34
     }
   ],
-  "neurips": [
+  "polyp segmentation": [
     {
       "year": 2023,
       "count": 0,
@@ -2495,10 +2512,10 @@
     {
       "year": 2026,
       "count": 1,
-      "rank": 35
+      "rank": 36
     }
   ],
-  "muon solenoid": [
+  "parameter efficient graph aware llms": [
     {
       "year": 2023,
       "count": 0,
@@ -2515,7 +2532,7 @@
       "rank": 37
     }
   ],
-  "multimodal dataset": [
+  "optical character recognition": [
     {
       "year": 2023,
       "count": 0,
@@ -2532,7 +2549,7 @@
       "rank": 38
     }
   ],
-  "mmu rag neurips": [
+  "open source category": [
     {
       "year": 2023,
       "count": 0,
@@ -2549,7 +2566,7 @@
       "rank": 39
     }
   ],
-  "mmu rag competition": [
+  "online learning": [
     {
       "year": 2023,
       "count": 0,
@@ -2566,7 +2583,7 @@
       "rank": 40
     }
   ],
-  "mmu rag": [
+  "omics native reasoning": [
     {
       "year": 2023,
       "count": 0,
@@ -2583,7 +2600,7 @@
       "rank": 41
     }
   ],
-  "mitra": [
+  "node classification": [
     {
       "year": 2023,
       "count": 0,
@@ -2600,7 +2617,7 @@
       "rank": 42
     }
   ],
-  "memory enhanced improvement": [
+  "node": [
     {
       "year": 2023,
       "count": 0,
@@ -2617,7 +2634,7 @@
       "rank": 43
     }
   ],
-  "measurement based datasets": [
+  "neurips": [
     {
       "year": 2023,
       "count": 0,
@@ -2634,24 +2651,7 @@
       "rank": 44
     }
   ],
-  "matters": [
-    {
-      "year": 2023,
-      "count": 0,
-      "rank": 0
-    },
-    {
-      "year": 2025,
-      "count": 0,
-      "rank": 0
-    },
-    {
-      "year": 2026,
-      "count": 1,
-      "rank": 45
-    }
-  ],
-  "learning quantum data": [
+  "muon solenoid": [
     {
       "year": 2023,
       "count": 0,
@@ -2668,7 +2668,7 @@
       "rank": 46
     }
   ],
-  "learning deep state space": [
+  "multimodal dataset": [
     {
       "year": 2023,
       "count": 0,
@@ -2685,7 +2685,7 @@
       "rank": 47
     }
   ],
-  "learning deep": [
+  "monte carlo planning": [
     {
       "year": 2023,
       "count": 0,
@@ -2702,7 +2702,7 @@
       "rank": 48
     }
   ],
-  "learning augmented algorithms": [
+  "mmu rag neurips": [
     {
       "year": 2023,
       "count": 0,
@@ -2719,7 +2719,7 @@
       "rank": 49
     }
   ],
-  "learning augmented": [
+  "mmu rag competition": [
     {
       "year": 2023,
       "count": 0,
@@ -2736,7 +2736,7 @@
       "rank": 50
     }
   ],
-  "latent matters": [
+  "mmu rag": [
     {
       "year": 2023,
       "count": 0,
@@ -2753,7 +2753,7 @@
       "rank": 51
     }
   ],
-  "large scale scientific collaborations": [
+  "mitra": [
     {
       "year": 2023,
       "count": 0,
@@ -2770,7 +2770,24 @@
       "rank": 52
     }
   ],
-  "language model reasoning": [
+  "memory enhanced improvement": [
+    {
+      "year": 2023,
+      "count": 0,
+      "rank": 0
+    },
+    {
+      "year": 2025,
+      "count": 0,
+      "rank": 0
+    },
+    {
+      "year": 2026,
+      "count": 1,
+      "rank": 53
+    }
+  ],
+  "measurement based datasets": [
     {
       "year": 2023,
       "count": 0,
@@ -2787,7 +2804,7 @@
       "rank": 54
     }
   ],
-  "language model": [
+  "matters": [
     {
       "year": 2023,
       "count": 0,
@@ -2804,7 +2821,7 @@
       "rank": 55
     }
   ],
-  "job shop scheduling": [
+  "markov decision process": [
     {
       "year": 2023,
       "count": 0,
@@ -2821,7 +2838,7 @@
       "rank": 56
     }
   ],
-  "job shop": [
+  "markov decision": [
     {
       "year": 2023,
       "count": 0,
@@ -2838,7 +2855,7 @@
       "rank": 57
     }
   ],
-  "job": [
+  "loss landscape": [
     {
       "year": 2023,
       "count": 0,
@@ -2855,7 +2872,7 @@
       "rank": 58
     }
   ],
-  "interpretation and prediction": [
+  "long video understanding": [
     {
       "year": 2023,
       "count": 0,
@@ -2872,7 +2889,7 @@
       "rank": 59
     }
   ],
-  "integration for enhanced": [
+  "long video": [
     {
       "year": 2023,
       "count": 0,
@@ -2889,7 +2906,7 @@
       "rank": 60
     }
   ],
-  "integration": [
+  "local loss landscape stabilization": [
     {
       "year": 2023,
       "count": 0,
@@ -2906,7 +2923,7 @@
       "rank": 61
     }
   ],
-  "instances": [
+  "local loss landscape": [
     {
       "year": 2023,
       "count": 0,
@@ -2923,7 +2940,7 @@
       "rank": 62
     }
   ],
-  "hindering knowledge sharing": [
+  "local": [
     {
       "year": 2023,
       "count": 0,
@@ -2940,7 +2957,7 @@
       "rank": 63
     }
   ],
-  "graph neural networks": [
+  "learning quantum data": [
     {
       "year": 2023,
       "count": 0,
@@ -2957,7 +2974,7 @@
       "rank": 64
     }
   ],
-  "graph aware llms": [
+  "learning deep state space": [
     {
       "year": 2023,
       "count": 0,
@@ -2974,7 +2991,7 @@
       "rank": 65
     }
   ],
-  "geometric priors": [
+  "learning deep": [
     {
       "year": 2023,
       "count": 0,
@@ -2991,7 +3008,7 @@
       "rank": 66
     }
   ],
-  "generalizable world models": [
+  "learning augmented algorithms": [
     {
       "year": 2023,
       "count": 0,
@@ -3008,7 +3025,7 @@
       "rank": 67
     }
   ],
-  "generalizable world": [
+  "learning augmented": [
     {
       "year": 2023,
       "count": 0,
@@ -3025,7 +3042,7 @@
       "rank": 68
     }
   ],
-  "fourier holographic reduced": [
+  "latent matters": [
     {
       "year": 2023,
       "count": 0,
@@ -3042,7 +3059,7 @@
       "rank": 69
     }
   ],
-  "flexible scheduling techniques": [
+  "large scale scientific collaborations": [
     {
       "year": 2023,
       "count": 0,
@@ -3059,24 +3076,7 @@
       "rank": 70
     }
   ],
-  "flexible job shop": [
-    {
-      "year": 2023,
-      "count": 0,
-      "rank": 0
-    },
-    {
-      "year": 2025,
-      "count": 0,
-      "rank": 0
-    },
-    {
-      "year": 2026,
-      "count": 1,
-      "rank": 71
-    }
-  ],
-  "flexible job": [
+  "language model reasoning": [
     {
       "year": 2023,
       "count": 0,
@@ -3093,7 +3093,7 @@
       "rank": 72
     }
   ],
-  "flexible": [
+  "language model": [
     {
       "year": 2023,
       "count": 0,
@@ -3110,7 +3110,7 @@
       "rank": 73
     }
   ],
-  "enhanced boundary representation": [
+  "job shop scheduling": [
     {
       "year": 2023,
       "count": 0,
@@ -3127,7 +3127,7 @@
       "rank": 74
     }
   ],
-  "enhanced boundary": [
+  "job shop": [
     {
       "year": 2023,
       "count": 0,
@@ -3144,7 +3144,7 @@
       "rank": 75
     }
   ],
-  "enhanced": [
+  "job": [
     {
       "year": 2023,
       "count": 0,
@@ -3161,7 +3161,7 @@
       "rank": 76
     }
   ],
-  "dynamic evaluation award": [
+  "interpretation and prediction": [
     {
       "year": 2023,
       "count": 0,
@@ -3178,7 +3178,7 @@
       "rank": 77
     }
   ],
-  "deep state space models": [
+  "integration for enhanced": [
     {
       "year": 2023,
       "count": 0,
@@ -3195,7 +3195,7 @@
       "rank": 78
     }
   ],
-  "deep state space": [
+  "integration": [
     {
       "year": 2023,
       "count": 0,
@@ -3212,7 +3212,7 @@
       "rank": 79
     }
   ],
-  "deep": [
+  "instances": [
     {
       "year": 2023,
       "count": 0,
@@ -3229,7 +3229,7 @@
       "rank": 80
     }
   ],
-  "data distribution": [
+  "hindering knowledge sharing": [
     {
       "year": 2023,
       "count": 0,
@@ -3246,7 +3246,7 @@
       "rank": 81
     }
   ],
-  "cross band integration": [
+  "highly selective frame": [
     {
       "year": 2023,
       "count": 0,
@@ -3263,7 +3263,7 @@
       "rank": 82
     }
   ],
-  "credit assignment": [
+  "highly selective": [
     {
       "year": 2023,
       "count": 0,
@@ -3280,7 +3280,7 @@
       "rank": 83
     }
   ],
-  "credit": [
+  "graph neural networks": [
     {
       "year": 2023,
       "count": 0,
@@ -3297,7 +3297,7 @@
       "rank": 84
     }
   ],
-  "competition": [
+  "graph aware llms": [
     {
       "year": 2023,
       "count": 0,
@@ -3314,7 +3314,7 @@
       "rank": 85
     }
   ],
-  "compact muon solenoid": [
+  "geometric priors": [
     {
       "year": 2023,
       "count": 0,
@@ -3331,7 +3331,7 @@
       "rank": 86
     }
   ],
-  "compact muon": [
+  "generalizable world models": [
     {
       "year": 2023,
       "count": 0,
@@ -3348,7 +3348,7 @@
       "rank": 87
     }
   ],
-  "classification": [
+  "generalizable world": [
     {
       "year": 2023,
       "count": 0,
@@ -3365,7 +3365,7 @@
       "rank": 88
     }
   ],
-  "chaotic quantum diffusion": [
+  "fourier holographic reduced": [
     {
       "year": 2023,
       "count": 0,
@@ -3382,7 +3382,7 @@
       "rank": 89
     }
   ],
-  "award winning rmit adm": [
+  "flexible scheduling techniques": [
     {
       "year": 2023,
       "count": 0,
@@ -3399,7 +3399,7 @@
       "rank": 90
     }
   ],
-  "automated single cell analysis": [
+  "flexible job shop": [
     {
       "year": 2023,
       "count": 0,
@@ -3416,7 +3416,7 @@
       "rank": 91
     }
   ],
-  "automated single cell": [
+  "flexible job": [
     {
       "year": 2023,
       "count": 0,
@@ -3433,7 +3433,7 @@
       "rank": 92
     }
   ],
-  "assistant for knowledge": [
+  "flexible": [
     {
       "year": 2023,
       "count": 0,
@@ -3450,7 +3450,7 @@
       "rank": 93
     }
   ],
-  "assistant": [
+  "extreme video token": [
     {
       "year": 2023,
       "count": 0,
@@ -3467,7 +3467,7 @@
       "rank": 94
     }
   ],
-  "assignment": [
+  "enhanced boundary representation": [
     {
       "year": 2023,
       "count": 0,
@@ -3484,7 +3484,7 @@
       "rank": 95
     }
   ],
-  "annotated multimodal dataset": [
+  "enhanced boundary": [
     {
       "year": 2023,
       "count": 0,
@@ -3501,7 +3501,7 @@
       "rank": 96
     }
   ],
-  "annotated multimodal": [
+  "enhanced": [
     {
       "year": 2023,
       "count": 0,
@@ -3518,7 +3518,7 @@
       "rank": 97
     }
   ],
-  "annotated": [
+  "dynamic evaluation award": [
     {
       "year": 2023,
       "count": 0,
@@ -3535,7 +3535,7 @@
       "rank": 98
     }
   ],
-  "analysis and discovery": [
+  "direct monte carlo": [
     {
       "year": 2023,
       "count": 0,
@@ -3552,7 +3552,7 @@
       "rank": 99
     }
   ],
-  "accurate polyp segmentation": [
+  "deep state space models": [
     {
       "year": 2023,
       "count": 0,

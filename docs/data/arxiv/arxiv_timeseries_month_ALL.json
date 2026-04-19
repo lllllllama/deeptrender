@@ -188,51 +188,51 @@
     },
     {
       "bucket": "2026-04",
-      "paper_count": 1772,
+      "paper_count": 2772,
       "top_keywords": [
         {
           "keyword": "large language model",
-          "count": 217
+          "count": 343
         },
         {
           "keyword": "large language",
-          "count": 121
+          "count": 185
         },
         {
           "keyword": "language models",
-          "count": 114
+          "count": 177
         },
         {
           "keyword": "reinforcement learning",
-          "count": 55
+          "count": 83
         },
         {
           "keyword": "reasoning",
-          "count": 54
+          "count": 76
         },
         {
           "keyword": "language",
-          "count": 45
+          "count": 71
         },
         {
           "keyword": "generation",
-          "count": 44
+          "count": 70
         },
         {
           "keyword": "detection",
-          "count": 31
+          "count": 56
         },
         {
           "keyword": "video",
-          "count": 27
+          "count": 46
         },
         {
-          "keyword": "diffusion",
-          "count": 24
+          "keyword": "multimodal large language",
+          "count": 39
         }
       ]
     }
   ],
   "cached": true,
-  "exported_at": "2026-04-12T02:46:15.634860"
+  "exported_at": "2026-04-19T02:51:25.525310"
 }

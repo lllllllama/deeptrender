@@ -1243,8 +1243,146 @@
           "count": 8
         }
       ]
+    },
+    {
+      "bucket": "2026-04-14",
+      "paper_count": 298,
+      "top_keywords": [
+        {
+          "keyword": "large language model",
+          "count": 39
+        },
+        {
+          "keyword": "language models",
+          "count": 21
+        },
+        {
+          "keyword": "large language",
+          "count": 19
+        },
+        {
+          "keyword": "detection",
+          "count": 11
+        },
+        {
+          "keyword": "reinforcement learning",
+          "count": 10
+        },
+        {
+          "keyword": "language",
+          "count": 10
+        },
+        {
+          "keyword": "gaussian splatting",
+          "count": 7
+        },
+        {
+          "keyword": "semantic",
+          "count": 7
+        },
+        {
+          "keyword": "image",
+          "count": 6
+        },
+        {
+          "keyword": "generation",
+          "count": 6
+        }
+      ]
+    },
+    {
+      "bucket": "2026-04-15",
+      "paper_count": 368,
+      "top_keywords": [
+        {
+          "keyword": "large language model",
+          "count": 48
+        },
+        {
+          "keyword": "large language",
+          "count": 28
+        },
+        {
+          "keyword": "language models",
+          "count": 27
+        },
+        {
+          "keyword": "reinforcement learning",
+          "count": 10
+        },
+        {
+          "keyword": "language",
+          "count": 9
+        },
+        {
+          "keyword": "multimodal large language",
+          "count": 9
+        },
+        {
+          "keyword": "neural networks",
+          "count": 8
+        },
+        {
+          "keyword": "generation",
+          "count": 8
+        },
+        {
+          "keyword": "video",
+          "count": 8
+        },
+        {
+          "keyword": "reasoning",
+          "count": 7
+        }
+      ]
+    },
+    {
+      "bucket": "2026-04-16",
+      "paper_count": 334,
+      "top_keywords": [
+        {
+          "keyword": "large language model",
+          "count": 39
+        },
+        {
+          "keyword": "large language",
+          "count": 17
+        },
+        {
+          "keyword": "language models",
+          "count": 15
+        },
+        {
+          "keyword": "generation",
+          "count": 12
+        },
+        {
+          "keyword": "reasoning",
+          "count": 11
+        },
+        {
+          "keyword": "image",
+          "count": 8
+        },
+        {
+          "keyword": "reinforcement learning",
+          "count": 8
+        },
+        {
+          "keyword": "detection",
+          "count": 7
+        },
+        {
+          "keyword": "language",
+          "count": 7
+        },
+        {
+          "keyword": "streaming",
+          "count": 5
+        }
+      ]
     }
   ],
   "cached": true,
-  "exported_at": "2026-04-12T02:46:15.626623"
+  "exported_at": "2026-04-19T02:51:25.515533"
 }

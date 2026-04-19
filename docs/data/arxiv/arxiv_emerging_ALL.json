@@ -28,12 +28,30 @@
   },
   {
     "category": "ALL",
+    "keyword": "detection",
+    "growth_rate": 200.0,
+    "first_seen": "2026-W08",
+    "recent_count": 20,
+    "trend": "rising",
+    "updated_at": "2026-04-19T02:51:15.137931"
+  },
+  {
+    "category": "ALL",
+    "keyword": "video",
+    "growth_rate": 157.5,
+    "first_seen": "2026-W01",
+    "recent_count": 15,
+    "trend": "rising",
+    "updated_at": "2026-04-19T02:51:15.138299"
+  },
+  {
+    "category": "ALL",
     "keyword": "diffusion",
     "growth_rate": 150.0,
     "first_seen": "2026-W01",
     "recent_count": 15,
     "trend": "rising",
-    "updated_at": "2026-04-12T02:46:05.354080"
+    "updated_at": "2026-04-19T02:51:15.138314"
   },
   {
     "category": "ALL",

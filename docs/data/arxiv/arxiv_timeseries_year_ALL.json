@@ -96,51 +96,51 @@
     },
     {
       "bucket": "2026",
-      "paper_count": 8000,
+      "paper_count": 9000,
       "top_keywords": [
         {
           "keyword": "large language model",
-          "count": 904
+          "count": 1030
         },
         {
           "keyword": "language models",
-          "count": 465
+          "count": 528
         },
         {
           "keyword": "large language",
-          "count": 462
+          "count": 526
         },
         {
           "keyword": "reasoning",
-          "count": 244
+          "count": 266
         },
         {
           "keyword": "reinforcement learning",
-          "count": 220
+          "count": 248
         },
         {
           "keyword": "language",
-          "count": 214
+          "count": 240
         },
         {
           "keyword": "generation",
-          "count": 177
-        },
-        {
-          "keyword": "diffusion",
-          "count": 115
+          "count": 203
         },
         {
           "keyword": "detection",
-          "count": 114
+          "count": 139
         },
         {
-          "keyword": "agents",
-          "count": 112
+          "keyword": "diffusion",
+          "count": 128
+        },
+        {
+          "keyword": "neural networks",
+          "count": 126
         }
       ]
     }
   ],
   "cached": true,
-  "exported_at": "2026-04-12T02:46:15.638377"
+  "exported_at": "2026-04-19T02:51:25.530630"
 }
