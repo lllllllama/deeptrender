@@ -29,11 +29,20 @@
   {
     "category": "ALL",
     "keyword": "detection",
-    "growth_rate": 200.0,
+    "growth_rate": 197.5,
     "first_seen": "2026-W08",
-    "recent_count": 20,
+    "recent_count": 19,
     "trend": "rising",
-    "updated_at": "2026-04-19T02:51:15.137931"
+    "updated_at": "2026-04-26T02:53:42.923763"
+  },
+  {
+    "category": "ALL",
+    "keyword": "image",
+    "growth_rate": 192.5,
+    "first_seen": "2026-W09",
+    "recent_count": 19,
+    "trend": "rising",
+    "updated_at": "2026-04-26T02:53:42.924132"
   },
   {
     "category": "ALL",
@@ -42,7 +51,7 @@
     "first_seen": "2026-W01",
     "recent_count": 15,
     "trend": "rising",
-    "updated_at": "2026-04-19T02:51:15.138299"
+    "updated_at": "2026-04-26T02:53:42.924147"
   },
   {
     "category": "ALL",
@@ -51,7 +60,7 @@
     "first_seen": "2026-W01",
     "recent_count": 15,
     "trend": "rising",
-    "updated_at": "2026-04-19T02:51:15.138314"
+    "updated_at": "2026-04-26T02:53:42.924156"
   },
   {
     "category": "ALL",

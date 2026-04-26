@@ -1,698 +1,698 @@
 {
-  "processes": [
+  "variational": [
     {
       "year": 2026,
       "count": 2,
       "rank": 1
     }
   ],
-  "markov": [
+  "representations": [
     {
       "year": 2026,
       "count": 2,
       "rank": 2
     }
   ],
-  "wsbd": [
+  "processes": [
     {
       "year": 2026,
-      "count": 1,
+      "count": 2,
       "rank": 3
     }
   ],
-  "weighted stochastic block": [
+  "neural": [
     {
       "year": 2026,
-      "count": 1,
+      "count": 2,
       "rank": 4
     }
   ],
-  "weakly supervised kernel": [
+  "markov": [
     {
       "year": 2026,
-      "count": 1,
+      "count": 2,
       "rank": 5
     }
   ],
-  "weak overlap": [
+  "wsbd": [
     {
       "year": 2026,
       "count": 1,
       "rank": 6
     }
   ],
-  "visualizing high dimensional data": [
+  "weighted stochastic block": [
     {
       "year": 2026,
       "count": 1,
       "rank": 7
     }
   ],
-  "visualizing": [
+  "weakly supervised kernel": [
     {
       "year": 2026,
       "count": 1,
       "rank": 8
     }
   ],
-  "visual prompting reimagined": [
+  "weak overlap": [
     {
       "year": 2026,
       "count": 1,
       "rank": 9
     }
   ],
-  "visual prompting": [
+  "visualizing high dimensional data": [
     {
       "year": 2026,
       "count": 1,
       "rank": 10
     }
   ],
-  "visual": [
+  "visualizing": [
     {
       "year": 2026,
       "count": 1,
       "rank": 11
     }
   ],
-  "vision transformer": [
+  "visual prompting reimagined": [
     {
       "year": 2026,
       "count": 1,
       "rank": 12
     }
   ],
-  "verification relaxed speculative": [
+  "visual prompting": [
     {
       "year": 2026,
       "count": 1,
       "rank": 13
     }
   ],
-  "variational gaussian processes": [
+  "visual": [
     {
       "year": 2026,
       "count": 1,
       "rank": 14
     }
   ],
-  "variational": [
+  "vision transformer": [
     {
       "year": 2026,
       "count": 1,
       "rank": 15
     }
   ],
-  "valuation": [
+  "verification relaxed speculative": [
     {
       "year": 2026,
       "count": 1,
       "rank": 16
     }
   ],
-  "utility markov games": [
+  "vector based adaptation": [
     {
       "year": 2026,
       "count": 1,
       "rank": 17
     }
   ],
-  "unlearning": [
+  "vector based": [
     {
       "year": 2026,
       "count": 1,
       "rank": 18
     }
   ],
-  "uncoupled learning dynamics": [
+  "variational inference": [
     {
       "year": 2026,
       "count": 1,
       "rank": 19
     }
   ],
-  "uncoupled learning algorithm": [
+  "variational gaussian processes": [
     {
       "year": 2026,
       "count": 1,
       "rank": 20
     }
   ],
-  "uncoupled learning": [
+  "variational family": [
     {
       "year": 2026,
       "count": 1,
       "rank": 21
     }
   ],
-  "tree height estimation": [
+  "valuation": [
     {
       "year": 2026,
       "count": 1,
       "rank": 22
     }
   ],
-  "tree height": [
+  "utility markov games": [
     {
       "year": 2026,
       "count": 1,
       "rank": 23
     }
   ],
-  "treatment effect estimation": [
+  "unlearning": [
     {
       "year": 2026,
       "count": 1,
       "rank": 24
     }
   ],
-  "termed activation prompt": [
+  "uncoupled learning dynamics": [
     {
       "year": 2026,
       "count": 1,
       "rank": 25
     }
   ],
-  "stochastic block descent": [
+  "uncoupled learning algorithm": [
     {
       "year": 2026,
       "count": 1,
       "rank": 26
     }
   ],
-  "speculative decoding": [
+  "uncoupled learning": [
     {
       "year": 2026,
       "count": 1,
       "rank": 27
     }
   ],
-  "speculative": [
+  "tree height estimation": [
     {
       "year": 2026,
       "count": 1,
       "rank": 28
     }
   ],
-  "spectral graph neural": [
+  "tree height": [
     {
       "year": 2026,
       "count": 1,
       "rank": 29
     }
   ],
-  "spectral gnns": [
+  "treatment effect estimation": [
     {
       "year": 2026,
       "count": 1,
       "rank": 30
     }
   ],
-  "sparse variational gaussian": [
+  "termed activation prompt": [
     {
       "year": 2026,
       "count": 1,
       "rank": 31
     }
   ],
-  "sparse variational": [
+  "target symmetries": [
     {
       "year": 2026,
       "count": 1,
       "rank": 32
     }
   ],
-  "sparse": [
+  "target": [
     {
       "year": 2026,
       "count": 1,
       "rank": 33
     }
   ],
-  "silico predictors": [
+  "stochastic block descent": [
     {
       "year": 2026,
       "count": 1,
       "rank": 34
     }
   ],
-  "sequential monte carlo": [
+  "speculative decoding": [
     {
       "year": 2026,
       "count": 1,
       "rank": 35
     }
   ],
-  "sequential monte": [
+  "speculative": [
     {
       "year": 2026,
       "count": 1,
       "rank": 36
     }
   ],
-  "segmentation": [
+  "spectral graph neural": [
     {
       "year": 2026,
       "count": 1,
       "rank": 37
     }
   ],
-  "sea": [
+  "spectral gnns": [
     {
       "year": 2026,
       "count": 1,
       "rank": 38
     }
   ],
-  "scalable model based clustering": [
+  "sparse variational gaussian": [
     {
       "year": 2026,
       "count": 1,
       "rank": 39
     }
   ],
-  "scalable model based": [
+  "sparse variational": [
     {
       "year": 2026,
       "count": 1,
       "rank": 40
     }
   ],
-  "saddle point problems": [
+  "sparse": [
     {
       "year": 2026,
       "count": 1,
       "rank": 41
     }
   ],
-  "robust learning": [
+  "single algorithm": [
     {
       "year": 2026,
       "count": 1,
       "rank": 42
     }
   ],
-  "risk minimization": [
+  "silico predictors": [
     {
       "year": 2026,
       "count": 1,
       "rank": 43
     }
   ],
-  "representations": [
+  "sequential monte carlo": [
     {
       "year": 2026,
       "count": 1,
       "rank": 44
     }
   ],
-  "representation learning": [
+  "sequential monte": [
     {
       "year": 2026,
       "count": 1,
       "rank": 45
     }
   ],
-  "remote sensing": [
+  "segmentation": [
     {
       "year": 2026,
       "count": 1,
       "rank": 46
     }
   ],
-  "relaxed speculative decoding": [
+  "sea": [
     {
       "year": 2026,
       "count": 1,
       "rank": 47
     }
   ],
-  "relaxed speculative": [
+  "scalable model based clustering": [
     {
       "year": 2026,
       "count": 1,
       "rank": 48
     }
   ],
-  "regularizing attention scores": [
+  "scalable model based": [
     {
       "year": 2026,
       "count": 1,
       "rank": 49
     }
   ],
-  "referring image segmentation": [
+  "saddle point problems": [
     {
       "year": 2026,
       "count": 1,
       "rank": 50
     }
   ],
-  "referring image": [
+  "rotting adaptive window": [
     {
       "year": 2026,
       "count": 1,
       "rank": 51
     }
   ],
-  "rashomon set": [
+  "rotting": [
     {
       "year": 2026,
       "count": 1,
       "rank": 52
     }
   ],
-  "rashomon effect": [
+  "robust learning": [
     {
       "year": 2026,
       "count": 1,
       "rank": 53
     }
   ],
-  "rashomon": [
+  "risk minimization": [
     {
       "year": 2026,
       "count": 1,
       "rank": 54
     }
   ],
-  "radial contrastive learning": [
+  "rethinking intrinsic dimension": [
     {
       "year": 2026,
       "count": 1,
       "rank": 55
     }
   ],
-  "quantum neural networks": [
+  "rethinking intrinsic": [
     {
       "year": 2026,
       "count": 1,
       "rank": 56
     }
   ],
-  "quantum neural": [
+  "restless bandit": [
     {
       "year": 2026,
       "count": 1,
       "rank": 57
     }
   ],
-  "quantum": [
+  "restless": [
     {
       "year": 2026,
       "count": 1,
       "rank": 58
     }
   ],
-  "quantile regression": [
+  "rested rotting": [
     {
       "year": 2026,
       "count": 1,
       "rank": 59
     }
   ],
-  "proportion estimation": [
+  "rested": [
     {
       "year": 2026,
       "count": 1,
       "rank": 60
     }
   ],
-  "proportion": [
+  "representation learning": [
     {
       "year": 2026,
       "count": 1,
       "rank": 61
     }
   ],
-  "prompting": [
+  "remote sensing": [
     {
       "year": 2026,
       "count": 1,
       "rank": 62
     }
   ],
-  "predictors": [
+  "relaxed speculative decoding": [
     {
       "year": 2026,
       "count": 1,
       "rank": 63
     }
   ],
-  "potentially degenerate gaussian": [
+  "relaxed speculative": [
     {
       "year": 2026,
       "count": 1,
       "rank": 64
     }
   ],
-  "potentially degenerate": [
+  "regularizing attention scores": [
     {
       "year": 2026,
       "count": 1,
       "rank": 65
     }
   ],
-  "piecewise affine mixing": [
+  "referring image segmentation": [
     {
       "year": 2026,
       "count": 1,
       "rank": 66
     }
   ],
-  "piecewise affine": [
+  "referring image": [
     {
       "year": 2026,
       "count": 1,
       "rank": 67
     }
   ],
-  "physics": [
+  "rashomon set": [
     {
       "year": 2026,
       "count": 1,
       "rank": 68
     }
   ],
-  "particle system": [
+  "rashomon effect": [
     {
       "year": 2026,
       "count": 1,
       "rank": 69
     }
   ],
-  "optimization": [
+  "rashomon": [
     {
       "year": 2026,
       "count": 1,
       "rank": 70
     }
   ],
-  "online learning problems": [
+  "radial contrastive learning": [
     {
       "year": 2026,
       "count": 1,
       "rank": 71
     }
   ],
-  "online learning": [
+  "quantum neural networks": [
     {
       "year": 2026,
       "count": 1,
       "rank": 72
     }
   ],
-  "online": [
+  "quantum neural": [
     {
       "year": 2026,
       "count": 1,
       "rank": 73
     }
   ],
-  "numerous machine unlearning": [
+  "quantum": [
     {
       "year": 2026,
       "count": 1,
       "rank": 74
     }
   ],
-  "noisy side observations": [
+  "quantile regression": [
     {
       "year": 2026,
       "count": 1,
       "rank": 75
     }
   ],
-  "noisy side": [
+  "proportion estimation": [
     {
       "year": 2026,
       "count": 1,
       "rank": 76
     }
   ],
-  "noisy feedback": [
+  "proportion": [
     {
       "year": 2026,
       "count": 1,
       "rank": 77
     }
   ],
-  "noise": [
+  "prompting": [
     {
       "year": 2026,
       "count": 1,
       "rank": 78
     }
   ],
-  "neural odes": [
+  "presence of symmetries": [
     {
       "year": 2026,
       "count": 1,
       "rank": 79
     }
   ],
-  "neural networks": [
+  "presence": [
     {
       "year": 2026,
       "count": 1,
       "rank": 80
     }
   ],
-  "neural": [
+  "predictors": [
     {
       "year": 2026,
       "count": 1,
       "rank": 81
     }
   ],
-  "navigating the sea": [
+  "potentially degenerate gaussian": [
     {
       "year": 2026,
       "count": 1,
       "rank": 82
     }
   ],
-  "navigating": [
+  "potentially degenerate": [
     {
       "year": 2026,
       "count": 1,
       "rank": 83
     }
   ],
-  "nash equilibria": [
+  "piecewise affine mixing": [
     {
       "year": 2026,
       "count": 1,
       "rank": 84
     }
   ],
-  "multimodal radial contrastive": [
+  "piecewise affine": [
     {
       "year": 2026,
       "count": 1,
       "rank": 85
     }
   ],
-  "multi objective bayesian optimization": [
+  "physics": [
     {
       "year": 2026,
       "count": 1,
       "rank": 86
     }
   ],
-  "motion aware referring image": [
+  "particle system": [
     {
       "year": 2026,
       "count": 1,
       "rank": 87
     }
   ],
-  "monte carlo": [
+  "optimization": [
     {
       "year": 2026,
       "count": 1,
       "rank": 88
     }
   ],
-  "monte": [
+  "online learning problems": [
     {
       "year": 2026,
       "count": 1,
       "rank": 89
     }
   ],
-  "modeling and evaluating": [
+  "online learning": [
     {
       "year": 2026,
       "count": 1,
       "rank": 90
     }
   ],
-  "model based clustering": [
+  "online": [
     {
       "year": 2026,
       "count": 1,
       "rank": 91
     }
   ],
-  "mixture proportion estimation": [
+  "numerous machine unlearning": [
     {
       "year": 2026,
       "count": 1,
       "rank": 92
     }
   ],
-  "mixture proportion": [
+  "noisy side observations": [
     {
       "year": 2026,
       "count": 1,
       "rank": 93
     }
   ],
-  "mixture models": [
+  "noisy side": [
     {
       "year": 2026,
       "count": 1,
       "rank": 94
     }
   ],
-  "mixture": [
+  "noisy feedback": [
     {
       "year": 2026,
       "count": 1,
       "rank": 95
     }
   ],
-  "mean field optimization": [
+  "noise": [
     {
       "year": 2026,
       "count": 1,
       "rank": 96
     }
   ],
-  "matching": [
+  "neural representations": [
     {
       "year": 2026,
       "count": 1,
       "rank": 97
     }
   ],
-  "markov processes": [
+  "neural odes": [
     {
       "year": 2026,
       "count": 1,
       "rank": 98
     }
   ],
-  "markov games": [
+  "neural networks": [
     {
       "year": 2026,
       "count": 1,
       "rank": 99
     }
   ],
-  "margin risk minimization": [
+  "navigating the sea": [
     {
       "year": 2026,
       "count": 1,

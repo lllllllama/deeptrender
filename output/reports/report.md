@@ -1,13 +1,13 @@
 # 🔬 顶会论文关键词趋势报告
 
-> 自动生成于 2026-04-19 02:51:23
+> 自动生成于 2026-04-26 02:53:51
 
 ## 📊 数据概览
 
 | 指标 | 数值 |
 |------|------|
-| 论文总数 | 11,947 |
-| 关键词总数 | 69,794 |
+| 论文总数 | 12,947 |
+| 关键词总数 | 75,192 |
 | 覆盖会议 | AAAI, ACL, AIMOTION, AISTATS, ARR, AUAI, CVPR, DEEPLEARNINGINDABA, ECCV, EMNLP, HIGHLIGHTS-CONFERENCE, IACS, ICCV, ICLR, ICML, IJCAI, JDSE, NEURONOVEMBER, NeurIPS, PHILANDNEURO, RESYLAB, UIT |
 | 年份范围 | 2023 - 2026 |
 
@@ -24,56 +24,56 @@
 
 | 排名 | 关键词 | 出现次数 |
 |------|--------|----------|
-| 1 | large language model | 1151 |
-| 2 | large language | 605 |
-| 3 | language models | 595 |
-| 4 | generation | 354 |
-| 5 | diffusion | 290 |
-| 6 | language | 290 |
-| 7 | reasoning | 290 |
-| 8 | diffusion model | 280 |
-| 9 | video | 264 |
-| 10 | image | 263 |
-| 11 | reinforcement learning | 257 |
-| 12 | detection | 229 |
-| 13 | segmentation | 163 |
-| 14 | visual | 161 |
-| 15 | multimodal large language | 159 |
-| 16 | gaussian splatting | 147 |
-| 17 | neural networks | 144 |
-| 18 | neural | 143 |
-| 19 | gaussian | 141 |
-| 20 | vision language models | 141 |
-| 21 | human | 140 |
-| 22 | transformer | 131 |
-| 23 | agents | 124 |
-| 24 | object | 122 |
-| 25 | motion | 120 |
-| 26 | semantic | 120 |
-| 27 | multimodal | 119 |
-| 28 | reconstruction | 106 |
-| 29 | vision | 101 |
-| 30 | optimization | 100 |
-| 31 | estimation | 99 |
-| 32 | understanding | 98 |
-| 33 | object detection | 97 |
-| 34 | federated learning | 96 |
-| 35 | generative | 96 |
-| 36 | scene | 96 |
-| 37 | language model | 93 |
-| 38 | time series | 89 |
-| 39 | alignment | 87 |
-| 40 | foundation models | 87 |
-| 41 | knowledge | 87 |
-| 42 | multimodal large | 86 |
-| 43 | control | 85 |
-| 44 | attention | 84 |
-| 45 | prediction | 83 |
-| 46 | synthesis | 83 |
-| 47 | machine learning | 82 |
-| 48 | editing | 81 |
-| 49 | splatting | 79 |
-| 50 | memory | 77 |
+| 1 | large language model | 1277 |
+| 2 | large language | 668 |
+| 3 | language models | 660 |
+| 4 | generation | 371 |
+| 5 | reasoning | 323 |
+| 6 | language | 307 |
+| 7 | diffusion | 298 |
+| 8 | diffusion model | 288 |
+| 9 | image | 282 |
+| 10 | video | 277 |
+| 11 | reinforcement learning | 275 |
+| 12 | detection | 247 |
+| 13 | visual | 177 |
+| 14 | multimodal large language | 171 |
+| 15 | segmentation | 171 |
+| 16 | neural networks | 158 |
+| 17 | gaussian splatting | 157 |
+| 18 | neural | 154 |
+| 19 | gaussian | 150 |
+| 20 | vision language models | 150 |
+| 21 | human | 149 |
+| 22 | transformer | 140 |
+| 23 | agents | 132 |
+| 24 | semantic | 131 |
+| 25 | multimodal | 128 |
+| 26 | motion | 127 |
+| 27 | object | 126 |
+| 28 | optimization | 114 |
+| 29 | reconstruction | 114 |
+| 30 | vision | 112 |
+| 31 | estimation | 108 |
+| 32 | generative | 106 |
+| 33 | scene | 106 |
+| 34 | federated learning | 105 |
+| 35 | language model | 103 |
+| 36 | understanding | 103 |
+| 37 | object detection | 102 |
+| 38 | alignment | 98 |
+| 39 | machine learning | 96 |
+| 40 | time series | 95 |
+| 41 | knowledge | 94 |
+| 42 | foundation models | 93 |
+| 43 | attention | 92 |
+| 44 | multimodal large | 92 |
+| 45 | prediction | 92 |
+| 46 | control | 89 |
+| 47 | editing | 88 |
+| 48 | memory | 88 |
+| 49 | splatting | 86 |
+| 50 | synthesis | 85 |
 
 </details>
 
@@ -85,16 +85,16 @@
 
 以下关键词在最近一年增长显著：
 
-1. **agentic**
-2. **llm agents**
+1. **llm agents**
+2. **agentic**
 3. **code**
 4. **relative policy optimization**
-5. **series**
-6. **machine**
-7. **group relative policy**
+5. **machine**
+6. **group relative policy**
+7. **series**
 8. **privacy**
-9. **multi agent reinforcement learning**
-10. **natural language processing**
+9. **natural language processing**
+10. **scientific**
 
 ## 📚 会议详情
 
@@ -104,7 +104,7 @@
 
 | 年份 | 论文数 | Top 5 关键词 |
 |------|--------|--------------|
-| 2026 | 45 | large language model, time, time series, series, large language |
+| 2026 | 47 | large language model, time, time series, series, large language |
 | 2025 | 5 | multimodal, large language model, understanding, transformer based, temporal corruption |
 
 ### ACL
@@ -113,7 +113,7 @@
 
 | 年份 | 论文数 | Top 5 关键词 |
 |------|--------|--------------|
-| 2026 | 104 | large language model, large language, language models, reasoning, language |
+| 2026 | 170 | large language model, language models, large language, reasoning, language |
 
 ### AIMOTION
 
@@ -126,7 +126,7 @@
 
 | 年份 | 论文数 | Top 5 关键词 |
 |------|--------|--------------|
-| 2026 | 24 | processes, markov, wsbd, weighted stochastic block, weakly supervised kernel |
+| 2026 | 28 | variational, representations, processes, neural, markov |
 
 ### ARR
 
@@ -144,7 +144,7 @@
 
 | 年份 | 论文数 | Top 5 关键词 |
 |------|--------|--------------|
-| 2026 | 347 | video, generation, large language model, detection, image |
+| 2026 | 384 | image, video, generation, large language model, detection |
 | 2024 | 2755 | diffusion model, image, diffusion, generation, video |
 
 ### DEEPLEARNINGINDABA
@@ -192,7 +192,7 @@
 
 | 年份 | 论文数 | Top 5 关键词 |
 |------|--------|--------------|
-| 2026 | 214 | large language model, reasoning, language models, reinforcement learning, large language |
+| 2026 | 225 | large language model, reasoning, reinforcement learning, language models, large language |
 | 2025 | 1 | spurious, learn shortcuts, generative classifiers, generative, classifiers avoid shortcut |
 | 2024 | 30 | diffusion model, normalizing, multimodal, information, gradient |
 
@@ -202,7 +202,7 @@
 
 | 年份 | 论文数 | Top 5 关键词 |
 |------|--------|--------------|
-| 2026 | 13 | large language model, vision language models, language models, visual data corrects, visual data |
+| 2026 | 16 | large language model, language models, vision language models, visual data corrects, visual data |
 | 2025 | 1 | robustness, natural corruptions, natural, impact of compression, impact |
 
 ### IJCAI
@@ -211,7 +211,7 @@
 
 | 年份 | 论文数 | Top 5 关键词 |
 |------|--------|--------------|
-| 2026 | 3 | video retrieval platform, video, toxic habits named, toxic habit extraction, toxic habit |
+| 2026 | 5 | video retrieval platform, video, toxic habits named, toxic habit extraction, toxic habit |
 
 ### JDSE
 
@@ -229,7 +229,7 @@
 
 | 年份 | 论文数 | Top 5 关键词 |
 |------|--------|--------------|
-| 2026 | 15 | large language model, monte carlo, large language, world models, world |
+| 2026 | 19 | large language model, monte carlo, markov decision, large language, world models |
 | 2025 | 2 | transformer models, temperature forecasting, strength, signals, reward modeling |
 | 2023 | 30 | large language model, neural networks, understanding, transformer, textbf |
 

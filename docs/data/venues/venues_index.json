@@ -9,19 +9,19 @@
       2025,
       2024
     ],
-    "paper_count": 245,
+    "paper_count": 256,
     "top_keywords": [
       {
         "keyword": "large language model",
-        "count": 32
+        "count": 33
       },
       {
         "keyword": "reasoning",
-        "count": 12
+        "count": 13
       },
       {
         "keyword": "reinforcement learning",
-        "count": 11
+        "count": 12
       },
       {
         "keyword": "language models",
@@ -32,23 +32,23 @@
         "count": 10
       },
       {
+        "keyword": "diffusion model",
+        "count": 9
+      },
+      {
         "keyword": "transformer",
         "count": 8
       },
       {
-        "keyword": "diffusion model",
-        "count": 8
+        "keyword": "neural",
+        "count": 7
+      },
+      {
+        "keyword": "diffusion",
+        "count": 7
       },
       {
         "keyword": "visual",
-        "count": 6
-      },
-      {
-        "keyword": "neural",
-        "count": 6
-      },
-      {
-        "keyword": "language",
         "count": 6
       }
     ]
@@ -63,7 +63,7 @@
       2025,
       2023
     ],
-    "paper_count": 47,
+    "paper_count": 51,
     "top_keywords": [
       {
         "keyword": "large language model",
@@ -76,6 +76,10 @@
       {
         "keyword": "large language",
         "count": 4
+      },
+      {
+        "keyword": "monte carlo",
+        "count": 3
       },
       {
         "keyword": "language models",
@@ -94,15 +98,11 @@
         "count": 2
       },
       {
+        "keyword": "reward",
+        "count": 2
+      },
+      {
         "keyword": "reasoning",
-        "count": 2
-      },
-      {
-        "keyword": "prediction",
-        "count": 2
-      },
-      {
-        "keyword": "neural",
         "count": 2
       }
     ]
@@ -116,18 +116,18 @@
       2026,
       2025
     ],
-    "paper_count": 14,
+    "paper_count": 17,
     "top_keywords": [
       {
         "keyword": "large language model",
+        "count": 4
+      },
+      {
+        "keyword": "language models",
         "count": 3
       },
       {
         "keyword": "vision language models",
-        "count": 2
-      },
-      {
-        "keyword": "language models",
         "count": 2
       },
       {
@@ -218,47 +218,47 @@
     "domain": "ML",
     "tier": "A",
     "years_available": [],
-    "paper_count": 11947,
+    "paper_count": 12947,
     "top_keywords": [
       {
         "keyword": "large language model",
-        "count": 1151
+        "count": 1277
       },
       {
         "keyword": "large language",
-        "count": 605
+        "count": 668
       },
       {
         "keyword": "language models",
-        "count": 595
+        "count": 660
       },
       {
         "keyword": "generation",
-        "count": 354
-      },
-      {
-        "keyword": "diffusion",
-        "count": 290
-      },
-      {
-        "keyword": "language",
-        "count": 290
+        "count": 371
       },
       {
         "keyword": "reasoning",
-        "count": 290
+        "count": 323
+      },
+      {
+        "keyword": "language",
+        "count": 307
+      },
+      {
+        "keyword": "diffusion",
+        "count": 298
       },
       {
         "keyword": "diffusion model",
-        "count": 280
-      },
-      {
-        "keyword": "video",
-        "count": 264
+        "count": 288
       },
       {
         "keyword": "image",
-        "count": 263
+        "count": 282
+      },
+      {
+        "keyword": "video",
+        "count": 277
       }
     ]
   },
@@ -268,47 +268,47 @@
     "domain": "ML",
     "tier": "A",
     "years_available": [],
-    "paper_count": 11947,
+    "paper_count": 12947,
     "top_keywords": [
       {
         "keyword": "large language model",
-        "count": 1151
+        "count": 1277
       },
       {
         "keyword": "large language",
-        "count": 605
+        "count": 668
       },
       {
         "keyword": "language models",
-        "count": 595
+        "count": 660
       },
       {
         "keyword": "generation",
-        "count": 354
-      },
-      {
-        "keyword": "diffusion",
-        "count": 290
-      },
-      {
-        "keyword": "language",
-        "count": 290
+        "count": 371
       },
       {
         "keyword": "reasoning",
-        "count": 290
+        "count": 323
+      },
+      {
+        "keyword": "language",
+        "count": 307
+      },
+      {
+        "keyword": "diffusion",
+        "count": 298
       },
       {
         "keyword": "diffusion model",
-        "count": 280
-      },
-      {
-        "keyword": "video",
-        "count": 264
+        "count": 288
       },
       {
         "keyword": "image",
-        "count": 263
+        "count": 282
+      },
+      {
+        "keyword": "video",
+        "count": 277
       }
     ]
   },
@@ -318,47 +318,47 @@
     "domain": "ML",
     "tier": "A",
     "years_available": [],
-    "paper_count": 11947,
+    "paper_count": 12947,
     "top_keywords": [
       {
         "keyword": "large language model",
-        "count": 1151
+        "count": 1277
       },
       {
         "keyword": "large language",
-        "count": 605
+        "count": 668
       },
       {
         "keyword": "language models",
-        "count": 595
+        "count": 660
       },
       {
         "keyword": "generation",
-        "count": 354
-      },
-      {
-        "keyword": "diffusion",
-        "count": 290
-      },
-      {
-        "keyword": "language",
-        "count": 290
+        "count": 371
       },
       {
         "keyword": "reasoning",
-        "count": 290
+        "count": 323
+      },
+      {
+        "keyword": "language",
+        "count": 307
+      },
+      {
+        "keyword": "diffusion",
+        "count": 298
       },
       {
         "keyword": "diffusion model",
-        "count": 280
-      },
-      {
-        "keyword": "video",
-        "count": 264
+        "count": 288
       },
       {
         "keyword": "image",
-        "count": 263
+        "count": 282
+      },
+      {
+        "keyword": "video",
+        "count": 277
       }
     ]
   },
@@ -370,10 +370,22 @@
     "years_available": [
       2026
     ],
-    "paper_count": 24,
+    "paper_count": 28,
     "top_keywords": [
       {
+        "keyword": "variational",
+        "count": 2
+      },
+      {
+        "keyword": "representations",
+        "count": 2
+      },
+      {
         "keyword": "processes",
+        "count": 2
+      },
+      {
+        "keyword": "neural",
         "count": 2
       },
       {
@@ -398,18 +410,6 @@
       },
       {
         "keyword": "visualizing high dimensional data",
-        "count": 1
-      },
-      {
-        "keyword": "visualizing",
-        "count": 1
-      },
-      {
-        "keyword": "visual prompting reimagined",
-        "count": 1
-      },
-      {
-        "keyword": "visual prompting",
         "count": 1
       }
     ]

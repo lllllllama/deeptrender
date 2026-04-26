@@ -296,22 +296,22 @@
   "2026": [
     {
       "keyword": "large language model",
-      "count": 31,
+      "count": 32,
       "rank": 1
     },
     {
       "keyword": "reasoning",
-      "count": 12,
+      "count": 13,
       "rank": 2
     },
     {
-      "keyword": "language models",
+      "keyword": "reinforcement learning",
       "count": 11,
       "rank": 3
     },
     {
-      "keyword": "reinforcement learning",
-      "count": 10,
+      "keyword": "language models",
+      "count": 11,
       "rank": 4
     },
     {
@@ -330,83 +330,83 @@
       "rank": 7
     },
     {
-      "keyword": "language",
+      "keyword": "neural",
       "count": 6,
       "rank": 8
     },
     {
-      "keyword": "generation",
+      "keyword": "language",
       "count": 6,
       "rank": 9
     },
     {
-      "keyword": "time series",
-      "count": 5,
+      "keyword": "generation",
+      "count": 6,
       "rank": 10
     },
     {
-      "keyword": "optimization",
-      "count": 5,
+      "keyword": "diffusion model",
+      "count": 6,
       "rank": 11
     },
     {
-      "keyword": "neural",
-      "count": 5,
+      "keyword": "alignment",
+      "count": 6,
       "rank": 12
     },
     {
-      "keyword": "large reasoning models",
+      "keyword": "time series",
       "count": 5,
       "rank": 13
     },
     {
-      "keyword": "diffusion model",
+      "keyword": "optimization",
       "count": 5,
       "rank": 14
     },
     {
-      "keyword": "alignment",
+      "keyword": "large reasoning models",
       "count": 5,
       "rank": 15
     },
     {
-      "keyword": "agents",
+      "keyword": "diffusion",
       "count": 5,
       "rank": 16
     },
     {
-      "keyword": "protein",
-      "count": 4,
+      "keyword": "agents",
+      "count": 5,
       "rank": 17
     },
     {
-      "keyword": "large reasoning",
+      "keyword": "text",
       "count": 4,
       "rank": 18
     },
     {
-      "keyword": "information",
+      "keyword": "protein",
       "count": 4,
       "rank": 19
     },
     {
-      "keyword": "diffusion",
+      "keyword": "large reasoning",
       "count": 4,
       "rank": 20
     },
     {
-      "keyword": "benchmarking",
+      "keyword": "information",
       "count": 4,
       "rank": 21
     },
     {
-      "keyword": "agentic",
+      "keyword": "benchmarking",
       "count": 4,
       "rank": 22
     },
     {
-      "keyword": "text",
-      "count": 3,
+      "keyword": "agentic",
+      "count": 4,
       "rank": 23
     },
     {
@@ -435,112 +435,112 @@
       "rank": 28
     },
     {
-      "keyword": "multivariate time series",
+      "keyword": "neural networks",
       "count": 3,
       "rank": 29
     },
     {
-      "keyword": "multivariate time",
+      "keyword": "multivariate time series",
       "count": 3,
       "rank": 30
     },
     {
-      "keyword": "foundation models",
+      "keyword": "multivariate time",
       "count": 3,
       "rank": 31
     },
     {
-      "keyword": "flow",
+      "keyword": "llm alignment",
       "count": 3,
       "rank": 32
     },
     {
-      "keyword": "discovery",
+      "keyword": "foundation models",
       "count": 3,
       "rank": 33
     },
     {
-      "keyword": "compression",
+      "keyword": "flow",
       "count": 3,
       "rank": 34
     },
     {
-      "keyword": "classification",
+      "keyword": "discovery",
       "count": 3,
       "rank": 35
     },
     {
-      "keyword": "causal",
+      "keyword": "compression",
       "count": 3,
       "rank": 36
     },
     {
-      "keyword": "world models",
-      "count": 2,
+      "keyword": "classification",
+      "count": 3,
       "rank": 37
     },
     {
-      "keyword": "world model",
-      "count": 2,
+      "keyword": "causal",
+      "count": 3,
       "rank": 38
     },
     {
-      "keyword": "world",
-      "count": 2,
+      "keyword": "attention",
+      "count": 3,
       "rank": 39
     },
     {
-      "keyword": "video",
+      "keyword": "world models",
       "count": 2,
       "rank": 40
     },
     {
-      "keyword": "unlearnable",
+      "keyword": "world model",
       "count": 2,
       "rank": 41
     },
     {
-      "keyword": "understanding",
+      "keyword": "world",
       "count": 2,
       "rank": 42
     },
     {
-      "keyword": "time series forecasting",
+      "keyword": "vision",
       "count": 2,
       "rank": 43
     },
     {
-      "keyword": "time",
+      "keyword": "video",
       "count": 2,
       "rank": 44
     },
     {
-      "keyword": "test time adaptation",
+      "keyword": "unlearnable",
       "count": 2,
       "rank": 45
     },
     {
-      "keyword": "steering",
+      "keyword": "understanding",
       "count": 2,
       "rank": 46
     },
     {
-      "keyword": "state space models",
+      "keyword": "topological",
       "count": 2,
       "rank": 47
     },
     {
-      "keyword": "scene",
+      "keyword": "time series forecasting",
       "count": 2,
       "rank": 48
     },
     {
-      "keyword": "scattering",
+      "keyword": "time",
       "count": 2,
       "rank": 49
     },
     {
-      "keyword": "routing",
+      "keyword": "test time adaptation",
       "count": 2,
       "rank": 50
     }

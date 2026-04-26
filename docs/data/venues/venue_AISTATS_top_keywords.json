@@ -1,252 +1,252 @@
 {
   "2026": [
     {
-      "keyword": "processes",
+      "keyword": "variational",
       "count": 2,
       "rank": 1
     },
     {
-      "keyword": "markov",
+      "keyword": "representations",
       "count": 2,
       "rank": 2
     },
     {
-      "keyword": "wsbd",
-      "count": 1,
+      "keyword": "processes",
+      "count": 2,
       "rank": 3
     },
     {
-      "keyword": "weighted stochastic block",
-      "count": 1,
+      "keyword": "neural",
+      "count": 2,
       "rank": 4
     },
     {
-      "keyword": "weakly supervised kernel",
-      "count": 1,
+      "keyword": "markov",
+      "count": 2,
       "rank": 5
     },
     {
-      "keyword": "weak overlap",
+      "keyword": "wsbd",
       "count": 1,
       "rank": 6
     },
     {
-      "keyword": "visualizing high dimensional data",
+      "keyword": "weighted stochastic block",
       "count": 1,
       "rank": 7
     },
     {
-      "keyword": "visualizing",
+      "keyword": "weakly supervised kernel",
       "count": 1,
       "rank": 8
     },
     {
-      "keyword": "visual prompting reimagined",
+      "keyword": "weak overlap",
       "count": 1,
       "rank": 9
     },
     {
-      "keyword": "visual prompting",
+      "keyword": "visualizing high dimensional data",
       "count": 1,
       "rank": 10
     },
     {
-      "keyword": "visual",
+      "keyword": "visualizing",
       "count": 1,
       "rank": 11
     },
     {
-      "keyword": "vision transformer",
+      "keyword": "visual prompting reimagined",
       "count": 1,
       "rank": 12
     },
     {
-      "keyword": "verification relaxed speculative",
+      "keyword": "visual prompting",
       "count": 1,
       "rank": 13
     },
     {
-      "keyword": "variational gaussian processes",
+      "keyword": "visual",
       "count": 1,
       "rank": 14
     },
     {
-      "keyword": "variational",
+      "keyword": "vision transformer",
       "count": 1,
       "rank": 15
     },
     {
-      "keyword": "valuation",
+      "keyword": "verification relaxed speculative",
       "count": 1,
       "rank": 16
     },
     {
-      "keyword": "utility markov games",
+      "keyword": "vector based adaptation",
       "count": 1,
       "rank": 17
     },
     {
-      "keyword": "unlearning",
+      "keyword": "vector based",
       "count": 1,
       "rank": 18
     },
     {
-      "keyword": "uncoupled learning dynamics",
+      "keyword": "variational inference",
       "count": 1,
       "rank": 19
     },
     {
-      "keyword": "uncoupled learning algorithm",
+      "keyword": "variational gaussian processes",
       "count": 1,
       "rank": 20
     },
     {
-      "keyword": "uncoupled learning",
+      "keyword": "variational family",
       "count": 1,
       "rank": 21
     },
     {
-      "keyword": "tree height estimation",
+      "keyword": "valuation",
       "count": 1,
       "rank": 22
     },
     {
-      "keyword": "tree height",
+      "keyword": "utility markov games",
       "count": 1,
       "rank": 23
     },
     {
-      "keyword": "treatment effect estimation",
+      "keyword": "unlearning",
       "count": 1,
       "rank": 24
     },
     {
-      "keyword": "termed activation prompt",
+      "keyword": "uncoupled learning dynamics",
       "count": 1,
       "rank": 25
     },
     {
-      "keyword": "stochastic block descent",
+      "keyword": "uncoupled learning algorithm",
       "count": 1,
       "rank": 26
     },
     {
-      "keyword": "speculative decoding",
+      "keyword": "uncoupled learning",
       "count": 1,
       "rank": 27
     },
     {
-      "keyword": "speculative",
+      "keyword": "tree height estimation",
       "count": 1,
       "rank": 28
     },
     {
-      "keyword": "spectral graph neural",
+      "keyword": "tree height",
       "count": 1,
       "rank": 29
     },
     {
-      "keyword": "spectral gnns",
+      "keyword": "treatment effect estimation",
       "count": 1,
       "rank": 30
     },
     {
-      "keyword": "sparse variational gaussian",
+      "keyword": "termed activation prompt",
       "count": 1,
       "rank": 31
     },
     {
-      "keyword": "sparse variational",
+      "keyword": "target symmetries",
       "count": 1,
       "rank": 32
     },
     {
-      "keyword": "sparse",
+      "keyword": "target",
       "count": 1,
       "rank": 33
     },
     {
-      "keyword": "silico predictors",
+      "keyword": "stochastic block descent",
       "count": 1,
       "rank": 34
     },
     {
-      "keyword": "sequential monte carlo",
+      "keyword": "speculative decoding",
       "count": 1,
       "rank": 35
     },
     {
-      "keyword": "sequential monte",
+      "keyword": "speculative",
       "count": 1,
       "rank": 36
     },
     {
-      "keyword": "segmentation",
+      "keyword": "spectral graph neural",
       "count": 1,
       "rank": 37
     },
     {
-      "keyword": "sea",
+      "keyword": "spectral gnns",
       "count": 1,
       "rank": 38
     },
     {
-      "keyword": "scalable model based clustering",
+      "keyword": "sparse variational gaussian",
       "count": 1,
       "rank": 39
     },
     {
-      "keyword": "scalable model based",
+      "keyword": "sparse variational",
       "count": 1,
       "rank": 40
     },
     {
-      "keyword": "saddle point problems",
+      "keyword": "sparse",
       "count": 1,
       "rank": 41
     },
     {
-      "keyword": "robust learning",
+      "keyword": "single algorithm",
       "count": 1,
       "rank": 42
     },
     {
-      "keyword": "risk minimization",
+      "keyword": "silico predictors",
       "count": 1,
       "rank": 43
     },
     {
-      "keyword": "representations",
+      "keyword": "sequential monte carlo",
       "count": 1,
       "rank": 44
     },
     {
-      "keyword": "representation learning",
+      "keyword": "sequential monte",
       "count": 1,
       "rank": 45
     },
     {
-      "keyword": "remote sensing",
+      "keyword": "segmentation",
       "count": 1,
       "rank": 46
     },
     {
-      "keyword": "relaxed speculative decoding",
+      "keyword": "sea",
       "count": 1,
       "rank": 47
     },
     {
-      "keyword": "relaxed speculative",
+      "keyword": "scalable model based clustering",
       "count": 1,
       "rank": 48
     },
     {
-      "keyword": "regularizing attention scores",
+      "keyword": "scalable model based",
       "count": 1,
       "rank": 49
     },
     {
-      "keyword": "referring image segmentation",
+      "keyword": "saddle point problems",
       "count": 1,
       "rank": 50
     }

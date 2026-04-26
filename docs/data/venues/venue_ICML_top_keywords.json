@@ -49,16 +49,16 @@
   "2026": [
     {
       "keyword": "large language model",
-      "count": 3,
+      "count": 4,
       "rank": 1
     },
     {
-      "keyword": "vision language models",
-      "count": 2,
+      "keyword": "language models",
+      "count": 3,
       "rank": 2
     },
     {
-      "keyword": "language models",
+      "keyword": "vision language models",
       "count": 2,
       "rank": 3
     },
@@ -123,177 +123,177 @@
       "rank": 15
     },
     {
-      "keyword": "toolmath",
+      "keyword": "training for llm",
       "count": 1,
       "rank": 16
     },
     {
-      "keyword": "teach",
+      "keyword": "toolmath",
       "count": 1,
       "rank": 17
     },
     {
-      "keyword": "synthetic",
+      "keyword": "teach",
       "count": 1,
       "rank": 18
     },
     {
-      "keyword": "steepest descent",
+      "keyword": "synthetic",
       "count": 1,
       "rank": 19
     },
     {
-      "keyword": "stable diffusion",
+      "keyword": "steepest descent",
       "count": 1,
       "rank": 20
     },
     {
-      "keyword": "spatial trust weighting",
+      "keyword": "stable diffusion",
       "count": 1,
       "rank": 21
     },
     {
-      "keyword": "spatial",
+      "keyword": "spectral graph theory",
       "count": 1,
       "rank": 22
     },
     {
-      "keyword": "smooth homogeneous neural",
+      "keyword": "spatial trust weighting",
       "count": 1,
       "rank": 23
     },
     {
-      "keyword": "smooth homogeneous models",
+      "keyword": "spatial",
       "count": 1,
       "rank": 24
     },
     {
-      "keyword": "smooth homogeneous",
+      "keyword": "smooth homogeneous neural",
       "count": 1,
       "rank": 25
     },
     {
-      "keyword": "sinr estimation framework",
+      "keyword": "smooth homogeneous models",
       "count": 1,
       "rank": 26
     },
     {
-      "keyword": "sinr estimation",
+      "keyword": "smooth homogeneous",
       "count": 1,
       "rank": 27
     },
     {
-      "keyword": "sinr",
+      "keyword": "sinr estimation framework",
       "count": 1,
       "rank": 28
     },
     {
-      "keyword": "shift",
+      "keyword": "sinr estimation",
       "count": 1,
       "rank": 29
     },
     {
-      "keyword": "satellite based non terrestrial networks",
+      "keyword": "sinr",
       "count": 1,
       "rank": 30
     },
     {
-      "keyword": "sandbox",
+      "keyword": "shift",
       "count": 1,
       "rank": 31
     },
     {
-      "keyword": "reflective experience",
+      "keyword": "satellite based non terrestrial networks",
       "count": 1,
       "rank": 32
     },
     {
-      "keyword": "reflective",
+      "keyword": "sandbox",
       "count": 1,
       "rank": 33
     },
     {
-      "keyword": "reasoning",
+      "keyword": "ridge spectral sparsification",
       "count": 1,
       "rank": 34
     },
     {
-      "keyword": "realistic multi tool environments",
+      "keyword": "ridge spectral",
       "count": 1,
       "rank": 35
     },
     {
-      "keyword": "realistic multi tool",
+      "keyword": "reflective experience",
       "count": 1,
       "rank": 36
     },
     {
-      "keyword": "realistic long horizon multi tool",
+      "keyword": "reflective",
       "count": 1,
       "rank": 37
     },
     {
-      "keyword": "realistic long horizon",
+      "keyword": "reasoning",
       "count": 1,
       "rank": 38
     },
     {
-      "keyword": "pass",
+      "keyword": "realistic multi tool environments",
       "count": 1,
       "rank": 39
     },
     {
-      "keyword": "paintings",
+      "keyword": "realistic multi tool",
       "count": 1,
       "rank": 40
     },
     {
-      "keyword": "ood",
+      "keyword": "realistic long horizon multi tool",
       "count": 1,
       "rank": 41
     },
     {
-      "keyword": "non terrestrial networks",
+      "keyword": "realistic long horizon",
       "count": 1,
       "rank": 42
     },
     {
-      "keyword": "neural networks",
+      "keyword": "pass",
       "count": 1,
       "rank": 43
     },
     {
-      "keyword": "negation handling",
+      "keyword": "paintings",
       "count": 1,
       "rank": 44
     },
     {
-      "keyword": "negation",
+      "keyword": "ood",
       "count": 1,
       "rank": 45
     },
     {
-      "keyword": "multi tool reasoning",
+      "keyword": "online influence maximization",
       "count": 1,
       "rank": 46
     },
     {
-      "keyword": "multi fidelity augmented surrogate",
+      "keyword": "online influence",
       "count": 1,
       "rank": 47
     },
     {
-      "keyword": "multi fidelity augmented",
+      "keyword": "online",
       "count": 1,
       "rank": 48
     },
     {
-      "keyword": "models mentalize",
+      "keyword": "non terrestrial networks",
       "count": 1,
       "rank": 49
     },
     {
-      "keyword": "model via spatial",
+      "keyword": "neural networks",
       "count": 1,
       "rank": 50
     }
